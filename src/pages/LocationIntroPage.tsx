@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import FullscreenMenu from '../components/FullscreenMenu';
+import { safeSessionStorage, STORAGE_KEYS } from '../utils/storage';
 
 const images = [
   { src: '/images/a1/IMG_001.jpg', label: '水湳經貿園區' },
@@ -16,7 +17,7 @@ const LocationIntroPage: React.FC = () => {
 
   // 關閉按鈕：清除 sessionStorage 並回到首頁（播放開場動畫）
   const handleClose = () => {
-    sessionStorage.removeItem('hasPlayedIntro');
+    safeSessionStorage.removeItem(STORAGE_KEYS.HAS_PLAYED_INTRO);
     navigate('/');
   };
 
@@ -55,10 +56,11 @@ const LocationIntroPage: React.FC = () => {
       {/* 關閉按鈕 - 右上 */}
       <button
         onClick={handleClose}
-        className="absolute z-20 text-white opacity-60 hover:opacity-100 transition-opacity"
+        className="absolute z-20 text-white opacity-60 hover:opacity-100 active:opacity-100 transition-opacity"
         style={{ top: '2rem', right: '2rem' }}
+        aria-label="返回首頁並播放開場動畫"
       >
-        <svg style={{ width: '1.5rem', height: '1.5rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg style={{ width: '1.5rem', height: '1.5rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
@@ -66,10 +68,11 @@ const LocationIntroPage: React.FC = () => {
       {/* MENU 按鈕 - 左側 */}
       <button
         onClick={() => setMenuOpen(true)}
-        className="absolute top-1/2 -translate-y-1/2 z-20 text-white flex flex-col items-center hover:opacity-70 transition-opacity"
+        className="absolute top-1/2 -translate-y-1/2 z-20 text-white flex flex-col items-center hover:opacity-70 active:opacity-70 transition-opacity"
         style={{ left: '2rem', gap: '1rem' }}
+        aria-label="開啟主選單"
       >
-        <div className="flex flex-col" style={{ gap: '0.375rem' }}>
+        <div className="flex flex-col" style={{ gap: '0.375rem' }} aria-hidden="true">
           <div className="bg-white" style={{ width: '1.75rem', height: '0.125rem' }} />
           <div className="bg-white" style={{ width: '1.75rem', height: '0.125rem' }} />
           <div className="bg-white" style={{ width: '1.75rem', height: '0.125rem' }} />
@@ -125,7 +128,7 @@ const LocationIntroPage: React.FC = () => {
           >
             {/* 縮圖容器 */}
             <div
-              className="relative overflow-hidden transition-all duration-300"
+              className="relative overflow-hidden transition-all duration-300 active:scale-105"
               style={{
                 width: index === activeIndex ? '5rem' : '4rem',
                 height: index === activeIndex ? '3.5rem' : '3rem',

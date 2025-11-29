@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface IntroAnimationProps {
   onComplete: () => void;
@@ -11,6 +11,28 @@ const ANIMATION_CONFIG = {
   phase3: true,  // 第二段：高訂品味 對味不凡
   phase6: true,  // Logo 階段
 };
+
+// 背景組件 - 移到外部避免每次 render 重新創建
+const BackgroundLayer: React.FC<{ type: 'green' | 'pattern' }> = React.memo(({ type }) => (
+  <>
+    {type === 'green' ? (
+      <>
+        <div className="absolute inset-0 bg-[#c5cbb8]" />
+        <div className="absolute inset-0 opacity-30" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+        }} />
+      </>
+    ) : (
+      <>
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: 'url(/images/green-diamond-pattern.jpg)' }}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+      </>
+    )}
+  </>
+));
 
 const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
   // 根據設定決定起始階段
@@ -29,6 +51,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
   const [logoVisible, setLogoVisible] = useState(false);
   const [skipped, setSkipped] = useState(false);
   const timeoutRefs = useRef<NodeJS.Timeout[]>([]);
+  const isMountedRef = useRef(true);
 
   // 第一段動畫文字
   const introText1 = '聽樹先生唱歌，看花小姐飛舞。';
@@ -38,12 +61,6 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
   const mainTitle = '高訂品味 對味不凡';
   const subtitle = '水湳生態核心｜限量 40 席｜25 坪法式寓邸';
 
-  // 清除所有 timeout
-  const clearAllTimeouts = useCallback(() => {
-    timeoutRefs.current.forEach(timeout => clearTimeout(timeout));
-    timeoutRefs.current = [];
-  }, []);
-
   // 取得下一個啟用的階段
   const getNextPhase = (currentPhase: number): number => {
     if (currentPhase === 0 && ANIMATION_CONFIG.phase1) return 1;
@@ -52,12 +69,27 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
     return -1; // 結束
   };
 
+  // 清除所有 timeout - 直接使用 ref，不需要 useCallback
+  const clearAllTimeouts = () => {
+    timeoutRefs.current.forEach(timeout => clearTimeout(timeout));
+    timeoutRefs.current = [];
+  };
+
   // 跳過開場動畫
-  const skipIntro = useCallback(() => {
+  const skipIntro = () => {
     clearAllTimeouts();
     setSkipped(true);
     onComplete();
-  }, [clearAllTimeouts, onComplete]);
+  };
+
+  // 組件卸載時清理
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+      clearAllTimeouts();
+    };
+  }, []);
 
   // 如果所有動畫都關閉，直接完成
   useEffect(() => {
@@ -161,32 +193,11 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
     return () => {
       clearAllTimeouts();
     };
-  }, [phase, skipped, clearAllTimeouts, onComplete]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, skipped, onComplete]);
 
   // 如果階段無效，不渲染
   if (phase === -1) return null;
-
-  // 背景組件 - 用於所有階段的共同背景，防止看到主頁面
-  const BackgroundLayer = ({ type }: { type: 'green' | 'pattern' }) => (
-    <>
-      {type === 'green' ? (
-        <>
-          <div className="absolute inset-0 bg-[#c5cbb8]" />
-          <div className="absolute inset-0 opacity-30" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          }} />
-        </>
-      ) : (
-        <>
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: 'url(/images/green-diamond-pattern.jpg)' }}
-          />
-          <div className="absolute inset-0 bg-black/50" />
-        </>
-      )}
-    </>
-  );
 
   // 第一幕
   if (phase === 0) {

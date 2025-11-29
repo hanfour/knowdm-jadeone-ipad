@@ -29,7 +29,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ isOpen, onClose }) => {
       {/* BACK 按鈕 - 左側中間 */}
       <button
         onClick={onClose}
-        className="absolute top-1/2 -translate-y-1/2 text-white flex items-center hover:opacity-70 transition-opacity z-[60]"
+        className="absolute top-1/2 -translate-y-1/2 text-white flex items-center hover:opacity-70 active:opacity-70 transition-opacity z-[60]"
         style={{ left: '2rem', gap: '0.75rem' }}
       >
         <span style={{ fontSize: '1rem' }}>—</span>
@@ -72,7 +72,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ isOpen, onClose }) => {
                     key={item.id}
                     to={item.link}
                     onClick={onClose}
-                    className="block border border-transparent hover:border-white/60 transition-colors"
+                    className="block border border-transparent hover:border-white/60 active:border-white/60 transition-colors"
                     style={{
                       fontSize: '0.875rem',
                       padding: '0.375rem 0.75rem',

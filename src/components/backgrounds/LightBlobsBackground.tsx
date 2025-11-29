@@ -4,13 +4,6 @@ const LightBlobsBackground: React.FC = () => {
   return (
     <>
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* 大型光斑 1 */}
-        <div className="absolute light-blob light-1 !hidden" style={{
-          width: '40vw',
-          height: '40vw',
-          top: '-10%',
-          right: '55%',
-        }} />
         {/* 大型光斑 2 */}
         <div className="absolute light-blob light-2" style={{
           width: '20vw',
@@ -32,26 +25,12 @@ const LightBlobsBackground: React.FC = () => {
           top: '70%',
           left: '0%',
         }} />
-        {/* 小型光斑 5 */}
-        <div className="absolute light-blob light-5 !hidden" style={{
-          width: '5vw',
-          height: '5vw',
-          bottom: '60%',
-          left: '10%',
-        }} />
         {/* 小型光斑 6 - 帶彩虹色 */}
         <div className="absolute light-blob-rainbow light-6" style={{
           width: '30vw',
           height: '30vw',
           top: '50%',
           left: '40%',
-        }} />
-        {/* 橢圓光帶 7 */}
-        <div className="absolute light-streak light-7 !hidden" style={{
-          width: '80vw',
-          height: '25vw',
-          top: '15%',
-          left: '30%',
         }} />
         {/* 橢圓光帶 8 */}
         <div className="absolute light-streak light-8" style={{
@@ -108,13 +87,6 @@ const LightBlobsBackground: React.FC = () => {
         }
 
         /* 光斑飄動動畫 */
-        @keyframes lightDrift1 {
-          0% { transform: translate(0, 0) scale(1); opacity: 0.4; }
-          25% { transform: translate(-15%, 10%) scale(1.15); opacity: 0.9; }
-          50% { transform: translate(-25%, 18%) scale(1.25); opacity: 0.6; }
-          75% { transform: translate(-10%, 12%) scale(1.1); opacity: 1; }
-          100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
-        }
         @keyframes lightDrift2 {
           0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
           30% { transform: translate(18%, -15%) scale(1.2); opacity: 0.85; }
@@ -132,21 +104,10 @@ const LightBlobsBackground: React.FC = () => {
           70% { transform: translate(15%, 25%) scale(0.85); opacity: 0.4; }
           100% { transform: translate(0, 0) scale(1); opacity: 0.25; }
         }
-        @keyframes lightDrift5 {
-          0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
-          40% { transform: translate(-18%, -20%) scale(1.35); opacity: 0.9; }
-          80% { transform: translate(8%, -12%) scale(0.8); opacity: 0.45; }
-          100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
-        }
         @keyframes lightDrift6 {
           0% { transform: translate(0, 0) scale(1); opacity: 0.2; }
           50% { transform: translate(-12%, 20%) scale(1.4); opacity: 0.85; }
           100% { transform: translate(0, 0) scale(1); opacity: 0.2; }
-        }
-        @keyframes lightDrift7 {
-          0% { transform: translate(0, 0) rotate(-15deg) scale(1); opacity: 0.3; }
-          50% { transform: translate(-18%, 10%) rotate(-5deg) scale(1.2); opacity: 0.75; }
-          100% { transform: translate(0, 0) rotate(-15deg) scale(1); opacity: 0.3; }
         }
         @keyframes lightDrift8 {
           0% { transform: translate(0, 0) rotate(10deg) scale(1); opacity: 0.25; }
@@ -154,13 +115,10 @@ const LightBlobsBackground: React.FC = () => {
           100% { transform: translate(0, 0) rotate(10deg) scale(1); opacity: 0.25; }
         }
 
-        .light-1 { animation: lightDrift1 8s ease-in-out infinite; }
         .light-2 { animation: lightDrift2 14s ease-in-out infinite; animation-delay: -2s; }
         .light-3 { animation: lightDrift3 7s ease-in-out infinite; animation-delay: -4s; }
         .light-4 { animation: lightDrift4 9s ease-in-out infinite; animation-delay: -1s; }
-        .light-5 { animation: lightDrift5 11s ease-in-out infinite; animation-delay: -3s; }
         .light-6 { animation: lightDrift6 8s ease-in-out infinite; animation-delay: -5s; }
-        .light-7 { animation: lightDrift7 12s ease-in-out infinite; animation-delay: -2s; }
         .light-8 { animation: lightDrift8 10s ease-in-out infinite; animation-delay: -6s; }
       `}</style>
     </>

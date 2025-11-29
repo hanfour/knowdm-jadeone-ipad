@@ -1,9 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, CSSProperties } from 'react';
 
 interface AspectRatioContainerProps {
   children: React.ReactNode;
   aspectRatio?: number; // 16:9 = 16/9
   baseWidth?: number;   // 設計稿基準寬度
+}
+
+// 擴展 CSSProperties 以支援 CSS 變數
+interface CustomCSSProperties extends CSSProperties {
+  '--scale'?: number;
 }
 
 const AspectRatioContainer: React.FC<AspectRatioContainerProps> = ({
@@ -54,10 +59,10 @@ const AspectRatioContainer: React.FC<AspectRatioContainerProps> = ({
           width: dimensions.width,
           height: dimensions.height,
           // 使用 CSS 變數傳遞縮放比例，讓子元件可以使用
-          ['--scale' as string]: dimensions.scale,
+          '--scale': dimensions.scale,
           // 設定基準字體大小，讓 rem 單位可以正確縮放
           fontSize: `${16 * dimensions.scale}px`,
-        }}
+        } as CustomCSSProperties}
       >
         {children}
       </div>

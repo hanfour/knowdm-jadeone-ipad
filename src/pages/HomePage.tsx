@@ -9,6 +9,7 @@ import {
 import FullscreenMenu from '../components/FullscreenMenu';
 import IntroAnimation from '../components/IntroAnimation';
 import { menuSections } from '../config/menu';
+import { safeSessionStorage, STORAGE_KEYS } from '../utils/storage';
 
 // 點擊水波紋介面
 interface ClickRipple {
@@ -22,7 +23,7 @@ type BackgroundEffectType = 'light-blobs' | 'light-rays' | 'sunlight';
 
 const HomePage: React.FC = () => {
   // 檢查是否已經播放過動畫（使用 sessionStorage）
-  const hasPlayedIntro = sessionStorage.getItem('hasPlayedIntro') === 'true';
+  const hasPlayedIntro = safeSessionStorage.getItem(STORAGE_KEYS.HAS_PLAYED_INTRO) === 'true';
   const [showIntro, setShowIntro] = useState(!hasPlayedIntro);
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentMenuIndex, setCurrentMenuIndex] = useState(0);
@@ -37,7 +38,7 @@ const HomePage: React.FC = () => {
 
   // 重新播放開場動畫
   const restartIntro = useCallback(() => {
-    sessionStorage.removeItem('hasPlayedIntro');
+    safeSessionStorage.removeItem(STORAGE_KEYS.HAS_PLAYED_INTRO);
     setShowIntro(true);
   }, []);
 
@@ -97,7 +98,7 @@ const HomePage: React.FC = () => {
       {/* 開場動畫 */}
       {showIntro && (
         <IntroAnimation onComplete={() => {
-          sessionStorage.setItem('hasPlayedIntro', 'true');
+          safeSessionStorage.setItem(STORAGE_KEYS.HAS_PLAYED_INTRO, 'true');
           setShowIntro(false);
         }} />
       )}
@@ -141,10 +142,11 @@ const HomePage: React.FC = () => {
         {/* 關閉按鈕 - 右上（點擊回到動畫） */}
         <button
           onClick={(e) => { e.stopPropagation(); restartIntro(); }}
-          className="absolute z-20 text-white opacity-60 hover:opacity-100 transition-opacity"
+          className="absolute z-20 text-white opacity-60 hover:opacity-100 active:opacity-100 transition-opacity"
           style={{ top: '2rem', right: '2rem' }}
+          aria-label="重新播放開場動畫"
         >
-          <svg style={{ width: '1.5rem', height: '1.5rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg style={{ width: '1.5rem', height: '1.5rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
@@ -152,10 +154,11 @@ const HomePage: React.FC = () => {
         {/* MENU 按鈕 - 左側 */}
         <button
           onClick={(e) => { e.stopPropagation(); setMenuOpen(true); }}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-20 text-white flex flex-col items-center hover:opacity-70 transition-opacity"
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-20 text-white flex flex-col items-center hover:opacity-70 active:opacity-70 transition-opacity"
           style={{ left: '2rem', gap: '1rem' }}
+          aria-label="開啟主選單"
         >
-          <div className="flex flex-col" style={{ gap: '0.375rem' }}>
+          <div className="flex flex-col" style={{ gap: '0.375rem' }} aria-hidden="true">
             <div className="bg-white" style={{ width: '1.75rem', height: '0.125rem' }} />
             <div className="bg-white" style={{ width: '1.75rem', height: '0.125rem' }} />
             <div className="bg-white" style={{ width: '1.75rem', height: '0.125rem' }} />
@@ -164,33 +167,37 @@ const HomePage: React.FC = () => {
         </button>
 
         {/* 右側頁碼指示器 */}
-        <div
+        <nav
           className="absolute z-20 flex flex-col items-end"
           style={{ right: '2rem', bottom: '25%', gap: '0.5rem' }}
           onClick={e => e.stopPropagation()}
+          aria-label="選單頁碼"
         >
-          <span className="text-white tracking-widest" style={{ fontSize: '0.875rem', marginBottom: '0.5rem' }}>
+          <span className="text-white tracking-widest" style={{ fontSize: '0.875rem', marginBottom: '0.5rem' }} aria-live="polite">
             0{currentMenuIndex + 1}
           </span>
-          {menuSections.map((_, idx) => (
+          {menuSections.map((section, idx) => (
             <button
-              key={idx}
+              key={`page-${idx}`}
               onClick={() => setCurrentMenuIndex(idx)}
               className="flex items-center justify-end transition-all duration-300"
               style={{
                 minHeight: '1.25rem',
                 width: idx === currentMenuIndex ? '2rem' : '1rem'
               }}
+              aria-label={`前往${section.title.join('')}`}
+              aria-current={idx === currentMenuIndex ? 'true' : undefined}
             >
               <div
                 className={`w-full transition-all duration-300 ${
-                  idx === currentMenuIndex ? 'bg-white' : 'bg-white/40 hover:bg-white/60'
+                  idx === currentMenuIndex ? 'bg-white' : 'bg-white/40 hover:bg-white/60 active:bg-white/60'
                 }`}
                 style={{ height: '1px' }}
+                aria-hidden="true"
               />
             </button>
           ))}
-        </div>
+        </nav>
 
         {/* 右側內容區 */}
         <div className="absolute right-0 top-0 bottom-0 w-1/2 flex flex-col" onClick={e => e.stopPropagation()}>
@@ -270,6 +277,8 @@ const HomePage: React.FC = () => {
           <div
             className="h-[25%] flex items-start"
             style={{ paddingTop: '2rem', paddingLeft: '3rem' }}
+            role="navigation"
+            aria-label="選單切換"
           >
             <div className="flex items-center text-white" style={{ gap: '1.5rem' }}>
               <button
@@ -283,10 +292,12 @@ const HomePage: React.FC = () => {
                   pressedArrow === 'prev' ? 'opacity-100 scale-110' : 'opacity-60 hover:opacity-100 hover:scale-125'
                 }`}
                 style={{ fontSize: '1.5rem' }}
+                aria-label="上一個選單"
               >
                 <span
                   className="inline-block transition-transform duration-150"
                   style={{ transform: pressedArrow === 'prev' ? 'translateY(-4px)' : 'translateY(0)' }}
+                  aria-hidden="true"
                 >
                   ∧
                 </span>
@@ -302,10 +313,12 @@ const HomePage: React.FC = () => {
                   pressedArrow === 'next' ? 'opacity-100 scale-110' : 'opacity-60 hover:opacity-100 hover:scale-125'
                 }`}
                 style={{ fontSize: '1.5rem' }}
+                aria-label="下一個選單"
               >
                 <span
                   className="inline-block transition-transform duration-150"
                   style={{ transform: pressedArrow === 'next' ? 'translateY(4px)' : 'translateY(0)' }}
+                  aria-hidden="true"
                 >
                   ∨
                 </span>
