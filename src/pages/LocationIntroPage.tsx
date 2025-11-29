@@ -37,7 +37,7 @@ const LocationIntroPage: React.FC = () => {
             />
             {/* 右側漸層遮罩 */}
             <div
-              className={`absolute inset-0 bg-gradient-to-l from-[#0b2d2a]/15 to-transparent duration-700 ${
+              className={`absolute inset-0 bg-gradient-to-l from-[#0b2d2a]/20 to-transparent duration-700 ${
                 activeIndex === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'
               }`} 
             />
@@ -113,8 +113,8 @@ const LocationIntroPage: React.FC = () => {
 
           {/* 副標題 */}
           <p
-            className="text-white drop-shadow-sm leading-relaxed"
-            style={{ fontSize: '1rem', marginTop: '1.5rem' }}
+            className="text-white leading-relaxed"
+            style={{ fontSize: '1rem', marginTop: '1.5rem', filter: 'drop-shadow(0 1px 1px rgb(0 0 0 / 0.25))' }}
           >
             水湳經貿園區將以國際AI經貿城市的姿態，開啟大台中核心新未來，齊聚經貿、商業與文化藝術的國際化價值，奠定國際核心地位，全球注目時代標的，國際建築大師作品齊聚爭豔，大巨蛋、綠美圖、流行音樂中心、國際會展中心、水湳轉運站落址，產官學500億投資、創造千億經濟產值，運載全球 AI 科技產業能量，水湳智慧城重新定義國際生活價值。
           </p>
