@@ -1,46 +1,289 @@
-# Getting Started with Create React App
+# 企業網站 - Flash 轉 React 專案
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+這是一個將原始 Flash 網站轉換為現代化 React + TailwindCSS 靜態網站的專案。
 
-## Available Scripts
+## 📋 專案概述
 
-In the project directory, you can run:
+原始 Flash 網站包含：
+- 124 個 SWF 檔案，分為 A、B、C、D 四個主要區塊
+- 1 個企業形象影片 (video1.flv)
+- 階層式導航結構
 
-### `npm start`
+轉換後的網站特色：
+- ✨ 使用 React 18 + TypeScript 建構
+- 🎨 使用 TailwindCSS v4 進行樣式設計
+- 🚀 完全響應式設計，支援手機、平板、桌面
+- 🧭 多層級導航系統
+- 📱 移動端友好的選單設計
+- ♿ 符合無障礙標準
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🏗️ 專案結構
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+corporate-website/
+├── public/
+│   └── (靜態資源)
+├── src/
+│   ├── components/
+│   │   └── Navigation.tsx        # 導航組件
+│   ├── layouts/
+│   │   └── MainLayout.tsx        # 主版型
+│   ├── pages/
+│   │   ├── HomePage.tsx          # 首頁
+│   │   ├── ContentPage.tsx       # 通用內容頁
+│   │   └── VideoPage.tsx         # 影片頁面
+│   ├── data/
+│   │   └── siteStructure.ts      # 網站結構定義
+│   ├── assets/
+│   │   └── videos/               # 影片資源
+│   ├── App.tsx                   # 主應用程式
+│   └── index.css                 # 全域樣式
+└── package.json
+```
 
-### `npm test`
+## 📊 網站結構
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+網站分為以下主要區塊：
 
-### `npm run build`
+### A. 關於我們 (`/about`)
+- A1. 公司簡介
+  - A11. 公司歷史
+  - A12. 企業文化
+  - A13. 組織架構
+- A2. 經營理念
+  - A21-A27, A2x. 核心價值、願景使命等
+- A3. 營運據點
+  - A31. 總公司 (含 A310-A318 詳細設施)
+  - A32-A39. 分公司、海外據點等
+- A4. 認證榮譽
+  - A41-A43. ISO認證、獲獎紀錄、專利技術
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### B. 產品服務 (`/products`)
+- B1. 產品分類
+- B2. 服務項目
+- B3. 解決方案
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### C. 最新消息 (`/news`)
+- C1-C6. 各類新聞
+- C7. 媒體報導 (含 C71-C78 各類媒體)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### D. 人才招募 (`/careers`)
+- D1. 工作機會
+- D2. 員工福利 (含 D21-D27 詳細福利)
 
-### `npm run eject`
+### 企業影片 (`/video`)
+- 企業形象影片播放頁面
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🚀 快速開始
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 前置需求
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Node.js 14.0 或更高版本
+- npm 或 yarn
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### 安裝
 
-## Learn More
+```bash
+# 進入專案目錄
+cd corporate-website
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# 安裝依賴
+npm install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 開發
+
+```bash
+# 啟動開發伺服器
+npm start
+```
+
+開啟瀏覽器訪問 [http://localhost:3000](http://localhost:3000)
+
+### 建構
+
+```bash
+# 建構生產版本
+npm run build
+```
+
+建構完成的檔案將位於 `build/` 目錄中。
+
+## 🎬 影片轉換指南
+
+原始的 `video1.flv` 檔案需要轉換為現代瀏覽器支援的格式。
+
+### 使用 FFmpeg 轉換
+
+1. 安裝 FFmpeg：
+   ```bash
+   # macOS
+   brew install ffmpeg
+
+   # Ubuntu/Debian
+   sudo apt-get install ffmpeg
+
+   # Windows
+   # 從 https://ffmpeg.org/download.html 下載
+   ```
+
+2. 轉換為 MP4：
+   ```bash
+   ffmpeg -i ../swf/video1.flv \
+          -c:v libx264 \
+          -preset slow \
+          -crf 22 \
+          -c:a aac \
+          -b:a 192k \
+          public/videos/video1.mp4
+   ```
+
+3. (可選) 同時生成 WebM 以提高相容性：
+   ```bash
+   ffmpeg -i ../swf/video1.flv \
+          -c:v libvpx-vp9 \
+          -crf 30 \
+          -b:v 0 \
+          -c:a libopus \
+          public/videos/video1.webm
+   ```
+
+4. 更新 `src/pages/VideoPage.tsx` 中的影片來源：
+   ```tsx
+   <video ref={videoRef} className="w-full h-full" controls>
+     <source src="/videos/video1.mp4" type="video/mp4" />
+     <source src="/videos/video1.webm" type="video/webm" />
+     您的瀏覽器不支援影片播放。
+   </video>
+   ```
+
+## 📝 內容更新指南
+
+### 更新頁面內容
+
+1. 找到對應的原始 SWF 檔案 (例如 `a1.swf`)
+2. 使用 Flash 播放器查看原始內容
+3. 編輯對應的頁面路徑 (例如 `/about/intro`)
+4. 更新 `src/pages/ContentPage.tsx` 或建立專用頁面組件
+
+### 添加圖片資源
+
+1. 將圖片放入 `public/images/` 目錄
+2. 在組件中引用：
+   ```tsx
+   <img src="/images/your-image.jpg" alt="描述" />
+   ```
+
+### 修改導航結構
+
+編輯 `src/data/siteStructure.ts` 來調整網站結構：
+
+```typescript
+{
+  id: 'new-section',
+  title: '新區塊',
+  path: '/new-section',
+  children: [...]
+}
+```
+
+## 🎨 樣式自訂
+
+### 修改顏色主題
+
+編輯 `src/index.css` 或使用 Tailwind 的自訂設定：
+
+```css
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --primary: #3B82F6;    /* 藍色 */
+    --secondary: #10B981;  /* 綠色 */
+  }
+}
+```
+
+### 修改佈局
+
+- 主版型: `src/layouts/MainLayout.tsx`
+- 導航列: `src/components/Navigation.tsx`
+- 頁尾: `src/layouts/MainLayout.tsx` (底部)
+
+## 📱 響應式斷點
+
+TailwindCSS 預設斷點：
+- `sm`: 640px
+- `md`: 768px
+- `lg`: 1024px
+- `xl`: 1280px
+- `2xl`: 1536px
+
+## 🔧 技術棧
+
+- **框架**: React 18
+- **語言**: TypeScript
+- **樣式**: TailwindCSS v4
+- **路由**: React Router v6
+- **建構工具**: Create React App
+
+## ⚡ 效能優化建議
+
+1. **圖片優化**: 使用 WebP 格式並提供回退方案
+2. **程式碼分割**: 使用 React.lazy() 進行路由級別的程式碼分割
+3. **快取策略**: 在生產環境配置適當的 HTTP 快取標頭
+4. **CDN 部署**: 將靜態資源部署到 CDN
+
+## 📦 部署
+
+### Vercel
+```bash
+npm install -g vercel
+vercel
+```
+
+### Netlify
+```bash
+npm run build
+# 拖放 build/ 目錄到 Netlify
+```
+
+### GitHub Pages
+```bash
+npm install --save-dev gh-pages
+
+# package.json 中添加：
+{
+  "homepage": "https://yourusername.github.io/corporate-website",
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  }
+}
+
+npm run deploy
+```
+
+## 🐛 已知問題
+
+1. 原始 Flash 內容無法自動提取，需要手動補充
+2. 部分動畫效果需要使用 CSS 動畫或 JavaScript 重新實作
+3. 互動式功能需要根據原始 ActionScript 邏輯重新開發
+
+## 📚 下一步
+
+- [ ] 從原始 SWF 檔案提取實際內容
+- [ ] 添加圖片和媒體資源
+- [ ] 實作特定的互動功能
+- [ ] 進行 SEO 優化
+- [ ] 添加 Google Analytics
+- [ ] 設定表單處理 (聯絡我們、招募等)
+- [ ] 建立 CMS 整合 (可選)
+
+## 💬 聯絡方式
+
+如有任何問題，請聯絡開發團隊。
+
+---
+
+**注意**: 這個專案是從 Flash 網站轉換而來的框架。您需要根據原始 Flash 內容填充實際的文字、圖片和功能。
