@@ -46,7 +46,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ isOpen, onClose }) => {
           <div
             key={idx}
             className="border-r border-white/10 last:border-r-0"
-            style={{ paddingTop: '13vh', paddingLeft: '2rem', paddingRight: '2rem' }}
+            style={{ paddingTop: '15vh', paddingLeft: '2rem', paddingRight: '2rem' }}
           >
             <div className="text-white">
               <div
@@ -66,7 +66,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ isOpen, onClose }) => {
                   </div>
                 ))}
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                 {section.items.map((item) => (
                   <Link
                     key={item.id}

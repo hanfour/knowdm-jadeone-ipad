@@ -37,7 +37,7 @@ const LocationIntroPage: React.FC = () => {
             />
             {/* 右側漸層遮罩 */}
             <div
-              className={`absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#0b2d2a]/35 to-transparent duration-700 ${
+              className={`absolute inset-0 bg-gradient-to-l from-[#0b2d2a]/35 to-transparent duration-700 ${
                 activeIndex === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'
               }`} 
             />
