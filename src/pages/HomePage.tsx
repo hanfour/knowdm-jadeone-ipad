@@ -135,7 +135,7 @@ const HomePage: React.FC = () => {
           <img
             src="/images/logo-gold.svg"
             alt="聚碩仁玉"
-            style={{ height: '4rem', width: 'auto' }}
+            style={{ height: '5rem', width: 'auto' }}
           />
         </div>
 
@@ -173,7 +173,7 @@ const HomePage: React.FC = () => {
           onClick={e => e.stopPropagation()}
           aria-label="選單頁碼"
         >
-          <span className="text-white tracking-widest" style={{ fontSize: '0.875rem', marginBottom: '0.5rem' }} aria-live="polite">
+          <span className="text-white tracking-widest" style={{ fontSize: '1rem', marginBottom: '0.5rem' }} aria-live="polite">
             0{currentMenuIndex + 1}
           </span>
           {menuSections.map((section, idx) => (
@@ -211,8 +211,8 @@ const HomePage: React.FC = () => {
           >
             {/* 分類標籤 */}
             <div
-              className="text-white opacity-70"
-              style={{ fontSize: '0.875rem', letterSpacing: '0.3em', marginBottom: '1rem' }}
+              className="text-[#f3cf9a]"
+              style={{ fontSize: '1.25rem', letterSpacing: '0.3em', marginBottom: '1rem' }}
             >
               {currentMenu.category}
             </div>
@@ -258,7 +258,7 @@ const HomePage: React.FC = () => {
                       to={item.link}
                       className="text-white/80 hover:text-white active:text-white border border-transparent hover:border-white/60 active:border-white/60 transition-colors whitespace-nowrap"
                       style={{
-                        fontSize: '0.875rem',
+                        fontSize: '1rem',
                         padding: '0.375rem 0.75rem',
                         marginRight: '1rem',
                         marginBottom: '0.5rem'

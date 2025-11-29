@@ -31,7 +31,7 @@ const VideoPage: React.FC = () => {
           <img
             src="/images/logo-gold.svg"
             alt="聚碩仁玉"
-            style={{ height: '4rem', width: 'auto' }}
+            style={{ height: '5rem', width: 'auto' }}
           />
         </Link>
       </div>

@@ -21,7 +21,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ isOpen, onClose }) => {
           <img
             src="/images/logo-gold.svg"
             alt="聚碩仁玉"
-            style={{ height: '4rem', width: 'auto' }}
+            style={{ height: '5rem', width: 'auto' }}
           />
         </Link>
       </div>
@@ -46,7 +46,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ isOpen, onClose }) => {
           <div
             key={idx}
             className="border-r border-white/10 last:border-r-0"
-            style={{ paddingTop: '30vh', paddingLeft: '2rem', paddingRight: '2rem' }}
+            style={{ paddingTop: '13vh', paddingLeft: '2rem', paddingRight: '2rem' }}
           >
             <div className="text-white">
               <div
@@ -74,7 +74,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ isOpen, onClose }) => {
                     onClick={onClose}
                     className="block border border-transparent hover:border-white/60 active:border-white/60 transition-colors"
                     style={{
-                      fontSize: '0.875rem',
+                      fontSize: '1rem',
                       padding: '0.375rem 0.75rem',
                       marginLeft: '-0.75rem'
                     }}

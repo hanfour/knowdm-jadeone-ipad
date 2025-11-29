@@ -26,17 +26,23 @@ const LocationIntroPage: React.FC = () => {
       {/* 背景圖片 - 切換效果 */}
       <div className="absolute inset-0">
         {images.map((image, index) => (
-          <img
-            key={image.src}
-            src={image.src}
-            alt={image.label}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-              index === activeIndex ? 'opacity-100' : 'opacity-0'
-            }`}
-          />
+          <>
+            <img
+              key={image.src}
+              src={image.src}
+              alt={image.label}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                index === activeIndex ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+            {/* 右側漸層遮罩 */}
+            <div
+              className={`absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#0b2d2a]/35 to-transparent duration-700 ${
+                activeIndex === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'
+              }`} 
+            />
+          </>
         ))}
-        {/* 右側漸層遮罩 */}
-        <div className="absolute top-0 right-0 w-[65%] h-full bg-gradient-to-l from-[#0b2d2a]/90 to-transparent" />
       </div>
 
       {/* Logo - 左上 */}
@@ -48,7 +54,7 @@ const LocationIntroPage: React.FC = () => {
           <img
             src="/images/logo-white.svg"
             alt="聚碩仁玉"
-            style={{ height: '4rem', width: 'auto' }}
+            style={{ height: '5rem', width: 'auto' }}
           />
         </Link>
       </div>
@@ -108,9 +114,9 @@ const LocationIntroPage: React.FC = () => {
           {/* 副標題 */}
           <p
             className="text-white drop-shadow-sm leading-relaxed"
-            style={{ fontSize: '0.875rem', marginTop: '1.5rem' }}
+            style={{ fontSize: '1rem', marginTop: '1.5rem' }}
           >
-            對水湳經貿園區將以國際AI經貿城市的姿態，開啟大台中核心新未來，齊聚經貿、商業與文化藝術的國際化價值，奠定國際核心地位，全球注目時代標的，國際建築大師作品齊聚爭豔，大巨蛋、綠美圖、流行音樂中心、國際會展中心、水湳轉運站落址，產官學500億投資、創造千億經濟產值，運載全球 AI 科技產業能量，水湳智慧城重新定義國際生活價值。
+            水湳經貿園區將以國際AI經貿城市的姿態，開啟大台中核心新未來，齊聚經貿、商業與文化藝術的國際化價值，奠定國際核心地位，全球注目時代標的，國際建築大師作品齊聚爭豔，大巨蛋、綠美圖、流行音樂中心、國際會展中心、水湳轉運站落址，產官學500億投資、創造千億經濟產值，運載全球 AI 科技產業能量，水湳智慧城重新定義國際生活價值。
           </p>
         </div>
       </div>
@@ -158,7 +164,7 @@ const LocationIntroPage: React.FC = () => {
         {/* 當前圖片標籤 */}
         <div className="flex items-center" style={{ gap: '0.5rem', marginLeft: '0.5rem' }}>
           <span className="bg-white/60" style={{ width: '0.5rem', height: '0.5rem' }} />
-          <span className="text-white" style={{ fontSize: '0.75rem', letterSpacing: '0.05em' }}>{images[activeIndex].label}</span>
+          <span className="text-white" style={{ fontSize: '0.875rem', letterSpacing: '0.05em' }}>{images[activeIndex].label}</span>
         </div>
       </div>
 

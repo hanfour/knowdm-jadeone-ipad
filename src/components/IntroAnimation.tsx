@@ -244,7 +244,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
         </div>
         <div
           className="absolute text-[#244525] opacity-60 z-10"
-          style={{ bottom: '2rem', right: '2rem', fontSize: '0.875rem' }}
+          style={{ bottom: '2rem', right: '2rem', fontSize: '1rem' }}
         >
           點擊跳過
         </div>
@@ -288,7 +288,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
             </div>
             <div
               className="absolute right-0 bg-[#2d5a2d] rounded-tl-full"
-              style={{ bottom: 0, left: '6rem', height: '4rem' }}
+              style={{ bottom: 0, left: '6rem', height: '5rem' }}
             />
             <div
               className="absolute bg-[#228b22] rounded-t-full"
@@ -308,7 +308,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
         </div>
         <div
           className="absolute text-[#244525] opacity-60 z-10"
-          style={{ bottom: '2rem', right: '2rem', fontSize: '0.875rem' }}
+          style={{ bottom: '2rem', right: '2rem', fontSize: '1rem' }}
         >
           點擊跳過
         </div>
@@ -360,7 +360,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
         </div>
         <div
           className="absolute text-white/60 z-10"
-          style={{ bottom: '2rem', right: '2rem', fontSize: '0.875rem' }}
+          style={{ bottom: '2rem', right: '2rem', fontSize: '1rem' }}
         >
           點擊跳過
         </div>
@@ -469,7 +469,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
 
         <div
           className="absolute text-white/60 z-10"
-          style={{ bottom: '2rem', right: '2rem', fontSize: '0.875rem' }}
+          style={{ bottom: '2rem', right: '2rem', fontSize: '1rem' }}
         >
           點擊跳過
         </div>
