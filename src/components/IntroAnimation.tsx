@@ -8,7 +8,7 @@ interface IntroAnimationProps {
 const ANIMATION_CONFIG = {
   phase0: false,  // 第一幕：聽樹先生唱歌
   phase1: false,  // 第二幕：公園在宅休閒
-  phase3: true,  // 第二段：高訂品味 對味不凡
+  phase3: true,  // 第二段：高訂品味 對味不凡（包含 Shine 掃光）
   phase6: true,  // Logo 階段
 };
 
@@ -48,6 +48,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
   const [textVisible, setTextVisible] = useState<number[]>([]);
   const [subtitleVisible, setSubtitleVisible] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
+  const [shineVisible, setShineVisible] = useState(false);
   const [logoVisible, setLogoVisible] = useState(false);
   const [skipped, setSkipped] = useState(false);
   const timeoutRefs = useRef<NodeJS.Timeout[]>([]);
@@ -156,30 +157,36 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
       chars.forEach((_, index) => {
         const timeout = setTimeout(() => {
           setTextVisible(prev => [...prev, index]);
-        }, index * 200);
+        }, index * 280);
         timeoutRefs.current.push(timeout);
       });
-      // 主標題完成後顯示副標題
+      // 主標題完成後 0.5 秒顯示副標題
       const subtitleTimeout = setTimeout(() => {
         setSubtitleVisible(true);
-        // 停頓後淡出
-        const fadeTimeout = setTimeout(() => {
-          setFadeOut(true);
-          const logoTimeout = setTimeout(() => {
-            setTextVisible([]);
-            setSubtitleVisible(false);
-            setFadeOut(false);
-            const next = getNextPhase(3);
-            if (next === -1) {
-              onComplete();
-            } else {
-              setPhase(next);
-            }
-          }, 1000);
-          timeoutRefs.current.push(logoTimeout);
-        }, 4000);
-        timeoutRefs.current.push(fadeTimeout);
-      }, chars.length * 120 + 500);
+        // 停頓 1.5 秒後觸發 shine 掃光效果
+        const shineTimeout = setTimeout(() => {
+          setShineVisible(true);
+          // Shine 掃光持續 2 秒後淡出整個畫面
+          const fadeTimeout = setTimeout(() => {
+            setFadeOut(true);
+            const logoTimeout = setTimeout(() => {
+              setTextVisible([]);
+              setSubtitleVisible(false);
+              setShineVisible(false);
+              setFadeOut(false);
+              const next = getNextPhase(3);
+              if (next === -1) {
+                onComplete();
+              } else {
+                setPhase(next);
+              }
+            }, 1000);
+            timeoutRefs.current.push(logoTimeout);
+          }, 2000);
+          timeoutRefs.current.push(fadeTimeout);
+        }, 1500);
+        timeoutRefs.current.push(shineTimeout);
+      }, chars.length * 280 + 500);
       timeoutRefs.current.push(subtitleTimeout);
     } else if (phase === 6 && ANIMATION_CONFIG.phase6) {
       // Logo 階段 - 持續停留在此畫面，shine 動畫循環播放
@@ -316,7 +323,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
     );
   }
 
-  // 第二段動畫：主標題 + 副標題
+  // 第二段動畫：主標題 + 副標題 + Shine 掃光
   if (phase === 3) {
     return (
       <div
@@ -358,6 +365,46 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
             </div>
           </div>
         </div>
+
+        {/* Shine 掃光效果層 - 疊加在文字上方 */}
+        {shineVisible && (
+          <div className="absolute inset-0 overflow-hidden pointer-events-none z-20">
+            <div className="text-shine-sweep" />
+          </div>
+        )}
+
+        {/* Shine 掃光效果的 CSS */}
+        <style>{`
+          .text-shine-sweep {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(
+              105deg,
+              transparent 20%,
+              rgba(243, 207, 154, 0.2) 30%,
+              rgba(243, 207, 154, 0.4) 43%,
+              rgba(255, 255, 255, 0.7) 50%,
+              rgba(243, 207, 154, 0.6) 57%,
+              rgba(244, 244, 244, 0.2) 70%,
+              transparent 80%
+            );
+            filter: blur(500px);
+            animation: textShineMove 1.5s ease-in-out forwards;
+          }
+
+          @keyframes textShineMove {
+            0% {
+              left: -100%;
+            }
+            100% {
+              left: 200%;
+            }
+          }
+        `}</style>
+
         <div
           className="absolute text-white/60 z-10"
           style={{ bottom: '2rem', right: '2rem', fontSize: '1rem' }}
