@@ -4,10 +4,11 @@ import { safeSessionStorage, STORAGE_KEYS } from '../utils/storage';
 
 interface PageHeaderProps {
   theme?: 'white' | 'gold';
-  onMenuOpen: () => void;
+  onMenuOpen?: () => void;
+  showMenuButton?: boolean;
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({ theme = 'white', onMenuOpen }) => {
+const PageHeader: React.FC<PageHeaderProps> = ({ theme = 'white', onMenuOpen, showMenuButton = true }) => {
   const navigate = useNavigate();
 
   // 關閉按鈕：清除 sessionStorage 並回到首頁（播放開場動畫）
@@ -60,42 +61,46 @@ const PageHeader: React.FC<PageHeaderProps> = ({ theme = 'white', onMenuOpen }) 
         </svg>
       </button> */}
 
-      {/* MENU 按鈕 - 左側 */}
-      <button
-        onClick={onMenuOpen}
-        className={`menu-button absolute top-1/2 -translate-y-1/2 z-20 ${styles.textColor} flex flex-col items-center group transition-opacity`}
-        style={{ left: '2rem', gap: '1rem' }}
-        aria-label="開啟主選單"
-      >
-        <div className="flex items-center" style={{ gap: '0.3rem', height: '2.5rem' }} aria-hidden="true">
-          <div className={`${styles.bgColor} transition-all duration-300 menu-line-1`} style={{ width: '0.0725rem', height: '2rem' }} />
-          <div className={`${styles.bgColor} transition-all duration-300 menu-line-2`} style={{ width: '0.0725rem', height: '2rem' }} />
-          <div className={`${styles.bgColor} transition-all duration-300 menu-line-3`} style={{ width: '0.0725rem', height: '2rem' }} />
-        </div>
-        <div className="writing-mode-vertical" style={{ fontSize: '0.75rem', letterSpacing: '0.3em' }}>MENU</div>
-      </button>
+      {/* MENU 按鈕 - 左側（可選） */}
+      {showMenuButton && onMenuOpen && (
+        <>
+          <button
+            onClick={onMenuOpen}
+            className={`menu-button absolute top-1/2 -translate-y-1/2 z-20 ${styles.textColor} flex flex-col items-center group transition-opacity`}
+            style={{ left: '2rem', gap: '1rem' }}
+            aria-label="開啟主選單"
+          >
+            <div className="flex items-center" style={{ gap: '0.3rem', height: '2.5rem' }} aria-hidden="true">
+              <div className={`${styles.bgColor} transition-all duration-300 menu-line-1`} style={{ width: '0.0725rem', height: '2rem' }} />
+              <div className={`${styles.bgColor} transition-all duration-300 menu-line-2`} style={{ width: '0.0725rem', height: '2rem' }} />
+              <div className={`${styles.bgColor} transition-all duration-300 menu-line-3`} style={{ width: '0.0725rem', height: '2rem' }} />
+            </div>
+            <div className="writing-mode-vertical" style={{ fontSize: '0.75rem', letterSpacing: '0.3em' }}>MENU</div>
+          </button>
 
-      {/* MENU 按鈕動畫樣式 */}
-      <style>{`
-        .menu-button:hover .menu-line-1,
-        .menu-button:active .menu-line-1 {
-          height: 1.6rem !important;
-          margin-bottom: 0.4rem;
-        }
+          {/* MENU 按鈕動畫樣式 */}
+          <style>{`
+            .menu-button:hover .menu-line-1,
+            .menu-button:active .menu-line-1 {
+              height: 1.6rem !important;
+              margin-bottom: 0.4rem;
+            }
 
-        .menu-button:hover .menu-line-2,
-        .menu-button:active .menu-line-2 {
-          height: 1.6rem !important;
-          margin-top: 0.2rem;
-          margin-bottom: 0.2rem;
-        }
+            .menu-button:hover .menu-line-2,
+            .menu-button:active .menu-line-2 {
+              height: 1.6rem !important;
+              margin-top: 0.2rem;
+              margin-bottom: 0.2rem;
+            }
 
-        .menu-button:hover .menu-line-3,
-        .menu-button:active .menu-line-3 {
-          height: 1.6rem !important;
-          margin-top: 0.4rem;
-        }
-      `}</style>
+            .menu-button:hover .menu-line-3,
+            .menu-button:active .menu-line-3 {
+              height: 1.6rem !important;
+              margin-top: 0.4rem;
+            }
+          `}</style>
+        </>
+      )}
     </>
   );
 };

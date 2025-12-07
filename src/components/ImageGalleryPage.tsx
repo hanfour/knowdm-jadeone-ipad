@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import FullscreenMenu from './FullscreenMenu';
-import PageHeader from './PageHeader';
+import SubpageMenuBar from './SubpageMenuBar';
 
 interface ImageData {
   src: string;
@@ -15,7 +14,6 @@ interface ImageGalleryPageProps {
 }
 
 const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, description }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const location = useLocation();
 
@@ -26,8 +24,11 @@ const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, desc
 
   return (
     <div className="relative w-full h-full overflow-hidden bg-black">
+      {/* 右上角子頁面導航列 + MenuButton */}
+      <SubpageMenuBar />
+
       {/* 背景圖片 - 切換效果 */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0" style={{ top: '80px' }}>
         {images.map((image, index) => (
           <React.Fragment key={image.src}>
             <img
@@ -39,7 +40,7 @@ const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, desc
             />
             {/* 右側漸層遮罩 - 僅第一張顯示 */}
             <div
-              className={`absolute inset-0 bg-gradient-to-l from-[#0b2d2a]/20 to-transparent duration-700 ${
+              className={`absolute inset-0 bg-gradient-to-l from-[#0b2d2a]/15 to-transparent duration-700 ${
                 activeIndex === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'
               }`}
             />
@@ -47,15 +48,12 @@ const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, desc
         ))}
       </div>
 
-      {/* 頁面 Header */}
-      <PageHeader theme="white" onMenuOpen={() => setMenuOpen(true)} />
-
       {/* 右側內容區 - 僅第一張圖顯示 */}
       <div
-        className={`absolute right-0 top-0 bottom-0 w-1/2 flex items-center justify-center transition-opacity duration-500 ${
+        className={`absolute right-0 bottom-0 w-1/2 flex items-center justify-center transition-opacity duration-500 ${
           activeIndex === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
-        style={{ padding: '4rem' }}
+        style={{ top: '80px', padding: '4rem' }}
       >
         <div className="text-white" style={{ maxWidth: '32rem' }}>
           {/* 主標題 */}
@@ -158,8 +156,6 @@ const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, desc
         }
       `}</style>
 
-      {/* 全屏選單 */}
-      <FullscreenMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
     </div>
   );
 };

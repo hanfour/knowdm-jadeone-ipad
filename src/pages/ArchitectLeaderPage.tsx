@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import FullscreenMenu from '../components/FullscreenMenu';
-import PageHeader from '../components/PageHeader';
+import React from 'react';
+import SubpageMenuBar from '../components/SubpageMenuBar';
 
 const ArchitectLeaderPage: React.FC = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
 
   // 人物圖片 URL
   const personImage = 'https://picsum.photos/g/600/1080';
@@ -18,7 +16,7 @@ const ArchitectLeaderPage: React.FC = () => {
   return (
     <div className="relative w-full h-full overflow-hidden bg-black">
       {/* 左側背景 - 模糊放大的人物圖片 */}
-      <div className="absolute left-0 top-0 w-full h-full overflow-hidden">
+      <div className="absolute left-0 w-full h-full overflow-hidden" style={{ top: '80px' }}>
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -31,10 +29,13 @@ const ArchitectLeaderPage: React.FC = () => {
         <div className="absolute inset-0 bg-black/30" />
       </div>
 
+      {/* 右上角子頁面導航列 + MenuButton */}
+      <SubpageMenuBar sectionIndex={1} />
+
       {/* 左側人物圖片 - 左邊留空 15%，圖片佔 35% */}
       <div
-        className="absolute top-0 h-full"
-        style={{ left: '15%', width: '35%' }}
+        className="absolute h-full"
+        style={{ top: '80px', left: '15%', width: '35%' }}
       >
         <img
           src={personImage}
@@ -45,8 +46,8 @@ const ArchitectLeaderPage: React.FC = () => {
 
       {/* 右側內容區 */}
       <div
-        className="absolute right-0 top-0 h-full w-1/2 flex flex-col justify-center"
-        style={{ padding: '4rem', paddingLeft: '3rem' }}
+        className="absolute right-0 h-full w-1/2 flex flex-col justify-center"
+        style={{ top: '80px', padding: '4rem', paddingLeft: '3rem' }}
       >
         <div className="text-white" style={{ maxWidth: '36rem' }}>
           {/* 標題 */}
@@ -75,11 +76,6 @@ const ArchitectLeaderPage: React.FC = () => {
         </div>
       </div>
 
-      {/* 頁面 Header */}
-      <PageHeader theme="white" onMenuOpen={() => setMenuOpen(true)} />
-
-      {/* 全屏選單 */}
-      <FullscreenMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
     </div>
   );
 };

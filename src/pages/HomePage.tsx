@@ -6,7 +6,9 @@ import {
   LightBlobsBackground,
   ClickRippleEffect
 } from '../components/backgrounds';
-import FullscreenMenu from '../components/FullscreenMenu';
+// import FullscreenMenu from '../components/FullscreenMenu';
+import FullscreenMenuAlt from '../components/FullscreenMenuAlt';
+import MenuButton from '../components/MenuButton';
 import IntroAnimation from '../components/IntroAnimation';
 import { menuSections } from '../config/menu';
 import { safeSessionStorage, STORAGE_KEYS } from '../utils/storage';
@@ -26,6 +28,7 @@ const HomePage: React.FC = () => {
   const hasPlayedIntro = safeSessionStorage.getItem(STORAGE_KEYS.HAS_PLAYED_INTRO) === 'true';
   const [showIntro, setShowIntro] = useState(!hasPlayedIntro);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [altMenuOpen, setAltMenuOpen] = useState(false);
   const [currentMenuIndex, setCurrentMenuIndex] = useState(0);
   const [hoveredMenu, setHoveredMenu] = useState<number | null>(null);
   const [clickRipples, setClickRipples] = useState<ClickRipple[]>([]);
@@ -139,15 +142,15 @@ const HomePage: React.FC = () => {
           />
         </div>
 
-        {/* 開場動畫按鈕 - 右上 */}
+        {/* 開場動畫按鈕 - 右下 */}
         <button
           onClick={(e) => { e.stopPropagation(); restartIntro(); }}
           className="absolute z-20 text-white/60 hover:text-white active:text-white border border-white/40 hover:border-white active:border-white transition-all"
           style={{
-            top: '2rem',
+            bottom: '2rem',
             right: '2rem',
             padding: '0.25rem 1rem',
-            fontSize: '0.875rem',
+            fontSize: '0.725rem',
             letterSpacing: '0.1em',
             background: 'rgba(0,0,0,0.2)'
           }}
@@ -158,7 +161,7 @@ const HomePage: React.FC = () => {
         {/* MENU 按鈕 - 左側 */}
         <button
           onClick={(e) => { e.stopPropagation(); setMenuOpen(true); }}
-          className="menu-button absolute top-1/2 -translate-y-1/2 z-20 text-white flex flex-col items-center group transition-opacity"
+          className="!hidden menu-button absolute top-1/2 -translate-y-1/2 z-20 text-white flex flex-col items-center group transition-opacity"
           style={{ left: '2rem', gap: '1rem' }}
           aria-label="開啟主選單"
         >
@@ -357,8 +360,17 @@ const HomePage: React.FC = () => {
           </div>
         </div>
 
-        {/* 全屏選單 */}
-        <FullscreenMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
+        {/* 全屏選單（左側 MENU 按鈕觸發） */}
+        {/* <FullscreenMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} /> */}
+
+        {/* 右上角選單按鈕 */}
+        <MenuButton
+          isOpen={altMenuOpen}
+          onClick={() => setAltMenuOpen(!altMenuOpen)}
+        />
+
+        {/* 全屏選單（右上角按鈕觸發，4欄版本） */}
+        <FullscreenMenuAlt isOpen={altMenuOpen} onClose={() => setAltMenuOpen(false)} />
       </div>
     </>
   );

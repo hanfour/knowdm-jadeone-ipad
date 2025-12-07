@@ -44,7 +44,7 @@ const pageData = {
   prosperousDistrict: {
     images: [
       { src: '/images/a4/01_台積電.jpg', label: '台積電' },
-      { src: '/images/a4/02_科琴橋.jpg', label: '科琴橋' },
+      { src: '/images/a4/02_科琴橋.jpg', label: '科湳愛琴橋' },
       { src: '/images/a4/03_中清路商圈-星巴克.jpg', label: '中清路商圈-星巴克' },
       { src: '/images/a4/04_中清路商圈-愛買.jpg', label: '中清路商圈-愛買' },
       { src: '/images/a4/05_逢甲商圈.jpg', label: '逢甲商圈' },

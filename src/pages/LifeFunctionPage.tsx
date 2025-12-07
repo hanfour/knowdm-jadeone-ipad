@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import FullscreenMenu from '../components/FullscreenMenu';
-import PageHeader from '../components/PageHeader';
+// import PageHeader from '../components/PageHeader';
+import SubpageMenuBar from '../components/SubpageMenuBar';
 
 // 頁籤資料
 const categories = [
@@ -33,7 +33,6 @@ const categories = [
 ];
 
 const LifeFunctionPage: React.FC = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [scale, setScale] = useState(1);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -133,14 +132,15 @@ const LifeFunctionPage: React.FC = () => {
       {/* 整體背景 */}
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: 'url(/images/a5/background.webp)' }}
+        style={{ backgroundImage: 'url(/images/a5/background.webp)', top: '80px' }}
       />
 
       {/* 內容圖層容器 - 靠左對齊、100%高度、可縮放、可拖拉 */}
       <div
         ref={mapRef}
-        className={`absolute left-0 top-0 bottom-0 origin-top-left ${isDragging ? '' : 'transition-transform duration-300'} ${canDrag ? 'cursor-grab' : ''} ${isDragging ? 'cursor-grabbing' : ''}`}
+        className={`absolute left-0 bottom-0 origin-top-left ${isDragging ? '' : 'transition-transform duration-300'} ${canDrag ? 'cursor-grab' : ''} ${isDragging ? 'cursor-grabbing' : ''}`}
         style={{
+          top: '80px',
           aspectRatio: '1366 / 768',
           transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`
         }}
@@ -210,7 +210,7 @@ const LifeFunctionPage: React.FC = () => {
 
         {/* 大標 - 地圖右上角 */}
         <div
-          className="absolute z-20"
+          className="absolute z-20 !hidden"
           style={{ top: '4rem', right: '16rem' }}
         >
           <img
@@ -222,12 +222,15 @@ const LifeFunctionPage: React.FC = () => {
       </div>
 
       {/* 頁面 Header */}
-      <PageHeader theme="gold" onMenuOpen={() => setMenuOpen(true)} />
+      {/* <PageHeader theme="gold" /> */}
+
+      {/* 右上角子頁面導航列 + MenuButton */}
+      <SubpageMenuBar sectionIndex={0} />
 
       {/* 頁籤按鈕 - 右側垂直置中 */}
       <div
         className="absolute z-20 top-1/2 -translate-y-1/2 flex flex-col items-center"
-        style={{ right: '3rem', gap: '0.75rem' }}
+        style={{ right: '6rem', gap: '0.75rem' }}
       >
         {categories.map((category) => (
           <button
@@ -308,9 +311,6 @@ const LifeFunctionPage: React.FC = () => {
           )}
         </div>
       </div>
-
-      {/* 全屏選單 */}
-      <FullscreenMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
 
       {/* 呼吸燈動畫 CSS */}
       <style>{`
