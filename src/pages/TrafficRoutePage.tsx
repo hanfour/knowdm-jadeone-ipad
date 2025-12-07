@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import FullscreenMenu from '../components/FullscreenMenu';
-import { safeSessionStorage, STORAGE_KEYS } from '../utils/storage';
+import PageHeader from '../components/PageHeader';
 
 // 頁籤資料 - 四個交通類別
 const categories = [
@@ -35,7 +34,6 @@ const TrafficRoutePage: React.FC = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
-  const navigate = useNavigate();
   const containerRef = React.useRef<HTMLDivElement>(null);
   const mapRef = React.useRef<HTMLDivElement>(null);
 
@@ -114,12 +112,6 @@ const TrafficRoutePage: React.FC = () => {
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
 
-  // 關閉按鈕：清除 sessionStorage 並回到首頁（播放開場動畫）
-  const handleClose = () => {
-    safeSessionStorage.removeItem(STORAGE_KEYS.HAS_PLAYED_INTRO);
-    navigate('/');
-  };
-
   // 點擊頁籤
   const handleCategoryClick = (categoryId: string) => {
     if (activeCategory === categoryId) {
@@ -169,7 +161,9 @@ const TrafficRoutePage: React.FC = () => {
         {categories.map((category) => (
           <div
             key={category.id}
-            className="absolute inset-0 transition-all duration-500 pointer-events-none"
+            className={`absolute inset-0 transition-all duration-500 pointer-events-none ${
+              activeCategory === category.id ? 'animate-glow-flow' : ''
+            }`}
             style={{
               filter:
                 activeCategory && activeCategory !== category.id
@@ -218,46 +212,8 @@ const TrafficRoutePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Logo - 左上 */}
-      <div
-        className="absolute z-20"
-        style={{ top: '2rem', left: '2rem' }}
-      >
-        <Link to="/" className="block">
-          <img
-            src="/images/logo-gold.svg"
-            alt="聚碩仁玉"
-            style={{ height: '5rem', width: 'auto' }}
-          />
-        </Link>
-      </div>
-
-      {/* 關閉按鈕 - 右上 */}
-      <button
-        onClick={handleClose}
-        className="absolute z-20 text-[#68583f] opacity-60 hover:opacity-100 active:opacity-100 transition-opacity"
-        style={{ top: '2rem', right: '2rem' }}
-        aria-label="返回首頁並播放開場動畫"
-      >
-        <svg style={{ width: '1.5rem', height: '1.5rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-
-      {/* MENU 按鈕 - 左側 */}
-      <button
-        onClick={() => setMenuOpen(true)}
-        className="absolute top-1/2 -translate-y-1/2 z-20 text-[#68583f] flex flex-col items-center hover:opacity-70 active:opacity-70 transition-opacity"
-        style={{ left: '2rem', gap: '1rem' }}
-        aria-label="開啟主選單"
-      >
-        <div className="flex flex-col" style={{ gap: '0.375rem' }} aria-hidden="true">
-          <div className="bg-[#68583f]" style={{ width: '1.75rem', height: '0.125rem' }} />
-          <div className="bg-[#68583f]" style={{ width: '1.75rem', height: '0.125rem' }} />
-          <div className="bg-[#68583f]" style={{ width: '1.75rem', height: '0.125rem' }} />
-        </div>
-        <div className="writing-mode-vertical" style={{ fontSize: '0.75rem', letterSpacing: '0.3em' }}>MENU</div>
-      </button>
+      {/* 頁面 Header */}
+      <PageHeader theme="gold" onMenuOpen={() => setMenuOpen(true)} />
 
       {/* 頁籤按鈕 - 右側垂直置中 */}
       <div
@@ -362,6 +318,23 @@ const TrafficRoutePage: React.FC = () => {
 
         .animate-breathing {
           animation: breathing 3s ease-in-out infinite;
+        }
+
+        @keyframes glow-flow {
+          0%, 100% {
+            filter: drop-shadow(0 0 6px rgba(104, 88, 63, 0.5))
+                    drop-shadow(0 0 12px rgba(243, 207, 154, 0.4))
+                    drop-shadow(0 0 20px rgba(243, 207, 154, 0.2));
+          }
+          50% {
+            filter: drop-shadow(0 0 12px rgba(104, 88, 63, 0.8))
+                    drop-shadow(0 0 24px rgba(243, 207, 154, 0.7))
+                    drop-shadow(0 0 36px rgba(243, 207, 154, 0.5));
+          }
+        }
+
+        .animate-glow-flow {
+          animation: glow-flow 2s ease-in-out infinite;
         }
       `}</style>
     </div>

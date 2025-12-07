@@ -6,6 +6,7 @@ import VideoPage from './pages/VideoPage';
 import ImageGalleryPage from './components/ImageGalleryPage';
 import LifeFunctionPage from './pages/LifeFunctionPage';
 import TrafficRoutePage from './pages/TrafficRoutePage';
+import ArchitectLeaderPage from './pages/ArchitectLeaderPage';
 
 // 圖片資料配置
 const pageData = {
@@ -120,6 +121,9 @@ function App() {
 
           {/* 富居水湳 - 交通動線 */}
           <Route path="/fu-ju-shui-nan/jiao-tong-dong-xian" element={<TrafficRoutePage />} />
+
+          {/* 巨擘薈萃 - 建築領航 */}
+          <Route path="/ju-bo-hui-cui/jian-zhu-ling-hang" element={<ArchitectLeaderPage />} />
 
           {/* 其他頁面待開發，暫時導向首頁 */}
           <Route path="*" element={<HomePage />} />
