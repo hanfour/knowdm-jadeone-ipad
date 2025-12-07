@@ -105,7 +105,7 @@ const HomePage: React.FC = () => {
 
       <div
         ref={containerRef}
-        className="relative w-full h-full overflow-hidden bg-black cursor-pointer"
+        className="absolute inset-0 overflow-hidden bg-black cursor-pointer"
         onClick={handleBackgroundClick}
       >
         {/* 背景底圖 - 綠色菱格底紋 */}
@@ -251,7 +251,13 @@ const HomePage: React.FC = () => {
                   marginTop: hoveredMenu === currentMenuIndex ? '1.5rem' : '0'
                 }}
               >
-                <div className="flex flex-wrap">
+                <div
+                  className="grid"
+                  style={{
+                    gridTemplateColumns: 'repeat(4, max-content)',
+                    gap: '0.5rem 1.5rem'
+                  }}
+                >
                   {currentMenu.items.map((item) => (
                     <Link
                       key={item.id}
@@ -259,9 +265,7 @@ const HomePage: React.FC = () => {
                       className="text-white/80 hover:text-white active:text-white border border-transparent hover:border-white/60 active:border-white/60 transition-colors whitespace-nowrap"
                       style={{
                         fontSize: '1rem',
-                        padding: '0.375rem 0.75rem',
-                        marginRight: '1rem',
-                        marginBottom: '0.5rem'
+                        padding: '0.375rem 0.75rem'
                       }}
                     >
                       <span className="opacity-50" style={{ marginRight: '0.5rem' }}>{item.id}</span>

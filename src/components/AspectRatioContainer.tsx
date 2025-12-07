@@ -1,54 +1,54 @@
-import React, { useState, useEffect, useRef, CSSProperties } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface AspectRatioContainerProps {
   children: React.ReactNode;
-  aspectRatio?: number; // 16:9 = 16/9
   baseWidth?: number;   // 設計稿基準寬度
-}
-
-// 擴展 CSSProperties 以支援 CSS 變數
-interface CustomCSSProperties extends CSSProperties {
-  '--scale'?: number;
+  baseHeight?: number;  // 設計稿基準高度
 }
 
 const AspectRatioContainer: React.FC<AspectRatioContainerProps> = ({
   children,
-  aspectRatio = 16 / 9,
-  baseWidth = 1920, // 以 1920x1080 為設計基準
+  baseWidth = 1920,
+  baseHeight = 1080,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0, scale: 1 });
+  const [dimensions, setDimensions] = useState({ width: baseWidth, height: baseHeight, scale: 1 });
 
   useEffect(() => {
     const calculateDimensions = () => {
       const windowWidth = window.innerWidth;
       const windowHeight = window.innerHeight;
+      const aspectRatio = baseWidth / baseHeight; // 16:9
       const windowRatio = windowWidth / windowHeight;
 
-      let width: number;
-      let height: number;
+      let displayWidth: number;
+      let displayHeight: number;
+      let scaleValue: number;
 
       if (windowRatio > aspectRatio) {
-        // 視窗太寬，以高度為基準
-        height = windowHeight;
-        width = height * aspectRatio;
+        // 視窗比較寬（如橫向桌面），以高度為基準
+        displayHeight = windowHeight;
+        displayWidth = windowHeight * aspectRatio;
+        scaleValue = windowHeight / baseHeight;
       } else {
-        // 視窗太高，以寬度為基準
-        width = windowWidth;
-        height = width / aspectRatio;
+        // 視窗比較高（如直向手機），以寬度為基準
+        displayWidth = windowWidth;
+        displayHeight = windowWidth / aspectRatio;
+        scaleValue = windowWidth / baseWidth;
       }
 
-      // 計算縮放比例（相對於設計稿基準寬度）
-      const scale = width / baseWidth;
-
-      setDimensions({ width, height, scale });
+      setDimensions({
+        width: displayWidth,
+        height: displayHeight,
+        scale: scaleValue,
+      });
     };
 
     calculateDimensions();
     window.addEventListener('resize', calculateDimensions);
 
     return () => window.removeEventListener('resize', calculateDimensions);
-  }, [aspectRatio, baseWidth]);
+  }, [baseWidth, baseHeight]);
 
   return (
     <div className="fixed inset-0 bg-black flex items-center justify-center overflow-hidden">
@@ -58,13 +58,19 @@ const AspectRatioContainer: React.FC<AspectRatioContainerProps> = ({
         style={{
           width: dimensions.width,
           height: dimensions.height,
-          // 使用 CSS 變數傳遞縮放比例，讓子元件可以使用
-          '--scale': dimensions.scale,
-          // 設定基準字體大小，讓 rem 單位可以正確縮放
-          fontSize: `${16 * dimensions.scale}px`,
-        } as CustomCSSProperties}
+        }}
       >
-        {children}
+        {/* 內部容器使用固定的設計稿尺寸，然後縮放 */}
+        <div
+          style={{
+            width: baseWidth,
+            height: baseHeight,
+            transform: `scale(${dimensions.scale})`,
+            transformOrigin: 'top left',
+          }}
+        >
+          {children}
+        </div>
       </div>
     </div>
   );

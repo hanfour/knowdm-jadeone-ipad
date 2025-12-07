@@ -8,8 +8,8 @@ interface MainLayoutProps {
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <AspectRatioContainer
-      aspectRatio={16 / 9}  // 永遠維持 16:9
-      baseWidth={1920}      // 以 1920px 為設計基準
+      baseWidth={1920}   // 設計稿基準寬度
+      baseHeight={1080}  // 設計稿基準高度 (維持 16:9)
     >
       {children}
     </AspectRatioContainer>

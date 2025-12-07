@@ -3,14 +3,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import FullscreenMenu from '../components/FullscreenMenu';
 import { safeSessionStorage, STORAGE_KEYS } from '../utils/storage';
 
+// 圖片資料
 const images = [
-  { src: '/images/a1/IMG_001.jpg', label: '水湳經貿園區' },
-  { src: '/images/a1/IMG_002.jpg', label: '國際會展中心' },
-  { src: '/images/a1/IMG_003.jpg', label: '綠美圖' },
-  { src: '/images/a1/IMG_004.jpg', label: '水湳轉運站' },
+  { src: '/images/a2/01.jpg', label: '抹茶湖' },
+  { src: '/images/a2/02.jpg', label: '中央公園' },
+  { src: '/images/a2/03.jpg', label: '中央公園' },
+  { src: '/images/a2/04.jpg', label: '中央公園' },
+  { src: '/images/a2/05.jpg', label: '中央公園' },
+  { src: '/images/a2/06.jpg', label: '中央公園' },
 ];
 
-const LocationIntroPage: React.FC = () => {
+const RareExclusivePage: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
@@ -22,26 +25,27 @@ const LocationIntroPage: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-full overflow-hidden bg-black">
+    <div className="absolute inset-0 overflow-hidden bg-black">
       {/* 背景圖片 - 切換效果 */}
       <div className="absolute inset-0">
         {images.map((image, index) => (
-          <>
+          <React.Fragment key={image.src}>
             <img
-              key={image.src}
               src={image.src}
               alt={image.label}
               className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
                 index === activeIndex ? 'opacity-100' : 'opacity-0'
               }`}
             />
-            {/* 右側漸層遮罩 */}
-            <div
-              className={`absolute inset-0 bg-gradient-to-l from-[#0b2d2a]/20 to-transparent duration-700 ${
-                activeIndex === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'
-              }`} 
-            />
-          </>
+            {/* 右側漸層遮罩 - 僅第一張顯示 */}
+            {index === 0 && (
+              <div
+                className={`absolute inset-0 bg-gradient-to-l from-[#0b2d2a]/40 via-[#0b2d2a]/20 to-transparent transition-opacity duration-700 ${
+                  activeIndex === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                }`}
+              />
+            )}
+          </React.Fragment>
         ))}
       </div>
 
@@ -86,15 +90,6 @@ const LocationIntroPage: React.FC = () => {
         <div className="writing-mode-vertical" style={{ fontSize: '0.75rem', letterSpacing: '0.3em' }}>MENU</div>
       </button>
 
-      {/* BACK 按鈕 - 左下 */}
-      <Link
-        to="/"
-        className="!hidden absolute z-20 text-white opacity-60 hover:opacity-100 transition-opacity"
-        style={{ left: '2rem', bottom: '2rem', fontSize: '0.75rem', letterSpacing: '0.2em' }}
-      >
-        BACK
-      </Link>
-
       {/* 右側內容區 - 僅第一張圖顯示 */}
       <div
         className={`absolute right-0 top-0 bottom-0 w-1/2 flex items-center justify-center transition-opacity duration-500 ${
@@ -108,15 +103,15 @@ const LocationIntroPage: React.FC = () => {
             className="font-light leading-tight"
             style={{ fontSize: '3rem', letterSpacing: '0.05em', marginBottom: '1rem' }}
           >
-            齊步世界 亮眼軸線
+            水湳珍稀 最美收藏
           </h1>
 
-          {/* 副標題 */}
+          {/* 內文 */}
           <p
             className="text-white leading-relaxed"
             style={{ fontSize: '1rem', marginTop: '1.5rem', filter: 'drop-shadow(0 1px 1px rgb(0 0 0 / 0.25))' }}
           >
-            水湳經貿園區將以國際AI經貿城市的姿態，開啟大台中核心新未來，齊聚經貿、商業與文化藝術的國際化價值，奠定國際核心地位，全球注目時代標的，國際建築大師作品齊聚爭豔，大巨蛋、綠美圖、流行音樂中心、國際會展中心、水湳轉運站落址，產官學500億投資、創造千億經濟產值，運載全球 AI 科技產業能量，水湳智慧城重新定義國際生活價值。
+            水湳智慧城細分為經貿、文商、文教、創研、生態住宅五大專用區，在64公頃的中央公園與商業大道之間，劃出一片低密度佔比不到 10%的生態住宅區，為水湳生態最具國際感的豪宅聚落。低密度、高綠覆的高級住宅聚落，堪稱水湳最精華之地，以綠建築、景觀綠廊為核心，稀有價值遠勝七期新市政中心，每一棟建築都將是限量絕版品。
           </p>
         </div>
       </div>
@@ -209,4 +204,4 @@ const LocationIntroPage: React.FC = () => {
   );
 };
 
-export default LocationIntroPage;
+export default RareExclusivePage;
