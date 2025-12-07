@@ -46,7 +46,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ isOpen, onClose }) => {
           <div
             key={idx}
             className="border-r border-white/10 last:border-r-0"
-            style={{ paddingTop: '15vh', paddingLeft: '2rem', paddingRight: '2rem' }}
+            style={{ paddingTop: '30vh', paddingLeft: '2rem', paddingRight: '2rem' }}
           >
             <div className="text-white">
               <div

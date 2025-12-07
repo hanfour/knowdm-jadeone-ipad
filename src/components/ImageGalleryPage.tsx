@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import FullscreenMenu from '../components/FullscreenMenu';
+import FullscreenMenu from './FullscreenMenu';
 import { safeSessionStorage, STORAGE_KEYS } from '../utils/storage';
 
-// 圖片資料
-const images = [
-  { src: '/images/a4/01_台積電.jpg', label: '台積電' },
-  { src: '/images/a4/02_科琴橋.jpg', label: '科琴橋' },
-  { src: '/images/a4/03_中清路商圈-星巴克.jpg', label: '中清路商圈-星巴克' },
-  { src: '/images/a4/04_中清路商圈-愛買.jpg', label: '中清路商圈-愛買' },
-  { src: '/images/a4/05_逢甲商圈.jpg', label: '逢甲商圈' },
-  { src: '/images/a4/06_逢甲夜市.jpg', label: '逢甲夜市' },
-  { src: '/images/a4/07_逢甲大學.jpg', label: '逢甲大學' },
-  { src: '/images/a4/08_中國醫藥大學.jpg', label: '中國醫藥大學' },
-];
+interface ImageData {
+  src: string;
+  label: string;
+}
 
-const ProsperousDistrictPage: React.FC = () => {
+interface ImageGalleryPageProps {
+  images: ImageData[];
+  title: string;
+  description: string;
+}
+
+const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, description }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
@@ -27,7 +26,7 @@ const ProsperousDistrictPage: React.FC = () => {
   };
 
   return (
-    <div className="absolute inset-0 overflow-hidden bg-black">
+    <div className="relative w-full h-full overflow-hidden bg-black">
       {/* 背景圖片 - 切換效果 */}
       <div className="absolute inset-0">
         {images.map((image, index) => (
@@ -40,13 +39,11 @@ const ProsperousDistrictPage: React.FC = () => {
               }`}
             />
             {/* 右側漸層遮罩 - 僅第一張顯示 */}
-            {index === 0 && (
-              <div
-                className={`absolute inset-0 bg-gradient-to-l from-[#0b2d2a]/40 via-[#0b2d2a]/20 to-transparent transition-opacity duration-700 ${
-                  activeIndex === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'
-                }`}
-              />
-            )}
+            <div
+              className={`absolute inset-0 bg-gradient-to-l from-[#0b2d2a]/20 to-transparent duration-700 ${
+                activeIndex === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'
+              }`}
+            />
           </React.Fragment>
         ))}
       </div>
@@ -105,7 +102,7 @@ const ProsperousDistrictPage: React.FC = () => {
             className="font-light leading-tight"
             style={{ fontSize: '3rem', letterSpacing: '0.05em', marginBottom: '1rem' }}
           >
-            涵養人文 豐饒商圈
+            {title}
           </h1>
 
           {/* 內文 */}
@@ -113,7 +110,7 @@ const ProsperousDistrictPage: React.FC = () => {
             className="text-white leading-relaxed"
             style={{ fontSize: '1rem', marginTop: '1.5rem', filter: 'drop-shadow(0 1px 1px rgb(0 0 0 / 0.25))' }}
           >
-            緊鄰台中科技園區、74 快速道路與國道，迅速接軌七期、逢甲、12期生活圈，擁有最舒適的生活距離。生活採買約2分鐘抵達愛買、約6分鐘抵達西屯傳統市場、約10分鐘可達逢甲商圈，約5-10分鐘可抵達中清路商圈，富裕精華聚落，生活機能精彩奪目。
+            {description}
           </p>
         </div>
       </div>
@@ -206,4 +203,4 @@ const ProsperousDistrictPage: React.FC = () => {
   );
 };
 
-export default ProsperousDistrictPage;
+export default ImageGalleryPage;

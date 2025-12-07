@@ -255,7 +255,7 @@ const HomePage: React.FC = () => {
                   className="grid"
                   style={{
                     gridTemplateColumns: 'repeat(4, max-content)',
-                    gap: '0.5rem 1.5rem'
+                    gap: '0.25rem 0.75rem'
                   }}
                 >
                   {currentMenu.items.map((item) => (
