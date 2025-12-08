@@ -7,6 +7,10 @@ import ImageGalleryPage from './components/ImageGalleryPage';
 import LifeFunctionPage from './pages/LifeFunctionPage';
 import TrafficRoutePage from './pages/TrafficRoutePage';
 import ArchitectLeaderPage from './pages/ArchitectLeaderPage';
+import PolygonDrawer from './components/dev/PolygonDrawer';
+
+// ⚠️ 開發模式開關 - 正式上線時設為 false
+const DEV_MODE = false;
 
 // 圖片資料配置
 const pageData = {
@@ -35,7 +39,6 @@ const pageData = {
   elegantGreen: {
     images: [
       { src: '/images/a3/01.jpg', label: '綠美圖' },
-      { src: '/images/a3/02.jpg', label: '流行影音中心' },
       { src: '/images/a2/01.jpg', label: '抹茶湖' },
     ],
     title: '自然之美 雍雅並蓄',
@@ -60,6 +63,8 @@ const pageData = {
 function App() {
   return (
     <Router>
+      {/* 開發工具：多邊形繪製器 */}
+      {DEV_MODE && <PolygonDrawer enabled={DEV_MODE} targetSelector="[data-map-container]" />}
       <MainLayout>
         <Routes>
           {/* 首頁 */}

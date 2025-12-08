@@ -4,25 +4,19 @@ import SubpageMenuBar from '../components/SubpageMenuBar';
 const ArchitectLeaderPage: React.FC = () => {
 
   // 人物圖片 URL
-  const personImage = 'https://picsum.photos/g/600/1080';
-
-  // 歷年項目列表
-  const projectHistory = [
-    '2015福樺閱、2012福樺謙邸、2010福樺謙禮、2010福樺雲朗、',
-    '2008福樺至善、2007福樺謙璽、2006大觀文明、',
-    '2005福樺君悅、2004福樺水悅',
-  ];
+  const personImage = '/images/b1/李碩祺董事長-2.jpg';
 
   return (
     <div className="relative w-full h-full overflow-hidden bg-black">
       {/* 左側背景 - 模糊放大的人物圖片 */}
       <div className="absolute left-0 w-full h-full overflow-hidden" style={{ top: '80px' }}>
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover"
           style={{
             backgroundImage: `url(${personImage})`,
-            filter: 'blur(20px)',
-            transform: 'scale(1.3)',
+            filter: 'blur(30px)',
+            transform: 'scale(1.88)',
+            backgroundPosition: '50% -12%'
           }}
         />
         {/* 暗色遮罩 */}
