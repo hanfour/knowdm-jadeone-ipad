@@ -1,289 +1,173 @@
-# 企業網站 - Flash 轉 React 專案
+# 富居建設 企業形象網站
 
-這是一個將原始 Flash 網站轉換為現代化 React + TailwindCSS 靜態網站的專案。
+富居建設水湳智慧城建案的企業形象網站，展示建案特色、地理位置、建築美學與生活機能等資訊。
 
-## 📋 專案概述
+## 技術棧
 
-原始 Flash 網站包含：
-- 124 個 SWF 檔案，分為 A、B、C、D 四個主要區塊
-- 1 個企業形象影片 (video1.flv)
-- 階層式導航結構
+- **框架**: React 19
+- **路由**: React Router DOM 7
+- **樣式**: Tailwind CSS 3
+- **語言**: TypeScript
+- **建構工具**: Create React App
 
-轉換後的網站特色：
-- ✨ 使用 React 18 + TypeScript 建構
-- 🎨 使用 TailwindCSS v4 進行樣式設計
-- 🚀 完全響應式設計，支援手機、平板、桌面
-- 🧭 多層級導航系統
-- 📱 移動端友好的選單設計
-- ♿ 符合無障礙標準
-
-## 🏗️ 專案結構
+## 專案結構
 
 ```
 corporate-website/
 ├── public/
-│   └── (靜態資源)
+│   └── images/          # 靜態圖片資源
+│       ├── a1-a6/       # 富居水湳相關圖片
+│       └── b1-b5/       # 巨擘薈萃相關圖片
 ├── src/
-│   ├── components/
-│   │   └── Navigation.tsx        # 導航組件
-│   ├── layouts/
-│   │   └── MainLayout.tsx        # 主版型
-│   ├── pages/
-│   │   ├── HomePage.tsx          # 首頁
-│   │   ├── ContentPage.tsx       # 通用內容頁
-│   │   └── VideoPage.tsx         # 影片頁面
-│   ├── data/
-│   │   └── siteStructure.ts      # 網站結構定義
-│   ├── assets/
-│   │   └── videos/               # 影片資源
-│   ├── App.tsx                   # 主應用程式
-│   └── index.css                 # 全域樣式
+│   ├── components/      # 共用元件
+│   │   ├── backgrounds/ # 背景動畫效果元件
+│   │   └── dev/         # 開發工具元件
+│   ├── config/          # 設定檔 (選單配置等)
+│   ├── layouts/         # 版面配置
+│   ├── pages/           # 頁面元件
+│   └── utils/           # 工具函式
+├── tailwind.config.js   # Tailwind CSS 設定
 └── package.json
 ```
 
-## 📊 網站結構
+## 頁面路由
 
-網站分為以下主要區塊：
+| 路徑 | 頁面說明 |
+|------|---------|
+| `/` | 首頁 |
+| `/video` | 影片頁面 |
+| `/fu-ju-shui-nan/guo-ji-xin-du` | 國際新都 |
+| `/fu-ju-shui-nan/xi-you-du-xiang` | 稀有獨享 |
+| `/fu-ju-shui-nan/yong-ya-sen-lv` | 雍雅森綠 |
+| `/fu-ju-shui-nan/fan-hua-shi-qu` | 繁華時區 |
+| `/fu-ju-shui-nan/sheng-huo-ji-neng` | 生活機能 |
+| `/fu-ju-shui-nan/jiao-tong-dong-xian` | 交通動線 |
+| `/ju-bo-hui-cui/jian-zhu-ling-hang` | 建築領航 |
+| `/ju-bo-hui-cui/jian-zhu-mei-xue` | 建築美學 |
+| `/ju-bo-hui-cui/gong-she-yu-jing` | 公設語境 |
+| `/ju-bo-hui-cui/jing-guan-pin-wei` | 景觀品味 |
+| `/ju-bo-hui-cui/jie-gou-li-xue` | 結構力學 |
 
-### A. 關於我們 (`/about`)
-- A1. 公司簡介
-  - A11. 公司歷史
-  - A12. 企業文化
-  - A13. 組織架構
-- A2. 經營理念
-  - A21-A27, A2x. 核心價值、願景使命等
-- A3. 營運據點
-  - A31. 總公司 (含 A310-A318 詳細設施)
-  - A32-A39. 分公司、海外據點等
-- A4. 認證榮譽
-  - A41-A43. ISO認證、獲獎紀錄、專利技術
+## 系統需求
 
-### B. 產品服務 (`/products`)
-- B1. 產品分類
-- B2. 服務項目
-- B3. 解決方案
+- Node.js 18.x 或以上
+- npm 9.x 或以上
 
-### C. 最新消息 (`/news`)
-- C1-C6. 各類新聞
-- C7. 媒體報導 (含 C71-C78 各類媒體)
+## 安裝與啟動
 
-### D. 人才招募 (`/careers`)
-- D1. 工作機會
-- D2. 員工福利 (含 D21-D27 詳細福利)
-
-### 企業影片 (`/video`)
-- 企業形象影片播放頁面
-
-## 🚀 快速開始
-
-### 前置需求
-
-- Node.js 14.0 或更高版本
-- npm 或 yarn
-
-### 安裝
+### 1. 安裝依賴套件
 
 ```bash
-# 進入專案目錄
-cd corporate-website
-
-# 安裝依賴
 npm install
 ```
 
-### 開發
+### 2. 啟動開發伺服器
 
 ```bash
-# 啟動開發伺服器
 npm start
 ```
 
-開啟瀏覽器訪問 [http://localhost:3000](http://localhost:3000)
+啟動後在瀏覽器開啟 [http://localhost:3000](http://localhost:3000) 即可預覽。
 
-### 建構
+開發伺服器支援熱重載 (Hot Reload)，修改程式碼後頁面會自動更新。
+
+### 3. 執行測試
 
 ```bash
-# 建構生產版本
+npm test
+```
+
+## 部署
+
+### 建置生產版本
+
+```bash
 npm run build
 ```
 
-建構完成的檔案將位於 `build/` 目錄中。
+建置完成後，靜態檔案會產生在 `build/` 目錄中。
 
-## 🎬 影片轉換指南
+### 部署至靜態網站託管服務
 
-原始的 `video1.flv` 檔案需要轉換為現代瀏覽器支援的格式。
+`build/` 目錄中的檔案可部署至任何靜態網站託管服務：
 
-### 使用 FFmpeg 轉換
+**Nginx 設定範例：**
 
-1. 安裝 FFmpeg：
-   ```bash
-   # macOS
-   brew install ffmpeg
+```nginx
+server {
+    listen 80;
+    server_name your-domain.com;
+    root /path/to/build;
+    index index.html;
 
-   # Ubuntu/Debian
-   sudo apt-get install ffmpeg
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
 
-   # Windows
-   # 從 https://ffmpeg.org/download.html 下載
-   ```
-
-2. 轉換為 MP4：
-   ```bash
-   ffmpeg -i ../swf/video1.flv \
-          -c:v libx264 \
-          -preset slow \
-          -crf 22 \
-          -c:a aac \
-          -b:a 192k \
-          public/videos/video1.mp4
-   ```
-
-3. (可選) 同時生成 WebM 以提高相容性：
-   ```bash
-   ffmpeg -i ../swf/video1.flv \
-          -c:v libvpx-vp9 \
-          -crf 30 \
-          -b:v 0 \
-          -c:a libopus \
-          public/videos/video1.webm
-   ```
-
-4. 更新 `src/pages/VideoPage.tsx` 中的影片來源：
-   ```tsx
-   <video ref={videoRef} className="w-full h-full" controls>
-     <source src="/videos/video1.mp4" type="video/mp4" />
-     <source src="/videos/video1.webm" type="video/webm" />
-     您的瀏覽器不支援影片播放。
-   </video>
-   ```
-
-## 📝 內容更新指南
-
-### 更新頁面內容
-
-1. 找到對應的原始 SWF 檔案 (例如 `a1.swf`)
-2. 使用 Flash 播放器查看原始內容
-3. 編輯對應的頁面路徑 (例如 `/about/intro`)
-4. 更新 `src/pages/ContentPage.tsx` 或建立專用頁面組件
-
-### 添加圖片資源
-
-1. 將圖片放入 `public/images/` 目錄
-2. 在組件中引用：
-   ```tsx
-   <img src="/images/your-image.jpg" alt="描述" />
-   ```
-
-### 修改導航結構
-
-編輯 `src/data/siteStructure.ts` 來調整網站結構：
-
-```typescript
-{
-  id: 'new-section',
-  title: '新區塊',
-  path: '/new-section',
-  children: [...]
+    # 靜態資源快取
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|webp)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
 }
 ```
 
-## 🎨 樣式自訂
+**Apache 設定 (.htaccess)：**
 
-### 修改顏色主題
-
-編輯 `src/index.css` 或使用 Tailwind 的自訂設定：
-
-```css
-@import "tailwindcss";
-
-@layer base {
-  :root {
-    --primary: #3B82F6;    /* 藍色 */
-    --secondary: #10B981;  /* 綠色 */
-  }
-}
+```apache
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteRule ^index\.html$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.html [L]
+</IfModule>
 ```
 
-### 修改佈局
+### 部署至雲端平台
 
-- 主版型: `src/layouts/MainLayout.tsx`
-- 導航列: `src/components/Navigation.tsx`
-- 頁尾: `src/layouts/MainLayout.tsx` (底部)
-
-## 📱 響應式斷點
-
-TailwindCSS 預設斷點：
-- `sm`: 640px
-- `md`: 768px
-- `lg`: 1024px
-- `xl`: 1280px
-- `2xl`: 1536px
-
-## 🔧 技術棧
-
-- **框架**: React 18
-- **語言**: TypeScript
-- **樣式**: TailwindCSS v4
-- **路由**: React Router v6
-- **建構工具**: Create React App
-
-## ⚡ 效能優化建議
-
-1. **圖片優化**: 使用 WebP 格式並提供回退方案
-2. **程式碼分割**: 使用 React.lazy() 進行路由級別的程式碼分割
-3. **快取策略**: 在生產環境配置適當的 HTTP 快取標頭
-4. **CDN 部署**: 將靜態資源部署到 CDN
-
-## 📦 部署
-
-### Vercel
+**Vercel：**
 ```bash
 npm install -g vercel
 vercel
 ```
 
-### Netlify
+**Netlify：**
 ```bash
-npm run build
-# 拖放 build/ 目錄到 Netlify
+npm install -g netlify-cli
+netlify deploy --prod --dir=build
 ```
 
-### GitHub Pages
-```bash
-npm install --save-dev gh-pages
+**GitHub Pages：**
+1. 在 `package.json` 中新增 `"homepage": "https://yourusername.github.io/repo-name"`
+2. 安裝 gh-pages: `npm install --save-dev gh-pages`
+3. 在 `scripts` 中新增：
+   ```json
+   "predeploy": "npm run build",
+   "deploy": "gh-pages -d build"
+   ```
+4. 執行部署: `npm run deploy`
 
-# package.json 中添加：
-{
-  "homepage": "https://yourusername.github.io/corporate-website",
-  "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-  }
-}
+## 開發模式
 
-npm run deploy
+專案內建開發工具，可在 `src/App.tsx` 中設定：
+
+```typescript
+// 開發模式開關 - 正式上線時設為 false
+const DEV_MODE = false;
 ```
 
-## 🐛 已知問題
+啟用後可使用多邊形繪製器等開發輔助工具。
 
-1. 原始 Flash 內容無法自動提取，需要手動補充
-2. 部分動畫效果需要使用 CSS 動畫或 JavaScript 重新實作
-3. 互動式功能需要根據原始 ActionScript 邏輯重新開發
+## 環境變數
 
-## 📚 下一步
+如需設定環境變數，請建立 `.env` 檔案：
 
-- [ ] 從原始 SWF 檔案提取實際內容
-- [ ] 添加圖片和媒體資源
-- [ ] 實作特定的互動功能
-- [ ] 進行 SEO 優化
-- [ ] 添加 Google Analytics
-- [ ] 設定表單處理 (聯絡我們、招募等)
-- [ ] 建立 CMS 整合 (可選)
+```env
+REACT_APP_API_URL=https://api.example.com
+```
 
-## 💬 聯絡方式
+## License
 
-如有任何問題，請聯絡開發團隊。
-
----
-
-**注意**: 這個專案是從 Flash 網站轉換而來的框架。您需要根據原始 Flash 內容填充實際的文字、圖片和功能。
+Private - All Rights Reserved

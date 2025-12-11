@@ -7,6 +7,10 @@ import ImageGalleryPage from './components/ImageGalleryPage';
 import LifeFunctionPage from './pages/LifeFunctionPage';
 import TrafficRoutePage from './pages/TrafficRoutePage';
 import ArchitectLeaderPage from './pages/ArchitectLeaderPage';
+import ArchitectAestheticsPage from './pages/ArchitectAestheticsPage';
+import PublicFacilityPage from './pages/PublicFacilityPage';
+import LandscapeTastePage from './pages/LandscapeTastePage';
+import StructuralEngineeringPage from './pages/StructuralEngineeringPage';
 import PolygonDrawer from './components/dev/PolygonDrawer';
 
 // ⚠️ 開發模式開關 - 正式上線時設為 false
@@ -129,6 +133,18 @@ function App() {
 
           {/* 巨擘薈萃 - 建築領航 */}
           <Route path="/ju-bo-hui-cui/jian-zhu-ling-hang" element={<ArchitectLeaderPage />} />
+
+          {/* 巨擘薈萃 - 建築美學 */}
+          <Route path="/ju-bo-hui-cui/jian-zhu-mei-xue" element={<ArchitectAestheticsPage />} />
+
+          {/* 巨擘薈萃 - 公設語境 */}
+          <Route path="/ju-bo-hui-cui/gong-she-yu-jing" element={<PublicFacilityPage />} />
+
+          {/* 巨擘薈萃 - 景觀品味 */}
+          <Route path="/ju-bo-hui-cui/jing-guan-pin-wei" element={<LandscapeTastePage />} />
+
+          {/* 巨擘薈萃 - 結構力學 */}
+          <Route path="/ju-bo-hui-cui/jie-gou-li-xue" element={<StructuralEngineeringPage />} />
 
           {/* 其他頁面待開發，暫時導向首頁 */}
           <Route path="*" element={<HomePage />} />
