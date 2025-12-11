@@ -76,7 +76,7 @@ const ArchitectLeaderPage: React.FC = () => {
         <h2
           className="text-white font-light"
           style={{
-            fontSize: '3.5rem',
+            fontSize: '3rem',
             letterSpacing: '0.2em',
           }}
         >
@@ -117,7 +117,7 @@ const ArchitectLeaderPage: React.FC = () => {
         <h2
           className="text-white font-light"
           style={{
-            fontSize: '3.5rem',
+            fontSize: '3rem',
             letterSpacing: '0.2em',
           }}
         >
@@ -161,7 +161,7 @@ const ArchitectLeaderPage: React.FC = () => {
               聚碩建設
             </h1>
             <h3
-              className="font-light text-white mt-4"
+              className="text-[#f5e6b8] mt-4"
               style={{ fontSize: '2rem', letterSpacing: '0.15em', }}
             >
               獨領經典 風格執筆
