@@ -11,6 +11,7 @@ import ArchitectAestheticsPage from './pages/ArchitectAestheticsPage';
 import PublicFacilityPage from './pages/PublicFacilityPage';
 import LandscapeTastePage from './pages/LandscapeTastePage';
 import StructuralEngineeringPage from './pages/StructuralEngineeringPage';
+import FrenchAestheticsPage from './pages/FrenchAestheticsPage';
 import PolygonDrawer from './components/dev/PolygonDrawer';
 
 // ⚠️ 開發模式開關 - 正式上線時設為 false
@@ -145,6 +146,9 @@ function App() {
 
           {/* 巨擘薈萃 - 結構力學 */}
           <Route path="/ju-bo-hui-cui/jie-gou-li-xue" element={<StructuralEngineeringPage />} />
+
+          {/* 法式寓邸 - 法式美學 */}
+          <Route path="/fa-shi-yu-di/fa-shi-mei-xue" element={<FrenchAestheticsPage />} />
 
           {/* 其他頁面待開發，暫時導向首頁 */}
           <Route path="*" element={<HomePage />} />
