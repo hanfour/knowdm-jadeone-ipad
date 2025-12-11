@@ -135,7 +135,7 @@ const LandscapeTastePage: React.FC = () => {
           backgroundImage: `url(${personImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          filter: 'blur(30px) brightness(0.3) grayscale(100%)',
+          filter: 'blur(30px) brightness(0.3) grayscale(60%)',
           transform: 'scale(1.3)',
           opacity: 0.6,
         }}
@@ -164,7 +164,6 @@ const LandscapeTastePage: React.FC = () => {
                   className="h-full w-full object-cover"
                   style={{
                     objectPosition: 'center top',
-                    filter: 'grayscale(100%)',
                     maskImage: 'linear-gradient(to right, black 60%, transparent 100%)',
                     WebkitMaskImage: 'linear-gradient(to right, black 60%, transparent 100%)',
                   }}
