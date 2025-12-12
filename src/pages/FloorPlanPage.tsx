@@ -42,69 +42,77 @@ const units: UnitData[] = [
   { id: 'D', label: 'D戶', getImage: (f) => f === '2F' ? '/images/c2/furniture-layouts/D-2F.jpg' : '/images/c2/furniture-layouts/D-3~11.jpg', position: { row: 1, col: 2 } },
 ];
 
+// 生成空拍實景按鈕資料
+const getAerialButtons = (floorId: string): GalleryButtonData[] => [
+  { id: `${floorId}-east`, label: '東向空拍實景', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(東向).jpg`, label: '東向空拍實景' }] },
+  { id: `${floorId}-south`, label: '南向空拍實景', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(南向).jpg`, label: '南向空拍實景' }] },
+  { id: `${floorId}-west`, label: '西向空拍實景', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(西向).jpg`, label: '西向空拍實景' }] },
+  { id: `${floorId}-north`, label: '北向空拍實景', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(北向).jpg`, label: '北向空拍實景' }] },
+];
+
 // 樓層資料
 const floors: FloorData[] = [
-  { id: 'RF', label: 'RF', image: null },
+  { id: 'RF', label: 'RF', image: null, galleryButtons: getAerialButtons('RF') },
   { id: '11F', label: '11F', image: '/images/c2/floor-plans/3-11F.png', markers: [
     { id: '11F-A', unitId: 'A', x: 27.68, y: 39.86, label: 'A戶' },
     { id: '11F-B', unitId: 'B', x: 39.21, y: 58.09, label: 'B戶' },
     { id: '11F-C', unitId: 'C', x: 46.66, y: 58.36, label: 'C戶' },
     { id: '11F-D', unitId: 'D', x: 58.36, y: 39.59, label: 'D戶' }
-  ]},
+  ], galleryButtons: getAerialButtons('11F') },
   { id: '10F', label: '10F', image: '/images/c2/floor-plans/3-11F.png', markers: [
     { id: '10F-A', unitId: 'A', x: 27.68, y: 39.86, label: 'A戶' },
     { id: '10F-B', unitId: 'B', x: 39.21, y: 58.09, label: 'B戶' },
     { id: '10F-C', unitId: 'C', x: 46.66, y: 58.36, label: 'C戶' },
     { id: '10F-D', unitId: 'D', x: 58.36, y: 39.59, label: 'D戶' }
-  ]},
+  ], galleryButtons: getAerialButtons('10F') },
   { id: '9F', label: '9F', image: '/images/c2/floor-plans/3-11F.png', markers: [
     { id: '9F-A', unitId: 'A', x: 27.68, y: 39.86, label: 'A戶' },
     { id: '9F-B', unitId: 'B', x: 39.21, y: 58.09, label: 'B戶' },
     { id: '9F-C', unitId: 'C', x: 46.66, y: 58.36, label: 'C戶' },
     { id: '9F-D', unitId: 'D', x: 58.36, y: 39.59, label: 'D戶' }
-  ]},
+  ], galleryButtons: getAerialButtons('9F') },
   { id: '8F', label: '8F', image: '/images/c2/floor-plans/3-11F.png', markers: [
     { id: '8F-A', unitId: 'A', x: 27.68, y: 39.86, label: 'A戶' },
     { id: '8F-B', unitId: 'B', x: 39.21, y: 58.09, label: 'B戶' },
     { id: '8F-C', unitId: 'C', x: 46.66, y: 58.36, label: 'C戶' },
     { id: '8F-D', unitId: 'D', x: 58.36, y: 39.59, label: 'D戶' }
-  ]},
+  ], galleryButtons: getAerialButtons('8F') },
   { id: '7F', label: '7F', image: '/images/c2/floor-plans/3-11F.png', markers: [
     { id: '7F-A', unitId: 'A', x: 27.68, y: 39.86, label: 'A戶' },
     { id: '7F-B', unitId: 'B', x: 39.21, y: 58.09, label: 'B戶' },
     { id: '7F-C', unitId: 'C', x: 46.66, y: 58.36, label: 'C戶' },
     { id: '7F-D', unitId: 'D', x: 58.36, y: 39.59, label: 'D戶' }
-  ]},
+  ], galleryButtons: getAerialButtons('7F') },
   { id: '6F', label: '6F', image: '/images/c2/floor-plans/3-11F.png', markers: [
     { id: '6F-A', unitId: 'A', x: 27.68, y: 39.86, label: 'A戶' },
     { id: '6F-B', unitId: 'B', x: 39.21, y: 58.09, label: 'B戶' },
     { id: '6F-C', unitId: 'C', x: 46.66, y: 58.36, label: 'C戶' },
     { id: '6F-D', unitId: 'D', x: 58.36, y: 39.59, label: 'D戶' }
-  ]},
+  ], galleryButtons: getAerialButtons('6F') },
   { id: '5F', label: '5F', image: '/images/c2/floor-plans/3-11F.png', markers: [
     { id: '5F-A', unitId: 'A', x: 27.68, y: 39.86, label: 'A戶' },
     { id: '5F-B', unitId: 'B', x: 39.21, y: 58.09, label: 'B戶' },
     { id: '5F-C', unitId: 'C', x: 46.66, y: 58.36, label: 'C戶' },
     { id: '5F-D', unitId: 'D', x: 58.36, y: 39.59, label: 'D戶' }
-  ]},
+  ], galleryButtons: getAerialButtons('5F') },
   { id: '4F', label: '4F', image: '/images/c2/floor-plans/3-11F.png', markers: [
     { id: '4F-A', unitId: 'A', x: 27.68, y: 39.86, label: 'A戶' },
     { id: '4F-B', unitId: 'B', x: 39.21, y: 58.09, label: 'B戶' },
     { id: '4F-C', unitId: 'C', x: 46.66, y: 58.36, label: 'C戶' },
     { id: '4F-D', unitId: 'D', x: 58.36, y: 39.59, label: 'D戶' }
-  ]},
+  ], galleryButtons: getAerialButtons('4F') },
   { id: '3F', label: '3F', image: '/images/c2/floor-plans/3-11F.png', markers: [
     { id: '3F-A', unitId: 'A', x: 27.68, y: 39.86, label: 'A戶' },
     { id: '3F-B', unitId: 'B', x: 39.21, y: 58.09, label: 'B戶' },
     { id: '3F-C', unitId: 'C', x: 46.66, y: 58.36, label: 'C戶' },
     { id: '3F-D', unitId: 'D', x: 58.36, y: 39.59, label: 'D戶' }
-  ]},
+  ], galleryButtons: getAerialButtons('3F') },
   { id: '2F', label: '2F', image: '/images/c2/floor-plans/2F.png', markers: [
     { id: '2F-A', unitId: 'A', x: 27.85, y: 39.59, label: 'A戶' },
     { id: '2F-B', unitId: 'B', x: 39.21, y: 57.83, label: 'B戶' },
     { id: '2F-C', unitId: 'C', x: 46.49, y: 57.83, label: 'C戶' },
     { id: '2F-D', unitId: 'D', x: 58.02, y: 39.33, label: 'D戶' }
-  ]},
+  ], galleryButtons: getAerialButtons('2F') },
   { id: '1F', label: '1F', image: '/images/c2/floor-plans/1F.png', galleryButtons: [
     { id: '1F-garden', label: '戶外園藝區', images: [{ src: 'https://picsum.photos/1920/1080?random=101', label: '戶外園藝區' }] },
     { id: '1F-spa', label: 'SPA池', images: [{ src: 'https://picsum.photos/1920/1080?random=102', label: 'SPA池' }] },
@@ -327,6 +335,51 @@ const FloorPlanPage: React.FC = () => {
       ref={containerRef}
       className="relative w-full h-full overflow-hidden bg-[#f5f5f5]"
     >
+      {/* 標記點光流動畫 CSS */}
+      <style>{`
+        @keyframes markerGlow {
+          0%, 100% {
+            box-shadow:
+              0 0 0 0 rgba(255, 215, 0, 0.7),
+              0 0 8px 2px rgba(255, 215, 0, 0.5);
+          }
+          50% {
+            box-shadow:
+              0 0 0 6px rgba(255, 215, 0, 0),
+              0 0 15px 4px rgba(255, 215, 0, 0.8);
+          }
+        }
+
+        @keyframes markerRing {
+          0% {
+            transform: scale(1);
+            opacity: 0.8;
+          }
+          100% {
+            transform: scale(2.5);
+            opacity: 0;
+          }
+        }
+
+        .marker-glow {
+          animation: markerGlow 2s ease-in-out infinite;
+        }
+
+        .marker-ring::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 100%;
+          height: 100%;
+          margin-top: -50%;
+          margin-left: -50%;
+          border: 2px solid rgba(255, 215, 0, 0.6);
+          border-radius: 50%;
+          animation: markerRing 1.5s ease-out infinite;
+        }
+      `}</style>
+
       {/* 右上角子頁面導航列 */}
       <SubpageMenuBar sectionIndex={3} />
 
@@ -459,17 +512,15 @@ const FloorPlanPage: React.FC = () => {
                   e.stopPropagation();
                   openBottomSheet(marker);
                 }}
-                className="absolute w-8 h-8 bg-[#FFD700] rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform border-2 border-[#FFD700]/50"
+                className="absolute w-4 h-4 bg-[#FFD700] rounded-full flex items-center justify-center hover:scale-125 transition-transform marker-glow marker-ring"
                 style={{
                   left: `${marker.x}%`,
                   top: `${marker.y}%`,
                   transform: 'translate(-50%, -50%)',
                 }}
-                aria-label={`查看 ${marker.label} 戶`}
+                aria-label={`查看 ${marker.label}`}
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                  <path d="M12 5v14M5 12h14" />
-                </svg>
+                <span className="text-[0.4rem] font-bold text-black/80">{marker.unitId}</span>
               </button>
             ))}
           </div>
@@ -717,10 +768,10 @@ const FloorPlanPage: React.FC = () => {
           <>
             {/* 面板標題列 */}
             <div className="absolute top-0 left-0 z-10 bg-[#f5e6b8] text-black px-6 py-4">
-              <h3 className="font-bold" style={{ fontSize: '1.75rem' }}>
+              <h3 className="font-bold text-center" style={{ fontSize: '1.75rem' }}>
                 {selectedFloor.label}
               </h3>
-              <p className="text-sm" style={{ color: '#c41e3a' }}>全區平面圖</p>
+              <p className="text-sm" style={{ color: '#c41e3a' }}>{galleryViewer.gallery.label}</p>
             </div>
 
             {/* 關閉按鈕 */}
