@@ -281,8 +281,8 @@ const LandscapeTastePage: React.FC = () => {
           <div
             className="text-white/85"
             style={{
-              fontSize: '0.95rem',
-              lineHeight: '2.2',
+              fontSize: '1rem',
+              lineHeight: '2.4',
               maxWidth: '28rem',
             }}
           >

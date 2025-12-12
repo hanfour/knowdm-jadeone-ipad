@@ -166,7 +166,7 @@ const ArchitectLeaderPage: React.FC = () => {
             >
               獨領經典 風格執筆
             </h3>
-            <div className='mt-2 pb-12' style={{ fontSize: '1rem', lineHeight: '2',filter: 'drop-shadow(0 1px 1px rgb(0 0 0 / 0.25))', }}>
+            <div className='mt-2 pb-12' style={{ fontSize: '1rem', lineHeight: '2.4',filter: 'drop-shadow(0 1px 1px rgb(0 0 0 / 0.25))', }}>
               <p>
                 以建築，塑造國際的生活高度。在聚碩建築眼中，住宅不是被複製的格局，而是一件獨一無二、經得起時間考驗的藝術品。從比例的拿捏中尋找和諧，讓空間在尺度之間呼吸；在光影的流動裡，創造日夜的韻律與生活的詩意；透過材質的打磨，賦予建築高度質感，讓居者觸摸到時光的厚度。
               </p>
