@@ -45,6 +45,7 @@ export interface UnitData {
   id: string;
   label: string;
   getImage: (floor: string) => string;
+  getVrUrl?: (floor: string) => string | null;
   region: { x: number; y: number }[];
 }
 

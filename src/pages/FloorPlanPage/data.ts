@@ -6,6 +6,7 @@ export const units: UnitData[] = [
     id: 'A',
     label: 'A戶',
     getImage: (f) => f === '2F' ? '/images/c2/furniture-layouts/A-2F.jpg' : '/images/c2/furniture-layouts/A-3~11.jpg',
+    getVrUrl: (f) => ['3F', '4F', '5F', '6F', '7F', '8F', '9F', '10F', '11F'].includes(f) ? 'https://yun.kujiale.com/design/3FO3HPP1YMO1/airoaming' : null,
     region: [
       { x: 18.61, y: 10.4 }, { x: 27.26, y: 10.4 }, { x: 27.26, y: 13.55 }, { x: 31.12, y: 13.55 },
       { x: 31.12, y: 20.57 }, { x: 35.33, y: 20.57 }, { x: 35.33, y: 36.85 }, { x: 36.61, y: 36.85 },
@@ -16,6 +17,7 @@ export const units: UnitData[] = [
     id: 'B',
     label: 'B戶',
     getImage: (f) => f === '2F' ? '/images/c2/furniture-layouts/B-2F.jpg' : '/images/c2/furniture-layouts/B-3~11.jpg',
+    getVrUrl: (f) => ['3F', '4F', '5F', '6F', '7F', '8F', '9F', '10F', '11F'].includes(f) ? 'https://yun.kujiale.com/design/3FO3I3G0ACHF/airoaming' : null,
     region: [
       { x: 20.95, y: 71.79 }, { x: 35.68, y: 71.79 }, { x: 35.68, y: 70.13 }, { x: 42.81, y: 70.13 },
       { x: 42.81, y: 45.35 }, { x: 27.38, y: 45.35 }, { x: 27.38, y: 52.0 }, { x: 23.05, y: 52.0 },

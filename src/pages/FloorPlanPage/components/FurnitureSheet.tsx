@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { UnitData } from '../types';
 import { units } from '../data';
 import Compass from './Compass';
@@ -29,6 +29,19 @@ const FurnitureSheet: React.FC<FurnitureSheetProps> = ({
   onSelectUnit,
   getFurnitureImage,
 }) => {
+  const [isVrOpen, setIsVrOpen] = useState(false);
+  const vrUrl = unit?.getVrUrl?.(floorId) || null;
+
+  const handleVrClick = () => {
+    if (vrUrl) {
+      setIsVrOpen(true);
+    }
+  };
+
+  const closeVrViewer = () => {
+    setIsVrOpen(false);
+  };
+
   return (
     <div
       className={`fixed inset-x-0 bottom-0 bg-white shadow-2xl z-40 transition-transform duration-500 ease-out ${
@@ -89,6 +102,19 @@ const FurnitureSheet: React.FC<FurnitureSheetProps> = ({
                 <path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3" />
               </svg>
             </button>
+            {vrUrl && (
+              <button
+                onClick={handleVrClick}
+                className="w-10 h-10 bg-[#d4a853] shadow-md flex items-center justify-center hover:bg-[#c49843] transition-colors"
+                aria-label="VR 實境"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <path d="M3 8a4 4 0 014-4h10a4 4 0 014 4v6a4 4 0 01-4 4h-2l-2 2-2-2H7a4 4 0 01-4-4V8z" />
+                  <circle cx="9" cy="11" r="2" />
+                  <circle cx="15" cy="11" r="2" />
+                </svg>
+              </button>
+            )}
           </div>
 
           <div className="w-full h-full flex items-center justify-center overflow-hidden p-8">
@@ -117,6 +143,32 @@ const FurnitureSheet: React.FC<FurnitureSheetProps> = ({
           </div>
 
           <Compass style={{ right: '8%', bottom: '5%', transform: 'translate(-50%, -50%)' }} />
+
+          {/* VR 燈箱 */}
+          {isVrOpen && vrUrl && (
+            <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center">
+              <button
+                onClick={closeVrViewer}
+                className="absolute top-4 right-4 z-10 w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+                aria-label="關閉 VR"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+              <div className="absolute top-4 left-4 z-10 bg-[#d4a853] text-white px-4 py-2">
+                <span className="font-bold">{unit.id}戶</span>
+                <span className="ml-2 text-sm">VR 實境</span>
+              </div>
+              <iframe
+                src={vrUrl}
+                className="w-full h-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; xr-spatial-tracking"
+                allowFullScreen
+                title={`${unit.id}戶 VR 實境`}
+              />
+            </div>
+          )}
         </>
       )}
     </div>
