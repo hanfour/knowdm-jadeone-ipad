@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SubpageMenuBar from '../../components/SubpageMenuBar';
+import LightBlobsBackground from '../../components/backgrounds/LightBlobsBackground';
 import EquipmentIcon from './components/EquipmentIcon';
 import { equipmentItems } from './data';
 
@@ -23,7 +24,7 @@ const BoutiqueMansionPage: React.FC = () => {
 
       {/* 背景 */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-bottom bg-no-repeat"
         style={{
           backgroundImage: `url('/images/boutique/background.jpg')`,
           backgroundColor: '#1a1a1a',
@@ -35,9 +36,14 @@ const BoutiqueMansionPage: React.FC = () => {
         className="absolute inset-0"
         style={{
           top: '80px',
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.7) 100%)',
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.7) 100%)',
         }}
       />
+
+      {/* 動態光斑效果 */}
+      <div className="absolute inset-0" style={{ top: '80px' }}>
+        <LightBlobsBackground />
+      </div>
 
       {/* 主要內容 */}
       <div
@@ -47,14 +53,14 @@ const BoutiqueMansionPage: React.FC = () => {
         {/* 標題區 */}
         <div className="text-center mb-16">
           <h1
-            className="text-5xl font-light tracking-[0.3em] text-[#f3cf9a]/40 mb-2"
-            style={{ fontFamily: 'serif' }}
+            className="font-light text-[#f5e6b8]/40 mb-2"
+            style={{ fontSize: '2rem', letterSpacing: '0.15em',fontFamily: '"Apple Chancery", "Lucida Calligraphy", cursive', }}
           >
             BOUTIQUE MANSION
           </h1>
           <h2
-            className="text-3xl tracking-[0.5em] text-[#f3cf9a]"
-            style={{ fontFamily: 'serif' }}
+            className="text-[#f5e6b8]"
+            style={{ fontSize: '3.5rem', letterSpacing: '0.2em' }}
           >
             精品工學
           </h2>
@@ -78,7 +84,7 @@ const BoutiqueMansionPage: React.FC = () => {
 
       {/* 底部提示 */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center z-10">
-        <p className="text-sm text-[#f3cf9a]/50 tracking-wider">
+        <p className="text-sm text-[#f5e6b8]/50 tracking-wider">
           點選項目查看詳細介紹
         </p>
       </div>
