@@ -113,14 +113,7 @@ const floors: FloorData[] = [
     { id: '2F-C', unitId: 'C', x: 46.49, y: 57.83, label: 'C戶' },
     { id: '2F-D', unitId: 'D', x: 58.02, y: 39.33, label: 'D戶' }
   ], galleryButtons: getAerialButtons('2F') },
-  { id: '1F', label: '1F', image: '/images/c2/floor-plans/1F.png', galleryButtons: [
-    { id: '1F-garden', label: '戶外園藝區', images: [{ src: 'https://picsum.photos/1920/1080?random=101', label: '戶外園藝區' }] },
-    { id: '1F-spa', label: 'SPA池', images: [{ src: 'https://picsum.photos/1920/1080?random=102', label: 'SPA池' }] },
-    { id: '1F-pool', label: '室內溫水泳池', images: [{ src: 'https://picsum.photos/1920/1080?random=103', label: '室內溫水泳池' }] },
-    { id: '1F-sauna', label: '蒸氣室及烤箱', images: [{ src: 'https://picsum.photos/1920/1080?random=104', label: '蒸氣室及烤箱' }] },
-    { id: '1F-lobby', label: 'LOBBY', images: [{ src: 'https://picsum.photos/1920/1080?random=105', label: 'LOBBY' }] },
-    { id: '1F-entrance', label: '入口水池', images: [{ src: 'https://picsum.photos/1920/1080?random=106', label: '入口水池' }] },
-  ]},
+  { id: '1F', label: '1F', image: '/images/c2/floor-plans/1F.png' },
   { id: 'B1F', label: 'B1F', image: '/images/c2/floor-plans/B1.png' },
   { id: 'B2F', label: 'B2F', image: '/images/c2/floor-plans/B2.png' },
   { id: 'B3F', label: 'B3F', image: '/images/c2/floor-plans/B3.png' },
@@ -544,18 +537,6 @@ const FloorPlanPage: React.FC = () => {
         </div>
       </div>
 
-      {/* 左下角指北針 */}
-      <div
-        className="absolute z-10"
-        style={{ left: '1.5rem', bottom: '1.5rem' }}
-      >
-        <div className="w-12 h-12 border border-gray-400 rounded-full flex items-center justify-center relative bg-white/80">
-          <span className="absolute -top-5 text-xs text-gray-500 font-medium">N</span>
-          <div className="w-px h-7 bg-gray-400 transform -translate-y-1" />
-          <div className="absolute top-1.5 w-0 h-0 border-l-[5px] border-r-[5px] border-b-[10px] border-transparent border-b-gray-600" />
-        </div>
-      </div>
-
       {/* 右下角提示文字 */}
       <div
         className="absolute z-10 text-xs text-gray-400"
@@ -860,18 +841,6 @@ const FloorPlanPage: React.FC = () => {
                 </button>
               </>
             )}
-
-            {/* 左下角指北針 */}
-            <div
-              className="absolute z-10"
-              style={{ left: '1.5rem', bottom: '1.5rem' }}
-            >
-              <div className="w-12 h-12 border border-gray-400 rounded-full flex items-center justify-center relative bg-white/80">
-                <span className="absolute -top-5 text-xs text-gray-500 font-medium">N</span>
-                <div className="w-px h-7 bg-gray-400 transform -translate-y-1" />
-                <div className="absolute top-1.5 w-0 h-0 border-l-[5px] border-r-[5px] border-b-[10px] border-transparent border-b-gray-600" />
-              </div>
-            </div>
 
             {/* 右下角提示文字 */}
             <div
