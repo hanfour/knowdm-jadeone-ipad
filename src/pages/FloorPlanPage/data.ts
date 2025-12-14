@@ -65,12 +65,12 @@ export const floorDefaults: Record<string, { x: number; y: number; scale: number
   'B3F': { x: 0, y: -10, scale: 2.5 },
 };
 
-// 生成空拍實景按鈕資料
+// 生成景觀空拍按鈕資料
 export const getAerialButtons = (floorId: string): GalleryButtonData[] => [
-  { id: `${floorId}-east`, label: '東向空拍實景', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(東向).jpg`, label: '東向空拍實景' }] },
-  { id: `${floorId}-south`, label: '南向空拍實景', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(南向).jpg`, label: '南向空拍實景' }] },
-  { id: `${floorId}-west`, label: '西向空拍實景', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(西向).jpg`, label: '西向空拍實景' }] },
-  { id: `${floorId}-north`, label: '北向空拍實景', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(北向).jpg`, label: '北向空拍實景' }] },
+  { id: `${floorId}-east`, label: '東向景觀空拍', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(東向).jpg`, label: '東向景觀空拍' }] },
+  { id: `${floorId}-south`, label: '南向景觀空拍', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(南向).jpg`, label: '南向景觀空拍' }] },
+  { id: `${floorId}-west`, label: '西向景觀空拍', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(西向).jpg`, label: '西向景觀空拍' }] },
+  { id: `${floorId}-north`, label: '北向景觀空拍', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(北向).jpg`, label: '北向景觀空拍' }] },
 ];
 
 // 標準樓層標記點

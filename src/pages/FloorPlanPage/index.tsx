@@ -37,8 +37,13 @@ const FloorPlanPage: React.FC = () => {
   });
 
   // 縮放控制
-  const handleZoomIn = useCallback(() => setScale(prev => Math.min(prev + 0.25, 3)), []);
-  const handleZoomOut = useCallback(() => setScale(prev => Math.max(prev - 0.25, 1)), []);
+  const handleZoomIn = useCallback(() => setScale(prev => Math.min(prev + 0.5, 8)), []);
+  const handleZoomOut = useCallback(() => setScale(prev => Math.max(prev - 0.5, 1)), []);
+  const handleReset = useCallback(() => {
+    const defaults = floorDefaults[selectedFloor.id] || { x: 0, y: 0, scale: 2.5 };
+    setScale(defaults.scale);
+    setPosition({ x: defaults.x, y: defaults.y });
+  }, [selectedFloor.id]);
 
   // 全螢幕
   const toggleFullscreen = useCallback(() => {
@@ -91,8 +96,9 @@ const FloorPlanPage: React.FC = () => {
     if (unit) setBottomSheet({ isOpen: true, unit, scale: 1, position: { x: 0, y: 0 } });
   };
   const closeBottomSheet = () => setBottomSheet(prev => ({ ...prev, isOpen: false }));
-  const handleSheetZoomIn = () => setBottomSheet(prev => ({ ...prev, scale: Math.min(prev.scale + 0.25, 3) }));
-  const handleSheetZoomOut = () => setBottomSheet(prev => ({ ...prev, scale: Math.max(prev.scale - 0.25, 1) }));
+  const handleSheetZoomIn = () => setBottomSheet(prev => ({ ...prev, scale: Math.min(prev.scale + 0.5, 8) }));
+  const handleSheetZoomOut = () => setBottomSheet(prev => ({ ...prev, scale: Math.max(prev.scale - 0.5, 1) }));
+  const handleSheetReset = () => setBottomSheet(prev => ({ ...prev, scale: 1 }));
   const getFurnitureImage = () => {
     if (!bottomSheet.unit) return '';
     const floorNum = parseInt(selectedFloor.id.replace('F', ''));
@@ -105,8 +111,12 @@ const FloorPlanPage: React.FC = () => {
     setGalleryViewer({ isOpen: true, gallery, currentIndex: 0, scale: isAerial ? 1.325 : 1 });
   };
   const closeGalleryViewer = () => setGalleryViewer(prev => ({ ...prev, isOpen: false }));
-  const handleGalleryZoomIn = () => setGalleryViewer(prev => ({ ...prev, scale: Math.min(prev.scale + 0.25, 3) }));
-  const handleGalleryZoomOut = () => setGalleryViewer(prev => ({ ...prev, scale: Math.max(prev.scale - 0.25, 1) }));
+  const handleGalleryZoomIn = () => setGalleryViewer(prev => ({ ...prev, scale: Math.min(prev.scale + 0.5, 8) }));
+  const handleGalleryZoomOut = () => setGalleryViewer(prev => ({ ...prev, scale: Math.max(prev.scale - 0.5, 1) }));
+  const handleGalleryReset = () => {
+    const isAerial = galleryViewer.gallery?.id.includes('-east') || galleryViewer.gallery?.id.includes('-south') || galleryViewer.gallery?.id.includes('-west') || galleryViewer.gallery?.id.includes('-north');
+    setGalleryViewer(prev => ({ ...prev, scale: isAerial ? 1.325 : 1 }));
+  };
   const nextGalleryImage = () => {
     if (!galleryViewer.gallery) return;
     setGalleryViewer(prev => ({ ...prev, currentIndex: (prev.currentIndex + 1) % prev.gallery!.images.length }));
@@ -156,7 +166,7 @@ const FloorPlanPage: React.FC = () => {
       </div>
 
       <FloorSelector floors={floors} selectedFloor={selectedFloor} onSelectFloor={setSelectedFloor} />
-      <ZoomControls onZoomIn={handleZoomIn} onZoomOut={handleZoomOut} onFullscreen={toggleFullscreen} isZoomOutDisabled={scale <= 1} isFullscreen={isFullscreen} style={{ right: '100px', top: '50%', transform: 'translateY(-50%)' }} />
+      <ZoomControls onZoomIn={handleZoomIn} onZoomOut={handleZoomOut} onReset={handleReset} onFullscreen={toggleFullscreen} isZoomOutDisabled={scale <= 1} isFullscreen={isFullscreen} style={{ right: '100px', top: '50%', transform: 'translateY(-50%)' }} />
 
       {/* 主要平面圖區域 */}
       <div
@@ -286,6 +296,7 @@ const FloorPlanPage: React.FC = () => {
         onClose={closeBottomSheet}
         onZoomIn={handleSheetZoomIn}
         onZoomOut={handleSheetZoomOut}
+        onReset={handleSheetReset}
         onFullscreen={toggleFullscreen}
         onSelectUnit={(unit) => setBottomSheet(prev => ({ ...prev, unit, scale: 1 }))}
         getFurnitureImage={getFurnitureImage}
@@ -300,6 +311,7 @@ const FloorPlanPage: React.FC = () => {
         onClose={closeGalleryViewer}
         onZoomIn={handleGalleryZoomIn}
         onZoomOut={handleGalleryZoomOut}
+        onReset={handleGalleryReset}
         onFullscreen={toggleFullscreen}
         onPrev={prevGalleryImage}
         onNext={nextGalleryImage}

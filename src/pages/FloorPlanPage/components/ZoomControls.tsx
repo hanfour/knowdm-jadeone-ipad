@@ -3,6 +3,7 @@ import React from 'react';
 interface ZoomControlsProps {
   onZoomIn: () => void;
   onZoomOut: () => void;
+  onReset: () => void;
   onFullscreen: () => void;
   isZoomOutDisabled: boolean;
   isFullscreen: boolean;
@@ -12,6 +13,7 @@ interface ZoomControlsProps {
 const ZoomControls: React.FC<ZoomControlsProps> = ({
   onZoomIn,
   onZoomOut,
+  onReset,
   onFullscreen,
   isZoomOutDisabled,
   isFullscreen,
@@ -38,6 +40,16 @@ const ZoomControls: React.FC<ZoomControlsProps> = ({
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M5 12h14" />
+        </svg>
+      </button>
+      <button
+        onClick={onReset}
+        className="w-10 h-10 bg-white/90 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-gray-100 transition-colors"
+        aria-label="復原"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+          <path d="M3 3v5h5" />
         </svg>
       </button>
       <button

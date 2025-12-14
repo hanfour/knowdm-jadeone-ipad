@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { GalleryButtonData } from '../types';
 import Compass from './Compass';
 
@@ -11,6 +11,7 @@ interface GalleryViewerProps {
   onClose: () => void;
   onZoomIn: () => void;
   onZoomOut: () => void;
+  onReset: () => void;
   onFullscreen: () => void;
   onPrev: () => void;
   onNext: () => void;
@@ -25,10 +26,47 @@ const GalleryViewer: React.FC<GalleryViewerProps> = ({
   onClose,
   onZoomIn,
   onZoomOut,
+  onReset,
   onFullscreen,
   onPrev,
   onNext,
 }) => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+
+  // 拖曳處理
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (scale > 1) {
+      setIsDragging(true);
+      setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y });
+    }
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (isDragging && scale > 1) {
+      setPosition({ x: e.clientX - dragStart.x, y: e.clientY - dragStart.y });
+    }
+  };
+
+  const handleMouseUp = () => setIsDragging(false);
+
+  // 縮放時重置位置
+  useEffect(() => {
+    if (scale === 1) setPosition({ x: 0, y: 0 });
+  }, [scale]);
+
+  // 切換圖片時重置位置
+  useEffect(() => {
+    setPosition({ x: 0, y: 0 });
+  }, [currentIndex, gallery?.id]);
+
+  // 復原
+  const handleResetAll = () => {
+    setPosition({ x: 0, y: 0 });
+    onReset();
+  };
+
   return (
     <div
       className={`fixed inset-x-0 bottom-0 bg-white shadow-2xl z-40 transition-transform duration-500 ease-out ${
@@ -81,6 +119,16 @@ const GalleryViewer: React.FC<GalleryViewerProps> = ({
               </svg>
             </button>
             <button
+              onClick={handleResetAll}
+              className="w-10 h-10 bg-white shadow-md flex items-center justify-center hover:bg-gray-100 transition-colors"
+              aria-label="復原"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                <path d="M3 3v5h5" />
+              </svg>
+            </button>
+            <button
               onClick={onFullscreen}
               className="w-10 h-10 bg-white shadow-md flex items-center justify-center hover:bg-gray-100 transition-colors"
               aria-label="全螢幕"
@@ -91,15 +139,23 @@ const GalleryViewer: React.FC<GalleryViewerProps> = ({
             </button>
           </div>
 
-          <div className="w-full h-full flex items-center justify-center overflow-hidden p-8">
+          <div
+            className="w-full h-full flex items-center justify-center overflow-hidden p-8"
+            style={{ cursor: scale > 1 ? (isDragging ? 'grabbing' : 'grab') : 'default' }}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+          >
             {gallery.images.length > 0 && (
               <img
                 src={gallery.images[currentIndex].src}
                 alt={gallery.images[currentIndex].label}
-                className="max-w-full max-h-full object-contain"
+                className="max-w-full max-h-full object-contain select-none"
+                draggable={false}
                 style={{
-                  transform: `scale(${scale})`,
-                  transition: 'transform 0.3s ease-out',
+                  transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
+                  transition: isDragging ? 'none' : 'transform 0.3s ease-out',
                 }}
               />
             )}
