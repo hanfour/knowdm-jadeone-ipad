@@ -103,18 +103,18 @@ export interface EquipmentItemData {
 
 export const equipmentItems: EquipmentItemData[] = [
   {
-    id: 'bathroom',
-    name: '衛浴品牌',
-    englishName: 'BATHROOM',
-    icon: <BathroomIcon />,
-    link: '/you-ya-jing-zhuo/jing-pin-gong-xue/bathroom',
-  },
-  {
     id: 'kitchen',
     name: '廚具品牌',
     englishName: 'KITCHEN',
     icon: <KitchenIcon />,
     link: '/you-ya-jing-zhuo/jing-pin-gong-xue/kitchen',
+  },
+  {
+    id: 'bathroom',
+    name: '衛浴品牌',
+    englishName: 'BATHROOM',
+    icon: <BathroomIcon />,
+    link: '/you-ya-jing-zhuo/jing-pin-gong-xue/bathroom',
   },
   {
     id: 'flooring',

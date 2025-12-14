@@ -33,12 +33,12 @@ const EquipmentIcon: React.FC<EquipmentIconProps> = ({
             : 'transparent',
         }}
       >
-        {/* 圖標 - 85% of circle size */}
+        {/* 圖標 - 60% of circle size */}
         <div
           className={`transition-all duration-300 ${
             isActive ? 'text-white' : 'text-[#f5e6b8] group-hover:text-white/70'
           }`}
-          style={{ width: '85%', height: '85%' }}
+          style={{ width: '60%', height: '60%' }}
         >
           {icon}
         </div>
