@@ -17,7 +17,7 @@ const BoutiqueMansionPage: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="absolute inset-0 overflow-hidden">
       {/* 導航列 */}
       <SubpageMenuBar sectionIndex={2} />
 
@@ -27,11 +27,15 @@ const BoutiqueMansionPage: React.FC = () => {
         style={{
           backgroundImage: `url('/images/boutique/background.jpg')`,
           backgroundColor: '#f5f0e8',
+          top: '80px',
         }}
       />
 
       {/* 主要內容 */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full pt-20">
+      <div
+        className="absolute inset-0 flex flex-col items-center justify-center"
+        style={{ top: '80px' }}
+      >
         {/* 標題區 */}
         <div className="text-center mb-16">
           <h1
@@ -62,12 +66,13 @@ const BoutiqueMansionPage: React.FC = () => {
           ))}
         </div>
 
-        {/* 底部提示 */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
-          <p className="text-sm text-[#0b2d2a]/40 tracking-wider">
-            點選項目查看詳細介紹
-          </p>
-        </div>
+      </div>
+
+      {/* 底部提示 */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center z-10">
+        <p className="text-sm text-[#0b2d2a]/40 tracking-wider">
+          點選項目查看詳細介紹
+        </p>
       </div>
 
       {/* 樣式 */}
