@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SubpageMenuBar from '../../components/SubpageMenuBar';
-import LightBlobsBackground from '../../components/backgrounds/LightBlobsBackground';
+import LightRaysBackground from '../../components/backgrounds/LightRaysBackground';
 import EquipmentIcon from './components/EquipmentIcon';
 import { equipmentItems } from './data';
 
@@ -36,13 +36,13 @@ const BoutiqueMansionPage: React.FC = () => {
         className="absolute inset-0"
         style={{
           top: '80px',
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.7) 100%)',
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.65) 40%, rgba(0,0,0,0.9) 100%)',
         }}
       />
 
       {/* 動態光斑效果 */}
-      <div className="absolute inset-0" style={{ top: '80px' }}>
-        <LightBlobsBackground />
+      <div className="absolute inset-0" style={{ top: '80px', }}>
+        <LightRaysBackground />
       </div>
 
       {/* 主要內容 */}
@@ -59,7 +59,7 @@ const BoutiqueMansionPage: React.FC = () => {
             BOUTIQUE MANSION
           </h1>
           <h2
-            className="text-[#f5e6b8]"
+            className="text-[#f5e6b8] -mt-12"
             style={{ fontSize: '3.5rem', letterSpacing: '0.2em' }}
           >
             精品工學
