@@ -26,8 +26,16 @@ const BoutiqueMansionPage: React.FC = () => {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `url('/images/boutique/background.jpg')`,
-          backgroundColor: '#f5f0e8',
+          backgroundColor: '#1a1a1a',
           top: '80px',
+        }}
+      />
+      {/* 暗色遮罩 */}
+      <div
+        className="absolute inset-0"
+        style={{
+          top: '80px',
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.7) 100%)',
         }}
       />
 
@@ -39,13 +47,13 @@ const BoutiqueMansionPage: React.FC = () => {
         {/* 標題區 */}
         <div className="text-center mb-16">
           <h1
-            className="text-5xl font-light tracking-[0.3em] text-[#0b2d2a]/30 mb-2"
+            className="text-5xl font-light tracking-[0.3em] text-[#f3cf9a]/40 mb-2"
             style={{ fontFamily: 'serif' }}
           >
             BOUTIQUE MANSION
           </h1>
           <h2
-            className="text-3xl tracking-[0.5em] text-[#0b2d2a]"
+            className="text-3xl tracking-[0.5em] text-[#f3cf9a]"
             style={{ fontFamily: 'serif' }}
           >
             精品工學
@@ -70,7 +78,7 @@ const BoutiqueMansionPage: React.FC = () => {
 
       {/* 底部提示 */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center z-10">
-        <p className="text-sm text-[#0b2d2a]/40 tracking-wider">
+        <p className="text-sm text-[#f3cf9a]/50 tracking-wider">
           點選項目查看詳細介紹
         </p>
       </div>
