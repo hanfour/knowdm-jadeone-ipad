@@ -135,11 +135,12 @@ const KitchenBrandPage: React.FC = () => {
           }}
         >
           {/* 圖片區 */}
-          <div className="h-48 overflow-hidden">
+          <div className="flex items-center justify-center bg-gray-100 p-4">
             <img
               src={item.image}
               alt={item.category}
-              className="w-full h-full object-cover"
+              className="w-full h-auto object-contain"
+              style={{ maxHeight: '200px' }}
             />
           </div>
 
