@@ -21,22 +21,22 @@ interface TabData {
 const cabinetItems: CabinetItem[] = [
   {
     category: '檯面介紹',
-    content: '源自韓國樂天的頂級人造石，以一體成型無接縫工藝打造，表裡一致的實心同質化結構，徹底告別傳統層積板材的剝落困擾。吸水率僅0.03%，無毛細孔特性有效抵禦潮濕與細菌侵蝕，是廚房、浴室及醫療空間的理想選擇。可透過熱加工塑造多元3D造型，兼具耐熱、抗紫外線及氣候穩定性，表面經打磨後即可恢復如新光澤，為現代空間注入歷久彌新的優雅質感。',
+    content: '源自韓國樂天的頂級人造石，採一體成型無接縫工藝，表裡一致的實心結構告別傳統板材剝落問題。吸水率僅0.03%，有效抵禦潮濕與細菌，具備耐熱、抗紫外線特性，表面打磨即可恢復如新，是廚房及衛浴空間的理想選擇。',
     images: ['/images/kitchen/countertop.jpg'],
   },
   {
     category: '門板介紹',
-    content: '傳承五十年西班牙工藝精髓，ALVIC以業界頂尖的7.5牛頓高耐刮塗層，重新定義門板品質標準。95度高光澤面呈現超越鋼琴烤漆的純淨鏡面效果，專利工藝確保色彩歷久不褪。100%可回收材質獲綠建材認證，兼具卓越化學抗性與高應用彈性，無論居家或商業空間，都能為設計作品增添恆久亮點與價值。',
+    content: '傳承五十年西班牙工藝，以業界頂尖7.5牛頓高耐刮塗層重新定義門板品質。95度高光澤面呈現超越鋼琴烤漆的鏡面效果，專利工藝確保色彩歷久不褪，100%可回收材質獲綠建材認證，兼具美感與環保價值。',
     images: ['/images/kitchen/door-panel.jpg'],
   },
   {
     category: '烤漆玻璃介紹',
-    content: '將清玻璃背面施以特殊漆料，經強化爐高溫烘烤定色而成，賦予空間無限色彩可能。強化處理後具備耐高溫、耐酸鹼、抗刮耐磨等優異性能，表面平坦光滑且不易掉色。輕量化特性讓施工更靈活便捷，廣泛適用於牆面、檯面及廚房空間，以多元色澤與易清潔特性，為現代居家打造兼具美觀與實用的設計亮點。',
+    content: '採用歐洲進口E1級V313防潮塑合板，甲醛含量低於0.1ppm，外覆白色美耐皿處理。無異味、無毛細孔、質地堅硬不變形，24小時浸泡膨脹率僅6%，完美對應台灣潮濕氣候，是兼顧環保與安全的高科技建材。',
     images: ['/images/kitchen/painted-glass.jpg'],
   },
   {
     category: '桶身介紹',
-    content: '採用歐洲進口E1級V313防潮塑合板，以85%寒帶針葉木屑與15%樹脂經高溫高壓製成，外覆白色美耐皿處理。甲醛含量低於0.1ppm，遠優於國家標準，無辛辣異味、無毛細孔，質地堅硬不變形。24小時浸泡膨脹率僅6%，完美對應台灣海島型潮濕氣候，具備防潮、耐磨、耐燃特性，是兼顧環保與安全的高科技建材首選。',
+    content: '清玻璃背面施以特殊漆料，經強化爐高溫烘烤定色，賦予空間無限色彩可能。具備耐高溫、耐酸鹼、抗刮耐磨等優異性能，表面光滑不易掉色且易清潔，輕量化設計適用於牆面、檯面及廚房空間。',
     images: ['/images/kitchen/cabinet-body.jpg'],
   },
 ];
@@ -58,14 +58,14 @@ const tabs: TabData[] = [
     layout: 'cabinet',
     cabinetItems: cabinetItems,
   },
-  {
-    id: 'equipment',
-    name: '廚具設備',
-    title: '廚具設備',
-    content: '待補充內容',
-    backgroundImage: '/images/kitchen/taya-bg.jpg',
-    layout: 'default',
-  },
+  // {
+  //   id: 'equipment',
+  //   name: '廚具設備',
+  //   title: '廚具設備',
+  //   content: '待補充內容',
+  //   backgroundImage: '/images/kitchen/taya-bg.jpg',
+  //   layout: 'default',
+  // },
 ];
 
 const KitchenBrandPage: React.FC = () => {
@@ -112,7 +112,7 @@ const KitchenBrandPage: React.FC = () => {
             className="text-white"
             style={{
               fontSize: '1rem',
-              lineHeight: '2.4',
+              lineHeight: '2',
               textAlign: 'justify',
             }}
           >
@@ -120,61 +120,70 @@ const KitchenBrandPage: React.FC = () => {
           </p>
         )}
       </div>
+
+      {/* 右下角註解 */}
+      <div className="absolute bottom-4 right-12">
+        <p className="text-gray-100" style={{fontSize: '0.75em'}}>
+          產品情境示意圖僅供參考，以實際施工及合約為準
+        </p>
+      </div>
     </div>
   );
 
   // 渲染櫃體檯面四欄布局
   const renderCabinetLayout = () => (
-    <div className="flex-1 flex flex-col relative">
+    <div className="flex-1 flex flex-col relative ps-20">
       {/* 主要內容區 */}
-      <div className="flex-1 flex px-12 py-8 gap-6">
+      <div className="flex-1 flex px-12 py-16 gap-4">
         {currentTab.cabinetItems?.map((item, index) => (
-          <div
-            key={index}
-            className="flex-1 flex flex-col"
-          >
-            {/* 圖片區 - 垂直堆疊 */}
-            <div className="flex flex-col gap-2 mb-6">
-              {item.images.map((img, imgIndex) => (
-                <img
-                  key={imgIndex}
-                  src={img}
-                  alt={`${item.category} ${imgIndex + 1}`}
-                  className="w-full h-auto object-contain"
-                />
-              ))}
+          <>
+            <div className="h-full w-px bg-gray-300 mx-1"></div>
+            <div
+              key={index}
+              className="flex-1 flex flex-col"
+            >
+              {/* 圖片區 - 垂直堆疊 */}
+              <div className="flex flex-col gap-2 mb-6">
+                {item.images.map((img, imgIndex) => (
+                  <img
+                    key={imgIndex}
+                    src={img}
+                    alt={`${item.category} ${imgIndex + 1}`}
+                    className="w-full h-auto object-contain"
+                  />
+                ))}
+              </div>
+
+              {/* 類別標題 */}
+              <h3
+                className="text-black mb-4"
+                style={{
+                  fontSize: '1.25rem',
+                  letterSpacing: '0.1em',
+                }}
+              >
+                {item.category}
+              </h3>
+
+              {/* 內文 */}
+              <p
+                className="text-gray-800	 text-justify"
+                style={{
+                  fontSize: '1rem',
+                  lineHeight: '2',
+                }}
+              >
+                {item.content}
+              </p>
             </div>
-
-            {/* 類別標題 */}
-            <h3
-              className="text-[#1a1a1a] mb-4"
-              style={{
-                fontSize: '1.1rem',
-                fontWeight: 600,
-                letterSpacing: '0.05em',
-              }}
-            >
-              {item.category}
-            </h3>
-
-            {/* 內文 */}
-            <p
-              className="text-gray-600"
-              style={{
-                fontSize: '0.85rem',
-                lineHeight: '1.9',
-                textAlign: 'justify',
-              }}
-            >
-              {item.content}
-            </p>
-          </div>
+            {index === currentTab.cabinetItems!.length - 1 ? <div className="h-full w-px bg-gray-300 mx-1"></div> : null}
+          </>
         ))}
       </div>
 
       {/* 右下角註解 */}
       <div className="absolute bottom-4 right-12">
-        <p className="text-gray-400 text-xs">
+        <p className="text-gray-500" style={{fontSize: '0.75em'}}>
           產品情境示意圖僅供參考，以實際施工及合約為準
         </p>
       </div>

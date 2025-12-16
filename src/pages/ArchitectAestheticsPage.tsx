@@ -184,7 +184,7 @@ const ArchitectAestheticsPage: React.FC = () => {
             className="text-white/85 text-justify"
             style={{
               fontSize: '1rem',
-              lineHeight: '2.4',
+              lineHeight: '2',
               maxWidth: '28rem',
             }}
           >
