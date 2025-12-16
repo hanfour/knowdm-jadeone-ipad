@@ -156,11 +156,11 @@ const FloorPlanPage: React.FC = () => {
       <SubpageMenuBar sectionIndex={3} />
 
       {/* 左上角旗幟 */}
-      <div className="absolute z-20 bg-[#d4a853]/50 text-black" style={{ top: '80px', left: 0, padding: '1.5rem 2rem', minWidth: '120px' }}>
+      <div className="absolute z-20 bg-[#d4a853]/50 text-black px-6 py-4" style={{ top: '80px', left: 0 }}>
         <p className="font-bold text-center" style={{ fontSize: '2.5rem', lineHeight: 1 }}>
           {selectedFloor.id === 'RF' ? 'RF' : selectedFloor.label}
         </p>
-        <p className="mt-1" style={{ fontSize: '0.85rem' }}>
+        <p className="mt-1 text-center" style={{ fontSize: '0.85rem' }}>
           {selectedSubFloor ? `${selectedSubFloor.label}平面圖` : '平面配置參考圖'}
         </p>
       </div>
@@ -240,8 +240,8 @@ const FloorPlanPage: React.FC = () => {
 
       <Compass style={{ right: '8%', bottom: '5%', transform: 'translate(-50%, -50%)' }} className="z-20" />
 
-      <div className="absolute z-10 text-xs text-gray-400" style={{ right: '100px', bottom: '1.5rem' }}>
-        本圖面僅供參考，實際以合約圖面為準
+      <div className="absolute z-10 text-gray-400" style={{ fontSize: '0.75rem', right: '5rem', bottom: '0.5rem' }}>
+        此為示意圖僅供參考，實際以施工為準
       </div>
 
       {/* 子層切換按鈕 */}
@@ -251,8 +251,8 @@ const FloorPlanPage: React.FC = () => {
             <button
               key={sub.id}
               onClick={() => setSelectedSubFloor(sub)}
-              className={`px-4 py-2 text-sm font-medium transition-all ${selectedSubFloor?.id === sub.id ? 'bg-[#d4a853] text-white' : 'bg-white/90 text-gray-700 hover:bg-gray-100'}`}
-              style={{ minWidth: '80px' }}
+              className={`px-4 py-2 transition-all ${selectedSubFloor?.id === sub.id ? 'bg-[#d4a853] text-white' : 'bg-white/90 text-gray-700 hover:bg-gray-100'}`}
+              style={{ fontSize: '0.85rem' }}
             >
               {sub.label}
             </button>
@@ -267,8 +267,8 @@ const FloorPlanPage: React.FC = () => {
             <button
               key={btn.id}
               onClick={() => openGalleryViewer(btn)}
-              className="px-4 py-2 backdrop-blur-sm border text-sm transition-all shadow-sm bg-white/90 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400"
-              style={{ minWidth: '140px' }}
+              className="px-4 py-2 backdrop-blur-sm border transition-all shadow-sm bg-white/90 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400"
+              style={{ fontSize: '0.85rem' }}
             >
               {btn.label}
             </button>

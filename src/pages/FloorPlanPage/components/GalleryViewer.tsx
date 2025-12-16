@@ -76,11 +76,11 @@ const GalleryViewer: React.FC<GalleryViewerProps> = ({
     >
       {gallery && (
         <>
-          <div className="absolute top-0 left-0 z-10 bg-[#f5e6b8] text-black px-6 py-4">
-            <h3 className="font-bold text-center" style={{ fontSize: '1.75rem' }}>
+          <div className="absolute z-20 bg-[#d4a853]/50 text-black px-6 py-4">
+            <h3 className="font-bold text-center" style={{ fontSize: '2.5rem', lineHeight: 1 }}>
               {floorLabel}
             </h3>
-            <p className="text-sm" style={{ color: '#c41e3a' }}>{gallery.label}</p>
+            <p className="mt-1 text-center" style={{ fontSize: '0.85rem' }}>{gallery.label}</p>
           </div>
 
           <button
@@ -186,12 +186,15 @@ const GalleryViewer: React.FC<GalleryViewerProps> = ({
 
           <Compass style={{ right: '8%', bottom: '5%', transform: 'translate(-50%, -50%)' }} />
 
-          <div
-            className="absolute z-10 text-xs text-gray-400 text-right"
-            style={{ right: '5rem', bottom: '1.5rem', maxWidth: '400px' }}
-          >
-            本圖面僅供參考，實際以合約圖面為準
-          </div>
+          {/* 景觀空拍不顯示警語 */}
+          {!gallery.label.includes('景觀空拍') && (
+            <div
+              className="absolute z-10 text-gray-400"
+              style={{ fontSize: '0.75rem', right: '5rem', bottom: '0.5rem' }}
+            >
+              此為示意圖僅供參考，實際以施工為準
+            </div>
+          )}
 
           {gallery.images.length > 1 && (
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-sm">

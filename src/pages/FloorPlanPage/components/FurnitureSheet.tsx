@@ -191,10 +191,10 @@ const FurnitureSheet: React.FC<FurnitureSheetProps> = ({
           />
 
           <div
-            className="absolute z-10 text-xs text-gray-400 text-right"
-            style={{ right: '5rem', bottom: '1.5rem', maxWidth: '400px' }}
+            className="absolute z-10 text-gray-400"
+            style={{ right: '5rem', bottom: '.5rem', fontSize: '0.75rem' }}
           >
-            本圖僅提供傢俱配置參考，實際建築格局仍應依建築主管機關最終核定圖為準 ｜ 本戶傢配置參考圖由室內設計公司提供
+            本圖僅為傢俱配置參考，實際依施工為準<br/>本戶傢配置參考圖由室內設計公司提供
           </div>
 
           <Compass style={{ right: '8%', bottom: '5%', transform: 'translate(-50%, -50%)' }} />
