@@ -4,6 +4,39 @@ import { units } from '../data';
 import Compass from './Compass';
 import UnitIndicator from './UnitIndicator';
 
+// 各戶型面積資料
+const unitAreaData: Record<string, {
+  權狀面積: string;
+  室內面積: string;
+  陽台面積: string;
+  公設面積: string;
+}> = {
+  A: {
+    權狀面積: '24.32坪',
+    室內面積: '14.63坪',
+    陽台面積: '0.98坪',
+    公設面積: '8.71坪',
+  },
+  B: {
+    權狀面積: '24.44坪',
+    室內面積: '14.71坪',
+    陽台面積: '0.98坪',
+    公設面積: '8.75坪',
+  },
+  C: {
+    權狀面積: '24.44坪',
+    室內面積: '14.71坪',
+    陽台面積: '0.98坪',
+    公設面積: '8.75坪',
+  },
+  D: {
+    權狀面積: '24.32坪',
+    室內面積: '14.63坪',
+    陽台面積: '0.98坪',
+    公設面積: '8.71坪',
+  },
+};
+
 interface FurnitureSheetProps {
   isOpen: boolean;
   unit: UnitData | null;
@@ -183,6 +216,22 @@ const FurnitureSheet: React.FC<FurnitureSheetProps> = ({
               }}
             />
           </div>
+
+          {/* 戶型面積資訊 */}
+          {unitAreaData[unit.id] && (
+            <div
+              className="absolute z-10 bg-white/90 px-3 py-2 text-sm"
+              style={{ left: '5%', bottom: '30%' }}
+            >
+              <div className="font-bold text-gray-800 mb-1">{unit.id}戶</div>
+              <div className="text-gray-600 space-y-0.5">
+                <div>權狀面積：{unitAreaData[unit.id].權狀面積}</div>
+                <div>室內面積：{unitAreaData[unit.id].室內面積}</div>
+                <div>陽台面積：{unitAreaData[unit.id].陽台面積}</div>
+                <div>公設面積：{unitAreaData[unit.id].公設面積}</div>
+              </div>
+            </div>
+          )}
 
           <UnitIndicator
             units={units}
