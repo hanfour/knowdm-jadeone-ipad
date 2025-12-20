@@ -4,7 +4,7 @@ import SubpageMenuBar from '../components/SubpageMenuBar';
 const ArchitectLeaderPage: React.FC = () => {
 
   // 人物圖片 URL
-  const personImage = '/images/b1/李碩祺董事長-2.jpg';
+  const personImage = '/images/b1/IMG_8281.webp';
 
   // ===== 飛入動畫設定 =====
   const charDelay = 0.12;  // 每個字的延遲時間（秒）- 較慢以產生交錯重疊效果
@@ -32,14 +32,15 @@ const ArchitectLeaderPage: React.FC = () => {
         <div
           className="absolute inset-0 bg-cover"
           style={{
-            backgroundImage: `url(${personImage})`,
-            filter: 'blur(30px)',
-            transform: 'scale(1.88)',
-            backgroundPosition: '50% -12%'
+            backgroundColor: 'rgba(192, 197, 220, 1)',
+            // backgroundImage: `url(${personImage})`,
+            // filter: 'blur(60px)',
+            // transform: 'scale(1.88)',
+            // backgroundPosition: '50% 30%'
           }}
         />
         {/* 暗色遮罩 */}
-        <div className="absolute inset-0 bg-black/30" />
+        {/* <div className="absolute inset-0 bg-black/40" /> */}
       </div>
 
       {/* 右上角子頁面導航列 + MenuButton */}
