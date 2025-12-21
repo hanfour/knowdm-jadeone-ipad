@@ -180,13 +180,14 @@ export const floors: FloorData[] = [
       },
     ]
   },
+  { id: 'B1F', label: 'B1F', image: '/images/c2/floor-plans/B1.png' },
   {
-    id: 'B1F',
-    label: 'B1F',
-    image: '/images/c2/floor-plans/B1.png',
+    id: 'B2F',
+    label: 'B2F',
+    image: '/images/c2/floor-plans/B2.png',
     galleryButtons: [
       {
-        id: 'B1F-lobby',
+        id: 'B2F-lobby',
         label: 'BF梯廳',
         images: [
           { src: '/images/c2/facilities/04-BF梯廳-01.webp', label: 'BF梯廳 1' },
@@ -200,12 +201,12 @@ export const floors: FloorData[] = [
     ]
   },
   {
-    id: 'B2F',
-    label: 'B2F',
-    image: '/images/c2/floor-plans/B2.png',
+    id: 'B3F',
+    label: 'B3F',
+    image: '/images/c2/floor-plans/B3.png',
     galleryButtons: [
       {
-        id: 'B2F-lobby',
+        id: 'B3F-lobby',
         label: '第二門廳',
         images: [
           { src: '/images/c2/facilities/03-第二門廳-01.webp', label: '第二門廳 1' },
@@ -223,5 +224,4 @@ export const floors: FloorData[] = [
       },
     ]
   },
-  { id: 'B3F', label: 'B3F', image: '/images/c2/floor-plans/B3.png' },
 ];

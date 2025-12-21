@@ -212,9 +212,9 @@ const PublicFacilityPage: React.FC = () => {
         <div
           className="text-white/85"
           style={{
-            fontSize: '0.95rem',
-            lineHeight: '2.2',
-            maxWidth: '26rem',
+            fontSize: '1rem',
+            lineHeight: '2.4',
+            maxWidth: '28rem',
           }}
         >
           <p className="text-justify">

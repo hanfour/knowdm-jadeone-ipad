@@ -3,23 +3,23 @@ import SubpageMenuBar from '../components/SubpageMenuBar';
 
 // 輪播圖片資料
 const carouselImages = [
-  { src: '/images/c1/3D渲染_0000_正面.jpg', label: '立面3D透視圖，實際以建照圖片為準' },
-  { src: '/images/c1/3D渲染_0001_左.jpg', label: '立面3D透視圖，實際以建照圖片為準' },
-  { src: '/images/c1/3D渲染_0002_右.jpg', label: '立面3D透視圖，實際以建照圖片為準' },
-  { src: '/images/c1/3D渲染_0003_仰角.jpg', label: '立面3D透視圖，實際以建照圖片為準' },
-  { src: '/images/c1/3D透視_0000_立面正門.jpg', label: '立面3D透視圖，實際以建照圖片為準' },
-  { src: '/images/c1/3D透視_0001_立面仰角.jpg', label: '立面3D透視圖，實際以建照圖片為準' },
-  { src: '/images/c1/3D透視_0002_立面正面.jpg', label: '立面3D透視圖，實際以建照圖片為準' },
-  { src: '/images/c1/3D透視_0003_立面側面.jpg', label: '立面3D透視圖，實際以建照圖片為準' },
-  { src: '/images/c1/3D透視_0004_立面左.jpg', label: '立面3D透視圖，實際以建照圖片為準' },
-  { src: '/images/c1/3D透視_0005_立面右.jpg', label: '立面3D透視圖，實際以建照圖片為準' },
+  { src: '/images/c1/3D渲染_0000_正面.jpg', label: '立面3D透視圖，實際以施工為準' },
+  { src: '/images/c1/3D渲染_0001_左.jpg', label: '立面3D透視圖，實際以施工為準' },
+  { src: '/images/c1/3D渲染_0002_右.jpg', label: '立面3D透視圖，實際以施工為準' },
+  { src: '/images/c1/3D渲染_0003_仰角.jpg', label: '立面3D透視圖，實際以施工為準' },
+  { src: '/images/c1/3D透視_0000_立面正門.jpg', label: '立面3D透視圖，實際以施工為準' },
+  { src: '/images/c1/3D透視_0001_立面仰角.jpg', label: '立面3D透視圖，實際以施工為準' },
+  { src: '/images/c1/3D透視_0002_立面正面.jpg', label: '立面3D透視圖，實際以施工為準' },
+  { src: '/images/c1/3D透視_0003_立面側面.jpg', label: '立面3D透視圖，實際以施工為準' },
+  { src: '/images/c1/3D透視_0004_立面左.jpg', label: '立面3D透視圖，實際以施工為準' },
+  { src: '/images/c1/3D透視_0005_立面右.jpg', label: '立面3D透視圖，實際以施工為準' },
 ];
 
 const FrenchAestheticsPage: React.FC = () => {
   // ===== 飛入動畫設定 =====
   const charDelay = 0.12;
-  const titleText = '法式品味';
-  const subtitleText = '藝術地標';
+  const titleText = '美學序列';
+  const subtitleText = '黃金剪裁';
   const smallTextDelay = 0;
   const titleStartDelay = 0.6;
   const subtitleStartDelay = titleStartDelay + titleText.length * charDelay + 0.3;
@@ -267,19 +267,6 @@ const FrenchAestheticsPage: React.FC = () => {
         style={{ top: '80px', width: '35%', padding: '4rem', paddingLeft: '2rem', paddingRight: '6%' }}
       >
         <div className="text-white" style={{ maxWidth: '32rem' }}>
-          {/* 標題區 */}
-          <div
-            className="relative"
-            style={{ paddingLeft: '1rem' }}
-          >
-            <h1
-              className="text-[#f5e6b8]"
-              style={{ fontSize: '2rem', letterSpacing: '0.15em' }}
-            >
-              美學序列 黃金剪裁
-            </h1>
-          </div>
-
           {/* 內容文字 */}
           <div
             className="relative mt-6 text-white/85 text-justify"
@@ -295,7 +282,7 @@ const FrenchAestheticsPage: React.FC = () => {
               className=" absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-[#d4a853]/80 via-[#f5e6b8]/60 to-transparent"
             />
             <p>
-              法式建築不只是一種風格，更是對美學的極致追求。從巴黎的奧斯曼建築到凡爾賽宮的對稱之美，每一處比例都經過精心推敲。我們汲取法式建築的精髓，將黃金比例融入立面設計，讓每一道線條都恰如其分，每一處轉折都優雅從容。在這裡，建築不只是居所，更是一件經得起時間淬鍊的藝術品。
+              用建築為美學載體，打開巴黎的世界之窗，建築規格與尺度皆媲美法式都會美學，細緻的長序列，讓冷冽外牆於是有了輕盈唯美的曲線，從法式長型序列語彙著眼，演繹黃金比例，成就如同寶格麗酒店的浪漫氣息的法式風格建築誕生的，標誌恆久美學的點，風格生活在此優雅落籍。
             </p>
           </div>
 
@@ -322,7 +309,50 @@ const FrenchAestheticsPage: React.FC = () => {
               </svg>
             </button>
           </div>
+
+          {/* 獎項照片區域 */}
+          <div className="mt-14 flex gap-2">
+            {[
+              { src: '/images/awards/london-design-awards.png', alt: 'London Design Awards' },
+              { src: '/images/awards/muse.png', alt: 'MUSE Design Awards' },
+              { src: '/images/awards/rda-design-awards.png', alt: 'RDA Design Awards' },
+              { src: '/images/awards/undesign.png', alt: 'UNDESIGN Awards' },
+            ].map((award, index) => (
+              <div
+                key={index}
+                className="relative p-.5 overflow-hidden"
+                // style={{
+                //   background: 'linear-gradient(135deg, rgba(212, 168, 83, 0.6), rgba(245, 230, 184, 0.4), rgba(212, 168, 83, 0.6))',
+                //   boxShadow: '0 0 15px rgba(212, 168, 83, 0.3), inset 0 0 10px rgba(245, 230, 184, 0.2)',
+                // }}
+              >
+                {/* 模糊白色底層 */}
+                <div
+                  className="absolute inset-0"
+                  // style={{
+                  //   background: 'radial-gradient(ellipse at center, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.2) 100%)',
+                  //   filter: 'blur(8px)',
+                  // }}
+                />
+                {/* 圖片容器 */}
+                <div
+                  className="relative overflow-hidden"
+                  style={{ width: '5rem', height: '5rem' }}
+                >
+                  <img
+                    src={award.src}
+                    alt={award.alt}
+                    className="w-full h-full object-contain p-1"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
+      </div>
+
+      <div className="absolute z-10 text-gray-100" style={{ fontSize: '0.75rem', right: '5rem', bottom: '0.5rem' }}>
+        立面3D透視圖，實際以施工為準
       </div>
 
       {/* 燈箱 */}
