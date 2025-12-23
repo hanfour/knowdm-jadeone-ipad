@@ -15,6 +15,7 @@ import FrenchAestheticsPage from './pages/FrenchAestheticsPage';
 import FloorPlanPage from './pages/FloorPlanPage';
 import BoutiqueMansionPage from './pages/BoutiqueMansionPage';
 import KitchenBrandPage from './pages/KitchenBrandPage';
+import BathroomBrandPage from './pages/BathroomBrandPage';
 import PolygonDrawer from './components/dev/PolygonDrawer';
 
 // ⚠️ 開發模式開關 - 正式上線時設為 false
@@ -161,6 +162,9 @@ function App() {
 
           {/* 優雅精琢 - 精品工學 - 廚具品牌 */}
           <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/kitchen" element={<KitchenBrandPage />} />
+
+          {/* 優雅精琢 - 精品工學 - 衛浴品牌 */}
+          <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/bathroom" element={<BathroomBrandPage />} />
 
           {/* 其他頁面待開發，暫時導向首頁 */}
           <Route path="*" element={<HomePage />} />

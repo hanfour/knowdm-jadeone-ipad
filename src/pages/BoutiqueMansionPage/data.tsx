@@ -117,11 +117,11 @@ export const equipmentItems: EquipmentItemData[] = [
     link: '/you-ya-jing-zhuo/jing-pin-gong-xue/bathroom',
   },
   {
-    id: 'flooring',
-    name: '木地板品牌',
-    englishName: 'FLOORING',
+    id: 'tranquility',
+    name: '窗戶木地板',
+    englishName: 'WINDOWS & FLOORING',
     icon: <FlooringIcon />,
-    link: '/you-ya-jing-zhuo/jing-pin-gong-xue/flooring',
+    link: '/you-ya-jing-zhuo/jing-pin-gong-xue/tranquility',
   },
   {
     id: 'water',
