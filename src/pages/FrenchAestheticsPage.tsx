@@ -41,6 +41,9 @@ const FrenchAestheticsPage: React.FC = () => {
     currentIndex: 0,
   });
 
+  // 影片彈窗狀態
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
   // 頁面載入時觸發動畫
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -286,8 +289,9 @@ const FrenchAestheticsPage: React.FC = () => {
             </p>
           </div>
 
-          {/* 外觀透視按鈕 - 點擊開啟燈箱 */}
-          <div className="mt-10" style={{ paddingLeft: '1rem' }}>
+          {/* 按鈕區域 */}
+          <div className="mt-10 flex gap-4" style={{ paddingLeft: '1rem' }}>
+            {/* 外觀透視按鈕 - 點擊開啟燈箱 */}
             <button
               onClick={openLightbox}
               className="inline-flex items-center gap-3 bg-[#d4a853]/50 border border-[#d4a853]/50 px-6 py-3 hover:border-[#d4a853] hover:bg-white/5 transition-all group"
@@ -308,7 +312,29 @@ const FrenchAestheticsPage: React.FC = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
+
+            {/* 觀賞影片按鈕 */}
+            <button
+              onClick={() => setIsVideoOpen(true)}
+              className="inline-flex items-center gap-3 bg-[#d4a853]/50 border border-[#d4a853]/50 px-6 py-3 hover:border-[#d4a853] hover:bg-white/5 transition-all group"
+              style={{ letterSpacing: '0.08em' }}
+            >
+              <span
+                className="text-white"
+                style={{ fontSize: '0.9rem' }}
+              >
+                觀賞影片
+              </span>
+              <svg
+                className="w-4 h-4 text-white group-hover:scale-110 transition-transform"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
           </div>
+          
 
           {/* 獎項照片區域 */}
           <div className="mt-14 flex gap-2">
@@ -478,6 +504,70 @@ const FrenchAestheticsPage: React.FC = () => {
             {lightbox.currentIndex + 1} / {carouselImages.length}
           </div>
         </div>
+      )}
+
+      {/* 影片彈窗 */}
+      {isVideoOpen && (
+        <>
+          <style>{`
+            @keyframes videoSlideDown {
+              0% {
+                transform: translateY(-100%);
+              }
+              100% {
+                transform: translateY(0);
+              }
+            }
+
+            @keyframes backdropFadeIn {
+              0% {
+                opacity: 0;
+              }
+              100% {
+                opacity: 1;
+              }
+            }
+
+            .video-slide-animation {
+              animation: videoSlideDown 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            }
+
+            .backdrop-fade-animation {
+              animation: backdropFadeIn 0.3s ease-out forwards;
+            }
+          `}</style>
+          <div
+            className="fixed inset-0 flex items-center justify-center bg-black/90 backdrop-fade-animation"
+            style={{ zIndex: 9999 }}
+            onClick={() => setIsVideoOpen(false)}
+          >
+            {/* 影片容器 */}
+            <div
+              className="relative w-full h-full video-slide-animation"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <iframe
+                className="w-full h-full border-0"
+                src="https://www.youtube.com/embed/Rdk1lS1z9UE?autoplay=1&rel=0"
+                title="影片播放"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+
+            {/* 關閉按鈕 */}
+            <button
+              onClick={(e) => { e.stopPropagation(); setIsVideoOpen(false); }}
+              className="absolute top-6 right-6 w-12 h-12 rounded-full bg-black/60 backdrop-blur-md text-white flex items-center justify-center hover:rotate-180 transition-all duration-300"
+              style={{ zIndex: 10 }}
+              aria-label="關閉"
+            >
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </>
       )}
     </div>
   );

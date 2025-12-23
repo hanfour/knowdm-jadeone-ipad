@@ -14,11 +14,11 @@ interface LightRaysBackgroundProps {
 }
 
 const LightRaysBackground: React.FC<LightRaysBackgroundProps> = ({
-  rayCount = 12,
-  rayColor = '255, 255, 255', // 白色 RGB
+  rayCount = 8,
+  rayColor = '245, 230, 184', // 白色 RGB
   animationDuration = 5,
-  angle = -35,
-  opacity = 0.2,
+  angle = -65,
+  opacity = 0.75,
 }) => {
   // 使用 useMemo 固定光線配置，避免 re-render 時重新生成隨機值
   const rays = useMemo(() => {

@@ -36,6 +36,9 @@ const FloorPlanPage: React.FC = () => {
     isOpen: false, gallery: null, currentIndex: 0, scale: 1,
   });
 
+  // 影片彈窗狀態
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
   // 縮放控制
   const handleZoomIn = useCallback(() => setScale(prev => Math.min(prev + 0.5, 8)), []);
   const handleZoomOut = useCallback(() => setScale(prev => Math.max(prev - 0.5, 1)), []);
@@ -261,7 +264,7 @@ const FloorPlanPage: React.FC = () => {
       )}
 
       {/* 公設/景觀按鈕 */}
-      {activeGalleryButtons.filter(btn => !btn.region?.length).length > 0 && (
+      {(activeGalleryButtons.filter(btn => !btn.region?.length).length > 0 || selectedFloor.id === '1F') && (
         <div className="absolute z-20 flex flex-col gap-2" style={{ left: '5%', bottom: '10%' }}>
           {activeGalleryButtons.filter(btn => !btn.region?.length).map(btn => (
             <button
@@ -273,6 +276,19 @@ const FloorPlanPage: React.FC = () => {
               {btn.label}
             </button>
           ))}
+          {/* 1F 觀賞影片按鈕 */}
+          {selectedFloor.id === '1F' && (
+            <button
+              onClick={() => setIsVideoOpen(true)}
+              className="px-4 py-2 backdrop-blur-sm border transition-all shadow-sm bg-white/90 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 flex items-center gap-2"
+              style={{ fontSize: '0.85rem' }}
+            >
+              <span>觀賞影片</span>
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+          )}
         </div>
       )}
 
@@ -316,6 +332,70 @@ const FloorPlanPage: React.FC = () => {
         onPrev={prevGalleryImage}
         onNext={nextGalleryImage}
       />
+
+      {/* 影片彈窗 */}
+      {isVideoOpen && (
+        <>
+          <style>{`
+            @keyframes videoSlideDown {
+              0% {
+                transform: translateY(-100%);
+              }
+              100% {
+                transform: translateY(0);
+              }
+            }
+
+            @keyframes backdropFadeIn {
+              0% {
+                opacity: 0;
+              }
+              100% {
+                opacity: 1;
+              }
+            }
+
+            .video-slide-animation {
+              animation: videoSlideDown 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            }
+
+            .backdrop-fade-animation {
+              animation: backdropFadeIn 0.3s ease-out forwards;
+            }
+          `}</style>
+          <div
+            className="fixed inset-0 flex items-center justify-center bg-black/90 backdrop-fade-animation"
+            style={{ zIndex: 9999 }}
+            onClick={() => setIsVideoOpen(false)}
+          >
+            {/* 影片容器 */}
+            <div
+              className="relative w-full h-full video-slide-animation"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <iframe
+                className="w-full h-full border-0"
+                src="https://www.youtube.com/embed/4NrXRu_1e6s?autoplay=1&rel=0"
+                title="影片播放"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+
+            {/* 關閉按鈕 */}
+            <button
+              onClick={(e) => { e.stopPropagation(); setIsVideoOpen(false); }}
+              className="absolute top-6 right-6 w-12 h-12 rounded-full bg-black/60 backdrop-blur-md text-white flex items-center justify-center hover:rotate-180 transition-all duration-300"
+              style={{ zIndex: 10 }}
+              aria-label="關閉"
+            >
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };
