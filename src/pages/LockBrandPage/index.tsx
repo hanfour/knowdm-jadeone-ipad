@@ -94,10 +94,7 @@ const LockBrandPage: React.FC = () => {
           style={{ backgroundColor: '#f5f5f5' }}
         >
           {/* 產品標題 */}
-          <h2
-            className="text-gray-900 font-medium mb-8"
-            style={{ fontSize: '1.75rem', letterSpacing: '0.1em' }}
-          >
+          <h2 className="text-h3 tracking-wide-custom text-gray-900 font-medium mb-8">
             <b>Yale 歐規鎖匣型</b>（卡片密碼型電子鎖）
           </h2>
 
@@ -117,25 +114,16 @@ const LockBrandPage: React.FC = () => {
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <h3
-                      className="text-gray-900 font-medium transition-colors duration-300 group-hover:text-[#0b2d2a]"
-                      style={{ fontSize: '1.25rem', letterSpacing: '0.1em' }}
-                    >
+                    <h3 className="text-large tracking-wide-custom text-gray-900 font-medium transition-colors duration-300 group-hover:text-brand-sekisui">
                       {feature.title}
                     </h3>
                     {feature.badge && (
-                      <span
-                        className="px-2 py-0.5 text-xs border border-gray-800 rounded transition-colors duration-300 group-hover:border-amber-700 group-hover:text-amber-700"
-                        style={{ fontSize: '0.75rem' }}
-                      >
+                      <span className="px-2 py-0.5 text-micro border border-gray-800 rounded transition-colors duration-300 group-hover:border-amber-700 group-hover:text-amber-700">
                         {feature.badge}
                       </span>
                     )}
                   </div>
-                  <p
-                    className="text-gray-600 transition-colors duration-300 group-hover:text-gray-800"
-                    style={{ fontSize: '1rem', lineHeight: '1.5' }}
-                  >
+                  <p className="text-body leading-normal-custom text-gray-600 transition-colors duration-300 group-hover:text-gray-800">
                     {feature.description}
                   </p>
                 </div>
@@ -145,7 +133,7 @@ const LockBrandPage: React.FC = () => {
 
           {/* 右下角註解 */}
           <div className="absolute bottom-4 right-8">
-            <p className="text-gray-500" style={{ fontSize: '0.75em' }}>
+            <p className="text-micro text-gray-500">
               產品情境示意圖僅供參考，以實際施工及合約為準
             </p>
           </div>

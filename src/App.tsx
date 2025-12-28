@@ -10,7 +10,8 @@ import ArchitectLeaderPage from './pages/ArchitectLeaderPage';
 import ArchitectAestheticsPage from './pages/ArchitectAestheticsPage';
 import PublicFacilityPage from './pages/PublicFacilityPage';
 import LandscapeTastePage from './pages/LandscapeTastePage';
-import StructuralEngineeringPage from './pages/StructuralEngineeringPage';
+import StructuralMechanicsPage from './pages/StructuralEngineeringPage';
+import StructuralEngineeringPage from './pages/StructuralEngineeringPage/index';
 import FrenchAestheticsPage from './pages/FrenchAestheticsPage';
 import FloorPlanPage from './pages/FloorPlanPage';
 import BoutiqueMansionPage from './pages/BoutiqueMansionPage';
@@ -152,7 +153,10 @@ function App() {
           <Route path="/ju-bo-hui-cui/jing-guan-pin-wei" element={<LandscapeTastePage />} />
 
           {/* 巨擘薈萃 - 結構力學 */}
-          <Route path="/ju-bo-hui-cui/jie-gou-li-xue" element={<StructuralEngineeringPage />} />
+          <Route path="/ju-bo-hui-cui/jie-gou-li-xue" element={<StructuralMechanicsPage />} />
+
+          {/* 優雅精琢 - 結構工學 */}
+          <Route path="/you-ya-jing-zhuo/jie-gou-gong-xue" element={<StructuralEngineeringPage />} />
 
           {/* 法式寓邸 - 法式美學 */}
           <Route path="/fa-shi-yu-di/fa-shi-mei-xue" element={<FrenchAestheticsPage />} />

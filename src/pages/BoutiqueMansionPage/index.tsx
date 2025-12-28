@@ -53,15 +53,12 @@ const BoutiqueMansionPage: React.FC = () => {
         {/* 標題區 */}
         <div className="text-center mb-16">
           <h1
-            className="font-light text-[#f5e6b8]/40 mb-2"
-            style={{ fontSize: '2rem', letterSpacing: '0.15em',fontFamily: '"Apple Chancery", "Lucida Calligraphy", cursive', }}
+            className="text-h2 tracking-wider-custom font-light text-gold/40 mb-2"
+            style={{ fontFamily: '"Apple Chancery", "Lucida Calligraphy", cursive' }}
           >
             BOUTIQUE MANSION
           </h1>
-          <h2
-            className="text-[#f5e6b8] -mt-12"
-            style={{ fontSize: '3.5rem', letterSpacing: '0.2em' }}
-          >
+          <h2 className="text-display tracking-widest-custom text-gold -mt-12">
             精品工學
           </h2>
         </div>

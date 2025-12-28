@@ -280,27 +280,14 @@ const KitchenBrandPage: React.FC = () => {
 
         {/* 標題 */}
         {currentTab.title && (
-          <h1
-            className="text-[#f5e6b8] mb-6"
-            style={{
-              fontSize: '1.25rem',
-              letterSpacing: '0.1em',
-            }}
-          >
+          <h1 className="text-large tracking-wide-custom text-gold mb-6">
             {currentTab.title}
           </h1>
         )}
 
         {/* 內文 */}
         {currentTab.content && (
-          <p
-            className="text-white"
-            style={{
-              fontSize: '1rem',
-              lineHeight: '2',
-              textAlign: 'justify',
-            }}
-          >
+          <p className="text-body leading-loose-custom text-white text-justify">
             {currentTab.content}
           </p>
         )}
@@ -308,7 +295,7 @@ const KitchenBrandPage: React.FC = () => {
 
       {/* 右下角註解 */}
       <div className="absolute bottom-4 right-12">
-        <p className="text-gray-100" style={{fontSize: '0.75em'}}>
+        <p className="text-micro text-gray-100">
           產品情境示意圖僅供參考，以實際施工及合約為準
         </p>
       </div>
@@ -340,24 +327,12 @@ const KitchenBrandPage: React.FC = () => {
               </div>
 
               {/* 類別標題 */}
-              <h3
-                className="text-black mb-4"
-                style={{
-                  fontSize: '1.25rem',
-                  letterSpacing: '0.1em',
-                }}
-              >
+              <h3 className="text-large tracking-wide-custom text-black mb-4">
                 {item.category}
               </h3>
 
               {/* 內文 */}
-              <p
-                className="text-gray-800	 text-justify"
-                style={{
-                  fontSize: '1rem',
-                  lineHeight: '2',
-                }}
-              >
+              <p className="text-body leading-loose-custom text-gray-800 text-justify">
                 {item.content}
               </p>
             </div>
@@ -368,7 +343,7 @@ const KitchenBrandPage: React.FC = () => {
 
       {/* 右下角註解 */}
       <div className="absolute bottom-4 right-12">
-        <p className="text-gray-500" style={{fontSize: '0.75em'}}>
+        <p className="text-micro text-gray-500">
           產品情境示意圖僅供參考，以實際施工及合約為準
         </p>
       </div>
@@ -377,16 +352,10 @@ const KitchenBrandPage: React.FC = () => {
 
   // 渲染廚具設備布局
   const renderEquipmentLayout = () => (
-    <div className="flex-1 flex flex-col relative" style={{ paddingLeft: '60px' }}>
+    <div className="flex-1 flex flex-col relative pl-[60px]">
       {/* 標題 */}
       <div className="text-center pt-8 pb-6">
-        <h1
-          className="text-gray-800"
-          style={{
-            fontSize: '1.75rem',
-            letterSpacing: '0.2em',
-          }}
-        >
+        <h1 className="text-h3 tracking-widest-custom text-gray-800">
           {currentTab.title}
         </h1>
       </div>
@@ -432,13 +401,9 @@ const KitchenBrandPage: React.FC = () => {
               {/* 產品名稱 */}
               <p
                 className={`
-                  text-center mt-3 transition-colors duration-300
+                  text-center mt-3 transition-colors duration-300 text-xsmall tracking-normal-custom
                   ${hoveredEquipment === item.id ? 'text-gray-900 font-medium' : 'text-gray-700'}
                 `}
-                style={{
-                  fontSize: '0.875rem',
-                  letterSpacing: '0.05em',
-                }}
               >
                 {item.name}
               </p>
@@ -449,7 +414,7 @@ const KitchenBrandPage: React.FC = () => {
 
       {/* 右下角註解 */}
       <div className="absolute bottom-4 right-12">
-        <p className="text-gray-500" style={{ fontSize: '0.75em' }}>
+        <p className="text-micro text-gray-500">
           產品情境示意圖僅供參考，以實際施工及合約為準
         </p>
       </div>
@@ -501,12 +466,8 @@ const KitchenBrandPage: React.FC = () => {
               </div>
             ) : (
               <h2
-                className="font-bold mb-6"
-                style={{
-                  color: selectedEquipment.brandColor || '#c41230',
-                  fontSize: '1.75rem',
-                  letterSpacing: '0.05em',
-                }}
+                className="text-h3 tracking-normal-custom font-bold mb-6"
+                style={{ color: selectedEquipment.brandColor || '#c41230' }}
               >
                 {selectedEquipment.brand}
               </h2>
@@ -523,26 +484,17 @@ const KitchenBrandPage: React.FC = () => {
           </div>
 
           {/* 右側：產品資訊 */}
-          <div className="w-3/5 p-16 flex flex-col justify-center overflow-y-auto" style={{ maxHeight: '80vh' }}>
+          <div className="w-3/5 p-16 flex flex-col justify-center overflow-y-auto max-h-[80vh]">
             {/* 產品名稱（多品牌時不顯示） */}
             {!selectedEquipment.subBrands?.length && (
-              <h3
-                className="text-gray-900 font-medium mb-4"
-                style={{
-                  fontSize: '1.35rem',
-                  letterSpacing: '0.1em',
-                }}
-              >
+              <h3 className="text-large tracking-wide-custom text-gray-900 font-medium mb-4">
                 {selectedEquipment.name}
               </h3>
             )}
 
             {/* 產品說明（如有） */}
             {selectedEquipment.description && (
-              <p
-                className="text-gray-600 mb-4"
-                style={{ fontSize: '0.85rem', lineHeight: '1.8' }}
-              >
+              <p className="text-xsmall leading-relaxed-custom text-gray-600 mb-4">
                 {selectedEquipment.description}
               </p>
             )}
@@ -560,7 +512,7 @@ const KitchenBrandPage: React.FC = () => {
                       }`}
                     >
                       {/* 子品牌產品名稱 */}
-                      <h4 className="font-medium text-gray-900 mb-3" style={{ fontSize: '1.1rem', letterSpacing: '0.05em' }}>
+                      <h4 className="text-large tracking-normal-custom font-medium text-gray-900 mb-3">
                         {subBrand.brand}
                       </h4>
                       {/* 子品牌特色列表 */}
@@ -568,8 +520,7 @@ const KitchenBrandPage: React.FC = () => {
                         {subBrand.features.map((feature, fIdx) => (
                           <li
                             key={fIdx}
-                            className="flex items-start text-gray-700"
-                            style={{ fontSize: '0.85rem', lineHeight: '1.5' }}
+                            className="flex items-start text-xsmall leading-normal-custom text-gray-700"
                           >
                             <span className="mr-2 mt-1.5 w-1.5 h-1.5 bg-gray-500 rounded-full flex-shrink-0" />
                             {feature}
@@ -626,8 +577,7 @@ const KitchenBrandPage: React.FC = () => {
                 {selectedEquipment.features.map((feature, index) => (
                   <li
                     key={index}
-                    className={`flex items-start text-gray-700 ${feature.startsWith('【') ? 'font-medium mt-3' : ''}`}
-                    style={{ fontSize: '0.9rem', lineHeight: '1.5' }}
+                    className={`flex items-start text-small leading-normal-custom text-gray-700 ${feature.startsWith('【') ? 'font-medium mt-3' : ''}`}
                   >
                     {!feature.startsWith('【') && (
                       <span className="mr-3 mt-1.5 w-1.5 h-1.5 bg-gray-500 rounded-full flex-shrink-0" />
@@ -676,22 +626,17 @@ const KitchenBrandPage: React.FC = () => {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`
-                  px-3 py-6 border-2 transition-all duration-300
+                  px-3 py-6 border-2 transition-all duration-300 text-body tracking-wider-custom
+                  [writing-mode:vertical-rl] [text-orientation:mixed]
                   ${activeTab === tab.id
                     ? (currentTab.layout === 'cabinet' || currentTab.layout === 'equipment')
-                      ? 'border-[#1a1a1a] bg-[#1a1a1a]/10 text-[#1a1a1a]'
-                      : 'border-[#f5e6b8] bg-[#f5e6b8]/10 text-[#f5e6b8]'
+                      ? 'border-text-primary bg-text-primary/10 text-text-primary'
+                      : 'border-gold bg-gold/10 text-gold'
                     : (currentTab.layout === 'cabinet' || currentTab.layout === 'equipment')
                       ? 'border-gray-400 bg-white/50 text-gray-600 hover:border-gray-600 hover:text-gray-800'
                       : 'border-white/30 bg-black/30 text-white/70 hover:border-white/50 hover:text-white'
                   }
                 `}
-                style={{
-                  writingMode: 'vertical-rl',
-                  textOrientation: 'mixed',
-                  letterSpacing: '0.15em',
-                  fontSize: '1rem',
-                }}
               >
                 {tab.name}
               </button>

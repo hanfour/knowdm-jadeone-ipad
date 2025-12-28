@@ -38,14 +38,14 @@ export const menuSections: MenuSection[] = [
     category: '優雅精琢',
     title: ['時間淬鍊', '永續信任'],
     items: [
-      { id: '01', name: '究極工藝', link: '/you-ya-jing-zhuo/jiu-ji-gong-yi' },
-      { id: '02', name: '結構工學', link: '/you-ya-jing-zhuo/jie-gou-gong-xue' },
-      { id: '03', name: '防水工學', link: '/you-ya-jing-zhuo/fang-shui-gong-xue' },
-      { id: '04', name: '靜音工學', link: '/you-ya-jing-zhuo/jing-yin-gong-xue' },
-      { id: '05', name: '活氧工學', link: '/you-ya-jing-zhuo/huo-yang-gong-xue' },
-      { id: '06', name: '安全工學', link: '/you-ya-jing-zhuo/an-quan-gong-xue' },
-      { id: '07', name: '數位工學', link: '/you-ya-jing-zhuo/shu-wei-gong-xue' },
-      { id: '08', name: '精品工學', link: '/you-ya-jing-zhuo/jing-pin-gong-xue' },
+      // { id: '01', name: '究極工藝', link: '/you-ya-jing-zhuo/jiu-ji-gong-yi' },
+      { id: '01', name: '結構工學', link: '/you-ya-jing-zhuo/jie-gou-gong-xue' },
+      { id: '02', name: '防水工學', link: '/you-ya-jing-zhuo/fang-shui-gong-xue' },
+      { id: '03', name: '靜音工學', link: '/you-ya-jing-zhuo/jing-yin-gong-xue' },
+      { id: '04', name: '活氧工學', link: '/you-ya-jing-zhuo/huo-yang-gong-xue' },
+      { id: '05', name: '安全工學', link: '/you-ya-jing-zhuo/an-quan-gong-xue' },
+      { id: '06', name: '數位工學', link: '/you-ya-jing-zhuo/shu-wei-gong-xue' },
+      { id: '07', name: '精品工學', link: '/you-ya-jing-zhuo/jing-pin-gong-xue' },
     ]
   },
   {

@@ -26,24 +26,18 @@ const WaterBrandPage: React.FC = () => {
                 alt="永賀能源科技"
                 className="h-12 object-contain"
               />
-              <h1 style={{ fontSize: '2rem', letterSpacing: '0.15em' }}>永賀能源科技</h1>
+              <h1 className="text-h2 tracking-wider-custom">永賀能源科技</h1>
             </div>
 
             {/* 標題 */}
-            <h2
-              className="text-gray-900 font-bold mb-6"
-              style={{ fontSize: '1.75rem', letterSpacing: '0.1em' }}
-            >
+            <h2 className="text-h3 tracking-wide-custom text-gray-900 font-bold mb-6">
               全方位水處理專家
               <br />
               用水點滴純淨
             </h2>
 
             {/* 內文 */}
-            <p
-              className="text-gray-700 leading-relaxed text-justify"
-              style={{ fontSize: '1rem', lineHeight: '2' }}
-            >
+            <p className="text-body leading-loose-custom text-gray-700 text-justify">
               提供水處理過濾系統與全方位的熱水節能服務，涵蓋：電能熱水器、水塔、泵浦、家用型熱泵與太陽能熱水器等居家設備，並提供從前期評估、系統設計、整體規劃、專業施工到後續服務的一條龍作業，全面提升用水品質，確保長期穩定與安心使用。
             </p>
           </div>
@@ -60,7 +54,7 @@ const WaterBrandPage: React.FC = () => {
 
         {/* 右下角註解 */}
         <div className="absolute bottom-4 right-8">
-          <p className="text-gray-500" style={{ fontSize: '0.75em' }}>
+          <p className="text-micro text-gray-500">
             情境示意圖僅供參考，以實際施工及合約為準
           </p>
         </div>

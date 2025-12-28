@@ -63,7 +63,7 @@ const WindowFlooringPage: React.FC = () => {
                 </div>
                 {/* 左下角警示文字 */}
                 <div className="absolute bottom-4 left-4">
-                  <p className="text-gray-600" style={{ fontSize: '0.75rem' }}>
+                  <p className="text-micro text-gray-600">
                     產品情境示意圖僅供參考，以實際施工及合約為準
                   </p>
                 </div>
@@ -75,26 +75,20 @@ const WindowFlooringPage: React.FC = () => {
                 style={{ backgroundColor: '#f8f8f8' }}
               >
                 {/* 產品標題 */}
-                <h2
-                  className="text-gray-900 font-bold mb-4"
-                  style={{ fontSize: '1.5rem', letterSpacing: '0.1em' }}
-                >
+                <h2 className="text-h4 tracking-wide-custom text-gray-900 font-bold mb-4">
                   YRB-A 氣密窗
                 </h2>
 
                 {/* 產品介紹 */}
-                <p
-                  className="text-gray-700 mb-6 text-justify"
-                  style={{ fontSize: '1rem', lineHeight: '2' }}
-                >
+                <p className="text-body leading-loose-custom text-gray-700 mb-6 text-justify">
                   YKK AP為日本第一大廠，除一般氣密門窗、帷幕牆居於領導地位外，並有光觸媒防污鋁板、綠色建築之建材，及其它玄關門、室內用之各式建材供選用。目前日本、台灣之國家標準最高水密為500Pa，YKK AP推出水密1500Pa之高性能鋁門窗(YRB-A系列)，杜絕颱風來襲經常造成之漏水。
                 </p>
 
                 {/* 基本性能圖 */}
                 <div className="mb-8">
                   <div className="w-full flex justify-between items-center">
-                    <p className="text-gray-900 font-medium" style={{ fontSize: '1rem', lineHeight: '2' }}>基本性能</p>
-                    <p style={{ fontSize: '0.75rem' }}>＊通風門的水密性能為750Pa、耐風壓性能為2800Pa、隔音性能為25dB</p>
+                    <p className="text-body leading-loose-custom text-gray-900 font-medium">基本性能</p>
+                    <p className="text-micro">＊通風門的水密性能為750Pa、耐風壓性能為2800Pa、隔音性能為25dB</p>
                   </div>
                   <img
                     src="/images/window-flooring/ykk/performance.jpg"
@@ -104,10 +98,7 @@ const WindowFlooringPage: React.FC = () => {
                 </div>
 
                 {/* 實績照片標題 */}
-                <p
-                  className="text-gray-900 font-medium mb-4"
-                  style={{ fontSize: '1rem', lineHeight: '2' }}
-                >
+                <p className="text-body leading-loose-custom text-gray-900 font-medium mb-4">
                   實績照片
                 </p>
 
@@ -122,10 +113,7 @@ const WindowFlooringPage: React.FC = () => {
                           className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
                         />
                       </div>
-                      <p
-                        className="text-gray-800 text-center truncate"
-                        style={{ fontSize: '0.75rem' }}
-                      >
+                      <p className="text-micro text-gray-800 text-center truncate">
                         {project.name}
                       </p>
                     </div>
@@ -162,25 +150,16 @@ const WindowFlooringPage: React.FC = () => {
 
                     {/* 標題 */}
                     <p
-                      className="text-[#0b2d2a] mb-6 animate-fade-in-left"
-                      style={{
-                        fontSize: '1.5rem',
-                        letterSpacing: '0.1em',
-                        animationDelay: '0.3s',
-                      }}
+                      className="text-h4 tracking-wide-custom text-brand-sekisui mb-6 animate-fade-in-left"
+                      style={{ animationDelay: '0.3s' }}
                     >
                       超耐潮木地板｜專為台灣氣候而生
                     </p>
 
                     {/* 介紹 */}
                     <p
-                      className="text-gray-800 animate-fade-in-left"
-                      style={{
-                        fontSize: '1rem',
-                        lineHeight: '2',
-                        textAlign: 'justify',
-                        animationDelay: '0.4s',
-                      }}
+                      className="text-body leading-loose-custom text-gray-800 text-justify animate-fade-in-left"
+                      style={{ animationDelay: '0.4s' }}
                     >
                       羅賓集團以生產優質的中密度纖板(MDF)和高密度纖維板(HDF)聞名，結合德國技術與馬來西亞優質原料，生產最高品質產品，使Robina成為地板領域值得信賴的品牌。
                     </p>
@@ -189,7 +168,7 @@ const WindowFlooringPage: React.FC = () => {
 
                 {/* 左下角警示文字 */}
                 <div className="absolute bottom-4 left-8">
-                  <p className="text-gray-500" style={{ fontSize: '0.75rem' }}>
+                  <p className="text-micro text-gray-500">
                     產品情境示意圖僅供參考，以實際施工及合約為準
                   </p>
                 </div>
@@ -235,13 +214,8 @@ const WindowFlooringPage: React.FC = () => {
 
                   {/* 介紹 */}
                   <p
-                    className="text-black animate-fade-in-left max-w-[600px] mb-6"
-                    style={{
-                      fontSize: '1rem',
-                      lineHeight: '2',
-                      textAlign: 'justify',
-                      animationDelay: '0.4s',
-                    }}
+                    className="text-body leading-loose-custom text-black text-justify max-w-[600px] mb-6 animate-fade-in-left"
+                    style={{ animationDelay: '0.4s' }}
                   >
                     有效降低地面回響與共振音，降噪表現最高可達 20dB，明顯改善行走噪音與空間安靜度。同時具備優異防潮效果，阻隔地面濕氣，減少潮濕對地板的影響，讓使用環境更安心、更耐久。
                   </p>
@@ -255,8 +229,8 @@ const WindowFlooringPage: React.FC = () => {
                         alt="抗潮效果"
                         className="w-20 h-20 object-contain mb-4"
                       />
-                      <h3 className="text-[#0b2d2a] font-bold mb-2" style={{ fontSize: '1.5rem', letterSpacing: '0.1em' }}>抗潮效果</h3>
-                      <p className="text-gray-800 text-justify max-w-[200px]" style={{ fontSize: '1rem', lineHeight: '2' }}>
+                      <h3 className="text-h4 tracking-wide-custom text-brand-sekisui font-bold mb-2">抗潮效果</h3>
+                      <p className="text-body leading-loose-custom text-gray-800 text-justify max-w-[200px]">
                         對水氣具有極好的抵抗，對台灣潮濕氣候所造成材料腐化具有極好的效果。
                       </p>
                     </div>
@@ -268,8 +242,8 @@ const WindowFlooringPage: React.FC = () => {
                         alt="抗壓強度"
                         className="w-20 h-20 object-contain mb-4"
                       />
-                      <h3 className="text-[#0b2d2a] font-bold mb-2" style={{ fontSize: '1.5rem', letterSpacing: '0.1em' }}>抗壓強度</h3>
-                      <p className="text-gray-800 text-justify max-w-[200px]" style={{ fontSize: '1rem', lineHeight: '2' }}>
+                      <h3 className="text-h4 tracking-wide-custom text-brand-sekisui font-bold mb-2">抗壓強度</h3>
+                      <p className="text-body leading-loose-custom text-gray-800 text-justify max-w-[200px]">
                         低壓縮永久變型率，極高的抗壓程度，具有出色的承重性能。
                       </p>
                     </div>
@@ -281,8 +255,8 @@ const WindowFlooringPage: React.FC = () => {
                         alt="行走聲響"
                         className="w-20 h-20 object-contain mb-4"
                       />
-                      <h3 className="text-[#0b2d2a] font-bold mb-2" style={{ fontSize: '1.5rem', letterSpacing: '0.1em' }}>行走聲響</h3>
-                      <p className="text-gray-800 text-justify max-w-[200px]" style={{ fontSize: '1rem', lineHeight: '2' }}>
+                      <h3 className="text-h4 tracking-wide-custom text-brand-sekisui font-bold mb-2">行走聲響</h3>
+                      <p className="text-body leading-loose-custom text-gray-800 text-justify max-w-[200px]">
                         有效隔絕行走時的響聲，消除各種硬質鞋底發出的共振。
                       </p>
                     </div>
@@ -294,8 +268,8 @@ const WindowFlooringPage: React.FC = () => {
                         alt="極佳彈性"
                         className="w-20 h-20 object-contain mb-4"
                       />
-                      <h3 className="text-[#0b2d2a] font-bold mb-2" style={{ fontSize: '1.5rem', letterSpacing: '0.1em' }}>極佳彈性</h3>
-                      <p className="text-gray-800 text-justify max-w-[200px]" style={{ fontSize: '1rem', lineHeight: '2' }}>
+                      <h3 className="text-h4 tracking-wide-custom text-brand-sekisui font-bold mb-2">極佳彈性</h3>
+                      <p className="text-body leading-loose-custom text-gray-800 text-justify max-w-[200px]">
                         即使在使用數年後，仍具有良好的彈性，也不會降低聲學性能。
                       </p>
                     </div>
@@ -307,8 +281,8 @@ const WindowFlooringPage: React.FC = () => {
                         alt="結構隔音"
                         className="w-20 h-20 object-contain mb-4"
                       />
-                      <h3 className="text-[#0b2d2a] font-bold mb-2" style={{ fontSize: '1.5rem', letterSpacing: '0.1em' }}>結構隔音</h3>
-                      <p className="text-gray-800 text-justify max-w-[200px]" style={{ fontSize: '1rem', lineHeight: '2' }}>
+                      <h3 className="text-h4 tracking-wide-custom text-brand-sekisui font-bold mb-2">結構隔音</h3>
+                      <p className="text-body leading-loose-custom text-gray-800 text-justify max-w-[200px]">
                         出色的結構隔音效果，在低頻範圍內有最佳的性能。
                       </p>
                     </div>
@@ -318,7 +292,7 @@ const WindowFlooringPage: React.FC = () => {
 
               {/* 右下角警示文字 */}
               <div className="absolute bottom-4 right-12">
-                <p className="text-gray-500" style={{ fontSize: '0.75rem' }}>
+                <p className="text-micro text-gray-500">
                   產品情境示意圖僅供參考，以實際施工及合約為準
                 </p>
               </div>
@@ -334,18 +308,13 @@ const WindowFlooringPage: React.FC = () => {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`
-                  px-3 py-6 border-2 transition-all duration-300
+                  px-3 py-6 border-2 transition-all duration-300 text-body tracking-wider-custom
+                  [writing-mode:vertical-rl] [text-orientation:mixed]
                   ${activeTab === tab.id
-                    ? 'border-[#1a1a1a] bg-[#1a1a1a]/10 text-[#1a1a1a]'
+                    ? 'border-text-primary bg-text-primary/10 text-text-primary'
                     : 'border-gray-400 bg-white/50 text-gray-600 hover:border-gray-600 hover:text-gray-800'
                   }
                 `}
-                style={{
-                  writingMode: 'vertical-rl',
-                  textOrientation: 'mixed',
-                  letterSpacing: '0.15em',
-                  fontSize: '1rem',
-                }}
               >
                 {tab.name}
               </button>
