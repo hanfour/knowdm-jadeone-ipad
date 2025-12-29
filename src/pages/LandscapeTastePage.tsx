@@ -271,9 +271,9 @@ const LandscapeTastePage: React.FC = () => {
                 letterSpacing: '0.15em',
               }}
             >
-              <span className="italic" style={{fontSize: '0.9rem'}}>景觀品味 / </span>
+              <span className="italic" style={{fontSize: '0.9rem'}}>上境設計 / </span>
               <br/>
-              上境設計 許富居
+              當建築遇見風景，美感於此延續
             </p>
           </div>
 
@@ -287,7 +287,7 @@ const LandscapeTastePage: React.FC = () => {
             }}
           >
             <p className="text-justify">
-              深耕景觀設計二十餘年，累積超過 1800 件住宅與公共工程景觀規劃經驗。作品多次榮獲義大利 A' Design Award、日本 Good Design、美國 MUSE 等國際獎項，擅長以綠意、美學與生活動線創造具永續概念的居住環境。
+              景觀不僅是綠意裝飾，而是建築生命力的延伸，讓空間有了呼吸、時間有了流動的生命力。從建築脈絡融入自然語彙肌理，使結構與地景共榮呼吸，讓建築在時光與光影的變化中展現生命力。透過對比例、材質與空間流動的掌握，以「以綠入景，由景入心」的理念，將景觀轉化為建築的延續，使每一個作品都同時具備詩意的表情與理性的結構。
             </p>
           </div>
 

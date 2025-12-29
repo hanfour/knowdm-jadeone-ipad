@@ -174,8 +174,8 @@ const ArchitectAestheticsPage: React.FC = () => {
                 letterSpacing: '0.1em',
               }}
             >
-              <span className='italic' style={{fontSize: '0.9rem'}}>建築美學 / </span><br/>
-              艸引子聯合建築師事務所 蔡長恩
+              <span className='italic' style={{fontSize: '0.9rem'}}>艸引子事務所 / </span><br/>
+              細梳環境紋理，建築以優雅之姿生長
             </p>
           </div>
 
@@ -188,7 +188,7 @@ const ArchitectAestheticsPage: React.FC = () => {
               maxWidth: '28rem',
             }}
           >
-            <p>擅長運用 BIM 與參數化技術提升建築設計精準度，作品橫跨集合住宅、公共建築與私人住宅，具有豐富中大型建案與地區性公共工程實務經驗。</p>
+            <p>擅長運用 BIM 聚碩建設聯合單元二國際豪墅-餘白建築師_蔡長恩建築師，再創水湳經貿無可取代的經典鉅作。凝練法式優雅美學外觀與工藝理念，同時引入 BIM 建築管理系統，以數位化精準掌握施工的每一個細節，打造國際級美學居所，獻給追求極致生活的少數人。</p>
           </div>
 
           {/* 底部按鈕 - 循環漸變文字，點擊開啟燈箱 */}

@@ -201,9 +201,9 @@ const StructuralEngineeringPage: React.FC = () => {
               letterSpacing: '0.15em',
             }}
           >
-            <span className="italic" style={{fontSize: '0.9rem'}}>結構力學 / </span>
+            <span className="italic" style={{fontSize: '0.9rem'}}>大匠工程團隊 / </span>
             <br/>
-            大匠工程 許庭偉
+            世界級頂尖結構標準，同步台北101
           </p>
         </div>
 
@@ -217,7 +217,7 @@ const StructuralEngineeringPage: React.FC = () => {
           }}
         >
           <p className="text-justify">
-            具備深厚土木與結構工程背景，長期參與中部地區集合住宅、公共工程與企業建築的結構設計、耐震評估與技術審查。以紮實的工程技術與嚴謹的安全標準聞名，是許多建案結構品質的重要把關者。
+            建築結構安全為建築百年大計，面對地震與氣候變遷的挑戰，鼎匠-大匠工程顧問以世界級地標台北101結構安全顧問團隊經驗，將國際級安全標準帶入個案中，頂尖結構設計與嚴謹品管，以超越業界的標準，全程導入精準數據與嚴格審查流程，致力於打守護城市、資產與家人的安全顧問與結構守護者。
           </p>
         </div>
 

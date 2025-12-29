@@ -102,9 +102,9 @@ const tabs: TabData[] = [
     title: '鋼筋綁紮',
     subtitle: 'Rebar Tying',
     features: [
-      { title: '抗震核心，緊密圍束', desc: '柱體採用符合最高耐震規定的緊密箍筋與繫筋，形成強大的鋼筋籠。' },
-      { title: '135° 耐震彎鉤', desc: '箍筋與繫筋均採 135 度耐震彎鉤工法，有效圍束核心混凝土，在地震劇烈搖晃時防止柱體爆裂，大幅提升生命安全。針對高軸力柱，額外增加繫筋加強圍束，穩固性無庸置疑。' },
-      { title: '高拉力耐震鋼筋', desc: '箍筋採用韌性極佳的SD420高拉力鋼筋，具備優異的延展性與強度，符合最新耐震鋼筋標準。' },
+      { title: '柱箍筋', desc: '柱箍筋以135°彎鉤配置，箍筋間距依建築技術規範，嚴格執行，充分發揮樑柱體抵抗剪力、扭力之強度，符合耐震要求。' },
+      { title: '柱輔筋繫筋', desc: '柱輔筋繫筋依規定確實施工，一端90°，一端135°交錯配置橫樑主鋼筋與縱樑主鋼筋交叉穿過。橫樑腹筋採用U型，端部以180°彎鉤繞縱向主鋼筋，確實錨定U型開口，另以單支各彎135°及90°彎鉤之鋼筋，交錯配置成一完整圍束箍筋。' },
+      { title: '箍筋間距', desc: '箍筋間距依據建築技術規定，嚴格執行，充分發揮樑抵抗剪力、扭力之強度，符合耐震要求。' },
     ],
     video: '/images/structural/rebar-tying.mov',
     videoSegments: [
@@ -425,7 +425,7 @@ const StructuralEngineeringPage: React.FC = () => {
                 <video
                   ref={videoRef}
                   src={currentTab.video}
-                  className={`object-contain border-0 outline-none scale-[1.02] mix-blend-darken ${currentTab.videoFullHeight ? 'h-full' : 'max-w-full max-h-[70vh]'}`}
+                  className={`object-contain border-0 outline-none scale-[1.02] mix-blend-darken ${currentTab.videoFullHeight ? 'h-full' : 'max-w-full max-h-[80vh]'}`}
                   style={{ border: 'none', outline: 'none' }}
                   playsInline
                   muted
