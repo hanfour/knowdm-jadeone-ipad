@@ -163,8 +163,8 @@ function App() {
           {/* 優雅精琢 - 管線工學 */}
           <Route path="/you-ya-jing-zhuo/guan-xian-gong-xue" element={<PipingEngineeringPage />} />
 
-          {/* 優雅精琢 - 防水工程 */}
-          <Route path="/you-ya-jing-zhuo/fang-shui-gong-cheng" element={<WaterproofEngineeringPage />} />
+          {/* 優雅精琢 - 防水工學 */}
+          <Route path="/you-ya-jing-zhuo/fang-shui-gong-xue" element={<WaterproofEngineeringPage />} />
 
           {/* 法式寓邸 - 法式美學 */}
           <Route path="/fa-shi-yu-di/fa-shi-mei-xue" element={<FrenchAestheticsPage />} />
