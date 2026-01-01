@@ -18,6 +18,7 @@ interface EquipmentItem {
   image: string;
   description?: string;
   features: string[];
+  featureImage?: string; // SVG 功能圖片
   subBrands?: SubBrand[];
   clickable?: boolean; // 預設為 true，設為 false 時不可點擊
 }
@@ -39,10 +40,11 @@ const masterBathroomItems: EquipmentItem[] = [
   {
     id: 'master-toilet',
     name: 'TOTO 全自動馬桶',
-    brand: '',
+    brand: 'TOTO 全自動馬桶',
+    brandColor: '#1a5276',
     image: '/images/bathroom/master/toiletG5.png',
+    featureImage: '/images/bathroom/master/toilet-g5-features.svg',
     features: [],
-    clickable: false,
   },
   {
     id: 'master-mirror-cabinet',
@@ -125,10 +127,11 @@ const guestBathroomItems: EquipmentItem[] = [
   {
     id: 'guest-toilet',
     name: 'TOTO 單體馬桶',
-    brand: '',
+    brand: 'TOTO 單體馬桶',
+    brandColor: '#1a5276',
     image: '/images/bathroom/guest/toilet.png',
+    featureImage: '/images/bathroom/guest/toilet-c2-features.svg',
     features: [],
-    clickable: false,
   },
   {
     id: 'guest-mirror-cabinet',
@@ -218,7 +221,7 @@ const tabs: TabData[] = [
   },
   {
     id: 'master',
-    name: '主浴',
+    name: '主浴設備',
     title: '主浴',
     backgroundImage: '/images/kitchen/cabinet-bg.jpg',
     layout: 'equipment',
@@ -226,7 +229,7 @@ const tabs: TabData[] = [
   },
   {
     id: 'guest',
-    name: '客浴',
+    name: '客浴設備',
     title: '客浴',
     backgroundImage: '/images/kitchen/cabinet-bg.jpg',
     layout: 'equipment',
@@ -432,59 +435,72 @@ const BathroomBrandPage: React.FC = () => {
 
             {/* 右側：產品資訊 */}
             <div className="w-3/5 p-8 pl-0 flex flex-col justify-center overflow-y-auto">
-              {/* 產品名稱（多品牌時不顯示） */}
-              {!selectedEquipment.subBrands?.length && (
-                <h3 className="text-large tracking-wide-custom text-gray-900 font-medium mb-4">
-                  {selectedEquipment.name}
-                </h3>
-              )}
-
-              {/* 產品說明（如有） */}
-              {selectedEquipment.description && (
-                <p className="text-xsmall leading-relaxed-custom text-gray-600 mb-4">
-                  {selectedEquipment.description}
-                </p>
-              )}
-
-              {/* 多品牌區塊 */}
-              {selectedEquipment.subBrands && selectedEquipment.subBrands.length > 0 ? (
-                <div className="space-y-5">
-                  {selectedEquipment.subBrands.map((subBrand, idx) => (
-                    <div key={idx}>
-                      {/* 子品牌產品名稱 */}
-                      <h4 className="text-large tracking-normal-custom font-medium text-gray-900 mb-2">
-                        {subBrand.brand}
-                      </h4>
-                      {/* 子品牌特色列表 */}
-                      <ul className="space-y-1">
-                        {subBrand.features.map((feature, fIdx) => (
-                          <li
-                            key={fIdx}
-                            className="flex items-start text-xsmall leading-normal-custom text-gray-700"
-                          >
-                            <span className="mr-2 mt-1.5 w-1.5 h-1.5 bg-gray-500 rounded-full flex-shrink-0" />
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+              {/* 如果有 featureImage，顯示 SVG 功能圖 */}
+              {selectedEquipment.featureImage ? (
+                <div className="flex items-center justify-center h-full">
+                  <img
+                    src={selectedEquipment.featureImage}
+                    alt={`${selectedEquipment.name} 功能說明`}
+                    className="max-w-full max-h-[60vh] object-contain"
+                  />
                 </div>
               ) : (
-                /* 一般產品特色列表 */
-                <ul className="space-y-1">
-                  {selectedEquipment.features.map((feature, index) => (
-                    <li
-                      key={index}
-                      className={`flex items-start text-small leading-normal-custom text-gray-700 ${feature.startsWith('【') ? 'font-medium mt-3' : ''}`}
-                    >
-                      {!feature.startsWith('【') && (
-                        <span className="mr-3 mt-1.5 w-1.5 h-1.5 bg-gray-500 rounded-full flex-shrink-0" />
-                      )}
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+                <>
+                  {/* 產品名稱（多品牌時不顯示） */}
+                  {!selectedEquipment.subBrands?.length && (
+                    <h3 className="text-large tracking-wide-custom text-gray-900 font-medium mb-4">
+                      {selectedEquipment.name}
+                    </h3>
+                  )}
+
+                  {/* 產品說明（如有） */}
+                  {selectedEquipment.description && (
+                    <p className="text-xsmall leading-relaxed-custom text-gray-600 mb-4">
+                      {selectedEquipment.description}
+                    </p>
+                  )}
+
+                  {/* 多品牌區塊 */}
+                  {selectedEquipment.subBrands && selectedEquipment.subBrands.length > 0 ? (
+                    <div className="space-y-5">
+                      {selectedEquipment.subBrands.map((subBrand, idx) => (
+                        <div key={idx}>
+                          {/* 子品牌產品名稱 */}
+                          <h4 className="text-large tracking-normal-custom font-medium text-gray-900 mb-2">
+                            {subBrand.brand}
+                          </h4>
+                          {/* 子品牌特色列表 */}
+                          <ul className="space-y-1">
+                            {subBrand.features.map((feature, fIdx) => (
+                              <li
+                                key={fIdx}
+                                className="flex items-start text-xsmall leading-normal-custom text-gray-700"
+                              >
+                                <span className="mr-2 mt-1.5 w-1.5 h-1.5 bg-gray-500 rounded-full flex-shrink-0" />
+                                {feature}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    /* 一般產品特色列表 */
+                    <ul className="space-y-1">
+                      {selectedEquipment.features.map((feature, index) => (
+                        <li
+                          key={index}
+                          className={`flex items-start text-small leading-normal-custom text-gray-700 ${feature.startsWith('【') ? 'font-medium mt-3' : ''}`}
+                        >
+                          {!feature.startsWith('【') && (
+                            <span className="mr-3 mt-1.5 w-1.5 h-1.5 bg-gray-500 rounded-full flex-shrink-0" />
+                          )}
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </>
               )}
             </div>
           </div>
