@@ -52,8 +52,9 @@ const masterBathroomItems: EquipmentItem[] = [
     brand: '發泡鏡櫃(W60xH80)CM',
     brandColor: '#000',
     image: '/images/bathroom/master/mirror-cabinet.png',
-    description: '發泡材質,防潮防水性優異。',
+    description: '',
     features: [
+      '發泡材質,防潮防水性優異',
       '鏡+收納二合一,完美整合功能與美觀',
       '隱藏式設計,收納不外露,視覺更俐落',
       '下層開放設計,常用物品觸手可及',
@@ -62,8 +63,8 @@ const masterBathroomItems: EquipmentItem[] = [
   },
   {
     id: 'master-vanity',
-    name: '浴櫃',
-    brand: 'TOTO臉盆+雙門發泡浴櫃60CM',
+    name: 'TOTO面盆+浴櫃',
+    brand: 'TOTO面盆+雙門發泡浴櫃60CM',
     brandColor: '#000',
     image: '/images/bathroom/master/vanity.png',
     features: [
@@ -139,8 +140,9 @@ const guestBathroomItems: EquipmentItem[] = [
     brand: '發泡鏡櫃(W50xH80)CM',
     brandColor: '#000',
     image: '/images/bathroom/guest/mirror-cabinet.png',
-    description: '發泡材質,防潮防水性優異。',
+    description: '',
     features: [
+      '發泡材質,防潮防水性優異',
       '鏡+收納二合一,完美整合功能與美觀',
       '隱藏式設計,收納不外露,視覺更俐落',
       '下層開放設計,常用物品觸手可及',
@@ -149,8 +151,8 @@ const guestBathroomItems: EquipmentItem[] = [
   },
   {
     id: 'guest-vanity',
-    name: '浴櫃',
-    brand: 'TOTO臉盆+單門發泡浴櫃50CM',
+    name: 'TOTO面盆+浴櫃',
+    brand: 'TOTO面盆+單門發泡浴櫃50CM',
     brandColor: '#000',
     image: '/images/bathroom/guest/vanity.png',
     features: [
@@ -214,8 +216,8 @@ const tabs: TabData[] = [
     name: 'TOTO',
     logo: '/images/bathroom/toto-logo.png',
     title: 'TOTO',
-    subtitle: '',
-    content: '台灣TOTO(台灣東陶股份有限公司)於1987年在台成立，是TOTO株式會社在日本以外最早的海外據點之一，並在台設有工廠生產衛浴設備。其歷史可追溯至日本TOTO株式會社創立於1917年的東洋陶器株式會社(後改名TOTO)。在正式進入台灣市場之前，TOTO的產品早已在台銷售長達35年以上。',
+    subtitle: '日本第一衛浴品牌，TOTO衛浴',
+    content: '同步飯店等級TOTO衛浴，打造極致舒適的沐浴體驗，智慧沖洗、抗菌材質與節能系統，展現日本對日常細節的極致講究，讓每一次沐浴，都是生活的儀式。',
     backgroundImage: '/images/bathroom/toto情境示意圖.jpg',
     layout: 'default',
   },
@@ -447,15 +449,15 @@ const BathroomBrandPage: React.FC = () => {
               ) : (
                 <>
                   {/* 產品名稱（多品牌時不顯示） */}
-                  {!selectedEquipment.subBrands?.length && (
+                  {/* {!selectedEquipment.subBrands?.length && (
                     <h3 className="text-large tracking-wide-custom text-gray-900 font-medium mb-4">
                       {selectedEquipment.name}
                     </h3>
-                  )}
+                  )} */}
 
                   {/* 產品說明（如有） */}
                   {selectedEquipment.description && (
-                    <p className="text-xsmall leading-relaxed-custom text-gray-600 mb-4">
+                    <p className="text-small leading-normal-custom text-gray-700 mb-4">
                       {selectedEquipment.description}
                     </p>
                   )}
@@ -531,7 +533,7 @@ const BathroomBrandPage: React.FC = () => {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`
-                  px-3 py-6 border-2 transition-all duration-300 text-body tracking-wider-custom
+                  px-2 py-4 border-2 transition-all duration-300 text-body tracking-wider-custom
                   [writing-mode:vertical-rl] [text-orientation:mixed]
                   ${activeTab === tab.id
                     ? 'border-text-primary bg-text-primary/10 text-text-primary'

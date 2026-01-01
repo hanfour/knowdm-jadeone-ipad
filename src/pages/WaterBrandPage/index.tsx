@@ -53,7 +53,7 @@ const tabs: TabData[] = [
     name: '永賀能源科技',
     logo: '/images/water/yungho-logo.png',
     logoAlt: '永賀能源科技',
-    title: '永賀能源科技',
+    title: '',
     subtitle: '全方位水處理專家\n用水點滴純淨',
     content: '提供水處理過濾系統與全方位的熱水節能服務，涵蓋：電能熱水器、水塔、泵浦、家用型熱泵與太陽能熱水器等居家設備，並提供從前期評估、系統設計、整體規劃、專業施工到後續服務的一條龍作業，全面提升用水品質，確保長期穩定與安心使用。',
     contentType: 'paragraph',
@@ -262,7 +262,7 @@ const WaterBrandPage: React.FC = () => {
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={`
-                px-3 py-6 border-2 transition-all duration-300 text-body tracking-wider-custom
+                px-2 py-4 border-2 transition-all duration-300 text-body tracking-wider-custom
                 [writing-mode:vertical-rl] [text-orientation:mixed]
                 ${activeTab === tab.id
                   ? 'border-text-primary bg-text-primary/10 text-text-primary'

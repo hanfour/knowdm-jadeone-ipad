@@ -201,7 +201,7 @@ const WindowFlooringPage: React.FC = () => {
               {/* <div className="absolute inset-0 bg-white/40" /> */}
 
               {/* 內容區 */}
-              <div className="relative h-full flex flex-col justify-center items-center pr-32">
+              <div className="relative h-full flex flex-col justify-center items-center">
                 <div className="flex flex-col justify-center items-center px-20 py-12 bg-white/75">
                   {/* 品牌 Logo */}
                   <div className="mb-8 animate-fade-in-left" style={{ animationDelay: '0.2s' }}>
@@ -308,7 +308,7 @@ const WindowFlooringPage: React.FC = () => {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`
-                  px-3 py-6 border-2 transition-all duration-300 text-body tracking-wider-custom
+                  px-2 py-4 border-2 transition-all duration-300 text-body tracking-wider-custom
                   [writing-mode:vertical-rl] [text-orientation:mixed]
                   ${activeTab === tab.id
                     ? 'border-text-primary bg-text-primary/10 text-text-primary'

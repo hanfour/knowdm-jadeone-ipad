@@ -20,6 +20,7 @@ import BathroomBrandPage from './pages/BathroomBrandPage';
 import LockBrandPage from './pages/LockBrandPage';
 import WaterBrandPage from './pages/WaterBrandPage';
 import WindowFlooringPage from './pages/WindowFlooringPage';
+import ElevatorBrandPage from './pages/ElevatorBrandPage';
 import PipingEngineeringPage from './pages/PipingEngineeringPage';
 import WaterproofEngineeringPage from './pages/WaterproofEngineeringPage';
 import PolygonDrawer from './components/dev/PolygonDrawer';
@@ -189,6 +190,9 @@ function App() {
 
           {/* 優雅精琢 - 精品工學 - 窗戶木地板 */}
           <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/tranquility" element={<WindowFlooringPage />} />
+
+          {/* 優雅精琢 - 精品工學 - 電梯 */}
+          <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/elevator" element={<ElevatorBrandPage />} />
 
           {/* 其他頁面待開發，暫時導向首頁 */}
           <Route path="*" element={<HomePage />} />

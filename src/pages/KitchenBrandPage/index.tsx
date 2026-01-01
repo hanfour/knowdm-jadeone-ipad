@@ -869,15 +869,25 @@ const KitchenBrandPage: React.FC = () => {
             {tabs.map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
+                onClick={() => {
+                  if (tab.id === 'spec') {
+                    // 規格尺寸圖：直接打開燈箱
+                    setShowSpecViewer(true);
+                    setSpecViewerScale(1);
+                    setSpecViewerPosition({ x: 0, y: 0 });
+                    setSpecImageIndex(0);
+                  } else {
+                    setActiveTab(tab.id);
+                  }
+                }}
                 className={`
-                  px-3 py-6 border-2 transition-all duration-300 text-body tracking-wider-custom
+                  px-2 py-4 border-2 transition-all duration-300 text-body tracking-wider-custom
                   [writing-mode:vertical-rl] [text-orientation:mixed]
                   ${activeTab === tab.id
-                    ? (currentTab.layout === 'cabinet' || currentTab.layout === 'equipment' || currentTab.layout === 'spec')
+                    ? (currentTab.layout === 'cabinet' || currentTab.layout === 'equipment')
                       ? 'border-text-primary bg-text-primary/10 text-text-primary'
                       : 'border-gold bg-gold/10 text-gold'
-                    : (currentTab.layout === 'cabinet' || currentTab.layout === 'equipment' || currentTab.layout === 'spec')
+                    : (currentTab.layout === 'cabinet' || currentTab.layout === 'equipment')
                       ? 'border-gray-400 bg-white/50 text-gray-600 hover:border-gray-600 hover:text-gray-800'
                       : 'border-white/30 bg-black/30 text-white/70 hover:border-white/50 hover:text-white'
                   }

@@ -343,6 +343,8 @@ const FrenchAestheticsPage: React.FC = () => {
               { src: '/images/awards/muse.png', alt: 'MUSE Design Awards' },
               { src: '/images/awards/rda-design-awards.png', alt: 'RDA Design Awards' },
               { src: '/images/awards/undesign.png', alt: 'UNDESIGN Awards' },
+              { src: '/images/awards/european-design-awards-2025.png', alt: 'European Design Awards 2025' },
+              { src: '/images/awards/ny-architectural-design-awards-2025.png', alt: 'NY Architectural Design Awards 2025' },
             ].map((award, index) => (
               <div
                 key={index}
@@ -363,7 +365,7 @@ const FrenchAestheticsPage: React.FC = () => {
                 {/* 圖片容器 */}
                 <div
                   className="relative overflow-hidden"
-                  style={{ width: '5rem', height: '5rem' }}
+                  style={{ width: '4rem', height: '4rem' }}
                 >
                   <img
                     src={award.src}

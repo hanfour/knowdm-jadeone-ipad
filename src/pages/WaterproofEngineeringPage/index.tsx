@@ -268,7 +268,7 @@ const WaterproofEngineeringPage: React.FC = () => {
 
               {/* 英文副標題 */}
               {currentTab.subtitle && (
-                <p className="text-small tracking-wide-custom text-text-muted mb-8 italic">
+                <p className="!hidden text-small tracking-wide-custom text-text-muted mb-8 italic">
                   {currentTab.subtitle}
                 </p>
               )}
