@@ -34,7 +34,7 @@ interface TabData {
   title?: string;
   content?: string;
   backgroundImage: string;
-  layout: 'default' | 'cabinet' | 'equipment';
+  layout: 'default' | 'cabinet' | 'equipment' | 'spec';
   cabinetItems?: CabinetItem[];
   equipmentItems?: EquipmentItem[];
 }
@@ -248,6 +248,20 @@ const tabs: TabData[] = [
     layout: 'equipment',
     equipmentItems: equipmentItems,
   },
+  {
+    id: 'spec',
+    name: '規格尺寸圖',
+    backgroundImage: '/images/kitchen/cabinet-bg.jpg',
+    layout: 'spec',
+  },
+];
+
+// 規格尺寸圖資料
+const specImages = [
+  { id: 'A', label: 'A戶', image: '/images/kitchen/specs/A.jpg' },
+  { id: 'B', label: 'B戶', image: '/images/kitchen/specs/B.jpg' },
+  { id: 'C', label: 'C戶', image: '/images/kitchen/specs/C.jpg' },
+  { id: 'D', label: 'D戶', image: '/images/kitchen/specs/D.jpg' },
 ];
 
 const KitchenBrandPage: React.FC = () => {
@@ -255,6 +269,12 @@ const KitchenBrandPage: React.FC = () => {
   const [selectedEquipment, setSelectedEquipment] = useState<EquipmentItem | null>(null);
   const [hoveredEquipment, setHoveredEquipment] = useState<string | null>(null);
   const [subBrandIndex, setSubBrandIndex] = useState(0);
+  const [specImageIndex, setSpecImageIndex] = useState(0);
+  const [showSpecViewer, setShowSpecViewer] = useState(false);
+  const [specViewerScale, setSpecViewerScale] = useState(1);
+  const [specViewerPosition, setSpecViewerPosition] = useState({ x: 0, y: 0 });
+  const [isSpecDragging, setIsSpecDragging] = useState(false);
+  const [specDragStart, setSpecDragStart] = useState({ x: 0, y: 0 });
 
   const currentTab = tabs.find((tab) => tab.id === activeTab) || tabs[0];
 
@@ -420,6 +440,230 @@ const KitchenBrandPage: React.FC = () => {
       </div>
     </div>
   );
+
+  // 渲染規格尺寸圖輪播布局
+  const renderSpecLayout = () => (
+    <div className="flex-1 flex flex-col relative pl-[60px]">
+      {/* 滿版圖片輪播 */}
+      <div className="flex-1 flex items-center justify-center relative overflow-hidden">
+        {/* 當前圖片 - 可點擊放大 */}
+        <img
+          src={specImages[specImageIndex].image}
+          alt={specImages[specImageIndex].label}
+          className="max-w-full max-h-full object-contain transition-opacity duration-500 cursor-pointer hover:opacity-90"
+          onClick={() => { setShowSpecViewer(true); setSpecViewerScale(1); }}
+        />
+
+        {/* 左側切換按鈕 */}
+        <button
+          onClick={() => setSpecImageIndex((prev) => (prev - 1 + specImages.length) % specImages.length)}
+          className="absolute left-8 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/80 text-gray-700 hover:bg-white transition-all rounded-full shadow-md"
+          aria-label="上一張"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        {/* 右側切換按鈕 */}
+        <button
+          onClick={() => setSpecImageIndex((prev) => (prev + 1) % specImages.length)}
+          className="absolute right-8 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/80 text-gray-700 hover:bg-white transition-all rounded-full shadow-md"
+          aria-label="下一張"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        {/* 底部指示器和戶別標籤 */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4">
+          {/* 當前戶別標籤 */}
+          <div className="px-6 py-2 bg-black/60 text-white text-large tracking-wide-custom">
+            {specImages[specImageIndex].label}
+          </div>
+
+          {/* 圓點指示器 */}
+          <div className="flex gap-3">
+            {specImages.map((spec, idx) => (
+              <button
+                key={spec.id}
+                onClick={() => setSpecImageIndex(idx)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  idx === specImageIndex ? 'bg-gray-800 scale-125' : 'bg-gray-400 hover:bg-gray-600'
+                }`}
+                aria-label={`切換到 ${spec.label}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* 右下角註解 */}
+      <div className="absolute bottom-4 right-12">
+        <p className="text-micro text-gray-500">
+          產品情境示意圖僅供參考，以實際施工及合約為準
+        </p>
+      </div>
+    </div>
+  );
+
+  // 渲染規格尺寸圖燈箱
+  const renderSpecViewer = () => {
+    if (!showSpecViewer) return null;
+
+    const handleZoomIn = () => setSpecViewerScale(prev => Math.min(prev + 0.5, 8));
+    const handleZoomOut = () => setSpecViewerScale(prev => Math.max(prev - 0.5, 1));
+    const handleReset = () => {
+      setSpecViewerScale(1);
+      setSpecViewerPosition({ x: 0, y: 0 });
+    };
+
+    const handleMouseDown = (e: React.MouseEvent) => {
+      if (specViewerScale > 1) {
+        setIsSpecDragging(true);
+        setSpecDragStart({ x: e.clientX - specViewerPosition.x, y: e.clientY - specViewerPosition.y });
+      }
+    };
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+      if (isSpecDragging && specViewerScale > 1) {
+        setSpecViewerPosition({ x: e.clientX - specDragStart.x, y: e.clientY - specDragStart.y });
+      }
+    };
+
+    const handleMouseUp = () => setIsSpecDragging(false);
+
+    const handleSwitchImage = (direction: 'prev' | 'next') => {
+      if (direction === 'prev') {
+        setSpecImageIndex((prev) => (prev - 1 + specImages.length) % specImages.length);
+      } else {
+        setSpecImageIndex((prev) => (prev + 1) % specImages.length);
+      }
+      setSpecViewerScale(1);
+      setSpecViewerPosition({ x: 0, y: 0 });
+    };
+
+    return (
+      <div
+        className={`fixed inset-x-0 bottom-0 bg-white shadow-2xl z-40 transition-transform duration-500 ease-out ${
+          showSpecViewer ? 'translate-y-0' : 'translate-y-full'
+        }`}
+        style={{ top: '80px' }}
+      >
+        {/* 左上角標籤 */}
+        <div className="absolute z-20 bg-[#d4a853]/50 text-black px-6 py-4">
+          <h3 className="font-bold text-center" style={{ fontSize: '2.5rem', lineHeight: 1 }}>
+            {specImages[specImageIndex].label}
+          </h3>
+          <p className="mt-1 text-center" style={{ fontSize: '0.85rem' }}>規格尺寸圖</p>
+        </div>
+
+        {/* 關閉按鈕 */}
+        <button
+          onClick={() => setShowSpecViewer(false)}
+          className="absolute top-4 right-4 z-10 w-10 h-10 bg-gray-200 hover:bg-gray-300 rounded-full flex items-center justify-center transition-colors"
+          aria-label="關閉"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
+
+        {/* 右側縮放控制 */}
+        <div
+          className="absolute z-10 flex flex-col gap-2"
+          style={{ right: '2rem', top: '50%', transform: 'translateY(-50%)' }}
+        >
+          <button
+            onClick={handleZoomIn}
+            className="w-10 h-10 bg-white shadow-md flex items-center justify-center hover:bg-gray-100 transition-colors"
+            aria-label="放大"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </button>
+          <button
+            onClick={handleZoomOut}
+            disabled={specViewerScale <= 1}
+            className={`w-10 h-10 bg-white shadow-md flex items-center justify-center transition-colors ${
+              specViewerScale <= 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100'
+            }`}
+            aria-label="縮小"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M5 12h14" />
+            </svg>
+          </button>
+          <button
+            onClick={handleReset}
+            className="w-10 h-10 bg-white shadow-md flex items-center justify-center hover:bg-gray-100 transition-colors"
+            aria-label="復原"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+              <path d="M3 3v5h5" />
+            </svg>
+          </button>
+        </div>
+
+        {/* 圖片顯示區 - 支援拖曳 */}
+        <div
+          className="w-full h-full flex items-center justify-center overflow-hidden p-8"
+          style={{ cursor: specViewerScale > 1 ? (isSpecDragging ? 'grabbing' : 'grab') : 'default' }}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+        >
+          <img
+            src={specImages[specImageIndex].image}
+            alt={specImages[specImageIndex].label}
+            className="max-w-full max-h-full object-contain select-none"
+            draggable={false}
+            style={{
+              transform: `translate(${specViewerPosition.x}px, ${specViewerPosition.y}px) scale(${specViewerScale})`,
+              transition: isSpecDragging ? 'none' : 'transform 0.3s ease-out',
+            }}
+          />
+        </div>
+
+        {/* 左右切換按鈕 */}
+        <button
+          onClick={() => handleSwitchImage('prev')}
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/80 rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-md"
+          aria-label="上一張"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+        <button
+          onClick={() => handleSwitchImage('next')}
+          className="absolute right-20 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/80 rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-md"
+          aria-label="下一張"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+
+        {/* 底部頁碼 */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-sm">
+          {specImageIndex + 1} / {specImages.length}
+        </div>
+
+        {/* 右下角註解 */}
+        <div
+          className="absolute z-10 text-gray-400"
+          style={{ fontSize: '0.75rem', right: '5rem', bottom: '0.5rem' }}
+        >
+          此為示意圖僅供參考，實際以施工為準
+        </div>
+      </div>
+    );
+  };
 
   // 渲染燈箱 Modal
   const renderEquipmentModal = () => {
@@ -603,7 +847,7 @@ const KitchenBrandPage: React.FC = () => {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700"
         style={{
           backgroundImage: `url('${currentTab.backgroundImage}')`,
-          backgroundColor: (currentTab.layout === 'cabinet' || currentTab.layout === 'equipment') ? '#e8e4dd' : '#1a1a1a',
+          backgroundColor: (currentTab.layout === 'cabinet' || currentTab.layout === 'equipment' || currentTab.layout === 'spec') ? '#e8e4dd' : '#1a1a1a',
           top: '80px',
         }}
       />
@@ -617,6 +861,7 @@ const KitchenBrandPage: React.FC = () => {
         {currentTab.layout === 'cabinet' && renderCabinetLayout()}
         {currentTab.layout === 'equipment' && renderEquipmentLayout()}
         {currentTab.layout === 'default' && renderDefaultLayout()}
+        {currentTab.layout === 'spec' && renderSpecLayout()}
 
         {/* 右側頁籤區 */}
         <div className="flex items-center pr-8">
@@ -629,10 +874,10 @@ const KitchenBrandPage: React.FC = () => {
                   px-3 py-6 border-2 transition-all duration-300 text-body tracking-wider-custom
                   [writing-mode:vertical-rl] [text-orientation:mixed]
                   ${activeTab === tab.id
-                    ? (currentTab.layout === 'cabinet' || currentTab.layout === 'equipment')
+                    ? (currentTab.layout === 'cabinet' || currentTab.layout === 'equipment' || currentTab.layout === 'spec')
                       ? 'border-text-primary bg-text-primary/10 text-text-primary'
                       : 'border-gold bg-gold/10 text-gold'
-                    : (currentTab.layout === 'cabinet' || currentTab.layout === 'equipment')
+                    : (currentTab.layout === 'cabinet' || currentTab.layout === 'equipment' || currentTab.layout === 'spec')
                       ? 'border-gray-400 bg-white/50 text-gray-600 hover:border-gray-600 hover:text-gray-800'
                       : 'border-white/30 bg-black/30 text-white/70 hover:border-white/50 hover:text-white'
                   }
@@ -647,6 +892,9 @@ const KitchenBrandPage: React.FC = () => {
 
       {/* 廚具設備燈箱 Modal */}
       {renderEquipmentModal()}
+
+      {/* 規格尺寸圖燈箱 */}
+      {renderSpecViewer()}
 
       {/* 動畫樣式 */}
       <style>{`
