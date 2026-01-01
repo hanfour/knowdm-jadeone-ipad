@@ -102,7 +102,7 @@ const WaterBrandPage: React.FC = () => {
             <img
               src={selectedProduct.image}
               alt={selectedProduct.name}
-              className="max-w-full max-h-72 object-contain"
+              className="w-full max-w-full max-h-72 object-contain"
             />
           </div>
 

@@ -431,7 +431,7 @@ const BathroomBrandPage: React.FC = () => {
               <img
                 src={selectedEquipment.image}
                 alt={selectedEquipment.name}
-                className="max-w-full max-h-72 object-contain"
+                className="w-full max-w-full max-h-72 object-contain"
               />
             </div>
 
