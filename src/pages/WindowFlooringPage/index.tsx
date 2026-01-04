@@ -76,12 +76,12 @@ const WindowFlooringPage: React.FC = () => {
               >
                 {/* 產品標題 */}
                 <h2 className="text-h4 tracking-wide-custom text-gray-900 font-bold mb-4">
-                  YRB-A 氣密窗
+                  YRB-A氣密窗 超高水密靜謐恆久
                 </h2>
 
                 {/* 產品介紹 */}
                 <p className="text-body leading-loose-custom text-gray-700 mb-6 text-justify">
-                  YKK AP為日本第一大廠，除一般氣密門窗、帷幕牆居於領導地位外，並有光觸媒防污鋁板、綠色建築之建材，及其它玄關門、室內用之各式建材供選用。目前日本、台灣之國家標準最高水密為500Pa，YKK AP推出水密1500Pa之高性能鋁門窗(YRB-A系列)，杜絕颱風來襲經常造成之漏水。
+                  日本YKK精密工學，以嚴苛的氣密與水密標準，運用新等壓原理開發高水密性能，『高耐風壓』提升內外部隔音效果，節省冷暖氣能源消耗，冷暖氣運轉負擔減輕，提供靜謐安穩的舒適生活。
                 </p>
 
                 {/* 基本性能圖 */}
@@ -153,7 +153,7 @@ const WindowFlooringPage: React.FC = () => {
                       className="text-h4 tracking-wide-custom text-brand-sekisui mb-6 animate-fade-in-left"
                       style={{ animationDelay: '0.3s' }}
                     >
-                      超耐潮木地板｜專為台灣氣候而生
+                      Robina溫潤木質，沉穩格調的起點
                     </p>
 
                     {/* 介紹 */}
@@ -161,7 +161,7 @@ const WindowFlooringPage: React.FC = () => {
                       className="text-body leading-loose-custom text-gray-800 text-justify animate-fade-in-left"
                       style={{ animationDelay: '0.4s' }}
                     >
-                      羅賓集團以生產優質的中密度纖板(MDF)和高密度纖維板(HDF)聞名，結合德國技術與馬來西亞優質原料，生產最高品質產品，使Robina成為地板領域值得信賴的品牌。
+                      美國Robina羅賓木地板，符合歐盟低甲醛、綠建材標章、國家CNS防焰一級保證，使用熱帶快生複合硬木種，最適台灣氣候的超耐潮地板，獨創真空邊緣防護系統「專利雙卡扣設計」有效防滲漏，10年耐白蟻保證。
                     </p>
                   </div>
                 </div>

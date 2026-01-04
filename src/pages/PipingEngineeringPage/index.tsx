@@ -1,5 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
-import SubpageMenuBar from '../../components/SubpageMenuBar';
+import React, { useState } from 'react';
+import {
+  EngineeringPageShell,
+  VerticalTabList,
+  VideoPlayer,
+} from '../../components/EngineeringPage';
+import { useVideoPlayer, VideoLoop } from '../../hooks/useVideoPlayer';
 
 // 特色項目結構
 interface FeatureItem {
@@ -17,8 +22,8 @@ interface TabData {
   features?: FeatureItem[];
   image?: string;
   video?: string;
-  videoLoop?: { start: number; end: number };
-  layout?: 'default' | 'side-by-side'; // 版面配置
+  videoLoop?: VideoLoop;
+  layout?: 'default' | 'side-by-side';
 }
 
 // 三個章節的資料
@@ -63,236 +68,110 @@ const tabs: TabData[] = [
 
 const PipingEngineeringPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('pipe-insulation');
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   const currentTab = tabs.find((tab) => tab.id === activeTab) || tabs[0];
 
-  // 影片 loop 播放
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleTimeUpdate = () => {
-      if (currentTab.videoLoop) {
-        const { start, end } = currentTab.videoLoop;
-        if (video.currentTime >= end) {
-          video.currentTime = start;
-        }
-      }
-    };
-
-    video.addEventListener('timeupdate', handleTimeUpdate);
-    return () => video.removeEventListener('timeupdate', handleTimeUpdate);
-  }, [currentTab]);
-
-  // 切換 tab 時自動播放影片
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const video = videoRef.current;
-      if (!video || !currentTab.video) return;
-
-      video.currentTime = 0;
-      video.play();
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, [activeTab]);
-
-  // 監聽影片結束事件
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleEnded = () => {
-      if (currentTab.videoLoop) {
-        video.currentTime = currentTab.videoLoop.start;
-        video.play();
-      }
-    };
-
-    video.addEventListener('ended', handleEnded);
-    return () => video.removeEventListener('ended', handleEnded);
-  }, [currentTab]);
+  const { videoRef } = useVideoPlayer(activeTab, {
+    video: currentTab.video,
+    videoLoop: currentTab.videoLoop,
+  });
 
   return (
-    <div
-      className="absolute inset-0 overflow-hidden bg-cover bg-center"
-      style={{ backgroundColor: '#e8e4df' }}
-    >
-      {/* 動畫樣式 */}
-      <style>{`
-        @keyframes shine {
-          0% {
-            background-position: 200% 0;
-          }
-          100% {
-            background-position: -200% 0;
-          }
-        }
+    <EngineeringPageShell sectionIndex={2}>
+      {/* 內容區（文字+圖片/影片） */}
+      <div className="flex-1 flex">
+        {/* 左側文字區塊 */}
+        <div className="w-[40%] flex flex-col justify-center ps-24 pe-8">
+          <div className="max-w-lg">
+            {/* 標題 */}
+            <h1 className="text-h2 tracking-widest-custom font-medium text-text-primary mb-2">
+              {currentTab.title}
+            </h1>
 
-        .shine-border {
-          background: linear-gradient(
-            90deg,
-            transparent 0%,
-            transparent 40%,
-            rgba(255, 255, 255, 0.8) 50%,
-            transparent 60%,
-            transparent 100%
-          );
-          background-size: 200% 100%;
-          animation: shine 2s ease-in-out infinite;
-          mask:
-            linear-gradient(#fff 0 0) content-box,
-            linear-gradient(#fff 0 0);
-          mask-composite: xor;
-          mask-composite: exclude;
-          padding: 2px;
-        }
-
-        .tab-item {
-          position: relative;
-          transition: all 0.3s ease;
-        }
-
-        .tab-item:hover:not(.active) {
-          background-color: rgba(75, 85, 99, 0.9);
-        }
-      `}</style>
-
-      {/* 導航列 */}
-      <SubpageMenuBar sectionIndex={2} />
-
-      {/* 主要內容區 */}
-      <div className="absolute inset-0 flex" style={{ top: '80px' }}>
-        {/* 內容區（文字+圖片/影片） */}
-        <div className="flex-1 flex">
-          {/* 左側文字區塊 */}
-          <div className="w-[40%] flex flex-col justify-center ps-24 pe-8">
-            <div className="max-w-lg">
-              {/* 標題 */}
-              <h1 className="text-h2 tracking-widest-custom font-medium text-text-primary mb-2">
-                {currentTab.title}
-              </h1>
-
-              {/* 英文副標題 */}
-              {currentTab.subtitle && (
-                <p className="!hidden text-body tracking-wide-custom text-text-muted mb-8 italic">
-                  {currentTab.subtitle}
-                </p>
-              )}
-
-              {/* 內文（純文字） */}
-              {currentTab.content && (
-                <p className="text-body leading-loose-custom text-text-primary text-justify">
-                  {currentTab.content}
-                </p>
-              )}
-
-              {/* 特色列表 */}
-              {currentTab.features && currentTab.features.length > 0 && (
-                <div className="space-y-6">
-                  {currentTab.features.map((feature, index) => (
-                    <div key={index}>
-                      <h3 className="text-large font-medium text-text-primary mb-2">
-                        {feature.title}
-                      </h3>
-                      {feature.desc && (
-                        <p className="text-body text-text-primary leading-loose-custom text-justify">
-                          {feature.desc}
-                        </p>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* 右側媒體區 */}
-          <div className="flex-1 h-full overflow-hidden flex items-center justify-center p-8">
-            {/* side-by-side 版面：圖片與影片左右排列 */}
-            {currentTab.layout === 'side-by-side' && currentTab.image && currentTab.video && (
-              <div className="flex gap-2 items-center justify-center h-[60vh]">
-                {/* 圖片 */}
-                <img
-                  src={currentTab.image}
-                  alt={currentTab.title}
-                  className="h-full w-auto object-contain mix-blend-darken"
-                />
-                {/* 影片 */}
-                <video
-                  ref={videoRef}
-                  src={currentTab.video}
-                  className="h-full w-auto object-contain border-0 outline-none mix-blend-darken"
-                  style={{ border: 'none', outline: 'none' }}
-                  playsInline
-                  muted
-                  autoPlay
-                />
-              </div>
+            {/* 英文副標題 */}
+            {currentTab.subtitle && (
+              <p className="!hidden text-body tracking-wide-custom text-text-muted mb-8 italic">
+                {currentTab.subtitle}
+              </p>
             )}
 
-            {/* 預設版面：單一影片 */}
-            {currentTab.layout !== 'side-by-side' && currentTab.video && (
+            {/* 內文（純文字） */}
+            {currentTab.content && (
+              <p className="text-body leading-loose-custom text-text-primary text-justify">
+                {currentTab.content}
+              </p>
+            )}
+
+            {/* 特色列表 */}
+            {currentTab.features && currentTab.features.length > 0 && (
+              <div className="space-y-6">
+                {currentTab.features.map((feature, index) => (
+                  <div key={index}>
+                    <h3 className="text-large font-medium text-text-primary mb-2">
+                      {feature.title}
+                    </h3>
+                    {feature.desc && (
+                      <p className="text-body text-text-primary leading-loose-custom text-justify">
+                        {feature.desc}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* 右側媒體區 */}
+        <div className="flex-1 h-full overflow-hidden flex items-center justify-center p-8">
+          {/* side-by-side 版面：圖片與影片左右排列 */}
+          {currentTab.layout === 'side-by-side' && currentTab.image && currentTab.video && (
+            <div className="flex gap-2 items-center justify-center h-[60vh]">
+              {/* 圖片 */}
+              <img
+                src={currentTab.image}
+                alt={currentTab.title}
+                className="h-full w-auto object-contain mix-blend-darken"
+              />
+              {/* 影片 */}
               <video
                 ref={videoRef}
                 src={currentTab.video}
-                className="max-w-full max-h-[80vh] object-contain border-0 outline-none scale-[1.02] mix-blend-darken"
+                className="h-full w-auto object-contain border-0 outline-none mix-blend-darken"
                 style={{ border: 'none', outline: 'none' }}
                 playsInline
                 muted
                 autoPlay
               />
-            )}
+            </div>
+          )}
 
-            {/* 預設版面：單一圖片 */}
-            {currentTab.layout !== 'side-by-side' && currentTab.image && !currentTab.video && (
-              <img
-                src={currentTab.image}
-                alt={currentTab.title}
-                className="max-w-full max-h-full object-contain"
-              />
-            )}
-          </div>
-        </div>
+          {/* 預設版面：單一影片 */}
+          {currentTab.layout !== 'side-by-side' && currentTab.video && (
+            <VideoPlayer
+              src={currentTab.video}
+              videoRef={videoRef}
+            />
+          )}
 
-        {/* 右下角 Tabs 區 + 註解 */}
-        <div className="absolute right-8 bottom-6 flex flex-col items-end gap-4">
-          {/* Tabs 列表 - 橫向排列 */}
-          <div className="flex items-end gap-3">
-            {tabs.map((tab) => (
-              <div key={tab.id} className="relative">
-                {/* Shine 邊框效果 - 僅選中時顯示 */}
-                {activeTab === tab.id && (
-                  <div className="absolute inset-0 z-10 pointer-events-none">
-                    <div className="absolute inset-0 border border-white/40" />
-                    <div className="absolute inset-0 shine-border" />
-                  </div>
-                )}
-                <button
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`
-                    tab-item px-2 py-4 h-28 text-micro tracking-normal-custom
-                    [writing-mode:vertical-rl] [text-orientation:mixed]
-                    ${activeTab === tab.id
-                      ? 'active bg-[#0b2d2a] text-gold'
-                      : 'bg-[#0b2d2a] text-white/80'
-                    }
-                  `}
-                >
-                  {tab.name}
-                </button>
-              </div>
-            ))}
-          </div>
-
-          {/* 右下角註解 */}
-          <p className="text-micro text-text-light">
-            示意圖僅供參考，實際依現場施工為準
-          </p>
+          {/* 預設版面：單一圖片 */}
+          {currentTab.layout !== 'side-by-side' && currentTab.image && !currentTab.video && (
+            <img
+              src={currentTab.image}
+              alt={currentTab.title}
+              className="max-w-full max-h-full object-contain"
+            />
+          )}
         </div>
       </div>
-    </div>
+
+      {/* Tab 導航 */}
+      <VerticalTabList
+        tabs={tabs}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+      />
+    </EngineeringPageShell>
   );
 };
 

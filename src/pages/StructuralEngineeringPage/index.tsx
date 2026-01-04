@@ -1,24 +1,15 @@
-import React, { useState, useRef, useEffect } from 'react';
-import SubpageMenuBar from '../../components/SubpageMenuBar';
+import React, { useState } from 'react';
+import {
+  EngineeringPageShell,
+  VerticalTabList,
+  VideoPlayer,
+} from '../../components/EngineeringPage';
+import { useVideoPlayer, VideoSegment, VideoLoop } from '../../hooks/useVideoPlayer';
 
 // 特色項目結構
 interface FeatureItem {
   title: string;
   desc: string;
-}
-
-// 影片時間段結構
-interface VideoSegment {
-  label: string;
-  start: number;    // 開始時間（秒）
-  end: number;      // 結束時間（秒）
-  loopFrom?: number; // loop 起點（秒），預設為 end - 1
-}
-
-// 影片 loop 設定（無 step 按鈕時使用）
-interface VideoLoop {
-  start: number;  // loop 回跳點（秒）- 當播放到 end 時跳回此處
-  end: number;    // loop 結束點（秒）- 播放到此處時觸發 loop
 }
 
 // Tab 資料結構
@@ -31,13 +22,13 @@ interface TabData {
   features?: FeatureItem[];
   advantages?: string[];
   image?: string;
-  images?: string[]; // 支援多張圖片
-  video?: string;    // 影片路徑
-  videoSegments?: VideoSegment[]; // 影片時間段（有 step 按鈕）
-  videoLoop?: VideoLoop; // 影片 loop 設定（無 step 按鈕，自動 loop）
-  videoFullHeight?: boolean; // 影片是否高度滿版
-  videoShowReplay?: boolean; // 影片播完後顯示重播按鈕
-  contentImage?: string; // 內容區下方的小圖片
+  images?: string[];
+  video?: string;
+  videoSegments?: VideoSegment[];
+  videoLoop?: VideoLoop;
+  videoFullHeight?: boolean;
+  videoShowReplay?: boolean;
+  contentImage?: string;
 }
 
 // 八個章節的資料
@@ -82,7 +73,7 @@ const tabs: TabData[] = [
       { title: '補強鋼筋置於板上層', desc: '' },
     ],
     video: '/images/structural/corner-reinforcement.mov',
-    videoLoop: { start: 0, end: 8 }, // 請調整實際秒數
+    videoLoop: { start: 0, end: 8 },
   },
   {
     id: 'rebar-spacer',
@@ -157,385 +148,174 @@ const tabs: TabData[] = [
 
 const StructuralEngineeringPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('raft-foundation');
-  const [activeSegment, setActiveSegment] = useState<number>(0);
-  const [showReplayButton, setShowReplayButton] = useState<boolean>(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const stopTimeRef = useRef<number | null>(null);
 
   const currentTab = tabs.find((tab) => tab.id === activeTab) || tabs[0];
 
-  // 影片時間更新監聯 - loop 播放
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleTimeUpdate = () => {
-      // videoLoop 模式（無 step 按鈕，指定區間 loop）
-      // 影片從頭播放，當播放到 end 時跳回 start 繼續 loop
-      if (currentTab.videoLoop) {
-        const { start, end } = currentTab.videoLoop;
-        if (video.currentTime >= end) {
-          video.currentTime = start;
-        }
-        return;
-      }
-
-      // videoSegments 模式（有 step 按鈕）
-      const segments = currentTab.videoSegments;
-      if (!segments || activeSegment < 0) return;
-
-      const segment = segments[activeSegment];
-      if (!segment) return;
-
-      // 當播放到結束時間，跳回 loopFrom 位置繼續播放
-      if (video.currentTime >= segment.end) {
-        const loopPoint = segment.loopFrom ?? (segment.end - 1);
-        video.currentTime = Math.max(segment.start, loopPoint);
-      }
-    };
-
-    video.addEventListener('timeupdate', handleTimeUpdate);
-    return () => video.removeEventListener('timeupdate', handleTimeUpdate);
-  }, [currentTab, activeSegment]);
-
-  // 切換 tab 時重置 segment 並自動播放
-  useEffect(() => {
-    setActiveSegment(0);
-    stopTimeRef.current = null;
-    setShowReplayButton(false);
-
-    // 延遲一下確保 video element 已經載入
-    const timer = setTimeout(() => {
-      const video = videoRef.current;
-      if (!video || !currentTab.video) return;
-
-      if (currentTab.videoSegments) {
-        // 有 step 按鈕，播放 Step 1
-        playSegment(0);
-      } else if (currentTab.videoLoop) {
-        // 無 step 按鈕，從頭開始播放（loop 只在指定區間）
-        video.currentTime = 0;
-        video.play();
-      } else if (currentTab.videoShowReplay) {
-        // 播放一次，播完顯示重播按鈕
-        video.currentTime = 0;
-        video.play();
-      }
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, [activeTab]);
-
-  // 監聯影片結束事件
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleEnded = () => {
-      // videoShowReplay 模式：顯示重播按鈕
-      if (currentTab.videoShowReplay) {
-        setShowReplayButton(true);
-        return;
-      }
-      // videoLoop 模式：自動重播
-      if (currentTab.videoLoop) {
-        video.currentTime = currentTab.videoLoop.start;
-        video.play();
-      }
-    };
-
-    video.addEventListener('ended', handleEnded);
-    return () => video.removeEventListener('ended', handleEnded);
-  }, [currentTab]);
-
-  // 重播影片
-  const handleReplay = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    setShowReplayButton(false);
-    video.currentTime = 0;
-    video.play();
-  };
-
-  // 播放指定時間段
-  const playSegment = (index: number) => {
-    const video = videoRef.current;
-    const segments = currentTab.videoSegments;
-    if (!video || !segments || !segments[index]) return;
-
-    const segment = segments[index];
-    setActiveSegment(index);
-    video.currentTime = segment.start;
-    stopTimeRef.current = segment.end;
-    video.play();
-  };
+  const { videoRef, activeSegment, showReplayButton, playSegment, handleReplay } = useVideoPlayer(
+    activeTab,
+    {
+      video: currentTab.video,
+      videoLoop: currentTab.videoLoop,
+      videoSegments: currentTab.videoSegments,
+      videoShowReplay: currentTab.videoShowReplay,
+    }
+  );
 
   return (
-    <div
-      className="absolute inset-0 overflow-hidden bg-cover bg-center"
-      style={{ backgroundColor: '#e8e4df' }}
-    >
-      {/* 動畫樣式 */}
-      <style>{`
-        @keyframes shine {
-          0% {
-            background-position: 200% 0;
-          }
-          100% {
-            background-position: -200% 0;
-          }
-        }
+    <EngineeringPageShell sectionIndex={2}>
+      {/* 內容區（文字+圖片） */}
+      <div className="flex-1 flex">
+        {/* 左側文字區塊 */}
+        <div className="w-[45%] flex flex-col justify-center ps-24 pe-8">
+          <div className="max-w-lg">
+            {/* 標題 */}
+            <h1 className="text-h2 tracking-widest-custom font-medium text-text-primary mb-2">
+              {currentTab.title}
+            </h1>
 
-        .shine-border {
-          background: linear-gradient(
-            90deg,
-            transparent 0%,
-            transparent 40%,
-            rgba(255, 255, 255, 0.8) 50%,
-            transparent 60%,
-            transparent 100%
-          );
-          background-size: 200% 100%;
-          animation: shine 2s ease-in-out infinite;
-          mask:
-            linear-gradient(#fff 0 0) content-box,
-            linear-gradient(#fff 0 0);
-          mask-composite: xor;
-          mask-composite: exclude;
-          padding: 2px;
-        }
+            {/* 英文副標題 */}
+            {currentTab.subtitle && (
+              <p className="!hidden text-body tracking-wide-custom text-text-muted mb-8 italic">
+                {currentTab.subtitle}
+              </p>
+            )}
 
-        .tab-item {
-          position: relative;
-          transition: all 0.3s ease;
-        }
+            {/* 內文（純文字） */}
+            {currentTab.content && (
+              <p className="text-body leading-loose-custom text-text-primary text-justify">
+                {currentTab.content}
+              </p>
+            )}
 
-        .tab-item:hover:not(.active) {
-          background-color: rgba(75, 85, 99, 0.9);
-        }
-      `}</style>
-
-      {/* 導航列 */}
-      <SubpageMenuBar sectionIndex={2} />
-
-      {/* 主要內容區 */}
-      <div className="absolute inset-0 flex" style={{ top: '80px' }}>
-        {/* 內容區（文字+圖片） */}
-        <div className="flex-1 flex">
-          {/* 左側文字區塊 */}
-          <div className="w-[45%] flex flex-col justify-center ps-24 pe-8">
-            <div className="max-w-lg">
-              {/* 標題 */}
-              <h1 className="text-h2 tracking-widest-custom font-medium text-text-primary mb-2">
-                {currentTab.title}
-              </h1>
-
-              {/* 英文副標題 */}
-              {currentTab.subtitle && (
-                <p className="!hidden text-body tracking-wide-custom text-text-muted mb-8 italic">
-                  {currentTab.subtitle}
-                </p>
-              )}
-
-              {/* 內文（純文字） */}
-              {currentTab.content && (
-                <p className="text-body leading-loose-custom text-text-primary text-justify">
-                  {currentTab.content}
-                </p>
-              )}
-
-              {/* 特色列表 */}
-              {currentTab.features && currentTab.features.length > 0 && (
-                <div className="space-y-3 mt-4">
-                  {currentTab.features.map((feature, index) => (
-                    <div key={index}>
-                      <div className="flex items-start">
-                        <span className="text-body text-text-primary mr-1 shrink-0">
-                          {index + 1}.
-                        </span>
-                        <span className="text-body text-text-primary">
-                          {feature.title}
-                        </span>
-                      </div>
-                      {feature.desc && (
-                        <p className="text-body text-text-primary mt-1 ps-4 leading-relaxed-custom">
-                          {feature.desc}
-                        </p>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* 優點列表 */}
-              {currentTab.advantages && currentTab.advantages.length > 0 && (
-                <div className="mt-6 p-4 bg-text-primary/5 border-l-4 border-text-primary/30">
-                  <p className="text-body font-medium text-text-secondary mb-2">
-                    筏式基礎優點
-                  </p>
-                  <div className="flex flex-wrap gap-x-4 gap-y-1">
-                    {currentTab.advantages.map((adv, index) => (
-                      <span key={index} className="text-body text-text-primary">
-                        ({index + 1}) {adv}
+            {/* 特色列表 */}
+            {currentTab.features && currentTab.features.length > 0 && (
+              <div className="space-y-3 mt-4">
+                {currentTab.features.map((feature, index) => (
+                  <div key={index}>
+                    <div className="flex items-start">
+                      <span className="text-body text-text-primary mr-1 shrink-0">
+                        {index + 1}.
                       </span>
-                    ))}
+                      <span className="text-body text-text-primary">
+                        {feature.title}
+                      </span>
+                    </div>
+                    {feature.desc && (
+                      <p className="text-body text-text-primary mt-1 ps-4 leading-relaxed-custom">
+                        {feature.desc}
+                      </p>
+                    )}
                   </div>
-                </div>
-              )}
+                ))}
+              </div>
+            )}
 
-              {/* Step 按鈕列（影片章節用） */}
-              {currentTab.videoSegments && currentTab.videoSegments.length > 0 && (
-                <div className="flex gap-3 mt-8">
-                  {currentTab.videoSegments.map((segment, index) => (
-                    <button
-                      key={index}
-                      onClick={() => playSegment(index)}
-                      className={`
-                        px-5 py-2 text-body font-medium transition-all
-                        ${activeSegment === index
-                          ? 'bg-[#d4a853] text-white'
-                          : 'bg-white/80 text-text-secondary hover:bg-white'
-                        }
-                      `}
-                    >
-                      {segment.label}
-                    </button>
+            {/* 優點列表 */}
+            {currentTab.advantages && currentTab.advantages.length > 0 && (
+              <div className="mt-6 p-4 bg-text-primary/5 border-l-4 border-text-primary/30">
+                <p className="text-body font-medium text-text-secondary mb-2">
+                  筏式基礎優點
+                </p>
+                <div className="flex flex-wrap gap-x-4 gap-y-1">
+                  {currentTab.advantages.map((adv, index) => (
+                    <span key={index} className="text-body text-text-primary">
+                      ({index + 1}) {adv}
+                    </span>
                   ))}
                 </div>
-              )}
+              </div>
+            )}
 
-              {/* 內容區下方小圖片 */}
-              {currentTab.contentImage && (
-                <div className="mt-8">
+            {/* Step 按鈕列（影片章節用） */}
+            {currentTab.videoSegments && currentTab.videoSegments.length > 0 && (
+              <div className="flex gap-3 mt-8">
+                {currentTab.videoSegments.map((segment, index) => (
+                  <button
+                    key={index}
+                    onClick={() => playSegment(index)}
+                    className={`
+                      px-5 py-2 text-body font-medium transition-all
+                      ${activeSegment === index
+                        ? 'bg-[#d4a853] text-white'
+                        : 'bg-white/80 text-text-secondary hover:bg-white'
+                      }
+                    `}
+                  >
+                    {segment.label}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* 內容區下方小圖片 */}
+            {currentTab.contentImage && (
+              <div className="mt-8">
+                <img
+                  src={currentTab.contentImage}
+                  alt={currentTab.title}
+                  className="max-w-full h-auto mix-blend-darken"
+                />
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* 右側示意圖 */}
+        <div className="flex-1 h-full overflow-hidden flex items-center justify-center p-8">
+          {/* 影片播放器 */}
+          {currentTab.video && (
+            <VideoPlayer
+              src={currentTab.video}
+              videoRef={videoRef}
+              fullHeight={currentTab.videoFullHeight}
+              showReplayButton={showReplayButton && currentTab.videoShowReplay}
+              onReplay={handleReplay}
+            />
+          )}
+
+          {/* 單張圖片 */}
+          {currentTab.image && !currentTab.images && !currentTab.video && (
+            <img
+              src={currentTab.image}
+              alt={currentTab.title}
+              className="max-w-full max-h-full object-contain"
+            />
+          )}
+
+          {/* 多張圖片 - 上圖靠右、下圖靠左 */}
+          {currentTab.images && currentTab.images.length > 0 && (
+            <div className="w-full h-full flex flex-col justify-center p-8">
+              {currentTab.images[0] && (
+                <div className="flex justify-end">
                   <img
-                    src={currentTab.contentImage}
-                    alt={currentTab.title}
-                    className="max-w-full h-auto mix-blend-darken"
+                    src={currentTab.images[0]}
+                    alt={`${currentTab.title} 1`}
+                    className="w-[55%] max-w-md h-auto object-contain"
+                  />
+                </div>
+              )}
+              {currentTab.images[1] && (
+                <div className="flex justify-start">
+                  <img
+                    src={currentTab.images[1]}
+                    alt={`${currentTab.title} 2`}
+                    className="w-[60%] max-w-lg h-auto object-contain mix-blend-darken"
                   />
                 </div>
               )}
             </div>
-          </div>
-
-          {/* 右側示意圖 */}
-          <div className="flex-1 h-full overflow-hidden flex items-center justify-center p-8">
-            {/* 影片播放器 */}
-            {currentTab.video && (
-              <div className={`relative overflow-hidden flex items-center justify-center ${currentTab.videoFullHeight ? 'h-full w-full' : ''}`}>
-                <video
-                  ref={videoRef}
-                  src={currentTab.video}
-                  className={`object-contain border-0 outline-none scale-[1.02] mix-blend-darken ${currentTab.videoFullHeight ? 'h-full' : 'max-w-full max-h-[80vh]'}`}
-                  style={{ border: 'none', outline: 'none' }}
-                  playsInline
-                  muted
-                />
-                {/* 重播按鈕 */}
-                {showReplayButton && currentTab.videoShowReplay && (
-                  <button
-                    onClick={handleReplay}
-                    className="absolute inset-0 flex items-center justify-center"
-                  >
-                    <div className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-                      <svg
-                        className="w-10 h-10 text-text-primary"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                        />
-                      </svg>
-                    </div>
-                  </button>
-                )}
-              </div>
-            )}
-
-            {/* 單張圖片 */}
-            {currentTab.image && !currentTab.images && !currentTab.video && (
-              <img
-                src={currentTab.image}
-                alt={currentTab.title}
-                className="max-w-full max-h-full object-contain"
-              />
-            )}
-
-            {/* 多張圖片 - 上圖靠右、下圖靠左 */}
-            {currentTab.images && currentTab.images.length > 0 && (
-              <div className="w-full h-full flex flex-col justify-center p-8">
-                {/* 第一張圖 - 靠右對齊 */}
-                {currentTab.images[0] && (
-                  <div className="flex justify-end">
-                    <img
-                      src={currentTab.images[0]}
-                      alt={`${currentTab.title} 1`}
-                      className="w-[55%] max-w-md h-auto object-contain"
-                    />
-                  </div>
-                )}
-
-                {/* 第二張圖 - 靠左對齊 */}
-                {currentTab.images[1] && (
-                  <div className="flex justify-start">
-                    <img
-                      src={currentTab.images[1]}
-                      alt={`${currentTab.title} 2`}
-                      className="w-[60%] max-w-lg h-auto object-contain mix-blend-darken"
-                    />
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* 右下角 Tabs 區 + 註解 */}
-        <div className="absolute right-8 bottom-6 flex flex-col items-end gap-4">
-          {/* Tabs 列表 - 橫向排列 */}
-          <div className="flex items-end gap-3">
-            {/* 頁面標題 */}
-            <div className="!hidden text-text-secondary text-body tracking-widest-custom mr-4 pb-2">
-              結構工學
-            </div>
-
-            {tabs.map((tab) => (
-              <div key={tab.id} className="relative">
-                {/* Shine 邊框效果 - 僅選中時顯示 */}
-                {activeTab === tab.id && (
-                  <div className="absolute inset-0 z-10 pointer-events-none">
-                    <div className="absolute inset-0 border border-white/40" />
-                    <div className="absolute inset-0 shine-border" />
-                  </div>
-                )}
-                <button
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`
-                    tab-item px-2 py-4 h-28 text-micro tracking-normal-custom
-                    [writing-mode:vertical-rl] [text-orientation:mixed]
-                    ${activeTab === tab.id
-                      ? 'active bg-[#0b2d2a] text-gold'
-                      : 'bg-[#0b2d2a] text-white/80'
-                    }
-                  `}
-                >
-                  {tab.name}
-                </button>
-              </div>
-            ))}
-          </div>
-
-          {/* 右下角註解 */}
-          <p className="text-micro text-text-light">
-            3D示意圖僅供參考，實際依現場施工為準
-          </p>
+          )}
         </div>
       </div>
-    </div>
+
+      {/* Tab 導航 */}
+      <VerticalTabList
+        tabs={tabs}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        footnote="3D示意圖僅供參考，實際依現場施工為準"
+      />
+    </EngineeringPageShell>
   );
 };
 

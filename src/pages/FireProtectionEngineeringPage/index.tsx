@@ -1,17 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
-import SubpageMenuBar from '../../components/SubpageMenuBar';
+import {
+  EngineeringPageShell,
+  VerticalTabList,
+  ComparisonLayout,
+} from '../../components/EngineeringPage';
+import type { ComparisonItem } from '../../components/EngineeringPage';
 
 // 特色項目結構
 interface FeatureItem {
   label: string;
   text: string;
-}
-
-// 比較項目結構
-interface ComparisonItem {
-  image: string;
-  title: string;
-  description: string;
 }
 
 // 表格行結構
@@ -33,17 +31,13 @@ interface TabData {
   subtitle?: string;
   content?: string;
   features?: FeatureItem[];
-  // 比較模式：左右兩張圖各自帶文字
   comparison?: {
     left: ComparisonItem;
     right: ComparisonItem;
   };
-  // 單圖模式
   image?: string;
-  // 影片模式
   video?: string;
   videoShowReplay?: boolean;
-  // 表格資料
   tableData?: TableRow[];
 }
 
@@ -112,14 +106,12 @@ const tabs: TabData[] = [
 
 const FireProtectionEngineeringPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('digital-fire-detection');
-  const [showReplayButton, setShowReplayButton] = useState<boolean>(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const currentTab = tabs.find((tab) => tab.id === activeTab) || tabs[0];
 
-  // 切換 tab 時重置並自動播放影片
+  // 切換 tab 時自動播放影片
   useEffect(() => {
-    setShowReplayButton(false);
     const timer = setTimeout(() => {
       const video = videoRef.current;
       if (!video || !currentTab.video) return;
@@ -128,29 +120,6 @@ const FireProtectionEngineeringPage: React.FC = () => {
     }, 100);
     return () => clearTimeout(timer);
   }, [activeTab, currentTab.video]);
-
-  // 監聽影片結束事件
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleEnded = () => {
-      if (currentTab.videoShowReplay) {
-        setShowReplayButton(true);
-      }
-    };
-
-    video.addEventListener('ended', handleEnded);
-    return () => video.removeEventListener('ended', handleEnded);
-  }, [currentTab]);
-
-  const handleReplay = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    setShowReplayButton(false);
-    video.currentTime = 0;
-    video.play();
-  };
 
   // 渲染表格
   const renderTable = (tableData: TableRow[]) => {
@@ -196,265 +165,141 @@ const FireProtectionEngineeringPage: React.FC = () => {
   };
 
   return (
-    <div
-      className="absolute inset-0 overflow-hidden bg-cover bg-center"
-      style={{ backgroundColor: '#e8e4df' }}
-    >
-      {/* 動畫樣式 */}
-      <style>{`
-        @keyframes shine {
-          0% {
-            background-position: 200% 0;
-          }
-          100% {
-            background-position: -200% 0;
-          }
-        }
+    <EngineeringPageShell sectionIndex={2}>
+      {/* 比較模式內容 */}
+      {currentTab.comparison && (
+        <ComparisonLayout
+          title={currentTab.title}
+          left={currentTab.comparison.left}
+          right={currentTab.comparison.right}
+        />
+      )}
 
-        .shine-border {
-          background: linear-gradient(
-            90deg,
-            transparent 0%,
-            transparent 40%,
-            rgba(255, 255, 255, 0.8) 50%,
-            transparent 60%,
-            transparent 100%
-          );
-          background-size: 200% 100%;
-          animation: shine 2s ease-in-out infinite;
-          mask:
-            linear-gradient(#fff 0 0) content-box,
-            linear-gradient(#fff 0 0);
-          mask-composite: xor;
-          mask-composite: exclude;
-          padding: 2px;
-        }
-
-        .tab-item {
-          position: relative;
-          transition: all 0.3s ease;
-        }
-
-        .tab-item:hover:not(.active) {
-          background-color: rgba(75, 85, 99, 0.9);
-        }
-      `}</style>
-
-      {/* 導航列 */}
-      <SubpageMenuBar sectionIndex={2} />
-
-      {/* 主要內容區 */}
-      <div className="absolute inset-0 flex flex-col" style={{ top: '80px' }}>
-        {/* 比較模式內容 */}
-        {currentTab.comparison && (
-          <div className="flex-1 flex flex-col h-full overflow-hidden">
-            {/* 標題區 */}
-            <div className="text-center pt-12 pb-2 shrink-0">
-              <h1 className="text-h2 tracking-widest-custom font-medium text-[#0b2d2a]">
+      {/* 濕式輕隔間牆 - 特殊佈局：左文字 + 右影片表格 */}
+      {currentTab.id === 'wet-partition' && (
+        <div className="flex-1 flex h-full overflow-hidden">
+          {/* 左側文字區塊 */}
+          <div className="w-[40%] flex flex-col justify-center ps-24 pe-8">
+            <div className="max-w-md">
+              {/* 標題 */}
+              <h1 className="text-h2 tracking-widest-custom font-medium text-text-primary mb-3">
                 {currentTab.title}
               </h1>
-            </div>
 
-            {/* 圖片比較區 */}
-            <div className="flex items-center justify-center px-8 pt-12 pb-20 min-h-0">
-              <div className="flex gap-10 max-w-4xl">
-                {/* 左側 - 傳統工法 */}
-                <div className="w-[375px] flex flex-col shrink-0">
-                  <div className="bg-white/50 rounded-lg overflow-hidden shadow-sm">
-                    <img
-                      src={currentTab.comparison.left.image}
-                      alt={currentTab.comparison.left.title}
-                      className="w-full h-auto object-contain"
-                    />
-                  </div>
-                  <div className="mt-4">
-                    <h3 className="text-large font-medium text-text-primary mb-2">
-                      {currentTab.comparison.left.title}
-                    </h3>
-                    <p className="text-body leading-relaxed-custom text-text-primary text-justify">
-                      {currentTab.comparison.left.description}
-                    </p>
-                  </div>
-                </div>
+              {/* 副標題 */}
+              {currentTab.subtitle && (
+                <p className="text-large font-medium text-text-primary mb-4">
+                  {currentTab.subtitle}
+                </p>
+              )}
 
-                {/* 右側 - 本案工法 */}
-                <div className="w-[375px] flex flex-col shrink-0">
-                  <div className="bg-white/50 rounded-lg overflow-hidden shadow-sm">
-                    <img
-                      src={currentTab.comparison.right.image}
-                      alt={currentTab.comparison.right.title}
-                      className="w-full h-auto object-contain"
-                    />
-                  </div>
-                  <div className="mt-4">
-                    <h3 className="text-large font-medium text-text-primary mb-2">
-                      {currentTab.comparison.right.title}
-                    </h3>
-                    <p className="text-body leading-relaxed-custom text-text-primary text-justify">
-                      {currentTab.comparison.right.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+              {/* 內文 */}
+              {currentTab.content && (
+                <p className="text-body leading-loose-custom text-text-primary text-justify mb-6">
+                  {currentTab.content}
+                </p>
+              )}
 
-        {/* 濕式輕隔間牆 - 特殊佈局：左文字 + 右影片表格 */}
-        {currentTab.id === 'wet-partition' && (
-          <div className="flex-1 flex h-full overflow-hidden">
-            {/* 左側文字區塊 */}
-            <div className="w-[40%] flex flex-col justify-center ps-24 pe-8">
-              <div className="max-w-md">
-                {/* 標題 */}
-                <h1 className="text-h2 tracking-widest-custom font-medium text-text-primary mb-3">
-                  {currentTab.title}
-                </h1>
-
-                {/* 副標題 */}
-                {currentTab.subtitle && (
-                  <p className="text-large font-medium text-text-primary mb-4">
-                    {currentTab.subtitle}
-                  </p>
-                )}
-
-                {/* 內文 */}
-                {currentTab.content && (
-                  <p className="text-body leading-loose-custom text-text-primary text-justify mb-6">
-                    {currentTab.content}
-                  </p>
-                )}
-
-                {/* 特色列表 */}
-                {currentTab.features && currentTab.features.length > 0 && (
-                  <div className="space-y-3">
-                    {currentTab.features.map((feature, index) => (
-                      <div key={index} className="flex items-start">
-                        <span className="w-2 h-2 bg-[#0b2d2a] rounded-full mt-2 mr-3 shrink-0" />
-                        <div>
-                          <span className="text-body font-medium text-text-primary">
-                            {feature.label}：
-                          </span>
-                          <span className="text-body text-text-primary leading-relaxed-custom">
-                            {feature.text}
-                          </span>
-                        </div>
+              {/* 特色列表 */}
+              {currentTab.features && currentTab.features.length > 0 && (
+                <div className="space-y-3">
+                  {currentTab.features.map((feature, index) => (
+                    <div key={index} className="flex items-start">
+                      <span className="w-2 h-2 bg-[#0b2d2a] rounded-full mt-2 mr-3 shrink-0" />
+                      <div>
+                        <span className="text-body font-medium text-text-primary">
+                          {feature.label}：
+                        </span>
+                        <span className="text-body text-text-primary leading-relaxed-custom">
+                          {feature.text}
+                        </span>
                       </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* 右側影片+表格區塊 - 垂直置中 */}
-            <div className="flex-1 flex items-center justify-center pe-8 pb-20">
-              <div className="w-full max-w-2xl">
-                {/* 影片區 */}
-                {currentTab.video && (
-                  <div className="relative mb-4">
-                    <video
-                      ref={videoRef}
-                      src={currentTab.video}
-                      className="w-full h-auto object-contain border-0 outline-none mix-blend-darken"
-                      style={{ border: 'none', outline: 'none' }}
-                      playsInline
-                      muted
-                      loop
-                    />
-                  </div>
-                )}
-
-                {/* 表格區 */}
-                {currentTab.tableData && (
-                  <div>
-                    <h3 className="text-body font-medium text-[#0b2d2a] mb-3">
-                      隔間工法比較表
-                    </h3>
-                    {renderTable(currentTab.tableData)}
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* 一般內容模式（非比較、非濕式輕隔間） */}
-        {!currentTab.comparison && currentTab.id !== 'wet-partition' && (
-          <div className="flex-1 flex">
-            {/* 左側文字區塊 */}
-            <div className="w-[45%] flex flex-col justify-center ps-24 pe-8">
-              <div className="max-w-lg">
-                {/* 標題 */}
-                <h1 className="text-h2 tracking-widest-custom font-medium text-text-primary mb-2">
-                  {currentTab.title}
-                </h1>
-
-                {/* 英文副標題 */}
-                {currentTab.subtitle && (
-                  <p className="!hidden text-body tracking-wide-custom text-text-muted mb-8 italic">
-                    {currentTab.subtitle}
-                  </p>
-                )}
-
-                {/* 內文 */}
-                {currentTab.content && (
-                  <p className="text-body leading-loose-custom text-text-primary text-justify">
-                    {currentTab.content}
-                  </p>
-                )}
-              </div>
-            </div>
-
-            {/* 右側示意圖 */}
-            <div className="flex-1 h-full overflow-hidden flex items-center justify-center p-8">
-              {currentTab.image && (
-                <img
-                  src={currentTab.image}
-                  alt={currentTab.title}
-                  className="max-w-full max-h-full object-contain"
-                />
+                    </div>
+                  ))}
+                </div>
               )}
             </div>
           </div>
-        )}
 
-        {/* 右下角 Tabs 區 + 註解 */}
-        <div className="absolute right-8 bottom-6 flex flex-col items-end gap-4">
-          {/* Tabs 列表 - 橫向排列 */}
-          <div className="flex items-end gap-3">
-            {tabs.map((tab) => (
-              <div key={tab.id} className="relative">
-                {/* Shine 邊框效果 - 僅選中時顯示 */}
-                {activeTab === tab.id && (
-                  <div className="absolute inset-0 z-10 pointer-events-none">
-                    <div className="absolute inset-0 border border-white/40" />
-                    <div className="absolute inset-0 shine-border" />
-                  </div>
-                )}
-                <button
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`
-                    tab-item px-2 py-4 h-28 text-micro tracking-normal-custom
-                    [writing-mode:vertical-rl] [text-orientation:mixed]
-                    ${activeTab === tab.id
-                      ? 'active bg-[#0b2d2a] text-gold'
-                      : 'bg-[#0b2d2a] text-white/80'
-                    }
-                  `}
-                >
-                  {tab.name}
-                </button>
-              </div>
-            ))}
+          {/* 右側影片+表格區塊 - 垂直置中 */}
+          <div className="flex-1 flex items-center justify-center pe-8 pb-20">
+            <div className="w-full max-w-2xl">
+              {/* 影片區 */}
+              {currentTab.video && (
+                <div className="relative mb-4">
+                  <video
+                    ref={videoRef}
+                    src={currentTab.video}
+                    className="w-full h-auto object-contain border-0 outline-none mix-blend-darken"
+                    style={{ border: 'none', outline: 'none' }}
+                    playsInline
+                    muted
+                    loop
+                  />
+                </div>
+              )}
+
+              {/* 表格區 */}
+              {currentTab.tableData && (
+                <div>
+                  <h3 className="text-body font-medium text-[#0b2d2a] mb-3">
+                    隔間工法比較表
+                  </h3>
+                  {renderTable(currentTab.tableData)}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 一般內容模式（非比較、非濕式輕隔間） */}
+      {!currentTab.comparison && currentTab.id !== 'wet-partition' && (
+        <div className="flex-1 flex">
+          {/* 左側文字區塊 */}
+          <div className="w-[45%] flex flex-col justify-center ps-24 pe-8">
+            <div className="max-w-lg">
+              {/* 標題 */}
+              <h1 className="text-h2 tracking-widest-custom font-medium text-text-primary mb-2">
+                {currentTab.title}
+              </h1>
+
+              {/* 英文副標題 */}
+              {currentTab.subtitle && (
+                <p className="!hidden text-body tracking-wide-custom text-text-muted mb-8 italic">
+                  {currentTab.subtitle}
+                </p>
+              )}
+
+              {/* 內文 */}
+              {currentTab.content && (
+                <p className="text-body leading-loose-custom text-text-primary text-justify">
+                  {currentTab.content}
+                </p>
+              )}
+            </div>
           </div>
 
-          {/* 右下角註解 */}
-          <p className="text-micro text-text-light">
-            示意圖僅供參考，實際依現場施工為準
-          </p>
+          {/* 右側示意圖 */}
+          <div className="flex-1 h-full overflow-hidden flex items-center justify-center p-8">
+            {currentTab.image && (
+              <img
+                src={currentTab.image}
+                alt={currentTab.title}
+                className="max-w-full max-h-full object-contain"
+              />
+            )}
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+
+      {/* Tab 導航 */}
+      <VerticalTabList
+        tabs={tabs}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+      />
+    </EngineeringPageShell>
   );
 };
 
