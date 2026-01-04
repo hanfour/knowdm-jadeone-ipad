@@ -213,7 +213,7 @@ const guestBathroomItems: EquipmentItem[] = [
 const tabs: TabData[] = [
   {
     id: 'toto',
-    name: 'TOTO',
+    name: '日系精品',
     logo: '/images/bathroom/toto-logo.png',
     title: 'TOTO',
     subtitle: '日本第一衛浴品牌，TOTO衛浴',
@@ -259,7 +259,7 @@ const BathroomBrandPage: React.FC = () => {
       </div>
 
       {/* 右側：文字區塊 */}
-      <div className="flex-1 flex flex-col justify-center px-16">
+      <div className="flex-1 flex flex-col justify-center ps-24 pe-8">
         <div className="max-w-xl">
           {/* Logo */}
           {currentTab.logo && (
@@ -299,7 +299,7 @@ const BathroomBrandPage: React.FC = () => {
 
   // 渲染設備網格布局（主浴/客浴共用）
   const renderEquipmentLayout = () => (
-    <div className="flex-1 flex flex-col relative pl-[60px]">
+    <div className="flex-1 flex flex-col relative ps-[60px]">
       {/* 標題 */}
       <div className="text-center pt-8 pb-6">
         <h1 className="text-h3 tracking-widest-custom text-gray-800">
@@ -436,7 +436,7 @@ const BathroomBrandPage: React.FC = () => {
             </div>
 
             {/* 右側：產品資訊 */}
-            <div className="w-3/5 p-8 pl-0 flex flex-col justify-center overflow-y-auto">
+            <div className="w-3/5 p-8 ps-0 flex flex-col justify-center overflow-y-auto">
               {/* 如果有 featureImage，顯示 SVG 功能圖 */}
               {selectedEquipment.featureImage ? (
                 <div className="flex items-center justify-center h-full">
@@ -457,7 +457,7 @@ const BathroomBrandPage: React.FC = () => {
 
                   {/* 產品說明（如有） */}
                   {selectedEquipment.description && (
-                    <p className="text-small leading-normal-custom text-gray-700 mb-4">
+                    <p className="text-body leading-normal-custom text-gray-700 mb-4">
                       {selectedEquipment.description}
                     </p>
                   )}
@@ -492,7 +492,7 @@ const BathroomBrandPage: React.FC = () => {
                       {selectedEquipment.features.map((feature, index) => (
                         <li
                           key={index}
-                          className={`flex items-start text-small leading-normal-custom text-gray-700 ${feature.startsWith('【') ? 'font-medium mt-3' : ''}`}
+                          className={`flex items-start text-body leading-normal-custom text-gray-700 ${feature.startsWith('【') ? 'font-medium mt-3' : ''}`}
                         >
                           {!feature.startsWith('【') && (
                             <span className="mr-3 mt-1.5 w-1.5 h-1.5 bg-gray-500 rounded-full flex-shrink-0" />
@@ -526,7 +526,7 @@ const BathroomBrandPage: React.FC = () => {
         {currentTab.layout === 'equipment' && renderEquipmentLayout()}
 
         {/* 右側頁籤區 */}
-        <div className="flex items-center pr-8">
+        <div className="flex items-center pe-8">
           <div className="flex flex-col gap-4">
             {tabs.map((tab) => (
               <button

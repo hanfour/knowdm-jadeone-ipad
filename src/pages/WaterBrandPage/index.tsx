@@ -125,7 +125,7 @@ const WaterBrandPage: React.FC = () => {
               {selectedProduct.features.map((feature, index) => (
                 <li
                   key={index}
-                  className="flex items-start text-small leading-relaxed-custom text-gray-700"
+                  className="flex items-start text-body leading-relaxed-custom text-gray-700"
                 >
                   <span className="mr-3 mt-2 w-1.5 h-1.5 bg-gray-500 rounded-full flex-shrink-0" />
                   {feature}
@@ -152,7 +152,7 @@ const WaterBrandPage: React.FC = () => {
         }}
       >
         {/* 左側內容區塊 - 文字 */}
-        <div className="absolute left-0 top-0 bottom-0 w-[40%] flex items-center px-16">
+        <div className="absolute left-0 top-0 bottom-0 w-[40%] flex items-center ps-24 pe-8">
           <div className="max-w-md">
             {/* 品牌 Logo */}
             <div className="mb-6 flex items-center gap-4">

@@ -23,6 +23,8 @@ import WindowFlooringPage from './pages/WindowFlooringPage';
 import ElevatorBrandPage from './pages/ElevatorBrandPage';
 import PipingEngineeringPage from './pages/PipingEngineeringPage';
 import WaterproofEngineeringPage from './pages/WaterproofEngineeringPage';
+import FireProtectionEngineeringPage from './pages/FireProtectionEngineeringPage';
+import ThoughtfulEngineeringPage from './pages/ThoughtfulEngineeringPage';
 import PolygonDrawer from './components/dev/PolygonDrawer';
 
 // ⚠️ 開發模式開關 - 正式上線時設為 false
@@ -166,6 +168,12 @@ function App() {
 
           {/* 優雅精琢 - 防水工學 */}
           <Route path="/you-ya-jing-zhuo/fang-shui-gong-xue" element={<WaterproofEngineeringPage />} />
+
+          {/* 優雅精琢 - 防火工學 */}
+          <Route path="/you-ya-jing-zhuo/fang-huo-gong-xue" element={<FireProtectionEngineeringPage />} />
+
+          {/* 優雅精琢 - 貼心工學 */}
+          <Route path="/you-ya-jing-zhuo/tie-xin-gong-xue" element={<ThoughtfulEngineeringPage />} />
 
           {/* 法式寓邸 - 法式美學 */}
           <Route path="/fa-shi-yu-di/fa-shi-mei-xue" element={<FrenchAestheticsPage />} />

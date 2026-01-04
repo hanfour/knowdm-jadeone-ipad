@@ -280,7 +280,7 @@ const KitchenBrandPage: React.FC = () => {
 
   // 渲染預設布局（大雅廚具、廚具設備）
   const renderDefaultLayout = () => (
-    <div className="flex-1 flex items-center justify-start pl-16">
+    <div className="flex-1 flex items-center justify-start ps-24">
       <div
         className="max-w-lg p-10"
         style={{
@@ -372,7 +372,7 @@ const KitchenBrandPage: React.FC = () => {
 
   // 渲染廚具設備布局
   const renderEquipmentLayout = () => (
-    <div className="flex-1 flex flex-col relative pl-[60px]">
+    <div className="flex-1 flex flex-col relative ps-[60px]">
       {/* 標題 */}
       <div className="text-center pt-8 pb-6">
         <h1 className="text-h3 tracking-widest-custom text-gray-800">
@@ -443,7 +443,7 @@ const KitchenBrandPage: React.FC = () => {
 
   // 渲染規格尺寸圖輪播布局
   const renderSpecLayout = () => (
-    <div className="flex-1 flex flex-col relative pl-[60px]">
+    <div className="flex-1 flex flex-col relative ps-[60px]">
       {/* 滿版圖片輪播 */}
       <div className="flex-1 flex items-center justify-center relative overflow-hidden">
         {/* 當前圖片 - 可點擊放大 */}
@@ -821,7 +821,7 @@ const KitchenBrandPage: React.FC = () => {
                 {selectedEquipment.features.map((feature, index) => (
                   <li
                     key={index}
-                    className={`flex items-start text-small leading-normal-custom text-gray-700 ${feature.startsWith('【') ? 'font-medium mt-3' : ''}`}
+                    className={`flex items-start text-body leading-normal-custom text-gray-700 ${feature.startsWith('【') ? 'font-medium mt-3' : ''}`}
                   >
                     {!feature.startsWith('【') && (
                       <span className="mr-3 mt-1.5 w-1.5 h-1.5 bg-gray-500 rounded-full flex-shrink-0" />
@@ -864,7 +864,7 @@ const KitchenBrandPage: React.FC = () => {
         {currentTab.layout === 'spec' && renderSpecLayout()}
 
         {/* 右側頁籤區 */}
-        <div className="flex items-center pr-8">
+        <div className="flex items-center pe-8">
           <div className="flex flex-col gap-4">
             {tabs.map((tab) => (
               <button

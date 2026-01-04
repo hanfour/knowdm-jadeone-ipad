@@ -71,7 +71,7 @@ const WindowFlooringPage: React.FC = () => {
 
               {/* 右側：產品資訊 */}
               <div
-                className="w-[50%] h-full overflow-y-auto ps-12 pr-28 py-8 flex flex-col justify-center"
+                className="w-[50%] h-full overflow-y-auto ps-12 pe-28 py-8 flex flex-col justify-center"
                 style={{ backgroundColor: '#f8f8f8' }}
               >
                 {/* 產品標題 */}
@@ -176,7 +176,7 @@ const WindowFlooringPage: React.FC = () => {
 
               {/* 右側：產品結構圖說區 (60%) */}
               <div
-                className="w-[60%] h-full overflow-hidden flex items-center justify-center pr-16"
+                className="w-[60%] h-full overflow-hidden flex items-center justify-center pe-16"
                 style={{ backgroundColor: '#faf8f5' }}
               >
                 <div className="w-full px-20">
@@ -301,7 +301,7 @@ const WindowFlooringPage: React.FC = () => {
         </div>
 
         {/* 右側垂直頁籤區 */}
-        <div className="absolute top-0 bottom-0 right-0 my-auto flex items-center pr-8">
+        <div className="absolute top-0 bottom-0 right-0 my-auto flex items-center pe-8">
           <div className="flex flex-col gap-4">
             {tabs.map((tab) => (
               <button

@@ -323,7 +323,7 @@ const StructuralEngineeringPage: React.FC = () => {
         {/* 內容區（文字+圖片） */}
         <div className="flex-1 flex">
           {/* 左側文字區塊 */}
-          <div className="w-[45%] flex flex-col justify-center px-16">
+          <div className="w-[45%] flex flex-col justify-center ps-24 pe-8">
             <div className="max-w-lg">
               {/* 標題 */}
               <h1 className="text-h2 tracking-widest-custom font-medium text-text-primary mb-2">
@@ -332,7 +332,7 @@ const StructuralEngineeringPage: React.FC = () => {
 
               {/* 英文副標題 */}
               {currentTab.subtitle && (
-                <p className="!hidden text-small tracking-wide-custom text-text-muted mb-8 italic">
+                <p className="!hidden text-body tracking-wide-custom text-text-muted mb-8 italic">
                   {currentTab.subtitle}
                 </p>
               )}
@@ -350,15 +350,15 @@ const StructuralEngineeringPage: React.FC = () => {
                   {currentTab.features.map((feature, index) => (
                     <div key={index}>
                       <div className="flex items-start">
-                        <span className="text-body font-medium text-text-primary mr-1 shrink-0">
+                        <span className="text-body text-text-primary mr-1 shrink-0">
                           {index + 1}.
                         </span>
-                        <span className="text-body font-medium text-text-primary">
+                        <span className="text-body text-text-primary">
                           {feature.title}
                         </span>
                       </div>
                       {feature.desc && (
-                        <p className="text-small text-text-primary mt-1 pl-4 leading-relaxed-custom">
+                        <p className="text-body text-text-primary mt-1 ps-4 leading-relaxed-custom">
                           {feature.desc}
                         </p>
                       )}
@@ -391,7 +391,7 @@ const StructuralEngineeringPage: React.FC = () => {
                       key={index}
                       onClick={() => playSegment(index)}
                       className={`
-                        px-5 py-2 text-small font-medium transition-all
+                        px-5 py-2 text-body font-medium transition-all
                         ${activeSegment === index
                           ? 'bg-[#d4a853] text-white'
                           : 'bg-white/80 text-text-secondary hover:bg-white'
@@ -499,7 +499,7 @@ const StructuralEngineeringPage: React.FC = () => {
           {/* Tabs 列表 - 橫向排列 */}
           <div className="flex items-end gap-3">
             {/* 頁面標題 */}
-            <div className="!hidden text-text-secondary text-small tracking-widest-custom mr-4 pb-2">
+            <div className="!hidden text-text-secondary text-body tracking-widest-custom mr-4 pb-2">
               結構工學
             </div>
 

@@ -41,8 +41,9 @@ export const menuSections: MenuSection[] = [
       { id: '01', name: '結構工學', link: '/you-ya-jing-zhuo/jie-gou-gong-xue' },
       { id: '02', name: '管線工學', link: '/you-ya-jing-zhuo/guan-xian-gong-xue' },
       { id: '03', name: '防水工學', link: '/you-ya-jing-zhuo/fang-shui-gong-xue' },
-      { id: '04', name: '貼心工學', link: '/you-ya-jing-zhuo/tie-xin-gong-xue' },
-      { id: '05', name: '精品工學', link: '/you-ya-jing-zhuo/jing-pin-gong-xue' },
+      { id: '04', name: '防火工學', link: '/you-ya-jing-zhuo/fang-huo-gong-xue' },
+      { id: '05', name: '貼心工學', link: '/you-ya-jing-zhuo/tie-xin-gong-xue' },
+      { id: '06', name: '精品工學', link: '/you-ya-jing-zhuo/jing-pin-gong-xue' },
     ]
   },
   {

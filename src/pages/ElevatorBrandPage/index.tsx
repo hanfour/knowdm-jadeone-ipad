@@ -116,7 +116,7 @@ const ElevatorBrandPage: React.FC = () => {
         {/* 主要內容區 */}
         <div className="h-full flex">
           {/* 左側：文字內容 */}
-          <div className="w-1/2 h-full px-16 pt-24 relative">
+          <div className="w-1/2 h-full ps-24 pe-8 pt-24 relative">
             {/* 標題區 - 固定位置 */}
             <div className="absolute top-1/4 left-16 right-16">
               {/* 標題 */}
@@ -136,7 +136,7 @@ const ElevatorBrandPage: React.FC = () => {
                 {getCurrentPageFeatures().map((feature, index) => (
                   <li
                     key={index}
-                    className="flex text-body leading-relaxed-custom text-text-tertiary"
+                    className="flex text-body leading-relaxed-custom text-text-primary"
                   >
                     {/* 第一頁顯示編號，第二三頁不顯示 */}
                     {currentPage === 0 ? (
@@ -213,7 +213,7 @@ const ElevatorBrandPage: React.FC = () => {
             </h1>
 
             {/* 內文 */}
-            <p className="text-body leading-loose-custom text-text-tertiary text-justify mb-12">
+            <p className="text-body leading-loose-custom text-text-primary text-justify mb-12">
               以高階豪宅標準為本，日立電梯融合極致靜音技術與安全，從運行速度到停層精度，皆體現日本精密工學的極致，讓每一次乘載都成為優雅體驗。
             </p>
 
@@ -233,7 +233,7 @@ const ElevatorBrandPage: React.FC = () => {
                   {/* 菱形標記 */}
                   <span
                     className={`
-                      mr-3 text-small transition-colors duration-300
+                      mr-3 text-body transition-colors duration-300
                       ${hoveredItem === item.id ? 'text-text-primary' : 'text-gray-400'}
                     `}
                   >
@@ -243,7 +243,7 @@ const ElevatorBrandPage: React.FC = () => {
                   <span
                     className={`
                       text-body tracking-wide-custom transition-colors duration-300
-                      ${hoveredItem === item.id ? 'text-text-primary font-medium' : 'text-text-tertiary'}
+                      ${hoveredItem === item.id ? 'text-text-primary font-medium' : 'text-text-primary'}
                     `}
                   >
                     {item.name}

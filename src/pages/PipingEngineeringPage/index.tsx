@@ -28,7 +28,7 @@ const tabs: TabData[] = [
     name: '總儲水彎規劃',
     title: '總儲水彎規劃',
     subtitle: 'Water Storage Planning',
-    content: '（內容待補充）',
+    content: '污、廢水多管分流分排，衛生工程排水分管各司其職，污水、廢水分開，採多管分流分排，排水不致造成阻塞、逆流，排水更順暢。',
   },
   {
     id: 'pipe-insulation',
@@ -167,7 +167,7 @@ const PipingEngineeringPage: React.FC = () => {
         {/* 內容區（文字+圖片/影片） */}
         <div className="flex-1 flex">
           {/* 左側文字區塊 */}
-          <div className="w-[40%] flex flex-col justify-center px-16">
+          <div className="w-[40%] flex flex-col justify-center ps-24 pe-8">
             <div className="max-w-lg">
               {/* 標題 */}
               <h1 className="text-h2 tracking-widest-custom font-medium text-text-primary mb-2">
@@ -176,7 +176,7 @@ const PipingEngineeringPage: React.FC = () => {
 
               {/* 英文副標題 */}
               {currentTab.subtitle && (
-                <p className="!hidden text-small tracking-wide-custom text-text-muted mb-8 italic">
+                <p className="!hidden text-body tracking-wide-custom text-text-muted mb-8 italic">
                   {currentTab.subtitle}
                 </p>
               )}

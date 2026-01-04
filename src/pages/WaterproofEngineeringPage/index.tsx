@@ -65,7 +65,7 @@ const tabs: TabData[] = [
     name: '屋頂防水',
     title: '屋頂防水',
     subtitle: 'Roof Waterproofing',
-    content: '待補充內容',
+    content: '針對頂樓住戶最顧慮的漏水及隔熱問題，於屋頂全面施作液態膜防水層。並於防水層施作完成前，屋頂全面存水，進行屋頂試水檢驗。確認無漏水後鋪設水泥砂漿，最後表面鋪設表面裝修材，達到最佳防水隔熱效果。',
   },
   {
     id: 'bathroom',
@@ -90,14 +90,14 @@ const tabs: TabData[] = [
     name: '陽台防水',
     title: '陽台防水',
     subtitle: 'Balcony Waterproofing',
-    content: '待補充內容',
+    content: '針對漏水及隔熱問題，於露臺施作複合式防水材。並於防水層施工後露臺存水進行試水檢驗。檢驗通過後再以水泥砂漿壓層，同時表面鋪設地磚達到最佳防水隔熱效果。門框填縫完後，再崁縫處施作波利膠防水層，形成兩道嚴密防護，有效阻絕門框滲水。',
   },
   {
     id: 'drain',
     name: '落水頭設置',
     title: '落水頭設置',
     subtitle: 'Drain Installation',
-    content: '待補充內容',
+    content: '本案露臺及頂樓安裝落水頭，以防排水管阻塞反冒或落水頭阻塞時，雨水反而溢入室內。地坪洩水坡度為 1% 確保排水順暢。',
   },
 ];
 
@@ -259,7 +259,7 @@ const WaterproofEngineeringPage: React.FC = () => {
         {/* 內容區（文字+圖片） */}
         <div className="flex-1 flex">
           {/* 左側文字區塊 */}
-          <div className="w-[45%] flex flex-col justify-center px-16">
+          <div className="w-[45%] flex flex-col justify-center ps-24 pe-8">
             <div className="max-w-lg">
               {/* 標題 */}
               <h1 className="text-h2 tracking-widest-custom font-medium text-text-primary mb-2">
@@ -268,7 +268,7 @@ const WaterproofEngineeringPage: React.FC = () => {
 
               {/* 英文副標題 */}
               {currentTab.subtitle && (
-                <p className="!hidden text-small tracking-wide-custom text-text-muted mb-8 italic">
+                <p className="!hidden text-body tracking-wide-custom text-text-muted mb-8 italic">
                   {currentTab.subtitle}
                 </p>
               )}
@@ -294,7 +294,7 @@ const WaterproofEngineeringPage: React.FC = () => {
                         </span>
                       </div>
                       {feature.desc && (
-                        <p className="text-small text-text-primary mt-1 pl-4 leading-relaxed-custom">
+                        <p className="text-body text-text-primary mt-1 ps-4 leading-relaxed-custom">
                           {feature.desc}
                         </p>
                       )}
@@ -327,7 +327,7 @@ const WaterproofEngineeringPage: React.FC = () => {
                       key={index}
                       onClick={() => playSegment(index)}
                       className={`
-                        px-5 py-2 text-small font-medium transition-all
+                        px-5 py-2 text-body font-medium transition-all
                         ${activeSegment === index
                           ? 'bg-[#d4a853] text-white'
                           : 'bg-white/80 text-text-secondary hover:bg-white'
