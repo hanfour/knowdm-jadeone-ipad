@@ -36,10 +36,10 @@ corporate-website/
 |------|---------|
 | `/` | 首頁 |
 | `/video` | 影片頁面 |
+| `/fu-ju-shui-nan/ding-mao-wei-lai` | 定錨未來 |
 | `/fu-ju-shui-nan/guo-ji-xin-du` | 國際新都 |
-| `/fu-ju-shui-nan/xi-you-du-xiang` | 稀有獨享 |
 | `/fu-ju-shui-nan/yong-ya-sen-lv` | 雍雅森綠 |
-| `/fu-ju-shui-nan/fan-hua-shi-qu` | 繁華時區 |
+| `/fu-ju-shui-nan/zhen-xi-shou-cang` | 珍稀收藏 |
 | `/fu-ju-shui-nan/sheng-huo-ji-neng` | 生活機能 |
 | `/fu-ju-shui-nan/jiao-tong-dong-xian` | 交通動線 |
 | `/ju-bo-hui-cui/jian-zhu-ling-hang` | 建築領航 |

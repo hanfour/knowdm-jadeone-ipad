@@ -15,12 +15,13 @@ export const menuSections: MenuSection[] = [
     category: '富居水湳',
     title: ['齊步世界', '亮眼軸線'],
     items: [
-      { id: '01', name: '國際新都', link: '/fu-ju-shui-nan/guo-ji-xin-du' },
-      { id: '02', name: '稀有獨享', link: '/fu-ju-shui-nan/xi-you-du-xiang' },
+      { id: '01', name: '定錨未來', link: '/fu-ju-shui-nan/ding-mao-wei-lai' },
+      { id: '02', name: '國際新都', link: '/fu-ju-shui-nan/guo-ji-xin-du' },
       { id: '03', name: '雍雅森綠', link: '/fu-ju-shui-nan/yong-ya-sen-lv' },
-      { id: '04', name: '繁華時區', link: '/fu-ju-shui-nan/fan-hua-shi-qu' },
+      { id: '04', name: '珍稀收藏', link: '/fu-ju-shui-nan/zhen-xi-shou-cang' },
       { id: '05', name: '生活機能', link: '/fu-ju-shui-nan/sheng-huo-ji-neng' },
       { id: '06', name: '交通動線', link: '/fu-ju-shui-nan/jiao-tong-dong-xian' },
+      // 隱藏備用: { id: '07', name: '繁華時區', link: '/fu-ju-shui-nan/fan-hua-shi-qu' },
     ]
   },
   {
