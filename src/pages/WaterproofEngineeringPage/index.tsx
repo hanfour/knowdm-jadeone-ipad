@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   EngineeringPageShell,
   VerticalTabList,
@@ -29,6 +29,12 @@ interface TabData {
   videoFullHeight?: boolean;
   videoShowReplay?: boolean;
   contentImage?: string;
+  // 動畫圖層模式
+  animatedLayers?: {
+    baseImage: string;
+    layers: { line?: string; font: string }[];
+    showRain?: boolean; // 是否顯示下雨效果
+  };
 }
 
 // 七個章節的資料
@@ -57,6 +63,16 @@ const tabs: TabData[] = [
     title: '屋頂防水',
     subtitle: 'Roof Waterproofing',
     content: '針對頂樓住戶最顧慮的漏水及隔熱問題，於屋頂全面施作液態膜防水層。並於防水層施作完成前，屋頂全面存水，進行屋頂試水檢驗。確認無漏水後鋪設水泥砂漿，最後表面鋪設表面裝修材，達到最佳防水隔熱效果。',
+    animatedLayers: {
+      baseImage: '/images/waterproof/roof/屋頂防水_img.png',
+      layers: [
+        { line: '/images/waterproof/roof/屋頂防水_line01.png', font: '/images/waterproof/roof/屋頂防水_font01.png' },
+        { line: '/images/waterproof/roof/屋頂防水_line02.png', font: '/images/waterproof/roof/屋頂防水_font02.png' },
+        { line: '/images/waterproof/roof/屋頂防水_line03.png', font: '/images/waterproof/roof/屋頂防水_font03.png' },
+        { line: '/images/waterproof/roof/屋頂防水_line04.png', font: '/images/waterproof/roof/屋頂防水_font04.png' },
+        { font: '/images/waterproof/roof/屋頂防水_font05.png' },
+      ],
+    },
   },
   {
     id: 'bathroom',
@@ -82,6 +98,8 @@ const tabs: TabData[] = [
     title: '陽台防水',
     subtitle: 'Balcony Waterproofing',
     content: '針對漏水及隔熱問題，於露臺施作複合式防水材。並於防水層施工後露臺存水進行試水檢驗。檢驗通過後再以水泥砂漿壓層，同時表面鋪設地磚達到最佳防水隔熱效果。門框填縫完後，再崁縫處施作波利膠防水層，形成兩道嚴密防護，有效阻絕門框滲水。',
+    video: '/images/waterproof/balcony.mov',
+    videoShowReplay: true,
   },
   {
     id: 'drain',
@@ -89,8 +107,208 @@ const tabs: TabData[] = [
     title: '落水頭設置',
     subtitle: 'Drain Installation',
     content: '本案露臺及頂樓安裝落水頭，以防排水管阻塞反冒或落水頭阻塞時，雨水反而溢入室內。地坪洩水坡度為 1% 確保排水順暢。',
+    animatedLayers: {
+      baseImage: '/images/waterproof/drain/落水頭_img.png',
+      layers: [
+        { line: '/images/waterproof/drain/落水頭_line.png', font: '/images/waterproof/drain/落水頭_font.png' },
+      ],
+      showRain: true,
+    },
   },
 ];
+
+// 動畫圖層元件
+const AnimatedLayersDisplay: React.FC<{
+  baseImage: string;
+  layers: { line?: string; font: string }[];
+  isActive: boolean;
+  showRain?: boolean;
+}> = ({ baseImage, layers, isActive, showRain = false }) => {
+  const [visibleLayers, setVisibleLayers] = useState<number>(-1); // -1 = 底圖未顯示
+  const [showRainEffect, setShowRainEffect] = useState(false);
+
+  // 重置並開始動畫
+  useEffect(() => {
+    if (!isActive) {
+      setVisibleLayers(-1);
+      setShowRainEffect(false);
+      return;
+    }
+
+    // 重置
+    setVisibleLayers(-1);
+    setShowRainEffect(false);
+
+    // 底圖淡入
+    const baseTimer = setTimeout(() => {
+      setVisibleLayers(0);
+      // 底圖出現後開始下雨
+      if (showRain) {
+        setShowRainEffect(true);
+      }
+    }, 100);
+
+    // 依序顯示各層
+    const layerTimers = layers.map((_, index) => {
+      return setTimeout(() => {
+        setVisibleLayers(index + 1);
+      }, 800 + index * 600); // 底圖後 800ms 開始，每層間隔 600ms
+    });
+
+    return () => {
+      clearTimeout(baseTimer);
+      layerTimers.forEach(timer => clearTimeout(timer));
+    };
+  }, [isActive, layers, showRain]);
+
+  // 生成雨滴數據
+  const rainDrops = Array.from({ length: 50 }, (_, i) => ({
+    id: i,
+    left: Math.random() * 100, // 隨機水平位置 (%)
+    delay: Math.random() * 2, // 隨機延遲 (秒)
+    duration: 0.5 + Math.random() * 0.5, // 隨機下落時間 (0.5-1秒)
+    opacity: 0.3 + Math.random() * 0.4, // 隨機透明度 (0.3-0.7)
+  }));
+
+  return (
+    <div className="relative w-full h-full flex items-center justify-center">
+      {/* 動畫樣式 */}
+      <style>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes drawLine {
+          from {
+            opacity: 0;
+            clip-path: inset(0 100% 0 0);
+          }
+          to {
+            opacity: 1;
+            clip-path: inset(0 0 0 0);
+          }
+        }
+
+        @keyframes rainFall {
+          0% {
+            transform: translateY(-100%);
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          90% {
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(calc(80vh + 100%));
+            opacity: 0;
+          }
+        }
+
+        .animate-fade-in {
+          animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .animate-fade-in-up {
+          animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .animate-draw-line {
+          animation: drawLine 0.4s ease-out forwards;
+        }
+
+        .rain-drop {
+          position: absolute;
+          top: 0;
+          width: 2px;
+          height: 20px;
+          background: linear-gradient(to bottom, transparent, rgba(174, 194, 224, 0.8), rgba(174, 194, 224, 0.4));
+          border-radius: 0 0 2px 2px;
+          animation: rainFall linear infinite;
+          pointer-events: none;
+        }
+      `}</style>
+
+      {/* 圖層容器 */}
+      <div className="relative max-w-full max-h-[80vh]">
+        {/* 下雨效果 */}
+        {showRain && showRainEffect && (
+          <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
+            {rainDrops.map((drop) => (
+              <div
+                key={drop.id}
+                className="rain-drop"
+                style={{
+                  left: `${drop.left}%`,
+                  animationDelay: `${drop.delay}s`,
+                  animationDuration: `${drop.duration}s`,
+                  opacity: drop.opacity,
+                }}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* 底圖 */}
+        <img
+          src={baseImage}
+          alt="動畫底圖"
+          className={`max-w-full max-h-[80vh] object-contain transition-opacity duration-700 ${
+            visibleLayers >= 0 ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+
+        {/* 疊加圖層 */}
+        {layers.map((layer, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 flex items-center justify-center ${
+              visibleLayers > index ? 'pointer-events-none' : 'pointer-events-none opacity-0'
+            }`}
+          >
+            {/* 線條 */}
+            {layer.line && (
+              <img
+                src={layer.line}
+                alt={`line ${index + 1}`}
+                className={`absolute inset-0 w-full h-full object-contain ${
+                  visibleLayers > index ? 'animate-draw-line' : 'opacity-0'
+                }`}
+                style={{ animationDelay: '0ms' }}
+              />
+            )}
+            {/* 文字 */}
+            <img
+              src={layer.font}
+              alt={`font ${index + 1}`}
+              className={`absolute inset-0 w-full h-full object-contain ${
+                visibleLayers > index ? 'animate-fade-in-up' : 'opacity-0'
+              }`}
+              style={{ animationDelay: layer.line ? '200ms' : '0ms' }}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const WaterproofEngineeringPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('water-tank');
@@ -208,6 +426,16 @@ const WaterproofEngineeringPage: React.FC = () => {
 
         {/* 右側示意圖 */}
         <div className="flex-1 h-full overflow-hidden flex items-center justify-center p-8">
+          {/* 動畫圖層模式 */}
+          {currentTab.animatedLayers && (
+            <AnimatedLayersDisplay
+              baseImage={currentTab.animatedLayers.baseImage}
+              layers={currentTab.animatedLayers.layers}
+              isActive={currentTab.id === activeTab}
+              showRain={currentTab.animatedLayers.showRain}
+            />
+          )}
+
           {/* 影片播放器 */}
           {currentTab.video && (
             <VideoPlayer
@@ -220,7 +448,7 @@ const WaterproofEngineeringPage: React.FC = () => {
           )}
 
           {/* 單張圖片 */}
-          {currentTab.image && !currentTab.images && !currentTab.video && (
+          {currentTab.image && !currentTab.images && !currentTab.video && !currentTab.animatedLayers && (
             <img
               src={currentTab.image}
               alt={currentTab.title}

@@ -39,6 +39,12 @@ interface TabData {
   video?: string;
   videoShowReplay?: boolean;
   tableData?: TableRow[];
+  // 動畫圖層模式
+  animatedLayers?: {
+    baseImage: string;
+    waves: string[]; // 方向箭頭圖層
+    shine?: string; // 持續 loop 的光暈效果
+  };
 }
 
 // 三個章節的資料
@@ -49,6 +55,21 @@ const tabs: TabData[] = [
     title: '當層排氣系統',
     subtitle: 'Floor Exhaust System',
     content: '傳統垂直向「煙囪式排氣管」，容易有異味飄進自家浴室以及衛生問題，本案浴室抽風排氣管採用當層排放，換風扇之排放管口設有防逆流閘門，防止臭味逆流，保持室內空氣清新舒適。',
+    animatedLayers: {
+      baseImage: '/images/fireprotection/floor-exhaust/當層排氣系統_img.png',
+      waves: [
+        '/images/fireprotection/floor-exhaust/當層排氣系統_wv01.png',
+        '/images/fireprotection/floor-exhaust/當層排氣系統_wv02.png',
+        '/images/fireprotection/floor-exhaust/當層排氣系統_wv03.png',
+        '/images/fireprotection/floor-exhaust/當層排氣系統_wv04.png',
+        '/images/fireprotection/floor-exhaust/當層排氣系統_wv05.png',
+        '/images/fireprotection/floor-exhaust/當層排氣系統_wv06.png',
+        '/images/fireprotection/floor-exhaust/當層排氣系統_wv07.png',
+        '/images/fireprotection/floor-exhaust/當層排氣系統_wv08.png',
+        '/images/fireprotection/floor-exhaust/當層排氣系統_wv09.png',
+      ],
+      shine: '/images/fireprotection/floor-exhaust/當層排氣系統_shine.png',
+    },
   },
   {
     id: 'digital-fire-detection',
@@ -104,8 +125,174 @@ const tabs: TabData[] = [
   },
 ];
 
+// 當層排氣動畫元件
+const AnimatedExhaustDisplay: React.FC<{
+  baseImage: string;
+  waves: string[];
+  shine?: string;
+  isActive: boolean;
+}> = ({ baseImage, waves, shine, isActive }) => {
+  const [visibleWaves, setVisibleWaves] = useState<number>(-1); // -1 = 底圖未顯示
+  const [showShine, setShowShine] = useState(false);
+
+  // 重置並開始動畫
+  useEffect(() => {
+    if (!isActive) {
+      setVisibleWaves(-1);
+      setShowShine(false);
+      return;
+    }
+
+    // 重置
+    setVisibleWaves(-1);
+    setShowShine(false);
+
+    // 底圖淡入
+    const baseTimer = setTimeout(() => {
+      setVisibleWaves(0);
+      // 底圖出現後開始 shine 效果
+      if (shine) {
+        setShowShine(true);
+      }
+    }, 100);
+
+    // 依序顯示箭頭
+    const waveTimers = waves.map((_, index) => {
+      return setTimeout(() => {
+        setVisibleWaves(index + 1);
+      }, 600 + index * 300); // 底圖後 600ms 開始，每層間隔 300ms
+    });
+
+    return () => {
+      clearTimeout(baseTimer);
+      waveTimers.forEach(timer => clearTimeout(timer));
+    };
+  }, [isActive, waves, shine]);
+
+  return (
+    <div className="relative w-full h-full flex items-center justify-center">
+      {/* 動畫樣式 */}
+      <style>{`
+        @keyframes fadeInScale {
+          from {
+            opacity: 0;
+            transform: scale(0.8);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @keyframes waveMoveUp {
+          0% {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          20% {
+            opacity: 1;
+          }
+          80% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+        }
+
+        @keyframes waveMoveDownLeft {
+          0% {
+            opacity: 0;
+            transform: translate(8px, -6px);
+          }
+          20% {
+            opacity: 1;
+          }
+          80% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0;
+            transform: translate(-8px, 6px);
+          }
+        }
+
+        @keyframes shinePulse {
+          0% {
+            opacity: 0.3;
+          }
+          50% {
+            opacity: 0.8;
+          }
+          100% {
+            opacity: 0.3;
+          }
+        }
+
+        .animate-fade-in-scale {
+          animation: fadeInScale 0.6s ease-out forwards;
+        }
+
+        .animate-wave-up {
+          animation: waveMoveUp 1.5s ease-in-out infinite;
+        }
+
+        .animate-wave-down-left {
+          animation: waveMoveDownLeft 1.5s ease-in-out infinite;
+        }
+
+        .animate-shine {
+          animation: shinePulse 2s ease-in-out infinite;
+          mix-blend-mode: lighten;
+        }
+      `}</style>
+
+      {/* 圖層容器 */}
+      <div className="relative max-w-full max-h-[80vh]">
+        {/* 底圖 */}
+        <img
+          src={baseImage}
+          alt="當層排氣系統"
+          className={`max-w-full max-h-[80vh] object-contain transition-opacity duration-700 ${
+            visibleWaves >= 0 ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+
+        {/* Shine 光暈效果 - 持續 loop */}
+        {shine && showShine && (
+          <img
+            src={shine}
+            alt="shine effect"
+            className="absolute inset-0 w-full h-full object-contain pointer-events-none animate-shine"
+          />
+        )}
+
+        {/* 箭頭圖層 - 依序出現並循環動畫 */}
+        {/* wv01-03 (index 0-2): 下向上移動, wv04-09 (index 3-8): 右上往左下 130° 移動 */}
+        {waves.map((wave, index) => {
+          const animationClass = index < 3 ? 'animate-wave-up' : 'animate-wave-down-left';
+          return (
+            <img
+              key={index}
+              src={wave}
+              alt={`wave ${index + 1}`}
+              className={`absolute inset-0 w-full h-full object-contain pointer-events-none ${
+                visibleWaves > index ? animationClass : 'opacity-0'
+              }`}
+              style={{
+                animationDelay: `${index * 0.15}s`,
+              }}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
 const FireProtectionEngineeringPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<string>('digital-fire-detection');
+  const [activeTab, setActiveTab] = useState<string>('floor-exhaust');
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const currentTab = tabs.find((tab) => tab.id === activeTab) || tabs[0];
@@ -282,7 +469,18 @@ const FireProtectionEngineeringPage: React.FC = () => {
 
           {/* 右側示意圖 */}
           <div className="flex-1 h-full overflow-hidden flex items-center justify-center p-8">
-            {currentTab.image && (
+            {/* 動畫圖層模式 */}
+            {currentTab.animatedLayers && (
+              <AnimatedExhaustDisplay
+                baseImage={currentTab.animatedLayers.baseImage}
+                waves={currentTab.animatedLayers.waves}
+                shine={currentTab.animatedLayers.shine}
+                isActive={currentTab.id === activeTab}
+              />
+            )}
+
+            {/* 單張圖片 */}
+            {currentTab.image && !currentTab.animatedLayers && (
               <img
                 src={currentTab.image}
                 alt={currentTab.title}

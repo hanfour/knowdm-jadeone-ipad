@@ -20,7 +20,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   className = '',
 }) => {
   return (
-    <div className={`relative overflow-hidden flex items-center justify-center ${fullHeight ? 'h-full w-full' : ''}`}>
+    <div className={`relative overflow-hidden mb-12 flex items-center justify-center ${fullHeight ? 'h-full w-full' : ''}`}>
       <video
         ref={videoRef}
         src={src}
