@@ -1,6 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import SubpageMenuBar from '../components/SubpageMenuBar';
 
+// 影片資料
+const videos = [
+  { id: 'Rdk1lS1z9UE', label: '影片 1' },
+  { id: 'XdKCF_gmRQ0', label: '影片 2' },
+  { id: 'WxMWRceTrbQ', label: '影片 3' },
+  { id: 'v2fKSaiUS50', label: '影片 4' },
+  { id: 'WIAxxPPi15w', label: '影片 5' },
+];
+
 // 輪播圖片資料
 const carouselImages = [
   { src: '/images/c1/3D渲染_0000_正面.jpg', label: '立面3D透視圖，實際以施工為準' },
@@ -41,8 +50,8 @@ const FrenchAestheticsPage: React.FC = () => {
     currentIndex: 0,
   });
 
-  // 影片彈窗狀態
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
+  // 影片彈窗狀態 - 存儲當前播放的影片 ID
+  const [currentVideoId, setCurrentVideoId] = useState<string | null>(null);
 
   // 頁面載入時觸發動畫
   useEffect(() => {
@@ -290,16 +299,16 @@ const FrenchAestheticsPage: React.FC = () => {
           </div>
 
           {/* 按鈕區域 */}
-          <div className="mt-10 flex gap-4" style={{ paddingLeft: '1rem' }}>
+          <div className="mt-10 grid grid-cols-3 gap-1" style={{ paddingLeft: '1rem' }}>
             {/* 外觀透視按鈕 - 點擊開啟燈箱 */}
             <button
               onClick={openLightbox}
-              className="inline-flex items-center gap-3 bg-[#d4a853]/50 border border-[#d4a853]/50 px-6 py-3 hover:border-[#d4a853] hover:bg-white/5 transition-all group"
+              className="inline-flex items-center justify-center gap-2 bg-[#d4a853]/75 border border-[#d4a853]/50 py-1.5 hover:border-[#d4a853] hover:bg-white/5 transition-all group"
               style={{ letterSpacing: '0.08em' }}
             >
               <span
                 className="text-white"
-                style={{ fontSize: '0.9rem' }}
+                style={{ fontSize: '0.85rem' }}
               >
                 外觀透視
               </span>
@@ -313,26 +322,30 @@ const FrenchAestheticsPage: React.FC = () => {
               </svg>
             </button>
 
-            {/* 觀賞影片按鈕 */}
-            <button
-              onClick={() => setIsVideoOpen(true)}
-              className="inline-flex items-center gap-3 bg-[#d4a853]/50 border border-[#d4a853]/50 px-6 py-3 hover:border-[#d4a853] hover:bg-white/5 transition-all group"
-              style={{ letterSpacing: '0.08em' }}
-            >
-              <span
-                className="text-white"
-                style={{ fontSize: '0.9rem' }}
+            {/* 觀賞影片按鈕群組 */}
+            {videos.map((video, index) => (
+              <button
+                key={video.id}
+                onClick={() => setCurrentVideoId(video.id)}
+                className="inline-flex items-center justify-center gap-2 bg-[#d4a853]/75 border border-[#d4a853]/50 py-1.5 hover:border-[#d4a853] hover:bg-white/5 transition-all group"
+                style={{ letterSpacing: '0.08em' }}
               >
-                觀賞影片
-              </span>
-              <svg
-                className="w-4 h-4 text-white group-hover:scale-110 transition-transform"
-                fill="currentColor"
+                <span
+                  className="text-white"
+                  style={{ fontSize: '0.85rem' }}
+                >
+                  觀賞影片 {index + 1}
+                </span>
+                <svg
+                className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform"
+                fill="none"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path d="M8 5v14l11-7z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </button>
+              </button>
+            ))}
           </div>
           
 
@@ -509,7 +522,7 @@ const FrenchAestheticsPage: React.FC = () => {
       )}
 
       {/* 影片彈窗 */}
-      {isVideoOpen && (
+      {currentVideoId && (
         <>
           <style>{`
             @keyframes videoSlideDown {
@@ -541,7 +554,7 @@ const FrenchAestheticsPage: React.FC = () => {
           <div
             className="fixed inset-0 flex items-center justify-center bg-black/90 backdrop-fade-animation"
             style={{ zIndex: 9999 }}
-            onClick={() => setIsVideoOpen(false)}
+            onClick={() => setCurrentVideoId(null)}
           >
             {/* 影片容器 */}
             <div
@@ -549,8 +562,9 @@ const FrenchAestheticsPage: React.FC = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <iframe
+                key={currentVideoId}
                 className="w-full h-full border-0"
-                src="https://www.youtube.com/embed/Rdk1lS1z9UE?autoplay=1&rel=0"
+                src={`https://www.youtube.com/embed/${currentVideoId}?autoplay=1&rel=0`}
                 title="影片播放"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -559,7 +573,7 @@ const FrenchAestheticsPage: React.FC = () => {
 
             {/* 關閉按鈕 */}
             <button
-              onClick={(e) => { e.stopPropagation(); setIsVideoOpen(false); }}
+              onClick={(e) => { e.stopPropagation(); setCurrentVideoId(null); }}
               className="absolute top-6 right-6 w-12 h-12 rounded-full bg-black/60 backdrop-blur-md text-white flex items-center justify-center hover:rotate-180 transition-all duration-300"
               style={{ zIndex: 10 }}
               aria-label="關閉"

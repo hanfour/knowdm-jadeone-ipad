@@ -116,7 +116,7 @@ function App() {
             path="/fu-ju-shui-nan/yong-ya-sen-lv"
             element={
               <ImageGalleryPage
-                images={pageData.elegantGreen.images}
+                images={pageData.elegantGreen.images.concat(pageData.preciousCollection.images)}
                 title={pageData.elegantGreen.title}
                 description={pageData.elegantGreen.description}
               />
