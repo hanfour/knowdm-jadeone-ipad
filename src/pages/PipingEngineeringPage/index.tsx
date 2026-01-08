@@ -12,6 +12,13 @@ interface FeatureItem {
   desc: string;
 }
 
+// 表格行結構
+interface TableRow {
+  項目: string;
+  本案: string;
+  一般: string;
+}
+
 // Tab 資料結構
 interface TabData {
   id: string;
@@ -24,6 +31,7 @@ interface TabData {
   video?: string;
   videoLoop?: VideoLoop;
   layout?: 'default' | 'side-by-side';
+  tableData?: TableRow[];
 }
 
 // 三個章節的資料
@@ -34,6 +42,24 @@ const tabs: TabData[] = [
     title: '總儲水彎規劃',
     subtitle: 'Water Storage Planning',
     content: '污、廢水多管分流分排，衛生工程排水分管各司其職，污水、廢水分開，採多管分流分排，排水不致造成阻塞、逆流，排水更順暢。',
+    image: '/images/piping/總儲水彎規劃.png',
+    tableData: [
+      {
+        項目: '排水/排氣',
+        本案: '洩水坡度 1/100，確保排水順暢。污水廢水分管排水，各系統獨立分流，排水更順暢；污水廢水分流排氣，各系統獨立排氣，臭氣不交錯。',
+        一般: '各系統排水分中排放在一根排水管，汙廢水混和，易造成水管堵塞、廢水逆流、味道交錯。洗衣機用水高峰期，排出的泡沫容易從噴逆流。',
+      },
+      {
+        項目: '存水彎',
+        本案: '一律採存水彎設計，有效抑制異味產生。',
+        一般: '無存水彎設計，長時間沒用水，容易有異味產生。',
+      },
+      {
+        項目: '管材',
+        本案: '使用低噪音鑄鐵管，聲音小，使用年限長。',
+        一般: '一般僅採用 PVC 排水管。',
+      },
+    ],
   },
   {
     id: 'pipe-insulation',
@@ -75,6 +101,48 @@ const PipingEngineeringPage: React.FC = () => {
     video: currentTab.video,
     videoLoop: currentTab.videoLoop,
   });
+
+  // 渲染表格
+  const renderTable = (tableData: TableRow[]) => {
+    const headers = ['項目', '本案', '一般'];
+
+    return (
+      <div className="w-full overflow-hidden rounded border border-[#d4d0c8] mt-6">
+        <table className="w-full text-xsmall border-collapse">
+          <thead>
+            <tr className="bg-[#0b2d2a]">
+              {headers.map((header, index) => (
+                <th
+                  key={index}
+                  className={`py-2 px-3 text-center text-gold font-medium border-r border-[#1a4a46] last:border-r-0 ${
+                    index === 0 ? 'w-[15%]' : 'w-[42.5%]'
+                  }`}
+                >
+                  {header}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.map((row, rowIndex) => (
+              <tr key={rowIndex} className="bg-white">
+                {headers.map((header, colIndex) => (
+                  <td
+                    key={colIndex}
+                    className={`py-2 px-3 border-t border-r border-[#d4d0c8] last:border-r-0 align-top whitespace-pre-line text-text-secondary ${
+                      colIndex === 0 ? 'text-center font-medium bg-[#0b2d2a]/5' : 'text-left'
+                    } ${colIndex === 1 ? 'text-[#0b2d2a] bg-[#f5f0e8]' : ''}`}
+                  >
+                    {row[header as keyof TableRow]}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  };
 
   return (
     <EngineeringPageShell sectionIndex={2}>
@@ -119,6 +187,9 @@ const PipingEngineeringPage: React.FC = () => {
                 ))}
               </div>
             )}
+
+            {/* 表格 */}
+            {currentTab.tableData && renderTable(currentTab.tableData)}
           </div>
         </div>
 
@@ -159,7 +230,7 @@ const PipingEngineeringPage: React.FC = () => {
             <img
               src={currentTab.image}
               alt={currentTab.title}
-              className="max-w-full max-h-full object-contain"
+              className="max-w-full max-h-[70vh] object-contain"
             />
           )}
         </div>

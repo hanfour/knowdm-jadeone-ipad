@@ -236,28 +236,39 @@ const AnchorFuturePage: React.FC = () => {
       const svgDoc = (svgObject as HTMLObjectElement).contentDocument;
       if (!svgDoc) return;
 
-      // 為 74路線 添加 Shine effect
-      const route74 = svgDoc.getElementById('_74路線');
-      if (route74) {
-        const style = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'style');
-        style.textContent = `
-          @keyframes shine-flow {
-            0% {
-              filter: drop-shadow(0 0 2px rgba(249, 190, 61, 0.4));
-            }
-            50% {
-              filter: drop-shadow(0 0 8px rgba(249, 190, 61, 0.9)) drop-shadow(0 0 16px rgba(249, 190, 61, 0.6));
-            }
-            100% {
-              filter: drop-shadow(0 0 2px rgba(249, 190, 61, 0.4));
-            }
+      // 為 74路線 和 水湳 添加 Shine effect
+      const style = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'style');
+      style.textContent = `
+        @keyframes shine-flow {
+          0% {
+            filter: drop-shadow(0 0 2px rgba(249, 190, 61, 0.4));
           }
-          #_74路線 {
-            animation: shine-flow 2s ease-in-out infinite;
+          50% {
+            filter: drop-shadow(0 0 8px rgba(249, 190, 61, 0.9)) drop-shadow(0 0 16px rgba(249, 190, 61, 0.6));
           }
-        `;
-        svgDoc.querySelector('svg')?.appendChild(style);
-      }
+          100% {
+            filter: drop-shadow(0 0 2px rgba(249, 190, 61, 0.4));
+          }
+        }
+        @keyframes shuinan-shine {
+          0% {
+            filter: drop-shadow(0 0 4px rgba(161, 211, 193, 0.5));
+          }
+          50% {
+            filter: drop-shadow(0 0 12px rgba(161, 211, 193, 1)) drop-shadow(0 0 24px rgba(161, 211, 193, 0.7)) drop-shadow(0 0 36px rgba(255, 255, 255, 0.4));
+          }
+          100% {
+            filter: drop-shadow(0 0 4px rgba(161, 211, 193, 0.5));
+          }
+        }
+        #_74路線 {
+          animation: shine-flow 2s ease-in-out infinite;
+        }
+        #_水湳 {
+          animation: shuinan-shine 2s ease-in-out infinite;
+        }
+      `;
+      svgDoc.querySelector('svg')?.appendChild(style);
 
       // 為每個重劃區添加互動
       districts.forEach((district) => {
