@@ -93,7 +93,7 @@ const tabs: TabData[] = [
 ];
 
 const PipingEngineeringPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<string>('pipe-insulation');
+  const [activeTab, setActiveTab] = useState<string>('water-storage');
 
   const currentTab = tabs.find((tab) => tab.id === activeTab) || tabs[0];
 
