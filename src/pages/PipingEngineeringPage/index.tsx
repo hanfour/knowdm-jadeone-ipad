@@ -165,7 +165,7 @@ const PipingEngineeringPage: React.FC = () => {
 
             {/* 內文（純文字） */}
             {currentTab.content && (
-              <p className="text-body leading-loose-custom text-text-primary text-justify">
+              <p className="text-body text-justify leading-relaxed text-text-primary text-justify">
                 {currentTab.content}
               </p>
             )}
@@ -179,7 +179,7 @@ const PipingEngineeringPage: React.FC = () => {
                       {feature.title}
                     </h3>
                     {feature.desc && (
-                      <p className="text-body text-text-primary leading-loose-custom text-justify">
+                      <p className="text-body text-text-primary text-justify leading-relaxed text-justify">
                         {feature.desc}
                       </p>
                     )}

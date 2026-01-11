@@ -207,9 +207,8 @@ const FrenchAestheticsPage: React.FC = () => {
       >
         {/* 第一行：美學序列 - 橫排，每字從左上飛入 */}
         <h2
-          className="text-white font-light"
+          className="text-white text-display font-light"
           style={{
-            fontSize: '3.5rem',
             letterSpacing: '0.2em',
           }}
         >
@@ -233,9 +232,8 @@ const FrenchAestheticsPage: React.FC = () => {
 
         {/* 第二行：法式美學 / - 小字，淡入 */}
         <p
-          className="text-[#f5e6b8] italic font-medium"
+          className="text-[#f5e6b8] text-body italic font-medium"
           style={{
-            fontSize: '1rem',
             fontFamily: '"Apple Chancery", "Lucida Calligraphy", cursive',
             letterSpacing: '0.05em',
             marginLeft: '0.5rem',
@@ -248,9 +246,8 @@ const FrenchAestheticsPage: React.FC = () => {
 
         {/* 第三行：黃金剪裁 - 橫排，每字從左上飛入 */}
         <h2
-          className="text-white font-light"
+          className="text-white text-display font-light"
           style={{
-            fontSize: '3.5rem',
             letterSpacing: '0.2em',
           }}
         >
@@ -281,10 +278,8 @@ const FrenchAestheticsPage: React.FC = () => {
         <div className="text-white" style={{ maxWidth: '32rem' }}>
           {/* 內容文字 */}
           <div
-            className="relative mt-6 text-white/85 text-justify"
+            className="relative mt-6 text-white/85 text-body text-justify leading-relaxed"
             style={{
-              fontSize: '1rem',
-              lineHeight: '2',
               paddingLeft: '1rem',
             }}
           >
@@ -307,8 +302,7 @@ const FrenchAestheticsPage: React.FC = () => {
               style={{ letterSpacing: '0.08em' }}
             >
               <span
-                className="text-white"
-                style={{ fontSize: '0.85rem' }}
+                className="text-white text-xsmall"
               >
                 外觀透視
               </span>
@@ -331,8 +325,7 @@ const FrenchAestheticsPage: React.FC = () => {
                 style={{ letterSpacing: '0.08em' }}
               >
                 <span
-                  className="text-white"
-                  style={{ fontSize: '0.85rem' }}
+                  className="text-white text-xsmall"
                 >
                   觀賞影片 {index + 1}
                 </span>
@@ -392,7 +385,7 @@ const FrenchAestheticsPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="absolute z-10 text-gray-100" style={{ fontSize: '0.75rem', right: '5rem', bottom: '0.5rem' }}>
+      <div className="absolute z-10 text-gray-100 text-micro" style={{ right: '5rem', bottom: '0.5rem' }}>
         立面3D透視圖，實際以施工為準
       </div>
 
@@ -466,7 +459,7 @@ const FrenchAestheticsPage: React.FC = () => {
             {/* 當前圖片標籤 */}
             <div className="flex items-center" style={{ gap: '0.5rem', marginBottom: '0.25rem' }}>
               <span className="bg-white/60" style={{ width: '0.5rem', height: '0.5rem' }} />
-              <span className="text-white" style={{ fontSize: '0.875rem', letterSpacing: '0.05em' }}>
+              <span className="text-white text-xsmall" style={{ letterSpacing: '0.05em' }}>
                 {carouselImages[lightbox.currentIndex].label}
               </span>
             </div>

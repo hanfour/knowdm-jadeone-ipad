@@ -168,23 +168,20 @@ const ArchitectAestheticsPage: React.FC = () => {
           {/* 標題區 */}
           <div className="mb-6">
             <p
-              className="text-[#f5e6b8]"
+              className="text-[#f5e6b8] text-large"
               style={{
-                fontSize: '1.25rem',
                 letterSpacing: '0.1em',
               }}
             >
-              <span className='italic' style={{fontSize: '0.9rem'}}>艸引子事務所 / </span><br/>
+              <span className='italic text-small'>艸引子事務所 / </span><br/>
               細梳環境紋理，建築以優雅之姿生長
             </p>
           </div>
 
           {/* 主要描述文字 */}
           <div
-            className="text-white/85 text-justify"
+            className="text-white/85 text-body text-justify leading-relaxed"
             style={{
-              fontSize: '1rem',
-              lineHeight: '2',
               maxWidth: '28rem',
             }}
           >
@@ -199,16 +196,15 @@ const ArchitectAestheticsPage: React.FC = () => {
               style={{ letterSpacing: '0.08em' }}
             >
               <span
-                className="gradient-text-animate"
-                style={{ fontSize: '0.9rem' }}
+                className="gradient-text-animate text-small"
               >
                 作品代表<br/>
                 有春建設「青田芯、青田蒔」<br/>
                 匠泰開發「日日」、「琢力自然」
               </span>
               <span
-                className="!hidden gradient-text-animate italic mt-1"
-                style={{ fontSize: '0.75rem', fontFamily: 'serif' }}
+                className="!hidden gradient-text-animate italic text-micro mt-1"
+                style={{ fontFamily: 'serif' }}
               >
                 Collection
               </span>
@@ -227,10 +223,9 @@ const ArchitectAestheticsPage: React.FC = () => {
           >
             {/* 左側，直排，每字從左上飛入 */}
             <h3
-              className="text-white font-light -mt-32"
+              className="text-white text-h3 font-light -mt-32"
               style={{
                 writingMode: 'vertical-rl',
-                fontSize: '3rem',
                 letterSpacing: '0.25em',
               }}
             >
@@ -254,10 +249,9 @@ const ArchitectAestheticsPage: React.FC = () => {
 
             {/* 右側：主持建築師 蔡長恩建築師 - 直排，每字從左上飛入 */}
             <h3
-              className="text-white font-light"
+              className="text-white text-h3 font-light"
               style={{
                 writingMode: 'vertical-rl',
-                fontSize: '3rem',
                 letterSpacing: '0.25em',
               }}
             >
@@ -303,9 +297,8 @@ const ArchitectAestheticsPage: React.FC = () => {
             className="!hidden absolute right-12 bottom-10 text-right"
           >
             <p
-              className="text-white/50"
+              className="text-white/50 text-xsmall"
               style={{
-                fontSize: '0.8rem',
                 letterSpacing: '0.15em',
               }}
             >
@@ -385,7 +378,7 @@ const ArchitectAestheticsPage: React.FC = () => {
             {/* 當前圖片標籤 */}
             <div className="flex items-center" style={{ gap: '0.5rem', marginBottom: '0.25rem' }}>
               <span className="bg-white/60" style={{ width: '0.5rem', height: '0.5rem' }} />
-              <span className="text-white" style={{ fontSize: '0.875rem', letterSpacing: '0.05em' }}>
+              <span className="text-white text-xsmall" style={{ letterSpacing: '0.05em' }}>
                 {portfolioImages[lightbox.currentIndex].label}
               </span>
             </div>

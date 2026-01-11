@@ -75,7 +75,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ theme = 'white', onMenuOpen, sh
               <div className={`${styles.bgColor} transition-all duration-300 menu-line-2`} style={{ width: '0.0725rem', height: '2rem' }} />
               <div className={`${styles.bgColor} transition-all duration-300 menu-line-3`} style={{ width: '0.0725rem', height: '2rem' }} />
             </div>
-            <div className="writing-mode-vertical" style={{ fontSize: '0.75rem', letterSpacing: '0.3em' }}>MENU</div>
+            <div className="writing-mode-vertical text-micro" style={{ letterSpacing: '0.3em' }}>MENU</div>
           </button>
 
           {/* MENU 按鈕動畫樣式 */}

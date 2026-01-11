@@ -40,7 +40,7 @@ const LeftTextRightMedia: React.FC<LeftTextRightMediaProps> = ({
 
           {/* 內文 */}
           {content && (
-            <p className="text-body leading-loose-custom text-text-primary text-justify">
+            <p className="text-body text-justify leading-relaxed text-text-primary text-justify">
               {content}
             </p>
           )}

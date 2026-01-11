@@ -115,7 +115,7 @@ const WaterBrandPage: React.FC = () => {
 
             {/* 產品說明（如有） */}
             {selectedProduct.description && (
-              <p className="text-body leading-relaxed-custom text-gray-600 mb-4">
+              <p className="text-body leading-relaxed text-gray-600 mb-4">
                 {selectedProduct.description}
               </p>
             )}
@@ -125,7 +125,7 @@ const WaterBrandPage: React.FC = () => {
               {selectedProduct.features.map((feature, index) => (
                 <li
                   key={index}
-                  className="flex items-start text-body leading-relaxed-custom text-gray-700"
+                  className="flex items-start text-body leading-relaxed text-gray-700"
                 >
                   <span className="mr-3 mt-2 w-1.5 h-1.5 bg-gray-500 rounded-full flex-shrink-0" />
                   {feature}
@@ -179,7 +179,7 @@ const WaterBrandPage: React.FC = () => {
 
             {/* 內文 */}
             {currentTab.contentType === 'paragraph' ? (
-              <p className="text-body leading-loose-custom text-gray-700 text-justify">
+              <p className="text-body text-justify leading-relaxed text-gray-700 text-justify">
                 {currentTab.content}
               </p>
             ) : (
@@ -187,7 +187,7 @@ const WaterBrandPage: React.FC = () => {
                 {currentTab.content.split('\n').map((item, index) => (
                   <li
                     key={index}
-                    className="flex items-start text-body leading-relaxed-custom text-gray-700"
+                    className="flex items-start text-body leading-relaxed text-gray-700"
                   >
                     <span className="mr-3 mt-2 w-1.5 h-1.5 bg-brand-sakura rounded-full flex-shrink-0" />
                     {item}

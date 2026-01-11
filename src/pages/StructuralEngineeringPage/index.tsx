@@ -182,7 +182,7 @@ const StructuralEngineeringPage: React.FC = () => {
 
             {/* 內文（純文字） */}
             {currentTab.content && (
-              <p className="text-body leading-loose-custom text-text-primary text-justify">
+              <p className="text-body text-justify leading-relaxed text-text-primary text-justify">
                 {currentTab.content}
               </p>
             )}
@@ -201,7 +201,7 @@ const StructuralEngineeringPage: React.FC = () => {
                       </span>
                     </div>
                     {feature.desc && (
-                      <p className="text-body text-text-primary mt-1 ps-4 leading-relaxed-custom">
+                      <p className="text-body text-text-primary mt-1 ps-4 leading-relaxed">
                         {feature.desc}
                       </p>
                     )}

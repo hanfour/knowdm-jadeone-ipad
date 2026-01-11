@@ -160,10 +160,10 @@ const FloorPlanPage: React.FC = () => {
 
       {/* 左上角旗幟 */}
       <div className="absolute z-20 bg-[#d4a853]/50 text-black px-6 py-4" style={{ top: '80px', left: 0 }}>
-        <p className="font-bold text-center" style={{ fontSize: '2.5rem', lineHeight: 1 }}>
+        <p className="font-bold text-h1 text-center leading-none">
           {selectedFloor.id === 'RF' ? 'RF' : selectedFloor.label}
         </p>
-        <p className="mt-1 text-center" style={{ fontSize: '0.85rem' }}>
+        <p className="mt-1 text-center text-xsmall">
           {selectedSubFloor ? `${selectedSubFloor.label}平面圖` : '平面配置參考圖'}
         </p>
       </div>
@@ -243,7 +243,7 @@ const FloorPlanPage: React.FC = () => {
 
       <Compass style={{ right: '8%', bottom: '5%', transform: 'translate(-50%, -50%)' }} className="z-20" />
 
-      <div className="absolute z-10 text-gray-400" style={{ fontSize: '0.75rem', right: '5rem', bottom: '0.5rem' }}>
+      <div className="absolute z-10 text-gray-400 text-micro" style={{ right: '5rem', bottom: '0.5rem' }}>
         此為示意圖僅供參考，實際以施工為準
       </div>
 
@@ -254,8 +254,7 @@ const FloorPlanPage: React.FC = () => {
             <button
               key={sub.id}
               onClick={() => setSelectedSubFloor(sub)}
-              className={`px-4 py-2 transition-all ${selectedSubFloor?.id === sub.id ? 'bg-[#d4a853] text-white' : 'bg-white/90 text-gray-700 hover:bg-gray-100'}`}
-              style={{ fontSize: '0.85rem' }}
+              className={`px-4 py-2 transition-all ${selectedSubFloor?.id === sub.id ? 'bg-[#d4a853] text-white' : 'bg-white/90 text-gray-700 hover:bg-gray-100'} text-xsmall`}
             >
               {sub.label}
             </button>
@@ -270,8 +269,7 @@ const FloorPlanPage: React.FC = () => {
             <button
               key={btn.id}
               onClick={() => openGalleryViewer(btn)}
-              className="px-4 py-2 backdrop-blur-sm border transition-all shadow-sm bg-white/90 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400"
-              style={{ fontSize: '0.85rem' }}
+              className="px-4 py-2 backdrop-blur-sm border transition-all shadow-sm bg-white/90 border-gray-300 text-gray-700 text-xsmall hover:bg-gray-50 hover:border-gray-400"
             >
               {btn.label}
             </button>
@@ -280,8 +278,7 @@ const FloorPlanPage: React.FC = () => {
           {selectedFloor.id === '1F' && (
             <button
               onClick={() => setIsVideoOpen(true)}
-              className="px-4 py-2 backdrop-blur-sm border transition-all shadow-sm bg-white/90 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 flex items-center gap-2"
-              style={{ fontSize: '0.85rem' }}
+              className="px-4 py-2 backdrop-blur-sm border transition-all shadow-sm bg-white/90 border-gray-300 text-gray-700 text-xsmall hover:bg-gray-50 hover:border-gray-400 flex items-center gap-2"
             >
               <span>觀賞影片</span>
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">

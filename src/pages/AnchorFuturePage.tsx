@@ -355,8 +355,8 @@ const AnchorFuturePage: React.FC = () => {
           <div className="w-1/2 h-full px-16 py-12 overflow-y-auto">
             {/* 區域標籤 */}
             <div
-              className="inline-block px-4 py-1 rounded-full text-white mb-6"
-              style={{ backgroundColor: modalDistrictData.color, fontSize: '0.9rem' }}
+              className="inline-block px-4 py-1 rounded-full text-white text-small mb-6"
+              style={{ backgroundColor: modalDistrictData.color }}
             >
               {modalDistrictData.adminArea}
             </div>
@@ -375,7 +375,7 @@ const AnchorFuturePage: React.FC = () => {
                 {modalDistrictData.majorProjects.map((project, index) => (
                   <li
                     key={index}
-                    className="flex text-body leading-relaxed-custom text-text-primary"
+                    className="flex text-body leading-relaxed text-text-primary"
                   >
                     <span className="mr-3 text-gray-400 flex-shrink-0">◆</span>
                     <span>{project}</span>
@@ -390,19 +390,19 @@ const AnchorFuturePage: React.FC = () => {
                 開發比例
               </h3>
               <div className="space-y-1">
-                <div className="flex text-body leading-relaxed-custom text-text-primary">
+                <div className="flex text-body leading-relaxed text-text-primary">
                   <span className="mr-3 text-gray-400 flex-shrink-0">◆</span>
                   <span>重劃區面積：{modalDistrictData.development.totalArea}</span>
                 </div>
-                <div className="flex text-body leading-relaxed-custom text-text-primary">
+                <div className="flex text-body leading-relaxed text-text-primary">
                   <span className="mr-3 text-gray-400 flex-shrink-0">◆</span>
                   <span>公共建設比例：{modalDistrictData.development.publicRatio}</span>
                 </div>
-                <div className="flex text-body leading-relaxed-custom text-text-primary">
+                <div className="flex text-body leading-relaxed text-text-primary">
                   <span className="mr-3 text-gray-400 flex-shrink-0">◆</span>
                   <span>住宅面積比例：{modalDistrictData.development.residentialRatio}</span>
                 </div>
-                <div className="flex text-body leading-relaxed-custom text-text-primary">
+                <div className="flex text-body leading-relaxed text-text-primary">
                   <span className="mr-3 text-gray-400 flex-shrink-0">◆</span>
                   <span>綠化面積：{modalDistrictData.development.greenRatio}（{modalDistrictData.development.greenArea}）</span>
                 </div>
@@ -498,16 +498,16 @@ const AnchorFuturePage: React.FC = () => {
         <div className="text-[#0b2d2a]" style={{ maxWidth: '28rem' }}>
           {/* 主標題 */}
           <h1
-            className="font-light leading-tight"
-            style={{ fontSize: '3rem', letterSpacing: '0.05em', marginBottom: '1rem' }}
+            className="font-light text-h3 leading-tight"
+            style={{ letterSpacing: '0.05em', marginBottom: '1rem' }}
           >
             重劃之姿 定錨未來
           </h1>
 
           {/* 內文 */}
           <p
-            className="leading-relaxed"
-            style={{ fontSize: '1rem', marginTop: '1.5rem' }}
+            className="leading-relaxed text-body"
+            style={{ marginTop: '1.5rem' }}
           >
             台中重劃區共伴效應帶動地段價值提升，隨著台中市基礎建設捷運藍線與綠線的逐步完善，吸引建商推案、人口移入，形成機能成熟、環境優美、交通便捷的重劃發展區域，水湳經貿園區與十四期重劃區等地的發展，七期、八期、十三期、十四期、單元等重劃區都因為磁吸效應，成為都市發展熱點。
           </p>
@@ -518,9 +518,8 @@ const AnchorFuturePage: React.FC = () => {
               <button
                 key={district.id}
                 onClick={() => openModal(district.id)}
-                className="px-3 py-1 rounded-full transition-all duration-300 text-[#0b2d2a]/80 hover:text-[#0b2d2a] hover:shadow-md"
+                className="px-3 py-1 rounded-full transition-all duration-300 text-[#0b2d2a]/80 hover:text-[#0b2d2a] text-xsmall hover:shadow-md"
                 style={{
-                  fontSize: '0.85rem',
                   backgroundColor: `${district.color}80`,
                   borderWidth: '1px',
                   borderColor: district.color,

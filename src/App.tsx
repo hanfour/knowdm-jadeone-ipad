@@ -26,6 +26,7 @@ import WaterproofEngineeringPage from './pages/WaterproofEngineeringPage';
 import FireProtectionEngineeringPage from './pages/FireProtectionEngineeringPage';
 import ThoughtfulEngineeringPage from './pages/ThoughtfulEngineeringPage';
 import AnchorFuturePage from './pages/AnchorFuturePage';
+import PreciousCollectionPage from './pages/PreciousCollectionPage';
 import PolygonDrawer from './components/dev/PolygonDrawer';
 
 // ⚠️ 開發模式開關 - 正式上線時設為 false
@@ -124,16 +125,7 @@ function App() {
           />
 
           {/* 富居水湳 - 珍稀收藏 */}
-          <Route
-            path="/fu-ju-shui-nan/zhen-xi-shou-cang"
-            element={
-              <ImageGalleryPage
-                images={pageData.preciousCollection.images}
-                title={pageData.preciousCollection.title}
-                description={pageData.preciousCollection.description}
-              />
-            }
-          />
+          <Route path="/fu-ju-shui-nan/zhen-xi-shou-cang" element={<PreciousCollectionPage />} />
 
           {/* 富居水湳 - 生活機能 */}
           <Route path="/fu-ju-shui-nan/sheng-huo-ji-neng" element={<LifeFunctionPage />} />

@@ -75,9 +75,8 @@ const ArchitectLeaderPage: React.FC = () => {
       >
         {/* 第一行：琢藝之心 - 橫排，每字從左上飛入 */}
         <h2
-          className="text-white font-light"
+          className="text-white text-h3 font-light"
           style={{
-            fontSize: '3rem',
             letterSpacing: '0.2em',
           }}
         >
@@ -101,9 +100,8 @@ const ArchitectLeaderPage: React.FC = () => {
 
         {/* 第二行：New House New Life - 小字，不需要飛入動態，只淡入 */}
         <p
-          className="text-[#f5e6b8] italic font-extrabold"
+          className="text-[#f5e6b8] text-body italic font-extrabold"
           style={{
-            fontSize: '1rem',
             fontFamily: '"Apple Chancery", "Lucida Calligraphy", cursive',
             letterSpacing: '0.025em',
             marginLeft: '0.5rem',
@@ -116,9 +114,8 @@ const ArchitectLeaderPage: React.FC = () => {
 
         {/* 第三行：創作名宅界經典 - 橫排，每字從左上飛入 */}
         <h2
-          className="text-white font-light"
+          className="text-white text-h3 font-light"
           style={{
-            fontSize: '3rem',
             letterSpacing: '0.2em',
           }}
         >
@@ -156,18 +153,18 @@ const ArchitectLeaderPage: React.FC = () => {
               className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-[#d4a853]/80 via-[#f5e6b8]/60 to-transparent"
             />
             <h1
-              className="text-[#f5e6b8]"
-              style={{ fontSize: '2rem', letterSpacing: '0.15em', }}
+              className="text-[#f5e6b8] text-h2"
+              style={{ letterSpacing: '0.15em', }}
             >
               聚碩建設
             </h1>
             <h3
-              className="text-[#f5e6b8] mt-4"
-              style={{ fontSize: '2rem', letterSpacing: '0.15em', }}
+              className="text-[#f5e6b8] text-h2 mt-4"
+              style={{ letterSpacing: '0.15em', }}
             >
               獨領經典 風格執筆
             </h3>
-            <div className='mt-2 pb-12' style={{ fontSize: '1rem', lineHeight: '2.4',filter: 'drop-shadow(0 1px 1px rgb(0 0 0 / 0.25))', }}>
+            <div className='mt-2 pb-12 text-body text-justify leading-relaxed' style={{ filter: 'drop-shadow(0 1px 1px rgb(0 0 0 / 0.25))', }}>
               <p>
                 以建築，塑造國際的生活高度。在聚碩建築眼中，住宅不是被複製的格局，而是一件獨一無二、經得起時間考驗的藝術品。從比例的拿捏中尋找和諧，讓空間在尺度之間呼吸；在光影的流動裡，創造日夜的韻律與生活的詩意；透過材質的打磨，賦予建築高度質感，讓居者觸摸到時光的厚度。
               </p>

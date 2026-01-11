@@ -77,10 +77,10 @@ const GalleryViewer: React.FC<GalleryViewerProps> = ({
       {gallery && (
         <>
           <div className="absolute z-20 bg-[#d4a853]/50 text-black px-6 py-4">
-            <h3 className="font-bold text-center" style={{ fontSize: '2.5rem', lineHeight: 1 }}>
+            <h3 className="font-bold text-h1 text-center leading-none">
               {floorLabel}
             </h3>
-            <p className="mt-1 text-center" style={{ fontSize: '0.85rem' }}>{gallery.label}</p>
+            <p className="mt-1 text-center text-xsmall">{gallery.label}</p>
           </div>
 
           <button
@@ -189,8 +189,8 @@ const GalleryViewer: React.FC<GalleryViewerProps> = ({
           {/* 景觀空拍不顯示警語 */}
           {!gallery.label.includes('景觀空拍') && (
             <div
-              className="absolute z-10 text-gray-400"
-              style={{ fontSize: '0.75rem', right: '5rem', bottom: '0.5rem' }}
+              className="absolute z-10 text-gray-400 text-micro"
+              style={{ right: '5rem', bottom: '0.5rem' }}
             >
               此為示意圖僅供參考，實際以施工為準
             </div>

@@ -145,12 +145,11 @@ const HomePage: React.FC = () => {
         {/* 開場動畫按鈕 - 右下 */}
         <button
           onClick={(e) => { e.stopPropagation(); restartIntro(); }}
-          className="absolute z-20 text-white/60 hover:text-white active:text-white border border-white/40 hover:border-white active:border-white transition-all"
+          className="absolute z-20 text-white/60 hover:text-white active:text-white text-micro border border-white/40 hover:border-white active:border-white transition-all"
           style={{
             bottom: '2rem',
             right: '2rem',
             padding: '0.25rem 1rem',
-            fontSize: '0.725rem',
             letterSpacing: '0.1em',
             background: 'rgba(0,0,0,0.2)'
           }}
@@ -170,7 +169,7 @@ const HomePage: React.FC = () => {
             <div className="bg-white transition-all duration-300 menu-line-2" style={{ width: '0.0725rem', height: '2rem' }} />
             <div className="bg-white transition-all duration-300 menu-line-3" style={{ width: '0.0725rem', height: '2rem' }} />
           </div>
-          <div className="writing-mode-vertical" style={{ fontSize: '0.75rem', letterSpacing: '0.3em' }}>MENU</div>
+          <div className="writing-mode-vertical text-micro" style={{ letterSpacing: '0.3em' }}>MENU</div>
         </button>
 
         {/* MENU 按鈕動畫樣式 */}
@@ -202,7 +201,7 @@ const HomePage: React.FC = () => {
           onClick={e => e.stopPropagation()}
           aria-label="選單頁碼"
         >
-          <span className="text-white tracking-widest" style={{ fontSize: '1rem', marginBottom: '0.5rem' }} aria-live="polite">
+          <span className="text-white text-body tracking-widest" style={{ marginBottom: '0.5rem' }} aria-live="polite">
             0{currentMenuIndex + 1}
           </span>
           {menuSections.map((section, idx) => (
@@ -240,8 +239,8 @@ const HomePage: React.FC = () => {
           >
             {/* 分類標籤 */}
             <div
-              className="text-[#f3cf9a]"
-              style={{ fontSize: '1.25rem', letterSpacing: '0.3em', marginBottom: '1rem' }}
+              className="text-[#f3cf9a] text-large"
+              style={{ letterSpacing: '0.3em', marginBottom: '1rem' }}
             >
               {currentMenu.category}
             </div>
@@ -254,8 +253,8 @@ const HomePage: React.FC = () => {
             >
               {/* 主標題 - 可點擊區域 */}
               <div
-                className="font-semibold text-white cursor-pointer"
-                style={{ fontSize: '3.75rem', letterSpacing: '0.2em', lineHeight: '1.25em' }}
+                className="font-semibold text-white text-display leading-normal-custom cursor-pointer"
+                style={{ letterSpacing: '0.2em' }}
                 onTouchEnd={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
@@ -291,9 +290,8 @@ const HomePage: React.FC = () => {
                     <Link
                       key={item.id}
                       to={item.link}
-                      className="text-white/80 hover:text-white active:text-white border border-transparent hover:border-white/60 active:border-white/60 transition-colors whitespace-nowrap"
+                      className="text-white/80 hover:text-white active:text-white text-body border border-transparent hover:border-white/60 active:border-white/60 transition-colors whitespace-nowrap"
                       style={{
-                        fontSize: '1rem',
                         padding: '0.375rem 0.75rem'
                       }}
                     >
@@ -321,10 +319,9 @@ const HomePage: React.FC = () => {
                 onMouseDown={() => setPressedArrow('prev')}
                 onMouseUp={() => setPressedArrow(null)}
                 onMouseLeave={() => setPressedArrow(null)}
-                className={`transition-all duration-150 ${
+                className={`text-h4 transition-all duration-150 ${
                   pressedArrow === 'prev' ? 'opacity-100 scale-110' : 'opacity-60 hover:opacity-100 hover:scale-125'
                 }`}
-                style={{ fontSize: '1.5rem' }}
                 aria-label="上一個選單"
               >
                 <span
@@ -342,10 +339,9 @@ const HomePage: React.FC = () => {
                 onMouseDown={() => setPressedArrow('next')}
                 onMouseUp={() => setPressedArrow(null)}
                 onMouseLeave={() => setPressedArrow(null)}
-                className={`transition-all duration-150 ${
+                className={`text-h4 transition-all duration-150 ${
                   pressedArrow === 'next' ? 'opacity-100 scale-110' : 'opacity-60 hover:opacity-100 hover:scale-125'
                 }`}
-                style={{ fontSize: '1.5rem' }}
                 aria-label="下一個選單"
               >
                 <span

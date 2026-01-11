@@ -49,7 +49,7 @@ const ComparisonLayout: React.FC<ComparisonLayoutProps> = ({
               <h3 className="text-large font-medium text-text-primary mb-2">
                 {left.title}
               </h3>
-              <p className="text-body leading-relaxed-custom text-text-primary text-justify">
+              <p className="text-body leading-relaxed text-text-primary text-justify">
                 {left.description}
               </p>
             </div>
@@ -68,7 +68,7 @@ const ComparisonLayout: React.FC<ComparisonLayoutProps> = ({
               <h3 className="text-large font-medium text-text-primary mb-2">
                 {right.title}
               </h3>
-              <p className="text-body leading-relaxed-custom text-text-primary text-justify">
+              <p className="text-body leading-relaxed text-text-primary text-justify">
                 {right.description}
               </p>
             </div>

@@ -229,8 +229,8 @@ const TrafficRoutePage: React.FC = () => {
                 : activeCategory === null
                 ? 'bg-white/80 text-[#68583f] border-[#68583f]/30 hover:border-[#68583f] hover:text-white hover:bg-[#68583f]'
                 : 'bg-white/50 text-[#68583f]/50 border-[#68583f]/20'
-            }`}
-            style={{ fontSize: '0.875rem', letterSpacing: '0.05em' }}
+            } text-xsmall`}
+            style={{ letterSpacing: '0.05em' }}
           >
             {category.name}
           </button>

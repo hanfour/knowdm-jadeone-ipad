@@ -382,7 +382,7 @@ const FireProtectionEngineeringPage: React.FC = () => {
 
               {/* 內文 */}
               {currentTab.content && (
-                <p className="text-body leading-loose-custom text-text-primary text-justify mb-6">
+                <p className="text-body text-justify leading-relaxed text-text-primary text-justify mb-6">
                   {currentTab.content}
                 </p>
               )}
@@ -397,7 +397,7 @@ const FireProtectionEngineeringPage: React.FC = () => {
                         <span className="text-body font-medium text-text-primary">
                           {feature.label}：
                         </span>
-                        <span className="text-body text-text-primary leading-relaxed-custom">
+                        <span className="text-body text-text-primary leading-relaxed">
                           {feature.text}
                         </span>
                       </div>
@@ -460,7 +460,7 @@ const FireProtectionEngineeringPage: React.FC = () => {
 
               {/* 內文 */}
               {currentTab.content && (
-                <p className="text-body leading-loose-custom text-text-primary text-justify">
+                <p className="text-body text-justify leading-relaxed text-text-primary text-justify">
                   {currentTab.content}
                 </p>
               )}

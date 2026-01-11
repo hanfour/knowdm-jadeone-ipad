@@ -56,8 +56,8 @@ const FullscreenMenuAlt: React.FC<FullscreenMenuAltProps> = ({ isOpen, onClose }
           >
             <div className="text-white">
               <div
-                className="opacity-50"
-                style={{ fontSize: '0.75rem', letterSpacing: '0.2em', marginBottom: '1.5rem' }}
+                className="opacity-50 text-micro"
+                style={{ letterSpacing: '0.2em', marginBottom: '1.5rem' }}
               >
                 {section.category}
               </div>
@@ -65,8 +65,8 @@ const FullscreenMenuAlt: React.FC<FullscreenMenuAltProps> = ({ isOpen, onClose }
                 {section.title.map((line, lineIdx) => (
                   <div
                     key={lineIdx}
-                    className="font-light"
-                    style={{ fontSize: '1.875rem', letterSpacing: '0.05em' }}
+                    className="font-light text-h3"
+                    style={{ letterSpacing: '0.05em' }}
                   >
                     {line}
                   </div>
@@ -78,9 +78,8 @@ const FullscreenMenuAlt: React.FC<FullscreenMenuAltProps> = ({ isOpen, onClose }
                     key={item.id}
                     to={item.link}
                     onClick={onClose}
-                    className="block border border-transparent hover:border-white/60 active:border-white/60 transition-colors"
+                    className="block text-body border border-transparent hover:border-white/60 active:border-white/60 transition-colors"
                     style={{
-                      fontSize: '1rem',
                       padding: '0.375rem 0.75rem',
                       marginLeft: '-0.75rem',
                     }}

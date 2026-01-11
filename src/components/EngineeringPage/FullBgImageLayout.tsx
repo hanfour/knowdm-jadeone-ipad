@@ -33,7 +33,7 @@ const FullBgImageLayout: React.FC<FullBgImageLayoutProps> = ({
 
           {/* 內文 */}
           {content && (
-            <p className="text-body leading-loose-custom text-white/90 text-justify">
+            <p className="text-body text-justify leading-relaxed text-white/90 text-justify">
               {content}
             </p>
           )}

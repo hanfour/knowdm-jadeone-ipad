@@ -219,8 +219,8 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
         >
           <div className="relative z-10 flex items-center">
             <div
-              className="text-[#244525] font-light"
-              style={{ fontSize: '3rem', letterSpacing: '0.3em', marginRight: '4rem' }}
+              className="text-[#244525] text-h3 font-light"
+              style={{ letterSpacing: '0.3em', marginRight: '4rem' }}
             >
               {introText1.split('').map((char, index) => (
                 <span
@@ -250,8 +250,8 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
           </div>
         </div>
         <div
-          className="absolute text-[#244525] opacity-60 z-10"
-          style={{ bottom: '2rem', right: '2rem', fontSize: '1rem' }}
+          className="absolute text-[#244525] opacity-60 text-body z-10"
+          style={{ bottom: '2rem', right: '2rem' }}
         >
           點擊跳過
         </div>
@@ -271,8 +271,8 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
           className={`absolute inset-0 flex items-center justify-center transition-opacity duration-700 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}
         >
           <div
-            className="absolute text-[#244525] font-light"
-            style={{ top: '25%', right: '25%', fontSize: '2.5rem', letterSpacing: '0.2em' }}
+            className="absolute text-[#244525] text-h1 font-light leading-none"
+            style={{ top: '25%', right: '25%', letterSpacing: '0.2em' }}
           >
             {introText2.split('').map((char, index) => (
               <span
@@ -314,8 +314,8 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
           </div>
         </div>
         <div
-          className="absolute text-[#244525] opacity-60 z-10"
-          style={{ bottom: '2rem', right: '2rem', fontSize: '1rem' }}
+          className="absolute text-[#244525] opacity-60 text-body z-10"
+          style={{ bottom: '2rem', right: '2rem' }}
         >
           點擊跳過
         </div>
@@ -337,8 +337,8 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
           <div className="relative z-10 text-center flex flex-col justify-center items-center">
             {/* 主標題 - 打字效果 */}
             <div
-              className="text-white font-light"
-              style={{ fontSize: '3.75rem', letterSpacing: '0.3em', marginBottom: '2rem' }}
+              className="text-white text-display font-light"
+              style={{ letterSpacing: '0.3em', marginBottom: '2rem' }}
             >
               {mainTitle.split('').map((char, index) => (
                 <span
@@ -354,12 +354,12 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
 
             {/* 副標題 - Fade up */}
             <div
-              className={`text-white/80 transition-all duration-700 ${
+              className={`text-white/80 text-h4 transition-all duration-700 ${
                 subtitleVisible
                   ? 'opacity-100 translate-y-0'
                   : 'opacity-0 translate-y-4'
               }`}
-              style={{ fontSize: '1.5rem', letterSpacing: '0.2em' }}
+              style={{ letterSpacing: '0.2em' }}
             >
               {subtitle}
             </div>
@@ -406,8 +406,8 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
         `}</style>
 
         <div
-          className="absolute text-white/60 z-10"
-          style={{ bottom: '2rem', right: '2rem', fontSize: '1rem' }}
+          className="absolute text-white/60 text-body z-10"
+          style={{ bottom: '2rem', right: '2rem' }}
         >
           點擊跳過
         </div>
@@ -515,8 +515,8 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
         `}</style>
 
         <div
-          className="absolute text-white/60 z-10"
-          style={{ bottom: '2rem', right: '2rem', fontSize: '1rem' }}
+          className="absolute text-white/60 text-body z-10"
+          style={{ bottom: '2rem', right: '2rem' }}
         >
           點擊跳過
         </div>

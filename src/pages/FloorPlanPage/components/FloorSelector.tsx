@@ -34,8 +34,7 @@ const FloorSelector: React.FC<FloorSelectorProps> = ({
                 : floor.image
                 ? 'hover:bg-gray-100 text-gray-700'
                 : 'text-gray-300 cursor-not-allowed'
-            }`}
-            style={{ fontSize: '0.9rem' }}
+            } text-small`}
           >
             {floor.label}
           </button>

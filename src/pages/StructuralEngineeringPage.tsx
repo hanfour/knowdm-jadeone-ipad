@@ -162,18 +162,16 @@ const StructuralEngineeringPage: React.FC = () => {
         }}
       >
         <p
-          className="text-white/70"
+          className="text-white/70 text-small"
           style={{
-            fontSize: '0.9rem',
             letterSpacing: '0.2em',
           }}
         >
           結構設計師/
         </p>
         <p
-          className="text-white mt-12"
+          className="text-white text-small mt-12"
           style={{
-            fontSize: '0.9rem',
             letterSpacing: '0.25em',
             fontWeight: '300',
           }}
@@ -195,13 +193,12 @@ const StructuralEngineeringPage: React.FC = () => {
         {/* 標題區 */}
         <div className="mb-4">
           <p
-            className="text-[#f5e6b8] font-medium"
+            className="text-[#f5e6b8] text-large font-medium"
             style={{
-              fontSize: '1.25rem',
               letterSpacing: '0.15em',
             }}
           >
-            <span className="italic" style={{fontSize: '0.9rem'}}>大匠工程團隊 / </span>
+            <span className="italic text-small">大匠工程團隊 / </span>
             <br/>
             世界級頂尖結構標準，同步台北101
           </p>
@@ -209,10 +206,8 @@ const StructuralEngineeringPage: React.FC = () => {
 
         {/* 主要描述文字 */}
         <div
-          className="text-white/85"
+          className="text-white/85 text-body text-justify leading-relaxed"
           style={{
-            fontSize: '1rem',
-            lineHeight: '2.4',
             maxWidth: '28rem',
           }}
         >
@@ -229,16 +224,15 @@ const StructuralEngineeringPage: React.FC = () => {
             style={{ letterSpacing: '0.08em' }}
           >
             <span
-              className="gradient-text-animate"
-              style={{ fontSize: '0.9rem' }}
+              className="gradient-text-animate text-small"
             >
               作品代表<br/>
               九川建設「四方研」結構設計<br/>
               多項中大型集合住宅結構工程
             </span>
             <span
-              className="!hidden gradient-text-animate italic mt-1"
-              style={{ fontSize: '0.75rem', fontFamily: 'serif' }}
+              className="!hidden gradient-text-animate italic text-micro mt-1"
+              style={{ fontFamily: 'serif' }}
             >
               Collection
             </span>
@@ -255,10 +249,9 @@ const StructuralEngineeringPage: React.FC = () => {
       >
         {/* 主標題 - 直排，每字從左上飛入 */}
         <h3
-          className="text-white font-light -mt-32"
+          className="text-white text-h3 font-light -mt-32"
           style={{
             writingMode: 'vertical-rl',
-            fontSize: '3rem',
             letterSpacing: '0.2em',
           }}
         >
@@ -282,10 +275,9 @@ const StructuralEngineeringPage: React.FC = () => {
 
         {/* 副標題 - 直排，每字從左上飛入 */}
         <h3
-          className="text-white font-light"
+          className="text-white text-h3 font-light"
           style={{
             writingMode: 'vertical-rl',
-            fontSize: '3rem',
             letterSpacing: '0.2em',
           }}
         >
@@ -378,7 +370,7 @@ const StructuralEngineeringPage: React.FC = () => {
             {/* 當前圖片標籤 */}
             <div className="flex items-center" style={{ gap: '0.5rem', marginBottom: '0.25rem' }}>
               <span className="bg-white/60" style={{ width: '0.5rem', height: '0.5rem' }} />
-              <span className="text-white" style={{ fontSize: '0.875rem', letterSpacing: '0.05em' }}>
+              <span className="text-white text-xsmall" style={{ letterSpacing: '0.05em' }}>
                 {portfolioImages[lightbox.currentIndex].label}
               </span>
             </div>

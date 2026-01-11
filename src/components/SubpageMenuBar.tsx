@@ -73,9 +73,8 @@ const SubpageMenuBar: React.FC<SubpageMenuBarProps> = ({ sectionIndex }) => {
                   isCurrentPage(item.link)
                     ? 'text-white active'
                     : 'text-white/70 hover:text-white'
-                }`}
+                } text-xsmall`}
                 style={{
-                  fontSize: '0.875rem',
                   letterSpacing: '0.05em',
                 }}
               >

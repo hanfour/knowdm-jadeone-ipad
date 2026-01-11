@@ -163,18 +163,16 @@ const PublicFacilityPage: React.FC = () => {
         }}
       >
         <p
-          className="text-white/70 order-1"
+          className="text-white/70 text-small order-1"
           style={{
-            fontSize: '0.9rem',
             letterSpacing: '0.2em',
           }}
         >
           公設設計師/
         </p>
         <p
-          className="text-white mt-12"
+          className="text-white text-small mt-12"
           style={{
-            fontSize: '0.9rem',
             letterSpacing: '0.25em',
             fontWeight: '300',
           }}
@@ -196,13 +194,12 @@ const PublicFacilityPage: React.FC = () => {
         {/* 標題區 */}
         <div className="mb-4">
           <p
-            className="text-[#f5e6b8] font-medium"
+            className="text-[#f5e6b8] text-large font-medium"
             style={{
-              fontSize: '1.25rem',
               letterSpacing: '0.15em',
             }}
           >
-            <span className="italic" style={{fontSize: '0.9rem'}}>公設語境 / </span>
+            <span className="italic text-small">公設語境 / </span>
             <br/>
             與作設計 劉守書
           </p>
@@ -210,10 +207,8 @@ const PublicFacilityPage: React.FC = () => {
 
         {/* 主要描述文字 */}
         <div
-          className="text-white/85"
+          className="text-white/85 text-body text-justify leading-relaxed"
           style={{
-            fontSize: '1rem',
-            lineHeight: '2.4',
             maxWidth: '28rem',
           }}
         >
@@ -229,8 +224,7 @@ const PublicFacilityPage: React.FC = () => {
             style={{ letterSpacing: '0.08em' }}
           >
             <span
-              className="gradient-text-animate mb-1"
-              style={{ fontSize: '0.9rem' }}
+              className="gradient-text-animate text-small mb-1"
             >
               作品代表
             </span>
@@ -239,8 +233,8 @@ const PublicFacilityPage: React.FC = () => {
                 <span
                   key={image.label}
                   onClick={() => openLightbox(index)}
-                  className="gradient-text-animate cursor-pointer hover:font-bold"
-                  style={{ fontSize: '0.9rem', letterSpacing: '0.05em' }}
+                  className="gradient-text-animate cursor-pointer hover:font-bold text-small"
+                  style={{ letterSpacing: '0.05em' }}
                 >
                   {image.label}
                 </span>
@@ -259,10 +253,9 @@ const PublicFacilityPage: React.FC = () => {
       >
         {/* 主標題 - 直排，每字從左上飛入 */}
         <h3
-          className="text-white font-light -mt-32"
+          className="text-white text-h3 font-light -mt-32"
           style={{
             writingMode: 'vertical-rl',
-            fontSize: '3rem',
             letterSpacing: '0.2em',
           }}
         >
@@ -286,10 +279,9 @@ const PublicFacilityPage: React.FC = () => {
 
         {/* 副標題 - 直排，每字從左上飛入 */}
         <h3
-          className="text-white font-light"
+          className="text-white text-h3 font-light"
           style={{
             writingMode: 'vertical-rl',
-            fontSize: '3rem',
             letterSpacing: '0.2em',
           }}
         >
@@ -382,7 +374,7 @@ const PublicFacilityPage: React.FC = () => {
             {/* 當前圖片標籤 */}
             <div className="flex items-center" style={{ gap: '0.5rem', marginBottom: '0.25rem' }}>
               <span className="bg-white/60" style={{ width: '0.5rem', height: '0.5rem' }} />
-              <span className="text-white" style={{ fontSize: '0.875rem', letterSpacing: '0.05em' }}>
+              <span className="text-white text-xsmall" style={{ letterSpacing: '0.05em' }}>
                 {portfolioImages[lightbox.currentIndex].label}
               </span>
             </div>

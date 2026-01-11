@@ -58,16 +58,16 @@ const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, desc
         <div className="text-white" style={{ maxWidth: '32rem' }}>
           {/* 主標題 */}
           <h1
-            className="font-light leading-tight"
-            style={{ fontSize: '3rem', letterSpacing: '0.05em', marginBottom: '1rem' }}
+            className="font-light text-h3 leading-tight"
+            style={{ letterSpacing: '0.05em', marginBottom: '1rem' }}
           >
             {title}
           </h1>
 
           {/* 內文 */}
           <p
-            className="text-white leading-relaxed"
-            style={{ fontSize: '1rem', marginTop: '1.5rem', filter: 'drop-shadow(0 1px 1px rgb(0 0 0 / 0.25))' }}
+            className="text-white text-body leading-relaxed"
+            style={{ marginTop: '1.5rem', filter: 'drop-shadow(0 1px 1px rgb(0 0 0 / 0.25))' }}
           >
             {description}
           </p>
@@ -82,7 +82,7 @@ const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, desc
         {/* 當前圖片標籤 - 固定在縮圖上方 */}
         <div className="flex items-center" style={{ gap: '0.5rem', marginBottom: '0.25rem' }}>
           <span className="bg-white/60" style={{ width: '0.5rem', height: '0.5rem' }} />
-          <span className="text-white" style={{ fontSize: '0.875rem', letterSpacing: '0.05em' }}>{images[activeIndex].label}</span>
+          <span className="text-white text-xsmall" style={{ letterSpacing: '0.05em' }}>{images[activeIndex].label}</span>
         </div>
 
         {/* 縮圖網格 - 4 列排列 */}

@@ -177,9 +177,8 @@ const LandscapeTastePage: React.FC = () => {
             className="!hidden absolute bottom-8 left-8 z-10"
           >
             <p
-              className="text-white/60"
+              className="text-white/60 text-xsmall"
               style={{
-                fontSize: '0.85rem',
                 letterSpacing: '0.1em',
               }}
             >
@@ -199,10 +198,9 @@ const LandscapeTastePage: React.FC = () => {
         >
           {/* 主標題 - 上境設計工程有限公司 - 直排，每字從左上飛入 */}
           <h3
-            className="text-white font-light -mt-32"
+            className="text-white text-h3 font-light -mt-32"
             style={{
               writingMode: 'vertical-rl',
-              fontSize: '3rem',
               letterSpacing: '0.2em',
             }}
           >
@@ -226,10 +224,9 @@ const LandscapeTastePage: React.FC = () => {
 
           {/* 副標題 - 設計總監 許富居 - 直排，每字從左上飛入 */}
           <h3
-            className="text-white font-light"
+            className="text-white text-h3 font-light"
             style={{
               writingMode: 'vertical-rl',
-              fontSize: '3rem',
               letterSpacing: '0.2em',
             }}
           >
@@ -265,13 +262,12 @@ const LandscapeTastePage: React.FC = () => {
           {/* 標題區 */}
           <div className="mb-4">
             <p
-              className="text-[#f5e6b8] font-medium"
+              className="text-[#f5e6b8] text-large font-medium"
               style={{
-                fontSize: '1.25rem',
                 letterSpacing: '0.15em',
               }}
             >
-              <span className="italic" style={{fontSize: '0.9rem'}}>上境設計 / </span>
+              <span className="italic text-small">上境設計 / </span>
               <br/>
               當建築遇見風景，美感於此延續
             </p>
@@ -279,10 +275,8 @@ const LandscapeTastePage: React.FC = () => {
 
           {/* 主要描述文字 */}
           <div
-            className="text-white/85"
+            className="text-white/85 text-body text-justify leading-relaxed"
             style={{
-              fontSize: '1rem',
-              lineHeight: '2.4',
               maxWidth: '28rem',
             }}
           >
@@ -299,16 +293,15 @@ const LandscapeTastePage: React.FC = () => {
               style={{ letterSpacing: '0.08em' }}
             >
               <span
-                className="gradient-text-animate"
-                style={{ fontSize: '0.9rem' }}
+                className="gradient-text-animate text-small"
               >
                 作品代表<br/>
                 慶仁建設「慶仁林境」景觀與公設（A’ Design Award 銀獎）<br/>
                 城揚建設「御廳苑」景觀設計（MUSE 銀獎）
               </span>
               <span
-                className="!hidden gradient-text-animate italic mt-1"
-                style={{ fontSize: '0.75rem', fontFamily: 'serif' }}
+                className="!hidden gradient-text-animate italic text-micro mt-1"
+                style={{ fontFamily: 'serif' }}
               >
                 Collection
               </span>
@@ -387,7 +380,7 @@ const LandscapeTastePage: React.FC = () => {
             {/* 當前圖片標籤 */}
             <div className="flex items-center" style={{ gap: '0.5rem', marginBottom: '0.25rem' }}>
               <span className="bg-white/60" style={{ width: '0.5rem', height: '0.5rem' }} />
-              <span className="text-white" style={{ fontSize: '0.875rem', letterSpacing: '0.05em' }}>
+              <span className="text-white text-xsmall" style={{ letterSpacing: '0.05em' }}>
                 {portfolioImages[lightbox.currentIndex].label}
               </span>
             </div>

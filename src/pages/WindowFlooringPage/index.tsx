@@ -80,14 +80,14 @@ const WindowFlooringPage: React.FC = () => {
                 </h2>
 
                 {/* 產品介紹 */}
-                <p className="text-body leading-loose-custom text-gray-700 mb-6 text-justify">
+                <p className="text-body text-justify leading-relaxed text-gray-700 mb-6 text-justify">
                   日本YKK精密工學，以嚴苛的氣密與水密標準，運用新等壓原理開發高水密性能，『高耐風壓』提升內外部隔音效果，節省冷暖氣能源消耗，冷暖氣運轉負擔減輕，提供靜謐安穩的舒適生活。
                 </p>
 
                 {/* 基本性能圖 */}
                 <div className="mb-8">
                   <div className="w-full flex justify-between items-center">
-                    <p className="text-body leading-loose-custom text-gray-900 font-medium">基本性能</p>
+                    <p className="text-body text-justify leading-relaxed text-gray-900 font-medium">基本性能</p>
                     <p className="text-micro">＊通風門的水密性能為750Pa、耐風壓性能為2800Pa、隔音性能為25dB</p>
                   </div>
                   <img
@@ -98,7 +98,7 @@ const WindowFlooringPage: React.FC = () => {
                 </div>
 
                 {/* 實績照片標題 */}
-                <p className="text-body leading-loose-custom text-gray-900 font-medium mb-4">
+                <p className="text-body text-justify leading-relaxed text-gray-900 font-medium mb-4">
                   實績照片
                 </p>
 
@@ -158,7 +158,7 @@ const WindowFlooringPage: React.FC = () => {
 
                     {/* 介紹 */}
                     <p
-                      className="text-body leading-loose-custom text-gray-800 text-justify animate-fade-in-left"
+                      className="text-body text-justify leading-relaxed text-gray-800 text-justify animate-fade-in-left"
                       style={{ animationDelay: '0.4s' }}
                     >
                       美國Robina羅賓木地板，符合歐盟低甲醛、綠建材標章、國家CNS防焰一級保證，使用熱帶快生複合硬木種，最適台灣氣候的超耐潮地板，獨創真空邊緣防護系統「專利雙卡扣設計」有效防滲漏，10年耐白蟻保證。
@@ -214,7 +214,7 @@ const WindowFlooringPage: React.FC = () => {
 
                   {/* 介紹 */}
                   <p
-                    className="text-body leading-loose-custom text-black text-justify max-w-[600px] mb-6 animate-fade-in-left"
+                    className="text-body text-justify leading-relaxed text-black text-justify max-w-[600px] mb-6 animate-fade-in-left"
                     style={{ animationDelay: '0.4s' }}
                   >
                     有效降低地面回響與共振音，降噪表現最高可達 20dB，明顯改善行走噪音與空間安靜度。同時具備優異防潮效果，阻隔地面濕氣，減少潮濕對地板的影響，讓使用環境更安心、更耐久。
@@ -230,7 +230,7 @@ const WindowFlooringPage: React.FC = () => {
                         className="w-20 h-20 object-contain mb-4"
                       />
                       <h3 className="text-h4 tracking-wide-custom text-brand-sekisui font-bold mb-2">抗潮效果</h3>
-                      <p className="text-body leading-loose-custom text-gray-800 text-justify max-w-[200px]">
+                      <p className="text-body text-justify leading-relaxed text-gray-800 text-justify max-w-[200px]">
                         對水氣具有極好的抵抗，對台灣潮濕氣候所造成材料腐化具有極好的效果。
                       </p>
                     </div>
@@ -243,7 +243,7 @@ const WindowFlooringPage: React.FC = () => {
                         className="w-20 h-20 object-contain mb-4"
                       />
                       <h3 className="text-h4 tracking-wide-custom text-brand-sekisui font-bold mb-2">抗壓強度</h3>
-                      <p className="text-body leading-loose-custom text-gray-800 text-justify max-w-[200px]">
+                      <p className="text-body text-justify leading-relaxed text-gray-800 text-justify max-w-[200px]">
                         低壓縮永久變型率，極高的抗壓程度，具有出色的承重性能。
                       </p>
                     </div>
@@ -256,7 +256,7 @@ const WindowFlooringPage: React.FC = () => {
                         className="w-20 h-20 object-contain mb-4"
                       />
                       <h3 className="text-h4 tracking-wide-custom text-brand-sekisui font-bold mb-2">行走聲響</h3>
-                      <p className="text-body leading-loose-custom text-gray-800 text-justify max-w-[200px]">
+                      <p className="text-body text-justify leading-relaxed text-gray-800 text-justify max-w-[200px]">
                         有效隔絕行走時的響聲，消除各種硬質鞋底發出的共振。
                       </p>
                     </div>
@@ -269,7 +269,7 @@ const WindowFlooringPage: React.FC = () => {
                         className="w-20 h-20 object-contain mb-4"
                       />
                       <h3 className="text-h4 tracking-wide-custom text-brand-sekisui font-bold mb-2">極佳彈性</h3>
-                      <p className="text-body leading-loose-custom text-gray-800 text-justify max-w-[200px]">
+                      <p className="text-body text-justify leading-relaxed text-gray-800 text-justify max-w-[200px]">
                         即使在使用數年後，仍具有良好的彈性，也不會降低聲學性能。
                       </p>
                     </div>
@@ -282,7 +282,7 @@ const WindowFlooringPage: React.FC = () => {
                         className="w-20 h-20 object-contain mb-4"
                       />
                       <h3 className="text-h4 tracking-wide-custom text-brand-sekisui font-bold mb-2">結構隔音</h3>
-                      <p className="text-body leading-loose-custom text-gray-800 text-justify max-w-[200px]">
+                      <p className="text-body text-justify leading-relaxed text-gray-800 text-justify max-w-[200px]">
                         出色的結構隔音效果，在低頻範圍內有最佳的性能。
                       </p>
                     </div>

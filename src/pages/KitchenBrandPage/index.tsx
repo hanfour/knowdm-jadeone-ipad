@@ -307,7 +307,7 @@ const KitchenBrandPage: React.FC = () => {
 
         {/* 內文 */}
         {currentTab.content && (
-          <p className="text-body leading-loose-custom text-white text-justify">
+          <p className="text-body text-justify leading-relaxed text-white text-justify">
             {currentTab.content}
           </p>
         )}
@@ -352,7 +352,7 @@ const KitchenBrandPage: React.FC = () => {
               </h3>
 
               {/* 內文 */}
-              <p className="text-body leading-loose-custom text-gray-800 text-justify">
+              <p className="text-body text-justify leading-relaxed text-gray-800 text-justify">
                 {item.content}
               </p>
             </div>
@@ -553,10 +553,10 @@ const KitchenBrandPage: React.FC = () => {
       >
         {/* 左上角標籤 */}
         <div className="absolute z-20 bg-[#d4a853]/50 text-black px-6 py-4">
-          <h3 className="font-bold text-center" style={{ fontSize: '2.5rem', lineHeight: 1 }}>
+          <h3 className="font-bold text-h1 text-center leading-none">
             {specImages[specImageIndex].label}
           </h3>
-          <p className="mt-1 text-center" style={{ fontSize: '0.85rem' }}>規格尺寸圖</p>
+          <p className="mt-1 text-center text-xsmall">規格尺寸圖</p>
         </div>
 
         {/* 關閉按鈕 */}
@@ -656,8 +656,8 @@ const KitchenBrandPage: React.FC = () => {
 
         {/* 右下角註解 */}
         <div
-          className="absolute z-10 text-gray-400"
-          style={{ fontSize: '0.75rem', right: '5rem', bottom: '0.5rem' }}
+          className="absolute z-10 text-gray-400 text-micro"
+          style={{ right: '5rem', bottom: '0.5rem' }}
         >
           此為示意圖僅供參考，實際以施工為準
         </div>
@@ -738,7 +738,7 @@ const KitchenBrandPage: React.FC = () => {
 
             {/* 產品說明（如有） */}
             {selectedEquipment.description && (
-              <p className="text-xsmall leading-relaxed-custom text-gray-600 mb-4">
+              <p className="text-xsmall leading-relaxed text-gray-600 mb-4">
                 {selectedEquipment.description}
               </p>
             )}

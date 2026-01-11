@@ -136,7 +136,7 @@ const ElevatorBrandPage: React.FC = () => {
                 {getCurrentPageFeatures().map((feature, index) => (
                   <li
                     key={index}
-                    className="flex text-body leading-relaxed-custom text-text-primary"
+                    className="flex text-body leading-relaxed text-text-primary"
                   >
                     {/* 第一頁顯示編號，第二三頁不顯示 */}
                     {currentPage === 0 ? (
@@ -213,7 +213,7 @@ const ElevatorBrandPage: React.FC = () => {
             </h1>
 
             {/* 內文 */}
-            <p className="text-body leading-loose-custom text-text-primary text-justify mb-12">
+            <p className="text-body text-justify leading-relaxed text-text-primary text-justify mb-12">
               以高階豪宅標準為本，日立電梯融合極致靜音技術與安全，從運行速度到停層精度，皆體現日本精密工學的極致，讓每一次乘載都成為優雅體驗。
             </p>
 

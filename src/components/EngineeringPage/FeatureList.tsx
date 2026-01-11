@@ -28,7 +28,7 @@ export const NumberedFeatureList: React.FC<NumberedFeatureListProps> = ({
             </span>
           </div>
           {feature.desc && (
-            <p className="text-body text-text-primary mt-1 ps-4 leading-relaxed-custom">
+            <p className="text-body text-text-primary mt-1 ps-4 leading-relaxed">
               {feature.desc}
             </p>
           )}
@@ -56,7 +56,7 @@ export const TitledFeatureList: React.FC<TitledFeatureListProps> = ({
             {feature.title}
           </h3>
           {feature.desc && (
-            <p className="text-body text-text-primary leading-loose-custom text-justify">
+            <p className="text-body text-text-primary text-justify leading-relaxed text-justify">
               {feature.desc}
             </p>
           )}
@@ -85,7 +85,7 @@ export const BulletLabelList: React.FC<BulletLabelListProps> = ({
             <span className="text-body font-medium text-text-primary">
               {feature.label}：
             </span>
-            <span className="text-body text-text-primary leading-relaxed-custom">
+            <span className="text-body text-text-primary leading-relaxed">
               {feature.text}
             </span>
           </div>

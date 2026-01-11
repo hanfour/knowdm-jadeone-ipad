@@ -59,16 +59,14 @@ const EquipmentIcon: React.FC<EquipmentIconProps> = ({
         <p
           className={`tracking-wide transition-colors duration-300 ${
             isActive ? 'text-white' : 'text-[#f5e6b8] group-hover:text-white/70'
-          }`}
-          style={{fontSize: '1rem', lineHeight: 2, }}
+          } text-body text-justify leading-relaxed`}
         >
           {name}
         </p>
         <p
           className={`uppercase mt-1 transition-colors duration-300 ${
             isActive ? 'text-white/80' : 'text-[#f5e6b8]/70 group-hover:text-white/50'
-          }`}
-          style={{fontSize: '0.9rem', }}
+          } text-small`}
         >
           {englishName}
         </p>

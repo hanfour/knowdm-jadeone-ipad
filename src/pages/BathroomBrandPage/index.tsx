@@ -281,7 +281,7 @@ const BathroomBrandPage: React.FC = () => {
 
           {/* 內文 */}
           {currentTab.content && (
-            <p className="text-body leading-loose-custom text-gray-700 text-justify">
+            <p className="text-body text-justify leading-relaxed text-gray-700 text-justify">
               {currentTab.content}
             </p>
           )}

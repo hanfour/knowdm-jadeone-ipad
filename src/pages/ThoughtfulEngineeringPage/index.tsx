@@ -246,7 +246,7 @@ const ThoughtfulEngineeringPage: React.FC = () => {
             {currentTab.services.map((service) => (
               <p
                 key={service.id}
-                className={`text-body leading-loose-custom text-text-primary transition-opacity duration-300 ${
+                className={`text-body text-justify leading-relaxed text-text-primary transition-opacity duration-300 ${
                   activeService === service.id ? 'block' : 'hidden'
                 }`}
               >
@@ -267,7 +267,7 @@ const ThoughtfulEngineeringPage: React.FC = () => {
                 {currentTab.title}
               </h1>
               {currentTab.content && (
-                <p className="text-body leading-loose-custom text-text-primary text-justify">
+                <p className="text-body text-justify leading-relaxed text-text-primary text-justify">
                   {currentTab.content}
                 </p>
               )}
@@ -312,7 +312,7 @@ const ThoughtfulEngineeringPage: React.FC = () => {
                 {currentTab.title}
               </h1>
               {currentTab.content && (
-                <p className="text-body leading-loose-custom text-white/90 text-justify">
+                <p className="text-body text-justify leading-relaxed text-white/90 text-justify">
                   {currentTab.content}
                 </p>
               )}
@@ -350,14 +350,14 @@ const ThoughtfulEngineeringPage: React.FC = () => {
                 {currentTab.title}
               </h1>
               {currentTab.content && (
-                <p className="text-body leading-loose-custom text-text-primary text-justify">
+                <p className="text-body text-justify leading-relaxed text-text-primary text-justify">
                   {currentTab.content}
                 </p>
               )}
               {currentTab.details && currentTab.details.length > 0 && (
                 <div className="mt-4 space-y-3">
                   {currentTab.details.map((detail, index) => (
-                    <p key={index} className="text-body leading-relaxed-custom text-text-primary">
+                    <p key={index} className="text-body leading-relaxed text-text-primary">
                       {detail}
                     </p>
                   ))}
@@ -387,7 +387,7 @@ const ThoughtfulEngineeringPage: React.FC = () => {
                 {currentTab.title}
               </h1>
               {currentTab.content && (
-                <p className="text-body leading-loose-custom text-text-primary text-justify">
+                <p className="text-body text-justify leading-relaxed text-text-primary text-justify">
                   {currentTab.content}
                 </p>
               )}

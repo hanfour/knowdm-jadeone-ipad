@@ -122,7 +122,7 @@ const FurnitureSheet: React.FC<FurnitureSheetProps> = ({
       {unit && (
         <>
           <div className="absolute top-0 left-0 z-10 bg-[#d4a853]/50 text-black px-6 py-4">
-            <h3 className="font-bold text-center" style={{ fontSize: '1.75rem' }}>
+            <h3 className="font-bold text-h3 text-center">
               {unit.id}戶
             </h3>
             <p className="text-sm">傢俱配置參考圖</p>
@@ -240,8 +240,8 @@ const FurnitureSheet: React.FC<FurnitureSheetProps> = ({
           />
 
           <div
-            className="absolute z-10 text-gray-400"
-            style={{ right: '5rem', bottom: '.5rem', fontSize: '0.75rem' }}
+            className="absolute z-10 text-gray-400 text-micro"
+            style={{ right: '5rem', bottom: '.5rem' }}
           >
             本圖僅為傢俱配置參考，實際依施工為準<br/>本戶傢配置參考圖由室內設計公司提供
           </div>
