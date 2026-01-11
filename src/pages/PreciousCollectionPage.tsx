@@ -247,27 +247,28 @@ const PreciousCollectionPage: React.FC = () => {
         {/* 統計數據 */}
         <div className="space-y-3">
           {/* 水湳重劃區 */}
-          <div className="border-b border-[#0b2d2a]/20 pb-2">
+          <div>
             <p className="text-body font-medium">水湳重劃區約253公頃</p>
           </div>
 
           {/* 公共設施用地 */}
-          <div className="border-b border-[#0b2d2a]/20 pb-2">
+          <div>
             <p className="text-small text-[#0b2d2a]/70">公共設施用地（含綠地）</p>
             <p className="text-body font-medium">共50.03%</p>
           </div>
 
           {/* 綠覆型用地 */}
-          <div className="border-b border-[#0b2d2a]/20 pb-2">
+          <div>
             <p className="text-small text-[#0b2d2a]/70">綠覆型用地（公園、綠地、國道）</p>
             <p className="text-body font-medium">共33.01%</p>
           </div>
 
           {/* 土地使用分區 */}
-          <div>
+          <div className="border-b border-[#0b2d2a]/20 pb-2">
             <p className="text-small text-[#0b2d2a]/70">土地使用分區</p>
             <p className="text-body font-medium mb-2">共49.97%</p>
-
+          </div>
+          <div>
             {/* 分區細項 - 可點擊展開 */}
             <div className="space-y-1 text-xsmall">
               {/* 生態專用區 - 可展開 */}

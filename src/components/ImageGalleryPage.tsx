@@ -40,7 +40,7 @@ const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, desc
             />
             {/* 右側漸層遮罩 - 僅第一張顯示 */}
             <div
-              className={`absolute inset-0 bg-gradient-to-l from-[#0b2d2a]/15 to-transparent duration-700 ${
+              className={`absolute inset-0 bg-gradient-to-l from-[#0b2d2a]/5 to-transparent duration-700 ${
                 activeIndex === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'
               }`}
             />
