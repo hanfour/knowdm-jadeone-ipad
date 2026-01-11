@@ -43,9 +43,9 @@ const districts: DistrictDetail[] = [
       greenArea: '約83.63公頃',
     },
     images: [
-      '/images/anchor-future/shuinan-01.jpg',
-      '/images/anchor-future/shuinan-02.jpg',
-      '/images/anchor-future/shuinan-03.jpg',
+      '/images/a1/IMG_004.jpg',
+      '/images/a1/IMG_003.jpg',
+      '/images/a1/IMG_002.jpg',
     ],
   },
   {
@@ -352,7 +352,7 @@ const AnchorFuturePage: React.FC = () => {
         {/* 主要內容區 */}
         <div className="h-full flex">
           {/* 左側：文字內容 */}
-          <div className="w-1/2 h-full px-16 py-12 overflow-y-auto">
+          <div className="w-2/5 h-full px-16 py-12 overflow-y-auto">
             {/* 區域標籤 */}
             <div
               className="inline-block px-4 py-1 rounded-full text-white text-small mb-6"
@@ -411,13 +411,13 @@ const AnchorFuturePage: React.FC = () => {
           </div>
 
           {/* 右側：圖片輪播 */}
-          <div className="w-1/2 h-full flex items-center justify-center bg-gray-100 relative">
+          <div className="flex-1 h-full flex items-center justify-center bg-gray-100 relative">
             {/* 圖片 */}
             <img
               key={currentImageIndex}
               src={modalDistrictData.images[currentImageIndex]}
               alt={`${modalDistrictData.name} ${currentImageIndex + 1}`}
-              className="max-w-full max-h-full object-contain animate-fade-in"
+              className="w-full h-full object-cover animate-fade-in"
             />
 
             {/* 圖片指示器 */}
