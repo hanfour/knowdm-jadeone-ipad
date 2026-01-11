@@ -59,7 +59,7 @@ const EquipmentIcon: React.FC<EquipmentIconProps> = ({
         <p
           className={`tracking-wide transition-colors duration-300 ${
             isActive ? 'text-white' : 'text-[#f5e6b8] group-hover:text-white/70'
-          } text-body text-justify leading-relaxed`}
+          } text-body leading-relaxed`}
         >
           {name}
         </p>

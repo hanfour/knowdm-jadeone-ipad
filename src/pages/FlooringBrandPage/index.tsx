@@ -1,33 +1,18 @@
 import React, { useState } from 'react';
 import SubpageMenuBar from '../../components/SubpageMenuBar';
 
-interface ProjectPhoto {
-  id: string;
-  image: string;
-  name: string;
-}
-
 interface TabData {
   id: string;
   name: string;
 }
 
 const tabs: TabData[] = [
-  { id: 'ykk', name: 'YKK氣密窗' },
   { id: 'robin', name: 'ROBINA地板' },
   { id: 'sekisui', name: 'SEKISUI靜音墊' },
 ];
 
-const ykkProjects: ProjectPhoto[] = [
-  { id: '1', image: '/images/window-flooring/ykk/projects/國家美術館.jpg', name: '國家美術館' },
-  { id: '2', image: '/images/window-flooring/ykk/projects/東騰信義.jpg', name: '東騰信義' },
-  { id: '3', image: '/images/window-flooring/ykk/projects/森林摩天41.jpg', name: '森林摩天41' },
-  { id: '4', image: '/images/window-flooring/ykk/projects/若山三期若蒔山.jpg', name: '若山三期若蒔山' },
-  { id: '5', image: '/images/window-flooring/ykk/projects/鑫輝昕奕居.jpg', name: '鑫輝昕奕居' },
-];
-
-const WindowFlooringPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('ykk');
+const FlooringBrandPage: React.FC = () => {
+  const [activeTab, setActiveTab] = useState('robin');
 
   // 燈箱狀態
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -44,85 +29,6 @@ const WindowFlooringPage: React.FC = () => {
       >
         {/* Tab 內容區 */}
         <div className="flex-1 overflow-hidden">
-          {activeTab === 'ykk' && (
-            <div className="h-full flex">
-              {/* 左側：情境圖 + Logo */}
-              <div className="w-[50%] h-full overflow-hidden relative">
-                <img
-                  src="/images/window-flooring/ykk/context.jpg"
-                  alt="YKK氣密窗情境"
-                  className="w-full h-full object-cover"
-                />
-                {/* YKK Logo 壓在右上角 */}
-                <div className="absolute top-6 right-6">
-                  <img
-                    src="/images/window-flooring/ykk/logo.png"
-                    alt="YKK AP"
-                    className="h-12 object-contain"
-                  />
-                </div>
-                {/* 左下角警示文字 */}
-                <div className="absolute bottom-4 left-4">
-                  <p className="text-micro text-gray-600">
-                    產品情境示意圖僅供參考，以實際施工及合約為準
-                  </p>
-                </div>
-              </div>
-
-              {/* 右側：產品資訊 */}
-              <div
-                className="w-[50%] h-full overflow-y-auto ps-12 pe-28 py-8 flex flex-col justify-center"
-                style={{ backgroundColor: '#f8f8f8' }}
-              >
-                {/* 產品標題 */}
-                <h2 className="text-large tracking-wide-custom text-gray-900 font-bold mb-4">
-                  YRB-A氣密窗 超高水密靜謐恆久
-                </h2>
-
-                {/* 產品介紹 */}
-                <p className="text-body text-justify leading-relaxed text-gray-700 mb-6 text-justify">
-                  日本YKK精密工學，以嚴苛的氣密與水密標準，運用新等壓原理開發高水密性能，『高耐風壓』提升內外部隔音效果，節省冷暖氣能源消耗，冷暖氣運轉負擔減輕，提供靜謐安穩的舒適生活。
-                </p>
-
-                {/* 基本性能圖 */}
-                <div className="mb-8">
-                  <div className="w-full flex justify-between items-center">
-                    <p className="text-body text-justify leading-relaxed text-gray-900 font-medium">基本性能</p>
-                    <p className="text-micro">＊通風門的水密性能為750Pa、耐風壓性能為2800Pa、隔音性能為25dB</p>
-                  </div>
-                  <img
-                    src="/images/window-flooring/ykk/performance.jpg"
-                    alt="基本性能"
-                    className="w-full max-w-2xl rounded-lg shadow-sm"
-                  />
-                </div>
-
-                {/* 實績照片標題 */}
-                <p className="text-body text-justify leading-relaxed text-gray-900 font-medium mb-4">
-                  實績照片
-                </p>
-
-                {/* 實績照片 - 五張並排 */}
-                <div className="grid grid-cols-5 gap-3">
-                  {ykkProjects.map((project) => (
-                    <div key={project.id} className="group">
-                      <div className="overflow-hidden rounded-lg mb-2">
-                        <img
-                          src={project.image}
-                          alt={project.name}
-                          className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                      </div>
-                      <p className="text-micro text-gray-800 text-center truncate">
-                        {project.name}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-
           {activeTab === 'robin' && (
             <div className="h-full flex">
               {/* 左側：文字區塊 (40%) */}
@@ -197,9 +103,6 @@ const WindowFlooringPage: React.FC = () => {
               className="h-full relative bg-cover bg-center bg-no-repeat"
               style={{ backgroundImage: 'url(/images/window-flooring/robina/context.jpg)' }}
             >
-              {/* 半透明遮罩 */}
-              {/* <div className="absolute inset-0 bg-white/40" /> */}
-
               {/* 內容區 */}
               <div className="relative h-full flex flex-col justify-center items-center">
                 <div className="flex flex-col justify-center items-center px-20 py-12 bg-white/75">
@@ -398,10 +301,10 @@ const styles = `
 if (typeof document !== 'undefined') {
   const styleSheet = document.createElement('style');
   styleSheet.textContent = styles;
-  if (!document.head.querySelector('[data-window-flooring-styles]')) {
-    styleSheet.setAttribute('data-window-flooring-styles', 'true');
+  if (!document.head.querySelector('[data-flooring-brand-styles]')) {
+    styleSheet.setAttribute('data-flooring-brand-styles', 'true');
     document.head.appendChild(styleSheet);
   }
 }
 
-export default WindowFlooringPage;
+export default FlooringBrandPage;

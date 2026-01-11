@@ -19,7 +19,8 @@ import KitchenBrandPage from './pages/KitchenBrandPage';
 import BathroomBrandPage from './pages/BathroomBrandPage';
 import LockBrandPage from './pages/LockBrandPage';
 import WaterBrandPage from './pages/WaterBrandPage';
-import WindowFlooringPage from './pages/WindowFlooringPage';
+import WindowBrandPage from './pages/WindowBrandPage';
+import FlooringBrandPage from './pages/FlooringBrandPage';
 import ElevatorBrandPage from './pages/ElevatorBrandPage';
 import PipingEngineeringPage from './pages/PipingEngineeringPage';
 import WaterproofEngineeringPage from './pages/WaterproofEngineeringPage';
@@ -197,8 +198,11 @@ function App() {
           {/* 優雅精琢 - 精品工學 - 淨水設備 */}
           <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/water" element={<WaterBrandPage />} />
 
-          {/* 優雅精琢 - 精品工學 - 窗戶木地板 */}
-          <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/tranquility" element={<WindowFlooringPage />} />
+          {/* 優雅精琢 - 精品工學 - 窗戶 */}
+          <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/window" element={<WindowBrandPage />} />
+
+          {/* 優雅精琢 - 精品工學 - 木地板 */}
+          <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/flooring" element={<FlooringBrandPage />} />
 
           {/* 優雅精琢 - 精品工學 - 電梯 */}
           <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/elevator" element={<ElevatorBrandPage />} />
