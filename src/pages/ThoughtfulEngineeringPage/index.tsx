@@ -28,6 +28,7 @@ interface TabData {
   videoLoop?: boolean;
   image?: string;
   fullBgImage?: string;
+  rightBgImage?: string; // 右側 60% 背景圖
   comparison?: {
     left: ComparisonItem;
     right: ComparisonItem;
@@ -154,6 +155,7 @@ const tabs: TabData[] = [
       '防蟲防臭排水蓋：阻絕異味回竄與蟲害侵入，讓浴室與廚房始終保持清新潔淨。',
       '排水孔加大：排水孔加大 50%，排水更快速，洗澡後不積水，降低濕滑與清潔負擔。',
     ],
+    rightBgImage: '/images/thoughtful/bathroom-drain-bg.jpg',
     bgColor: 'rgb(232, 228, 223)',
   },
 ];
@@ -338,8 +340,45 @@ const ThoughtfulEngineeringPage: React.FC = () => {
         />
       )}
 
-      {/* 一般內容模式（無影片、無滿版背景圖、無比較模式） */}
-      {!currentTab.services && !currentTab.video && !currentTab.fullBgImage && !currentTab.comparison && (
+      {/* 右側背景圖模式：左 40% 文字 + 右 60% 背景圖 */}
+      {currentTab.rightBgImage && (
+        <div className="flex-1 flex relative z-10">
+          {/* 左側文字區塊 40% */}
+          <div className="w-[40%] flex flex-col justify-center ps-24 pe-8">
+            <div className="max-w-lg">
+              <h1 className="text-h2 tracking-widest-custom font-medium text-text-primary mb-4">
+                {currentTab.title}
+              </h1>
+              {currentTab.content && (
+                <p className="text-body leading-loose-custom text-text-primary text-justify">
+                  {currentTab.content}
+                </p>
+              )}
+              {currentTab.details && currentTab.details.length > 0 && (
+                <div className="mt-4 space-y-3">
+                  {currentTab.details.map((detail, index) => (
+                    <p key={index} className="text-body leading-relaxed-custom text-text-primary">
+                      {detail}
+                    </p>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* 右側背景圖 60% */}
+          <div
+            className="w-[60%] h-full bg-cover bg-no-repeat"
+            style={{
+              backgroundImage: `url('${currentTab.rightBgImage}')`,
+              backgroundPosition: 'right bottom',
+            }}
+          />
+        </div>
+      )}
+
+      {/* 一般內容模式（無影片、無滿版背景圖、無比較模式、無右側背景圖） */}
+      {!currentTab.services && !currentTab.video && !currentTab.fullBgImage && !currentTab.comparison && !currentTab.rightBgImage && (
         <div className="flex-1 flex relative z-10">
           {/* 左側文字區塊 */}
           <div className="w-[45%] flex flex-col justify-center ps-24 pe-8">
@@ -382,6 +421,7 @@ const ThoughtfulEngineeringPage: React.FC = () => {
         tabs={tabs}
         activeTab={activeTab}
         onTabChange={setActiveTab}
+        footnoteClassName={currentTab.rightBgImage ? 'text-white/70' : 'text-text-light'}
       />
     </EngineeringPageShell>
   );

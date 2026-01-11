@@ -10,6 +10,7 @@ interface VerticalTabListProps {
   activeTab: string;
   onTabChange: (tabId: string) => void;
   footnote?: string;
+  footnoteClassName?: string;
 }
 
 const VerticalTabList: React.FC<VerticalTabListProps> = ({
@@ -17,6 +18,7 @@ const VerticalTabList: React.FC<VerticalTabListProps> = ({
   activeTab,
   onTabChange,
   footnote = '示意圖僅供參考，實際依現場施工為準',
+  footnoteClassName = 'text-text-light',
 }) => {
   return (
     <div className="absolute right-8 bottom-6 flex flex-col items-end gap-4 z-50">
@@ -49,7 +51,7 @@ const VerticalTabList: React.FC<VerticalTabListProps> = ({
       </div>
 
       {/* 右下角註解 */}
-      <p className="text-micro text-text-light">
+      <p className={`text-micro ${footnoteClassName}`}>
         {footnote}
       </p>
     </div>
