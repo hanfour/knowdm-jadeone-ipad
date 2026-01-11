@@ -14,6 +14,13 @@ const svgAreaMapping: Record<string, string> = {
   '_創新研發專用區': 'innovation-rd',
 };
 
+// 各區域對應的 SVG 底色
+const areaColors: Record<string, string> = {
+  'eco-residential': '#f7b27d80',      // 橘色
+  'cultural-commercial': '#f9c9c980',  // 粉紅色
+  'innovation-rd': '#a894c180',        // 紫色
+};
+
 // 各區域詳細資料
 const areaDetails: Record<string, AreaDetail> = {
   'eco-residential': {
@@ -75,6 +82,22 @@ const PreciousCollectionPage: React.FC = () => {
             filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
           }
         }
+        @keyframes iconBounce {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-6px);
+          }
+        }
+        @keyframes iconPulse {
+          0%, 100% {
+            filter: drop-shadow(0 0 4px rgba(229, 57, 53, 0.6));
+          }
+          50% {
+            filter: drop-shadow(0 0 10px rgba(255, 23, 68, 1)) drop-shadow(0 0 16px rgba(255, 23, 68, 0.7));
+          }
+        }
         .clickable-area {
           cursor: pointer;
         }
@@ -91,6 +114,22 @@ const PreciousCollectionPage: React.FC = () => {
           filter: drop-shadow(0 0 10px rgba(255, 215, 0, 1)) drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)) !important;
           animation: none !important;
         }
+        .map-icon {
+          fill: #e53935 !important;
+          transform-origin: center bottom;
+          transform-box: fill-box;
+          animation: iconBounce 1.5s ease-in-out infinite, iconPulse 2s ease-in-out infinite;
+        }
+        .clickable-area:hover .map-icon {
+          fill: #ff1744 !important;
+          animation: iconBounce 0.6s ease-in-out infinite, iconPulse 0.8s ease-in-out infinite;
+          filter: drop-shadow(0 0 8px rgba(255, 23, 68, 0.9)) drop-shadow(0 0 16px rgba(255, 23, 68, 0.6)) !important;
+        }
+        .selected-area .map-icon {
+          fill: #d50000 !important;
+          animation: none !important;
+          filter: drop-shadow(0 0 10px rgba(213, 0, 0, 1)) drop-shadow(0 0 20px rgba(213, 0, 0, 0.8)) !important;
+        }
       `;
       svgDoc.querySelector('svg')?.appendChild(style);
 
@@ -100,6 +139,16 @@ const PreciousCollectionPage: React.FC = () => {
         if (group) {
           group.classList.add('clickable-area');
           group.addEventListener('click', () => handleAreaClick(areaId));
+
+          // 為該群組內的 map_icon 元素添加動畫 class
+          const mapIcons = group.querySelectorAll('[id^="map_x5F_icon"], [id^="map_icon"], path.st8');
+          mapIcons.forEach((icon) => {
+            // 只為 pin 圖標添加 class (排除區域路徑)
+            const pathData = icon.getAttribute('d');
+            if (pathData && pathData.includes('M') && pathData.length < 800) {
+              icon.classList.add('map-icon');
+            }
+          });
         }
       });
 
@@ -156,6 +205,7 @@ const PreciousCollectionPage: React.FC = () => {
     if (selectedArea !== areaId || !areaDetails[areaId]) return null;
 
     const detail = areaDetails[areaId];
+    const bgColor = areaColors[areaId] || '#f5f0e6';
     return (
       <div
         className="overflow-hidden transition-all duration-300 ease-out"
@@ -164,7 +214,10 @@ const PreciousCollectionPage: React.FC = () => {
           opacity: selectedArea === areaId ? 1 : 0,
         }}
       >
-        <div className="pt-2 pb-1 pl-2 border-l-2 border-[#0b2d2a]/30 ml-1 space-y-2">
+        <div
+          className="p-2 space-y-2"
+          style={{ backgroundColor: bgColor }}
+        >
           {detail.items.map((item, index) => (
             <div key={index} className="text-xsmall">
               <p className="font-medium text-[#0b2d2a]">{item.name}</p>
@@ -227,8 +280,9 @@ const PreciousCollectionPage: React.FC = () => {
                       : 'hover:bg-[#0b2d2a]/5 hover:text-[#0b2d2a]'
                   }`}
                 >
-                  <span className={selectedArea === 'eco-residential' ? 'text-[#0b2d2a] font-medium' : 'text-[#0b2d2a]/70'}>
-                    生態專用區
+                  <span className={`flex items-center ${selectedArea === 'eco-residential' ? 'text-[#0b2d2a] font-medium' : 'text-[#0b2d2a]/70'}`}>
+                    <span className="mr-2 text-body transition-colors duration-300" style={{ color: '#f7b27d' }}>◆</span>
+                    生態住宅專用區
                   </span>
                   <div className="flex items-center gap-2">
                     <span className="font-medium w-14 text-right">9.43%</span>
@@ -248,15 +302,6 @@ const PreciousCollectionPage: React.FC = () => {
                 {renderExpandedDetail('eco-residential')}
               </div>
 
-              {/* 經貿專用區 - 不可展開 */}
-              <div className="flex justify-between items-center py-0.5">
-                <span className="text-[#0b2d2a]/70">經貿專用區</span>
-                <div className="flex items-center gap-2">
-                  <span className="font-medium w-14 text-right">8.64%</span>
-                  <span className="w-3"></span>
-                </div>
-              </div>
-
               {/* 文化商業專用區 - 可展開 */}
               <div>
                 <button
@@ -267,7 +312,8 @@ const PreciousCollectionPage: React.FC = () => {
                       : 'hover:bg-[#0b2d2a]/5 hover:text-[#0b2d2a]'
                   }`}
                 >
-                  <span className={selectedArea === 'cultural-commercial' ? 'text-[#0b2d2a] font-medium' : 'text-[#0b2d2a]/70'}>
+                  <span className={`flex items-center ${selectedArea === 'cultural-commercial' ? 'text-[#0b2d2a] font-medium' : 'text-[#0b2d2a]/70'}`}>
+                    <span className="mr-2 text-body transition-colors duration-300" style={{ color: '#f9c9c9' }}>◆</span>
                     文化商業專用區
                   </span>
                   <div className="flex items-center gap-2">
@@ -298,7 +344,8 @@ const PreciousCollectionPage: React.FC = () => {
                       : 'hover:bg-[#0b2d2a]/5 hover:text-[#0b2d2a]'
                   }`}
                 >
-                  <span className={selectedArea === 'innovation-rd' ? 'text-[#0b2d2a] font-medium' : 'text-[#0b2d2a]/70'}>
+                  <span className={`flex items-center ${selectedArea === 'innovation-rd' ? 'text-[#0b2d2a] font-medium' : 'text-[#0b2d2a]/70'}`}>
+                    <span className="mr-2 text-body transition-colors duration-300" style={{ color: '#a894c1' }}>◆</span>
                     創新研發專用區
                   </span>
                   <div className="flex items-center gap-2">
@@ -319,9 +366,24 @@ const PreciousCollectionPage: React.FC = () => {
                 {renderExpandedDetail('innovation-rd')}
               </div>
 
+              {/* 經貿專用區 - 不可展開 */}
+              <div className="flex justify-between items-center py-0.5">
+                <span className="flex items-center text-[#0b2d2a]/70">
+                  <span className="mr-2 text-body" style={{ color: '#946133' }}>◆</span>
+                  經貿專用區
+                </span>
+                <div className="flex items-center gap-2">
+                  <span className="font-medium w-14 text-right">8.64%</span>
+                  <span className="w-3"></span>
+                </div>
+              </div>
+
               {/* 文教區 - 不可展開 */}
               <div className="flex justify-between items-center py-0.5">
-                <span className="text-[#0b2d2a]/70">文教區</span>
+                <span className="flex items-center text-[#0b2d2a]/70">
+                  <span className="mr-2 text-body" style={{ color: '#d7a6b6' }}>◆</span>
+                  文教專用區
+                </span>
                 <div className="flex items-center gap-2">
                   <span className="font-medium w-14 text-right">9.85%</span>
                   <span className="w-3"></span>
@@ -330,7 +392,10 @@ const PreciousCollectionPage: React.FC = () => {
 
               {/* 其他專區 - 不可展開 */}
               <div className="flex justify-between items-center py-0.5">
-                <span className="text-[#0b2d2a]/70">其他專區</span>
+                <span className="flex items-center text-[#0b2d2a]/70">
+                  <span className="mr-2 text-body text-gray-400">◆</span>
+                  其他專區
+                </span>
                 <div className="flex items-center gap-2">
                   <span className="font-medium w-14 text-right">0.02%</span>
                   <span className="w-3"></span>
@@ -353,6 +418,29 @@ const PreciousCollectionPage: React.FC = () => {
         }
         .svg-container {
           animation: fadeIn 0.8s ease-out forwards;
+        }
+        @keyframes pinBounce {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-3px);
+          }
+        }
+        @keyframes pinPulse {
+          0%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.7;
+          }
+        }
+        .location-pin {
+          animation: pinBounce 1.5s ease-in-out infinite, pinPulse 2s ease-in-out infinite;
+        }
+        .location-pin-selected {
+          animation: none;
+          filter: drop-shadow(0 0 4px rgba(186, 78, 56, 0.6));
         }
       `}</style>
 
