@@ -23,7 +23,7 @@ const districts: DistrictDetail[] = [
   {
     id: '_水湳',
     name: '水湳經貿園區',
-    color: '#a1d3c1',
+    color: '#ed9471',
     adminArea: '西屯區',
     majorProjects: [
       '綠美圖',
@@ -51,7 +51,7 @@ const districts: DistrictDetail[] = [
   {
     id: '_十四期',
     name: '十四期重劃區',
-    color: '#f4b882',
+    color: '#f4b982',
     adminArea: '北屯區',
     majorProjects: [
       '台中巨蛋',
@@ -72,7 +72,7 @@ const districts: DistrictDetail[] = [
   {
     id: '_機捷特區',
     name: '機捷特區',
-    color: '#bfcc72',
+    color: '#f4b982',
     adminArea: '北屯區',
     majorProjects: [
       '台中捷運綠線',
@@ -93,7 +93,7 @@ const districts: DistrictDetail[] = [
   {
     id: '_十二期',
     name: '十二期重劃區',
-    color: '#eebcab',
+    color: '#ed9471',
     adminArea: '西屯區',
     majorProjects: [
       '綠美圖',
@@ -145,7 +145,7 @@ const districts: DistrictDetail[] = [
   {
     id: '_八期',
     name: '八期重劃區',
-    color: '#fff878',
+    color: '#f8941e',
     adminArea: '南屯區',
     majorProjects: [
       '公園改善(豐樂雕塑公園)',
@@ -167,7 +167,7 @@ const districts: DistrictDetail[] = [
   {
     id: '_十三期',
     name: '十三期重劃區',
-    color: '#b7cae8',
+    color: '#f8941e',
     adminArea: '南屯區',
     majorProjects: [
       '重劃區內道路、橋梁、生態渠道、雨污水下水道等公共工程',
