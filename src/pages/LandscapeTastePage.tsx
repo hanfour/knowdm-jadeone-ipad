@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SubpageMenuBar from '../components/SubpageMenuBar';
+import CloseButton from '../components/CloseButton';
 
 // 作品圖片資料（暫用 picsum.photos）
 const portfolioImages = [
@@ -334,17 +335,7 @@ const LandscapeTastePage: React.FC = () => {
             ))}
           </div>
 
-          {/* 關閉按鈕 */}
-          <button
-            onClick={(e) => { e.stopPropagation(); closeLightbox(); }}
-            className="absolute top-6 right-6 w-12 h-12 rounded-full bg-black/60 backdrop-blur-md text-white flex items-center justify-center hover:rotate-180 transition-all duration-300"
-            style={{ zIndex: 10 }}
-            aria-label="關閉"
-          >
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M18 6L6 18M6 6l12 12" />
-            </svg>
-          </button>
+          <CloseButton onClick={(e) => { e.stopPropagation(); closeLightbox(); }} />
 
           {/* 上一張按鈕 */}
           <button

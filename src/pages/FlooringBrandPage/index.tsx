@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SubpageMenuBar from '../../components/SubpageMenuBar';
+import CloseButton from '../../components/CloseButton';
 
 interface TabData {
   id: string;
@@ -89,9 +90,9 @@ const FlooringBrandPage: React.FC = () => {
                   <img
                     src="/images/window-flooring/robina/product-structure.jpg"
                     alt="ROBINA 地板結構圖說"
-                    className="max-h-[90%] w-auto object-contain animate-fade-in-left cursor-pointer hover:opacity-90 transition-opacity"
+                    className="max-h-[90%] w-auto object-contain animate-fade-in-left hover:opacity-90 transition-opacity"
                     style={{ animationDelay: '0.4s', mixBlendMode: 'darken' }}
-                    onClick={() => setLightboxOpen(true)}
+                    // onClick={() => setLightboxOpen(true)}
                   />
                 </div>
               </div>
@@ -245,17 +246,7 @@ const FlooringBrandPage: React.FC = () => {
             />
           </div>
 
-          {/* 關閉按鈕 */}
-          <button
-            onClick={(e) => { e.stopPropagation(); setLightboxOpen(false); }}
-            className="absolute top-6 right-6 w-12 h-12 rounded-full bg-black/60 backdrop-blur-md text-white flex items-center justify-center hover:rotate-180 transition-all duration-300"
-            style={{ zIndex: 10 }}
-            aria-label="關閉"
-          >
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M18 6L6 18M6 6l12 12" />
-            </svg>
-          </button>
+          <CloseButton onClick={(e) => { e.stopPropagation(); setLightboxOpen(false); }} />
         </div>
       )}
     </div>

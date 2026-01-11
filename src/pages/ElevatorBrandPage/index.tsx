@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SubpageMenuBar from '../../components/SubpageMenuBar';
+import CloseButton from '../../components/CloseButton';
 
 // 功能項目資料結構
 interface FeatureItem {
@@ -103,15 +104,7 @@ const ElevatorBrandPage: React.FC = () => {
         </div>
 
         {/* 關閉按鈕 - 右上角 */}
-        <button
-          onClick={closeModal}
-          className="absolute top-20 right-6 w-12 h-12 rounded-full bg-black/60 backdrop-blur-md text-white flex items-center justify-center hover:rotate-180 transition-all duration-300 z-10"
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
-        </button>
+        <CloseButton onClick={closeModal} className="top-20 z-10" />
 
         {/* 主要內容區 */}
         <div className="h-full flex">
@@ -278,15 +271,7 @@ const ElevatorBrandPage: React.FC = () => {
           </div>
 
           {/* 關閉按鈕 - 右上角 */}
-          <button
-            onClick={closeModal}
-            className="absolute top-4 right-6 w-12 h-12 rounded-full bg-black/60 backdrop-blur-md text-white flex items-center justify-center hover:rotate-180 transition-all duration-300 z-20"
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
+          <CloseButton onClick={closeModal} />
 
           {/* 箭頭導航 - 固定在右下角 */}
           <div className="absolute bottom-8 right-8 flex items-center gap-3 z-20">

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SubpageMenuBar from '../../components/SubpageMenuBar';
+import CloseButton from '../../components/CloseButton';
 
 interface CabinetItem {
   category: string;
@@ -258,10 +259,10 @@ const tabs: TabData[] = [
 
 // 規格尺寸圖資料
 const specImages = [
-  { id: 'A', label: 'A戶', image: '/images/kitchen/specs/A.jpg' },
-  { id: 'B', label: 'B戶', image: '/images/kitchen/specs/B.jpg' },
-  { id: 'C', label: 'C戶', image: '/images/kitchen/specs/C.jpg' },
-  { id: 'D', label: 'D戶', image: '/images/kitchen/specs/D.jpg' },
+  { id: 'A', label: 'A戶', image: '/images/kitchen/specs/A.jpg', image3d: '/images/kitchen/specs/3d/廚房3D示意圖_A.jpg' },
+  { id: 'B', label: 'B戶', image: '/images/kitchen/specs/B.jpg', image3d: '/images/kitchen/specs/3d/廚房3D示意圖_B.jpg' },
+  { id: 'C', label: 'C戶', image: '/images/kitchen/specs/C.jpg', image3d: '/images/kitchen/specs/3d/廚房3D示意圖_C.jpg' },
+  { id: 'D', label: 'D戶', image: '/images/kitchen/specs/D.jpg', image3d: '/images/kitchen/specs/3d/廚房3D示意圖_D.jpg' },
 ];
 
 const KitchenBrandPage: React.FC = () => {
@@ -275,6 +276,7 @@ const KitchenBrandPage: React.FC = () => {
   const [specViewerPosition, setSpecViewerPosition] = useState({ x: 0, y: 0 });
   const [isSpecDragging, setIsSpecDragging] = useState(false);
   const [specDragStart, setSpecDragStart] = useState({ x: 0, y: 0 });
+  const [show3dViewer, setShow3dViewer] = useState(false);
 
   const currentTab = tabs.find((tab) => tab.id === activeTab) || tabs[0];
 
@@ -307,7 +309,7 @@ const KitchenBrandPage: React.FC = () => {
 
         {/* 內文 */}
         {currentTab.content && (
-          <p className="text-body text-justify leading-relaxed text-white text-justify">
+          <p className="text-body text-justify leading-relaxed text-white">
             {currentTab.content}
           </p>
         )}
@@ -352,7 +354,7 @@ const KitchenBrandPage: React.FC = () => {
               </h3>
 
               {/* 內文 */}
-              <p className="text-body text-justify leading-relaxed text-gray-800 text-justify">
+              <p className="text-body text-justify leading-relaxed text-gray-800">
                 {item.content}
               </p>
             </div>
@@ -542,6 +544,7 @@ const KitchenBrandPage: React.FC = () => {
       }
       setSpecViewerScale(1);
       setSpecViewerPosition({ x: 0, y: 0 });
+      setShow3dViewer(false);
     };
 
     return (
@@ -560,15 +563,7 @@ const KitchenBrandPage: React.FC = () => {
         </div>
 
         {/* 關閉按鈕 */}
-        <button
-          onClick={() => setShowSpecViewer(false)}
-          className="absolute top-4 right-4 z-10 w-10 h-10 bg-gray-200 hover:bg-gray-300 rounded-full flex items-center justify-center transition-colors"
-          aria-label="關閉"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M18 6L6 18M6 6l12 12" />
-          </svg>
-        </button>
+        <CloseButton onClick={() => setShowSpecViewer(false)} />
 
         {/* 右側縮放控制 */}
         <div
@@ -654,6 +649,32 @@ const KitchenBrandPage: React.FC = () => {
           {specImageIndex + 1} / {specImages.length}
         </div>
 
+        {/* 右下角 3D 示意圖縮圖 */}
+        <div
+          className="absolute z-20 cursor-pointer group"
+          style={{ right: '5rem', bottom: '2.5rem', padding: '3px' }}
+          onClick={() => setShow3dViewer(true)}
+        >
+          {/* 流動邊框背景 */}
+          <div className="absolute inset-0 shine-border-bg overflow-hidden">
+            <div className="shine-border-glow" />
+          </div>
+          {/* 圖片內容 */}
+          <div className="relative overflow-hidden bg-white">
+            <img
+              src={specImages[specImageIndex].image3d}
+              alt={`${specImages[specImageIndex].label} 3D示意圖`}
+              className="w-32 h-24 object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            {/* Hover 遮罩 */}
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+              <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50 px-2 py-1">
+                點擊查看 3D 示意圖
+              </span>
+            </div>
+          </div>
+        </div>
+
         {/* 右下角註解 */}
         <div
           className="absolute z-10 text-gray-400 text-micro"
@@ -661,6 +682,49 @@ const KitchenBrandPage: React.FC = () => {
         >
           此為示意圖僅供參考，實際以施工為準
         </div>
+
+        {/* 3D 示意圖燈箱 - 從右下往左上展開 */}
+        {show3dViewer && (
+          <div
+            className="absolute inset-0 z-30 animate-expand-from-corner"
+            onClick={() => setShow3dViewer(false)}
+          >
+            {/* 背景層 - 可點擊關閉 */}
+            <div className="absolute inset-0 bg-white" />
+
+            {/* 左上角標籤 */}
+            <div className="absolute z-20 bg-[#d4a853]/50 text-black px-6 py-4">
+              <h3 className="font-bold text-h1 text-center leading-none">
+                {specImages[specImageIndex].label}
+              </h3>
+              <p className="mt-1 text-center text-xsmall">3D 示意圖</p>
+            </div>
+
+            {/* 關閉按鈕 */}
+            <CloseButton
+              onClick={(e) => { e.stopPropagation(); setShow3dViewer(false); }}
+              ariaLabel="關閉 3D 示意圖"
+            />
+
+            {/* 3D 示意圖 - 置中顯示，不阻擋點擊 */}
+            <div className="absolute inset-0 flex items-center justify-center p-16 pointer-events-none">
+              <img
+                src={specImages[specImageIndex].image3d}
+                alt={`${specImages[specImageIndex].label} 3D示意圖`}
+                className="max-w-full max-h-full object-contain pointer-events-auto"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </div>
+
+            {/* 右下角註解 */}
+            <div
+              className="absolute z-10 text-gray-400 text-micro"
+              style={{ right: '5rem', bottom: '0.5rem' }}
+            >
+              此為示意圖僅供參考，實際以施工為準
+            </div>
+          </div>
+        )}
       </div>
     );
   };
@@ -918,6 +982,48 @@ const KitchenBrandPage: React.FC = () => {
         }
         .animate-slide-down-full {
           animation: wipe-down 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        /* 流動邊框效果 */
+        .shine-border-bg {
+          border-radius: 2px;
+        }
+        .shine-border-glow {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 200%;
+          height: 200%;
+          transform: translate(-50%, -50%);
+          background: conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            transparent 30deg,
+            #d4a853 90deg,
+            #f5e6b8 120deg,
+            #d4a853 150deg,
+            transparent 210deg,
+            transparent 360deg
+          );
+          animation: shine-rotate 2.5s linear infinite;
+        }
+        @keyframes shine-rotate {
+          from {
+            transform: translate(-50%, -50%) rotate(0deg);
+          }
+          to {
+            transform: translate(-50%, -50%) rotate(360deg);
+          }
+        }
+        @keyframes expand-from-corner {
+          from {
+            clip-path: inset(100% 0 0 100%);
+          }
+          to {
+            clip-path: inset(0 0 0 0);
+          }
+        }
+        .animate-expand-from-corner {
+          animation: expand-from-corner 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
       `}</style>
     </div>

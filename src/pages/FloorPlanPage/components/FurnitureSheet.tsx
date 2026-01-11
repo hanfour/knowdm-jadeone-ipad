@@ -3,6 +3,7 @@ import { UnitData } from '../types';
 import { units } from '../data';
 import Compass from './Compass';
 import UnitIndicator from './UnitIndicator';
+import CloseButton from '../../../components/CloseButton';
 
 // 各戶型面積資料
 const unitAreaData: Record<string, {
@@ -128,15 +129,7 @@ const FurnitureSheet: React.FC<FurnitureSheetProps> = ({
             <p className="text-sm">傢俱配置參考圖</p>
           </div>
 
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 z-10 w-10 h-10 bg-gray-200 hover:bg-gray-300 rounded-full flex items-center justify-center transition-colors"
-            aria-label="關閉"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M18 6L6 18M6 6l12 12" />
-            </svg>
-          </button>
+          <CloseButton onClick={onClose} />
 
           <div
             className="absolute z-10 flex flex-col gap-2"
