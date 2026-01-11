@@ -319,7 +319,7 @@ const HomePage: React.FC = () => {
                 onMouseDown={() => setPressedArrow('prev')}
                 onMouseUp={() => setPressedArrow(null)}
                 onMouseLeave={() => setPressedArrow(null)}
-                className={`text-h4 transition-all duration-150 ${
+                className={`text-large transition-all duration-150 ${
                   pressedArrow === 'prev' ? 'opacity-100 scale-110' : 'opacity-60 hover:opacity-100 hover:scale-125'
                 }`}
                 aria-label="上一個選單"
@@ -339,7 +339,7 @@ const HomePage: React.FC = () => {
                 onMouseDown={() => setPressedArrow('next')}
                 onMouseUp={() => setPressedArrow(null)}
                 onMouseLeave={() => setPressedArrow(null)}
-                className={`text-h4 transition-all duration-150 ${
+                className={`text-large transition-all duration-150 ${
                   pressedArrow === 'next' ? 'opacity-100 scale-110' : 'opacity-60 hover:opacity-100 hover:scale-125'
                 }`}
                 aria-label="下一個選單"

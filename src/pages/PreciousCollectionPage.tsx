@@ -393,7 +393,7 @@ const PreciousCollectionPage: React.FC = () => {
         <div className="text-[#0b2d2a]">
           {/* 主標題 */}
           <h1
-            className="font-light text-h3 leading-tight"
+            className="font-light text-h2 leading-tight"
             style={{ letterSpacing: '0.05em', marginBottom: '1rem' }}
           >
             水湳珍稀 最美收藏

@@ -354,7 +354,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
 
             {/* 副標題 - Fade up */}
             <div
-              className={`text-white/80 text-h4 transition-all duration-700 ${
+              className={`text-white/80 text-large transition-all duration-700 ${
                 subtitleVisible
                   ? 'opacity-100 translate-y-0'
                   : 'opacity-0 translate-y-4'

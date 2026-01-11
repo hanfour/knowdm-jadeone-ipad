@@ -198,7 +198,7 @@ const LandscapeTastePage: React.FC = () => {
         >
           {/* 主標題 - 上境設計工程有限公司 - 直排，每字從左上飛入 */}
           <h3
-            className="text-white text-h3 font-light -mt-32"
+            className="text-white text-h2 font-light -mt-32"
             style={{
               writingMode: 'vertical-rl',
               letterSpacing: '0.2em',
@@ -224,7 +224,7 @@ const LandscapeTastePage: React.FC = () => {
 
           {/* 副標題 - 設計總監 許富居 - 直排，每字從左上飛入 */}
           <h3
-            className="text-white text-h3 font-light"
+            className="text-white text-h2 font-light"
             style={{
               writingMode: 'vertical-rl',
               letterSpacing: '0.2em',
@@ -301,7 +301,6 @@ const LandscapeTastePage: React.FC = () => {
               </span>
               <span
                 className="!hidden gradient-text-animate italic text-micro mt-1"
-                style={{ fontFamily: 'serif' }}
               >
                 Collection
               </span>

@@ -3,11 +3,10 @@ import SubpageMenuBar from '../components/SubpageMenuBar';
 
 // 影片資料
 const videos = [
-  { id: 'Rdk1lS1z9UE', label: '影片 1' },
-  { id: 'XdKCF_gmRQ0', label: '影片 2' },
-  { id: 'WxMWRceTrbQ', label: '影片 3' },
-  { id: 'v2fKSaiUS50', label: '影片 4' },
-  { id: 'WIAxxPPi15w', label: '影片 5' },
+  { id: 'Rdk1lS1z9UE', label: '大門意象' },
+  { id: 'XdKCF_gmRQ0', label: '四向環繞' },
+  { id: 'WxMWRceTrbQ', label: '立面設計' },
+  { id: 'WIAxxPPi15w', label: '觀賞影片' },
 ];
 
 // 輪播圖片資料
@@ -327,7 +326,7 @@ const FrenchAestheticsPage: React.FC = () => {
                 <span
                   className="text-white text-xsmall"
                 >
-                  觀賞影片 {index + 1}
+                  {video.label}
                 </span>
                 <svg
                 className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform"

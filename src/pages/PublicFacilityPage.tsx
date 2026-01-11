@@ -253,7 +253,7 @@ const PublicFacilityPage: React.FC = () => {
       >
         {/* 主標題 - 直排，每字從左上飛入 */}
         <h3
-          className="text-white text-h3 font-light -mt-32"
+          className="text-white text-h2 font-light -mt-32"
           style={{
             writingMode: 'vertical-rl',
             letterSpacing: '0.2em',
@@ -279,7 +279,7 @@ const PublicFacilityPage: React.FC = () => {
 
         {/* 副標題 - 直排，每字從左上飛入 */}
         <h3
-          className="text-white text-h3 font-light"
+          className="text-white text-h2 font-light"
           style={{
             writingMode: 'vertical-rl',
             letterSpacing: '0.2em',

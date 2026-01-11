@@ -231,7 +231,7 @@ const ThoughtfulEngineeringPage: React.FC = () => {
                   }
                 `}
               >
-                <span className={`font-medium leading-tight ${service.sameSize ? 'text-body' : 'text-h4'}`}>
+                <span className={`font-medium leading-tight ${service.sameSize ? 'text-body' : 'text-large'}`}>
                   {service.title}
                 </span>
                 <span className={`leading-tight mt-1 ${service.sameSize ? 'text-body' : 'text-xsmall'}`}>

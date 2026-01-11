@@ -168,7 +168,7 @@ const ArchitectAestheticsPage: React.FC = () => {
           {/* 標題區 */}
           <div className="mb-6">
             <p
-              className="text-[#f5e6b8] text-large"
+              className="text-[#f5e6b8] text-large font-medium"
               style={{
                 letterSpacing: '0.1em',
               }}
@@ -204,7 +204,6 @@ const ArchitectAestheticsPage: React.FC = () => {
               </span>
               <span
                 className="!hidden gradient-text-animate italic text-micro mt-1"
-                style={{ fontFamily: 'serif' }}
               >
                 Collection
               </span>
@@ -223,7 +222,7 @@ const ArchitectAestheticsPage: React.FC = () => {
           >
             {/* 左側，直排，每字從左上飛入 */}
             <h3
-              className="text-white text-h3 font-light -mt-32"
+              className="text-white text-h2 font-light -mt-32"
               style={{
                 writingMode: 'vertical-rl',
                 letterSpacing: '0.25em',
@@ -249,7 +248,7 @@ const ArchitectAestheticsPage: React.FC = () => {
 
             {/* 右側：主持建築師 蔡長恩建築師 - 直排，每字從左上飛入 */}
             <h3
-              className="text-white text-h3 font-light"
+              className="text-white text-h2 font-light"
               style={{
                 writingMode: 'vertical-rl',
                 letterSpacing: '0.25em',

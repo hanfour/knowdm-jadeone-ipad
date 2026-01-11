@@ -109,7 +109,7 @@ const WaterBrandPage: React.FC = () => {
           {/* 右側：產品資訊 */}
           <div className="w-3/5 p-8 flex flex-col justify-center overflow-y-auto">
             {/* 產品名稱 */}
-            <h3 className="text-h4 tracking-wide-custom text-gray-900 font-bold mb-4">
+            <h3 className="text-large tracking-wide-custom text-gray-900 font-bold mb-4">
               {selectedProduct.name}
             </h3>
 

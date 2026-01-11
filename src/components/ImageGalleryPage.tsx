@@ -58,7 +58,7 @@ const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, desc
         <div className="text-white" style={{ maxWidth: '32rem' }}>
           {/* 主標題 */}
           <h1
-            className="font-light text-h3 leading-tight"
+            className="font-light text-h2 leading-tight"
             style={{ letterSpacing: '0.05em', marginBottom: '1rem' }}
           >
             {title}

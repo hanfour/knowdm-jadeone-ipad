@@ -498,7 +498,7 @@ const AnchorFuturePage: React.FC = () => {
         <div className="text-[#0b2d2a]" style={{ maxWidth: '28rem' }}>
           {/* 主標題 */}
           <h1
-            className="font-light text-h3 leading-tight"
+            className="font-light text-h2 leading-tight"
             style={{ letterSpacing: '0.05em', marginBottom: '1rem' }}
           >
             重劃之姿 定錨未來

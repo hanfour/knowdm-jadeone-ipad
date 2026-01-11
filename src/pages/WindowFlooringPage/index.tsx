@@ -75,7 +75,7 @@ const WindowFlooringPage: React.FC = () => {
                 style={{ backgroundColor: '#f8f8f8' }}
               >
                 {/* 產品標題 */}
-                <h2 className="text-h4 tracking-wide-custom text-gray-900 font-bold mb-4">
+                <h2 className="text-large tracking-wide-custom text-gray-900 font-bold mb-4">
                   YRB-A氣密窗 超高水密靜謐恆久
                 </h2>
 
@@ -150,7 +150,7 @@ const WindowFlooringPage: React.FC = () => {
 
                     {/* 標題 */}
                     <p
-                      className="text-h4 tracking-wide-custom text-brand-sekisui mb-6 animate-fade-in-left"
+                      className="text-large tracking-wide-custom text-brand-sekisui mb-6 animate-fade-in-left"
                       style={{ animationDelay: '0.3s' }}
                     >
                       Robina溫潤木質，沉穩格調的起點
@@ -229,7 +229,7 @@ const WindowFlooringPage: React.FC = () => {
                         alt="抗潮效果"
                         className="w-20 h-20 object-contain mb-4"
                       />
-                      <h3 className="text-h4 tracking-wide-custom text-brand-sekisui font-bold mb-2">抗潮效果</h3>
+                      <h3 className="text-large tracking-wide-custom text-brand-sekisui font-bold mb-2">抗潮效果</h3>
                       <p className="text-body text-justify leading-relaxed text-gray-800 text-justify max-w-[200px]">
                         對水氣具有極好的抵抗，對台灣潮濕氣候所造成材料腐化具有極好的效果。
                       </p>
@@ -242,7 +242,7 @@ const WindowFlooringPage: React.FC = () => {
                         alt="抗壓強度"
                         className="w-20 h-20 object-contain mb-4"
                       />
-                      <h3 className="text-h4 tracking-wide-custom text-brand-sekisui font-bold mb-2">抗壓強度</h3>
+                      <h3 className="text-large tracking-wide-custom text-brand-sekisui font-bold mb-2">抗壓強度</h3>
                       <p className="text-body text-justify leading-relaxed text-gray-800 text-justify max-w-[200px]">
                         低壓縮永久變型率，極高的抗壓程度，具有出色的承重性能。
                       </p>
@@ -255,7 +255,7 @@ const WindowFlooringPage: React.FC = () => {
                         alt="行走聲響"
                         className="w-20 h-20 object-contain mb-4"
                       />
-                      <h3 className="text-h4 tracking-wide-custom text-brand-sekisui font-bold mb-2">行走聲響</h3>
+                      <h3 className="text-large tracking-wide-custom text-brand-sekisui font-bold mb-2">行走聲響</h3>
                       <p className="text-body text-justify leading-relaxed text-gray-800 text-justify max-w-[200px]">
                         有效隔絕行走時的響聲，消除各種硬質鞋底發出的共振。
                       </p>
@@ -268,7 +268,7 @@ const WindowFlooringPage: React.FC = () => {
                         alt="極佳彈性"
                         className="w-20 h-20 object-contain mb-4"
                       />
-                      <h3 className="text-h4 tracking-wide-custom text-brand-sekisui font-bold mb-2">極佳彈性</h3>
+                      <h3 className="text-large tracking-wide-custom text-brand-sekisui font-bold mb-2">極佳彈性</h3>
                       <p className="text-body text-justify leading-relaxed text-gray-800 text-justify max-w-[200px]">
                         即使在使用數年後，仍具有良好的彈性，也不會降低聲學性能。
                       </p>
@@ -281,7 +281,7 @@ const WindowFlooringPage: React.FC = () => {
                         alt="結構隔音"
                         className="w-20 h-20 object-contain mb-4"
                       />
-                      <h3 className="text-h4 tracking-wide-custom text-brand-sekisui font-bold mb-2">結構隔音</h3>
+                      <h3 className="text-large tracking-wide-custom text-brand-sekisui font-bold mb-2">結構隔音</h3>
                       <p className="text-body text-justify leading-relaxed text-gray-800 text-justify max-w-[200px]">
                         出色的結構隔音效果，在低頻範圍內有最佳的性能。
                       </p>

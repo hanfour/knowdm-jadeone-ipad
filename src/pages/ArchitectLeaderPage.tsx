@@ -75,7 +75,7 @@ const ArchitectLeaderPage: React.FC = () => {
       >
         {/* 第一行：琢藝之心 - 橫排，每字從左上飛入 */}
         <h2
-          className="text-white text-h3 font-light"
+          className="text-white text-h2 font-light"
           style={{
             letterSpacing: '0.2em',
           }}
@@ -114,7 +114,7 @@ const ArchitectLeaderPage: React.FC = () => {
 
         {/* 第三行：創作名宅界經典 - 橫排，每字從左上飛入 */}
         <h2
-          className="text-white text-h3 font-light"
+          className="text-white text-h2 font-light"
           style={{
             letterSpacing: '0.2em',
           }}
@@ -159,7 +159,7 @@ const ArchitectLeaderPage: React.FC = () => {
               聚碩建設
             </h1>
             <h3
-              className="text-[#f5e6b8] text-h2 mt-4"
+              className="text-[#f5e6b8] text-large font-medium mt-4"
               style={{ letterSpacing: '0.15em', }}
             >
               獨領經典 風格執筆

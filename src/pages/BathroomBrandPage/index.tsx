@@ -274,7 +274,7 @@ const BathroomBrandPage: React.FC = () => {
 
           {/* 標題 */}
           {currentTab.subtitle && (
-            <h1 className="text-h4 tracking-wider-custom font-medium text-gray-800 mb-6">
+            <h1 className="text-large tracking-wider-custom font-medium text-gray-800 mb-6">
               {currentTab.subtitle}
             </h1>
           )}
