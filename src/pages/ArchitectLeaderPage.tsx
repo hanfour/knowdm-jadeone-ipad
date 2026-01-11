@@ -3,8 +3,8 @@ import SubpageMenuBar from '../components/SubpageMenuBar';
 
 const ArchitectLeaderPage: React.FC = () => {
 
-  // 人物圖片 URL
-  const personImage = '/images/b1/IMG_8281.webp';
+  // 滿版背景圖片 URL
+  const backgroundImage = '/images/b1/architect-leader-bg.jpg';
 
   // ===== 飛入動畫設定 =====
   const charDelay = 0.12;  // 每個字的延遲時間（秒）- 較慢以產生交錯重疊效果
@@ -27,43 +27,31 @@ const ArchitectLeaderPage: React.FC = () => {
 
   return (
     <div className="relative w-full h-full overflow-hidden bg-black">
-      {/* 左側背景 - 模糊放大的人物圖片 */}
-      <div className="absolute left-0 w-full h-full overflow-hidden" style={{ top: '80px' }}>
-        <div
-          className="absolute inset-0 bg-cover"
-          style={{
-            backgroundColor: 'rgba(192, 197, 220, 1)',
-            // backgroundImage: `url(${personImage})`,
-            // filter: 'blur(60px)',
-            // transform: 'scale(1.88)',
-            // backgroundPosition: '50% 30%'
-          }}
-        />
-        {/* 暗色遮罩 */}
-        {/* <div className="absolute inset-0 bg-black/40" /> */}
-      </div>
-
-      {/* 右上角子頁面導航列 + MenuButton */}
-      <SubpageMenuBar sectionIndex={1} />
-
-      {/* 左側人物圖片 - 左邊留空 15%，圖片佔 35% */}
-      <div
-        className="absolute h-full overflow-hidden"
-        style={{ top: '80px', left: '15%', width: '35%' }}
-      >
+      {/* 滿版背景圖片 */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden" style={{ top: '80px' }}>
         <img
-          src={personImage}
-          alt="業主形象照"
+          src={backgroundImage}
+          alt="建築領導者背景"
           className="w-full h-full object-cover"
           style={{
             objectPosition: 'center center',
             transform: isAnimated
               ? 'scale(1) translateX(0)'
-              : 'scale(1.1) translateX(-3%)',
+              : 'scale(1.05) translateX(-1%)',
             transition: 'transform 4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
           }}
         />
+        {/* 右側漸層遮罩 - 讓右側文字更清晰 */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(to right, transparent 40%, rgba(0,0,0,0.5) 70%, rgba(0,0,0,0.7) 100%)'
+          }}
+        />
       </div>
+
+      {/* 右上角子頁面導航列 + MenuButton */}
+      <SubpageMenuBar sectionIndex={1} />
 
       {/* 橫向飛入文字區域 */}
       <div
@@ -150,7 +138,7 @@ const ArchitectLeaderPage: React.FC = () => {
             style={{ paddingLeft: '1rem' }}>
             {/* 左側裝飾線 */}
             <div
-              className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-[#d4a853]/80 via-[#f5e6b8]/60 to-transparent"
+              className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#d4a853]/80 via-[#f5e6b8]/60 to-transparent"
             />
             <h1
               className="text-[#f5e6b8] text-h2"
