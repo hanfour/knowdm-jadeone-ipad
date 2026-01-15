@@ -16,9 +16,17 @@ const StructuralEngineeringPage: React.FC = () => {
 
   // ===== 飛入動畫設定 =====
   const charDelay = 0.12;  // 每個字的延遲時間（秒）- 較慢以產生交錯重疊效果
-  const titleText = '精工建築舵手';
-  const subtitleText = '鑄造百年地標';
-  const subtitleStartDelay = titleText.length * charDelay + 0.2;
+  const titleText = '世界級頂尖結構標準';
+  const subtitleText = '同步台北101';
+
+  // 分割文字，保持連續數字在一起
+  const splitTextWithNumbers = (text: string): string[] => {
+    return text.match(/\d+|./g) || [];
+  };
+
+  const titleChars = splitTextWithNumbers(titleText);
+  const subtitleChars = splitTextWithNumbers(subtitleText);
+  const subtitleStartDelay = titleChars.length * charDelay + 0.2;
 
   // 動畫狀態
   const [isAnimated, setIsAnimated] = useState(false);
@@ -199,9 +207,9 @@ const StructuralEngineeringPage: React.FC = () => {
               letterSpacing: '0.15em',
             }}
           >
-            <span className="italic text-small">大匠工程團隊 / </span>
+            <span className="italic text-small">結構力學 / </span>
             <br/>
-            世界級頂尖結構標準，同步台北101
+            大匠工程團隊 許庭偉
           </p>
         </div>
 
@@ -249,13 +257,13 @@ const StructuralEngineeringPage: React.FC = () => {
       >
         {/* 主標題 - 直排，每字從左上飛入 */}
         <h3
-          className="text-white text-h2 font-light -mt-32"
+          className="text-white text-h2 font-light -mt-60"
           style={{
             writingMode: 'vertical-rl',
             letterSpacing: '0.2em',
           }}
         >
-          {titleText.split('').map((char, index) => (
+          {titleChars.map((char, index) => (
             <span
               key={index}
               style={{
@@ -281,22 +289,30 @@ const StructuralEngineeringPage: React.FC = () => {
             letterSpacing: '0.2em',
           }}
         >
-          {subtitleText.split('').map((char, index) => (
-            <span
-              key={index}
-              style={{
-                display: 'inline-block',
-                textShadow: '2px 2px 15px rgba(0,0,0,0.7)',
-                transform: isAnimated
-                  ? 'translate(0, 0) scale(1)'
-                  : 'translate(-80px, -80px) scale(1.5)',
-                opacity: isAnimated ? 1 : 0,
-                transition: `transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${subtitleStartDelay + index * charDelay}s, opacity 0.6s ease-out ${subtitleStartDelay + index * charDelay}s`,
-              }}
-            >
-              {char === ' ' ? '\u00A0' : char}
-            </span>
-          ))}
+          {subtitleChars.map((char, index) => {
+            const isNumber = /^\d+$/.test(char);
+            return (
+              <span
+                key={index}
+                style={{
+                  display: 'inline-block',
+                  textShadow: '2px 2px 15px rgba(0,0,0,0.7)',
+                  transform: isAnimated
+                    ? 'translate(0, 0) scale(1)'
+                    : 'translate(-80px, -80px) scale(1.5)',
+                  opacity: isAnimated ? 1 : 0,
+                  transition: `transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${subtitleStartDelay + index * charDelay}s, opacity 0.6s ease-out ${subtitleStartDelay + index * charDelay}s`,
+                  // 數字使用橫排組合
+                  ...(isNumber && {
+                    textCombineUpright: 'all',
+                    WebkitTextCombineUpright: 'all',
+                  } as React.CSSProperties),
+                }}
+              >
+                {char === ' ' ? '\u00A0' : char}
+              </span>
+            );
+          })}
         </h3>
       </div>
 

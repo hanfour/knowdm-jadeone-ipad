@@ -20,8 +20,8 @@ const ArchitectAestheticsPage: React.FC = () => {
   const charDelay = 0.12;  // 每個字的延遲時間（秒）- 較慢以產生交錯重疊效果
 
   // 文字內容
-  const titleText = '美學工藝起筆';
-  const subtitleText = '淬鍊城市地標';
+  const titleText = '細梳環境紋理';
+  const subtitleText = '建築以優雅之姿生長';
 
   // 動畫狀態
   const [isAnimated, setIsAnimated] = useState(false);
@@ -174,8 +174,8 @@ const ArchitectAestheticsPage: React.FC = () => {
                 letterSpacing: '0.1em',
               }}
             >
-              <span className='italic text-small'>艸引子事務所 / </span><br/>
-              細梳環境紋理，建築以優雅之姿生長
+              <span className='italic text-small'>建築美學 / </span><br/>
+              艸引子事務所 蔡長恩建築師
             </p>
           </div>
 

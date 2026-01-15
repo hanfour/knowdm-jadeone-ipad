@@ -1,20 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import SubpageMenuBar from './SubpageMenuBar';
+import CloseButton from './CloseButton';
+import RippleButton from './RippleButton';
 
 interface ImageData {
   src: string;
   label: string;
 }
 
+interface VideoButtonData {
+  label: string;
+  videoId: string;
+}
+
 interface ImageGalleryPageProps {
   images: ImageData[];
   title: string;
   description: string;
+  videoButton?: VideoButtonData;
 }
 
-const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, description }) => {
+const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, description, videoButton }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [currentVideoId, setCurrentVideoId] = useState<string | null>(null);
   const location = useLocation();
 
   // 當路徑改變時，重置到第一張圖片
@@ -71,6 +80,18 @@ const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, desc
           >
             {description}
           </p>
+
+          {/* 影片按鈕 */}
+          {videoButton && (
+            <div style={{ marginTop: '2rem' }}>
+              <RippleButton onClick={() => setCurrentVideoId(videoButton.videoId)}>
+                <span>{videoButton.label}</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </RippleButton>
+            </div>
+          )}
         </div>
       </div>
 
@@ -156,6 +177,60 @@ const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, desc
         }
       `}</style>
 
+      {/* 影片彈窗 */}
+      {currentVideoId && (
+        <>
+          <style>{`
+            @keyframes videoSlideDown {
+              0% {
+                transform: translateY(-100%);
+              }
+              100% {
+                transform: translateY(0);
+              }
+            }
+
+            @keyframes backdropFadeIn {
+              0% {
+                opacity: 0;
+              }
+              100% {
+                opacity: 1;
+              }
+            }
+
+            .video-slide-animation {
+              animation: videoSlideDown 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            }
+
+            .backdrop-fade-animation {
+              animation: backdropFadeIn 0.3s ease-out forwards;
+            }
+          `}</style>
+          <div
+            className="fixed inset-0 flex items-center justify-center bg-black/90 backdrop-fade-animation"
+            style={{ zIndex: 9999 }}
+            onClick={() => setCurrentVideoId(null)}
+          >
+            {/* 影片容器 */}
+            <div
+              className="relative w-full h-full video-slide-animation"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <iframe
+                key={currentVideoId}
+                className="w-full h-full border-0"
+                src={`https://www.youtube.com/embed/${currentVideoId}?autoplay=1&rel=0`}
+                title="影片播放"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+
+            <CloseButton onClick={(e) => { e.stopPropagation(); setCurrentVideoId(null); }} />
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -49,8 +49,8 @@ const pageData = {
   // 雍雅森綠
   elegantGreen: {
     images: [
-      { src: '/images/a3/01.jpg', label: '綠美圖' },
-      { src: '/images/a2/01.jpg', label: '抹茶湖' },
+      // { src: '/images/a3/01.jpg', label: '綠美圖' },
+      { src: '/images/a3/03.jpg', label: '抹茶湖' },
     ],
     title: '自然之美 雍雅並蓄',
     description: '將自然之美，訂製進生活裡，六都最大規模城市綠肺，64公頃中央公園綠帶，感受莫內花園最美的漫步路線法國國花鳶尾花繚繞、優雅的睡蓮帶來靜謐、池塘邊的菖蒲，每天回家都是一場動人的約會。',
@@ -58,7 +58,7 @@ const pageData = {
   // 珍稀收藏（原稀有獨享）
   preciousCollection: {
     images: [
-      { src: '/images/a3/03.jpg', label: '抹茶湖' },
+      { src: '/images/a2/01.jpg', label: '抹茶湖' },
       { src: '/images/a2/02.jpg', label: '中央公園' },
       { src: '/images/a2/03.jpg', label: '中央公園' },
       { src: '/images/a2/04.jpg', label: '中央公園' },
@@ -109,6 +109,7 @@ function App() {
                 images={pageData.locationIntro.images}
                 title={pageData.locationIntro.title}
                 description={pageData.locationIntro.description}
+                videoButton={{ label: '水湳空拍', videoId: 'PLACEHOLDER_VIDEO_ID' }}
               />
             }
           />

@@ -1,5 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SubpageMenuBar from '../components/SubpageMenuBar';
+import CloseButton from '../components/CloseButton';
+import RippleButton from '../components/RippleButton';
+
+// 生態專用區介紹輪播圖片
+const ecoGalleryImages = [
+  '/images/precious-collection/eco-gallery/01.jpg',
+  '/images/precious-collection/eco-gallery/02.jpg',
+  '/images/precious-collection/eco-gallery/03.jpg',
+  '/images/precious-collection/eco-gallery/04.jpg',
+];
 
 // 可點擊區域的詳細資料
 interface AreaDetail {
@@ -52,7 +62,27 @@ const areaDetails: Record<string, AreaDetail> = {
 const PreciousCollectionPage: React.FC = () => {
   const [selectedArea, setSelectedArea] = useState<string | null>(null);
   const [svgLoaded, setSvgLoaded] = useState(false);
+  const [showEcoModal, setShowEcoModal] = useState(false);
+  const [ecoGalleryIndex, setEcoGalleryIndex] = useState(0);
   const svgRef = useRef<HTMLObjectElement>(null);
+
+  // 生態專用區 Modal 控制
+  const openEcoModal = () => {
+    setShowEcoModal(true);
+    setEcoGalleryIndex(0);
+  };
+
+  const closeEcoModal = () => {
+    setShowEcoModal(false);
+  };
+
+  const goToPrevEcoImage = () => {
+    setEcoGalleryIndex((prev) => (prev > 0 ? prev - 1 : ecoGalleryImages.length - 1));
+  };
+
+  const goToNextEcoImage = () => {
+    setEcoGalleryIndex((prev) => (prev < ecoGalleryImages.length - 1 ? prev + 1 : 0));
+  };
 
   // 處理區域點擊（切換展開/收起）
   const handleAreaClick = (areaId: string) => {
@@ -494,6 +524,16 @@ const PreciousCollectionPage: React.FC = () => {
           >
             水湳智慧城細分為經貿、文商、文教、創研、生態住宅五大專用區，在64公頃的中央公園與商業大道之間，劃出一片低密度佔比不到10%的生態住宅區，為水湳生態最具國際感的豪宅聚落。低密度、高綠覆的高級住宅聚落，堪稱水湳最精華之地，以綠建築、景觀綠廊為核心，稀有價值遠勝七期新市政中心，每一棟建築都將是限量絕版品。
           </p>
+
+          {/* 生態專用區介紹按鈕 */}
+          <div style={{ marginTop: '2rem' }}>
+            <RippleButton onClick={openEcoModal}>
+              <span>生態專用區介紹</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </RippleButton>
+          </div>
         </div>
       </div>
 
@@ -509,6 +549,48 @@ const PreciousCollectionPage: React.FC = () => {
       <div className="absolute z-10 text-[#0b2d2a]/50 text-micro" style={{ right: '5rem', bottom: '1rem' }}>
         示意圖僅供參考
       </div>
+
+      {/* 生態專用區介紹 Modal */}
+      {showEcoModal && (
+        <div className="fixed inset-0 z-50 bg-white animate-fade-in" style={{ top: '80px' }}>
+          <div className="w-full h-full flex items-center justify-center p-8">
+            <img
+              key={ecoGalleryIndex}
+              src={ecoGalleryImages[ecoGalleryIndex]}
+              alt={`生態專用區介紹 ${ecoGalleryIndex + 1}`}
+              className="max-w-full max-h-full object-contain animate-fade-in"
+            />
+          </div>
+
+          <CloseButton onClick={closeEcoModal} />
+
+          {/* 箭頭導航 - 固定在右下角 */}
+          <div className="absolute bottom-8 right-8 flex items-center gap-3 z-20">
+            <button
+              onClick={goToPrevEcoImage}
+              className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </button>
+
+            <button
+              onClick={goToNextEcoImage}
+              className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
+
+          {/* 頁碼指示 - 左下角 */}
+          <div className="absolute bottom-8 left-8 text-body text-gray-600 z-20">
+            {ecoGalleryIndex + 1} / {ecoGalleryImages.length}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

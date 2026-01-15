@@ -95,6 +95,7 @@ const LifeFunctionPage: React.FC = () => {
   });
   const containerRef = React.useRef<HTMLDivElement>(null);
   const mapRef = React.useRef<HTMLDivElement>(null);
+  const [isOverClickable, setIsOverClickable] = useState(false);
 
   // 是否可拖拉（放大超過1或全螢幕時）
   const canDrag = scale > 1 || isFullscreen;
@@ -396,6 +397,30 @@ const LifeFunctionPage: React.FC = () => {
     }
   };
 
+  // 處理滑鼠移動 - 檢測是否在可點擊區域上
+  const handleMapMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!mapRef.current || !activeCategory) {
+      setIsOverClickable(false);
+      return;
+    }
+
+    const rect = mapRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+    // 檢查是否在任何可點擊區域內
+    for (const area of clickableAreas) {
+      if (activeCategory !== area.category) continue;
+      if (area.polygon.length === 0) continue;
+
+      if (isPointInPolygon(x, y, area.polygon)) {
+        setIsOverClickable(true);
+        return;
+      }
+    }
+    setIsOverClickable(false);
+  };
+
   return (
     <div ref={containerRef} className="absolute inset-0 overflow-hidden bg-[#f5f0e6]">
       {/* 整體背景 */}
@@ -408,16 +433,16 @@ const LifeFunctionPage: React.FC = () => {
       <div
         ref={mapRef}
         data-map-container
-        className={`absolute left-0 bottom-0 origin-top-left ${isDragging ? '' : 'transition-transform duration-300'} ${canDrag ? 'cursor-grab' : ''} ${isDragging ? 'cursor-grabbing' : ''}`}
+        className={`absolute left-0 bottom-0 origin-top-left ${isDragging ? '' : 'transition-transform duration-300'} ${isDragging ? 'cursor-grabbing' : isOverClickable ? 'cursor-pointer' : canDrag ? 'cursor-grab' : ''}`}
         style={{
           top: '80px',
           aspectRatio: '1366 / 768',
           transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`
         }}
         onMouseDown={handleDragStart}
-        onMouseMove={handleDragMove}
+        onMouseMove={(e) => { handleDragMove(e); handleMapMouseMove(e); }}
         onMouseUp={handleDragEnd}
-        onMouseLeave={handleDragEnd}
+        onMouseLeave={() => { handleDragEnd(); setIsOverClickable(false); }}
         onTouchStart={handleDragStart}
         onTouchMove={handleDragMove}
         onTouchEnd={handleDragEnd}
@@ -444,13 +469,13 @@ const LifeFunctionPage: React.FC = () => {
           >
             <defs>
               <filter id="glow-blur-soft" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="0.8" result="blur" />
-              </filter>
-              <filter id="glow-blur-medium" x="-50%" y="-50%" width="200%" height="200%">
                 <feGaussianBlur stdDeviation="1.2" result="blur" />
               </filter>
+              <filter id="glow-blur-medium" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="2.0" result="blur" />
+              </filter>
               <filter id="glow-blur-strong" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="1.8" result="blur" />
+                <feGaussianBlur stdDeviation="3.0" result="blur" />
               </filter>
             </defs>
 
@@ -463,7 +488,7 @@ const LifeFunctionPage: React.FC = () => {
                   <polygon
                     points={area.polygon.map(p => `${p.x},${p.y}`).join(' ')}
                     className="animate-ripple-5"
-                    fill="rgba(218, 165, 32, 0.2)"
+                    fill="rgba(218, 165, 32, 0.4)"
                     stroke="none"
                     filter="url(#glow-blur-strong)"
                   />
@@ -471,7 +496,7 @@ const LifeFunctionPage: React.FC = () => {
                   <polygon
                     points={area.polygon.map(p => `${p.x},${p.y}`).join(' ')}
                     className="animate-ripple-4"
-                    fill="rgba(218, 165, 32, 0.125)"
+                    fill="rgba(218, 165, 32, 0.35)"
                     stroke="none"
                     filter="url(#glow-blur-strong)"
                   />
@@ -479,7 +504,7 @@ const LifeFunctionPage: React.FC = () => {
                   <polygon
                     points={area.polygon.map(p => `${p.x},${p.y}`).join(' ')}
                     className="animate-ripple-3"
-                    fill="rgba(218, 165, 32, 0.25)"
+                    fill="rgba(218, 165, 32, 0.5)"
                     stroke="none"
                     filter="url(#glow-blur-medium)"
                   />
@@ -487,7 +512,7 @@ const LifeFunctionPage: React.FC = () => {
                   <polygon
                     points={area.polygon.map(p => `${p.x},${p.y}`).join(' ')}
                     className="animate-ripple-2"
-                    fill="rgba(218, 165, 32, 0.5)"
+                    fill="rgba(218, 165, 32, 0.7)"
                     stroke="none"
                     filter="url(#glow-blur-soft)"
                   />
@@ -495,7 +520,7 @@ const LifeFunctionPage: React.FC = () => {
                   <polygon
                     points={area.polygon.map(p => `${p.x},${p.y}`).join(' ')}
                     className="animate-ripple-1"
-                    fill="rgba(218, 165, 32, 0.7)"
+                    fill="rgba(218, 165, 32, 0.9)"
                     stroke="none"
                     filter="url(#glow-blur-soft)"
                   />
@@ -656,11 +681,11 @@ const LifeFunctionPage: React.FC = () => {
       <style>{`
         @keyframes breathing {
           0%, 100% {
-            filter: drop-shadow(0 0 8px rgba(243, 207, 154, 0.05)) drop-shadow(0 0 16px rgba(243, 207, 154, 0.1));
-            opacity: 0.9;
+            filter: drop-shadow(0 0 12px rgba(243, 207, 154, 0.3)) drop-shadow(0 0 24px rgba(243, 207, 154, 0.2)) drop-shadow(0 0 48px rgba(243, 207, 154, 0.1));
+            opacity: 0.85;
           }
           50% {
-            filter: drop-shadow(0 0 20px rgba(243, 207, 154, 0.4)) drop-shadow(0 0 52px rgba(243, 207, 154, 0.8));
+            filter: drop-shadow(0 0 30px rgba(243, 207, 154, 0.8)) drop-shadow(0 0 60px rgba(243, 207, 154, 0.6)) drop-shadow(0 0 100px rgba(243, 207, 154, 0.4));
             opacity: 1;
           }
         }
@@ -672,12 +697,12 @@ const LifeFunctionPage: React.FC = () => {
         /* 水波漣漪動畫 - 滑順的呼吸脈動效果 */
         @keyframes ripple-pulse {
           0%, 100% {
-            opacity: 0.025;
-            transform: scale(0.92);
+            opacity: 0.15;
+            transform: scale(0.88);
           }
           50% {
-            opacity: 0.375;
-            transform: scale(1.02);
+            opacity: 0.85;
+            transform: scale(1.05);
           }
         }
 

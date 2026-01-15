@@ -16,8 +16,8 @@ const LandscapeTastePage: React.FC = () => {
 
   // ===== 飛入動畫設定 =====
   const charDelay = 0.12;  // 每個字的延遲時間（秒）- 較慢以產生交錯重疊效果
-  const titleText = '自然綠蔭散策';
-  const subtitleText = '邀約花蝶共舞';
+  const titleText = '當建築遇見風景';
+  const subtitleText = '美感於此延續';
   const subtitleStartDelay = titleText.length * charDelay + 0.2;
 
   // 動畫狀態
@@ -268,9 +268,9 @@ const LandscapeTastePage: React.FC = () => {
                 letterSpacing: '0.15em',
               }}
             >
-              <span className="italic text-small">上境設計 / </span>
+              <span className="italic text-small">景觀品味 / </span>
               <br/>
-              當建築遇見風景，美感於此延續
+              上境設計 許富居
             </p>
           </div>
 

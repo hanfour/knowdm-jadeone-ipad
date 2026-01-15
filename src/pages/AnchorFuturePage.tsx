@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SubpageMenuBar from '../components/SubpageMenuBar';
+import CloseButton from '../components/CloseButton';
+import RippleButton from '../components/RippleButton';
 
 // 重劃區詳細資料結構
 interface DistrictDetail {
@@ -193,6 +195,7 @@ const AnchorFuturePage: React.FC = () => {
   const [hoveredDistrict, setHoveredDistrict] = useState<string | null>(null);
   const [showModal, setShowModal] = useState<string | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [specialModal, setSpecialModal] = useState<'highway74' | 'comparison' | null>(null);
   const svgContainerRef = useRef<HTMLDivElement>(null);
 
   // 開啟燈箱
@@ -338,16 +341,7 @@ const AnchorFuturePage: React.FC = () => {
 
     return (
       <div className="fixed inset-0 z-50 bg-white animate-fade-in" style={{ top: '80px' }}>
-        {/* 關閉按鈕 */}
-        <button
-          onClick={closeModal}
-          className="absolute top-4 right-6 w-12 h-12 rounded-full bg-black/60 backdrop-blur-md text-white flex items-center justify-center hover:rotate-180 transition-all duration-300 z-10"
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
-        </button>
+        <CloseButton onClick={closeModal} />
 
         {/* 主要內容區 */}
         <div className="h-full flex">
@@ -460,6 +454,77 @@ const AnchorFuturePage: React.FC = () => {
     );
   };
 
+  // 渲染特殊燈箱（74快速道路 / 重劃區比較表）
+  const renderSpecialModal = () => {
+    if (!specialModal) return null;
+
+    if (specialModal === 'highway74') {
+      return (
+        <div className="fixed inset-0 z-50 bg-white animate-fade-in" style={{ top: '80px' }}>
+          <CloseButton onClick={() => setSpecialModal(null)} />
+
+          {/* 主要內容區 */}
+          <div className="h-full flex">
+            {/* 左側：文字內容 */}
+            <div className="w-2/5 h-full px-16 py-12 overflow-y-auto">
+              {/* 區域標籤 */}
+              <div
+                className="inline-block px-4 py-1 rounded-full text-white text-small mb-6"
+                style={{ backgroundColor: '#0b2d2a' }}
+              >
+                交通建設
+              </div>
+
+              {/* 標題 */}
+              <h2 className="text-h2 tracking-wide-custom font-bold text-text-primary mb-8">
+                74 黃金軸線・定錨未來版圖
+              </h2>
+
+              {/* 說明內容 */}
+              <div className="space-y-4">
+                <p className="text-body leading-relaxed-custom text-text-primary text-justify">
+                  台中以 74 快速道路為城市發展主動脈，東西串聯、南北貫通，全面改寫台中住宅與產業版圖。隨著 74 號快速道路沿線交通效率到位，不僅加速重劃區開發節奏，更有效拉近各屯區之間的生活距離，帶動人口移入、產業進駐與房市價值穩健上行。
+                </p>
+                <p className="text-body leading-relaxed-custom text-text-primary text-justify">
+                  從水湳經貿園區、十四期重劃區，到七期、八期、十三期及各大單元重劃區，74 快速道路所形成的磁吸效應，促使區域機能迅速到位，商業、教育、醫療與綠地資源相繼成熟，形塑交通便捷、生活完整的城市新核心。在建設持續兌現下，74 軸線不只是道路，更是推動台中重劃區共伴成長、引領各屯區價值躍升的關鍵引擎。
+                </p>
+              </div>
+            </div>
+
+            {/* 右側：圖片 */}
+            <div className="flex-1 h-full flex items-center justify-center bg-gray-100 relative">
+              {/* TODO: 請替換為 74 快速道路實際圖片 */}
+              <img
+                src="/images/a1/IMG_004.jpg"
+                alt="74快速道路"
+                className="w-full h-full object-cover animate-fade-in"
+              />
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    if (specialModal === 'comparison') {
+      return (
+        <div className="fixed inset-0 z-50 bg-white animate-fade-in" style={{ top: '80px' }}>
+          <CloseButton onClick={() => setSpecialModal(null)} />
+
+          {/* 滿版圖片 */}
+          <div className="h-full flex items-center justify-center p-8">
+            <img
+              src="/images/anchor-future/重劃區比較表.jpg"
+              alt="重劃區比較表"
+              className="max-w-full max-h-full object-contain animate-fade-in"
+            />
+          </div>
+        </div>
+      );
+    }
+
+    return null;
+  };
+
   return (
     <div className="absolute inset-0 overflow-hidden bg-[#f5f0e6]">
       {/* 整體背景 */}
@@ -512,28 +577,27 @@ const AnchorFuturePage: React.FC = () => {
             台中重劃區共伴效應帶動地段價值提升，隨著台中市基礎建設捷運藍線與綠線的逐步完善，吸引建商推案、人口移入，形成機能成熟、環境優美、交通便捷的重劃發展區域，水湳經貿園區與十四期重劃區等地的發展，七期、八期、十三期、十四期、單元等重劃區都因為磁吸效應，成為都市發展熱點。
           </p>
 
-          {/* 區塊圖例 */}
-          {/* <div className="flex flex-wrap" style={{ marginTop: '2rem', gap: '0.5rem' }}>
-            {districts.map((district) => (
-              <button
-                key={district.id}
-                onClick={() => openModal(district.id)}
-                className="px-3 py-1 rounded-full transition-all duration-300 text-[#0b2d2a]/80 hover:text-[#0b2d2a] text-xsmall hover:shadow-md"
-                style={{
-                  backgroundColor: `${district.color}80`,
-                  borderWidth: '1px',
-                  borderColor: district.color,
-                }}
-              >
-                {district.name.replace('重劃區', '')}
-              </button>
-            ))}
-          </div> */}
+          {/* 按鈕區 */}
+          <div className="flex gap-3" style={{ marginTop: '2rem' }}>
+            <RippleButton onClick={() => setSpecialModal('highway74')}>
+              <span>74快速道路</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </RippleButton>
+            <RippleButton onClick={() => setSpecialModal('comparison')}>
+              <span>重劃區比較表</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </RippleButton>
+          </div>
         </div>
       </div>
 
       {/* 燈箱 */}
       {renderModal()}
+      {renderSpecialModal()}
 
       {/* 動畫樣式 */}
       <style>{`
