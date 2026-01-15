@@ -71,6 +71,7 @@ export const getAerialButtons = (floorId: string): GalleryButtonData[] => [
   { id: `${floorId}-south`, label: '南向景觀空拍', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(南向).jpg`, label: '南向景觀空拍' }] },
   { id: `${floorId}-west`, label: '西向景觀空拍', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(西向).jpg`, label: '西向景觀空拍' }] },
   { id: `${floorId}-north`, label: '北向景觀空拍', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(北向).jpg`, label: '北向景觀空拍' }] },
+  { id: `${floorId}-360`, label: '360度環景', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(360).jpg`, label: '360度環景' }] },
 ];
 
 // 標準樓層標記點

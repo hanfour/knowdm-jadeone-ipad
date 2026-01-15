@@ -10,6 +10,7 @@ import FloorSelector from './components/FloorSelector';
 import DevPanel from './components/DevPanel';
 import FurnitureSheet from './components/FurnitureSheet';
 import GalleryViewer from './components/GalleryViewer';
+import PanoramaViewer from './components/PanoramaViewer';
 
 // 開發模式開關
 const DEV_MODE = false;
@@ -39,6 +40,13 @@ const FloorPlanPage: React.FC = () => {
 
   // 影片彈窗狀態
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+
+  // 360度環景狀態
+  const [panoramaState, setPanoramaState] = useState<{
+    isOpen: boolean;
+    imageSrc: string;
+    title: string;
+  }>({ isOpen: false, imageSrc: '', title: '' });
 
   // 縮放控制
   const handleZoomIn = useCallback(() => setScale(prev => Math.min(prev + 0.5, 8)), []);
@@ -111,6 +119,15 @@ const FloorPlanPage: React.FC = () => {
 
   // 圖庫查看器
   const openGalleryViewer = (gallery: GalleryButtonData) => {
+    // 如果是 360 度環景，開啟 PanoramaViewer
+    if (gallery.id.includes('-360')) {
+      setPanoramaState({
+        isOpen: true,
+        imageSrc: gallery.images[0].src,
+        title: gallery.label,
+      });
+      return;
+    }
     const isAerial = gallery.id.includes('-east') || gallery.id.includes('-south') || gallery.id.includes('-west') || gallery.id.includes('-north');
     setGalleryViewer({ isOpen: true, gallery, currentIndex: 0, scale: isAerial ? 1.325 : 1 });
   };
@@ -384,6 +401,15 @@ const FloorPlanPage: React.FC = () => {
           </div>
         </>
       )}
+
+      {/* 360度環景 */}
+      <PanoramaViewer
+        isOpen={panoramaState.isOpen}
+        imageSrc={panoramaState.imageSrc}
+        title={panoramaState.title}
+        floorLabel={selectedFloor.label}
+        onClose={() => setPanoramaState(prev => ({ ...prev, isOpen: false }))}
+      />
     </div>
   );
 };
