@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import SubpageMenuBar from '../components/SubpageMenuBar';
-import CloseButton from '../components/CloseButton';
+import CloseButton from '../components/close-button';
 
 // 影片資料
 const videos = [

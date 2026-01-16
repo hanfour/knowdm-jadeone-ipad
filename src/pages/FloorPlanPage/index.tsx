@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import SubpageMenuBar from '../../components/SubpageMenuBar';
-import CloseButton from '../../components/CloseButton';
+import CloseButton from '../../components/close-button';
 import { FloorData, SubFloorData, MarkerData, GalleryButtonData, AnchorPoint, BottomSheetState, GalleryViewerState } from './types';
 import { floors, floorDefaults, units } from './data';
 import { floorPlanStyles } from './styles';

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SubpageMenuBar from '../components/SubpageMenuBar';
-import CloseButton from '../components/CloseButton';
-import RippleButton from '../components/RippleButton';
+import CloseButton from '../components/close-button';
+import RippleButton from '../components/ripple-button';
 
 // 生態專用區介紹輪播圖片
 const ecoGalleryImages = [

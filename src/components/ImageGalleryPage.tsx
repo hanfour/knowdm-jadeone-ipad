@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import SubpageMenuBar from './SubpageMenuBar';
-import CloseButton from './CloseButton';
-import RippleButton from './RippleButton';
+import CloseButton from './close-button';
+import RippleButton from './ripple-button';
 
 interface ImageData {
   src: string;

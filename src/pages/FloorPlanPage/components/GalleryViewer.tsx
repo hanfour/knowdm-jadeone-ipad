@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { GalleryButtonData } from '../types';
 import Compass from './Compass';
-import CloseButton from '../../../components/CloseButton';
+import CloseButton from '../../../components/close-button';
 
 interface GalleryViewerProps {
   isOpen: boolean;

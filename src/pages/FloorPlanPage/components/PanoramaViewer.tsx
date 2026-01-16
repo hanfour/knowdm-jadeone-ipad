@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import CloseButton from '../../../components/CloseButton';
+import CloseButton from '../../../components/close-button';
 
 interface PanoramaViewerProps {
   isOpen: boolean;

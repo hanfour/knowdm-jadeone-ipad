@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { menuSections, MenuItem } from '../config/menu';
-import MenuButton from './MenuButton';
+import MenuButton from './menu-button';
 import FullscreenMenuAlt from './FullscreenMenuAlt';
 
 interface SubpageMenuBarProps {

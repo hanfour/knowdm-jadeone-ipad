@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SubpageMenuBar from '../components/SubpageMenuBar';
-import CloseButton from '../components/CloseButton';
+import CloseButton from '../components/close-button';
 
 // 作品圖片資料
 const portfolioImages = [

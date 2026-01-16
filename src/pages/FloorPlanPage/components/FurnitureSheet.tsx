@@ -3,7 +3,7 @@ import { UnitData } from '../types';
 import { units } from '../data';
 import Compass from './Compass';
 import UnitIndicator from './UnitIndicator';
-import CloseButton from '../../../components/CloseButton';
+import CloseButton from '../../../components/close-button';
 
 // 各戶型面積資料
 const unitAreaData: Record<string, {

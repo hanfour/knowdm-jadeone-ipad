@@ -8,7 +8,7 @@ import {
 } from '../components/backgrounds';
 // import FullscreenMenu from '../components/FullscreenMenu';
 import FullscreenMenuAlt from '../components/FullscreenMenuAlt';
-import MenuButton from '../components/MenuButton';
+import MenuButton from '../components/menu-button';
 import IntroAnimation from '../components/IntroAnimation';
 import { menuSections } from '../config/menu';
 import { safeSessionStorage, STORAGE_KEYS } from '../utils/storage';

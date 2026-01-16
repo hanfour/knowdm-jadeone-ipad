@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // import PageHeader from '../components/PageHeader';
 import SubpageMenuBar from '../components/SubpageMenuBar';
-import CloseButton from '../components/CloseButton';
+import CloseButton from '../components/close-button';
 
 // 頁籤資料
 const categories = [

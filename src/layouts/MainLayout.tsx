@@ -1,5 +1,5 @@
 import React from 'react';
-import AspectRatioContainer from '../components/AspectRatioContainer';
+import AspectRatioContainer from '../components/aspect-ratio-container';
 
 interface MainLayoutProps {
   children: React.ReactNode;

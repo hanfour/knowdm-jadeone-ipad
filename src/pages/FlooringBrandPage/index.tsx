@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SubpageMenuBar from '../../components/SubpageMenuBar';
-import CloseButton from '../../components/CloseButton';
+import CloseButton from '../../components/close-button';
 
 interface TabData {
   id: string;
