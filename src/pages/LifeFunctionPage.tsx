@@ -365,15 +365,6 @@ const LifeFunctionPage: React.FC = () => {
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
 
-    // 也用繪製工具的方式計算（基於目標元素）
-    const targetElement = document.querySelector('[data-map-container]');
-    let drawerX = 0, drawerY = 0;
-    if (targetElement) {
-      const targetRect = targetElement.getBoundingClientRect();
-      drawerX = ((e.clientX - targetRect.left) / targetRect.width) * 100;
-      drawerY = ((e.clientY - targetRect.top) / targetRect.height) * 100;
-    }
-
     console.log(`[地圖點擊] x=${x.toFixed(2)}%, y=${y.toFixed(2)}% | 目前類別: ${activeCategory || '無'}`);
 
     // 檢查是否點擊到商圈區域

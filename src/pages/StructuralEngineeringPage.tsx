@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import SubpageMenuBar from '../components/SubpageMenuBar';
 import CloseButton from '../components/CloseButton';
 
-// 作品圖片資料（暫用 picsum.photos）
+// 作品圖片資料
 const portfolioImages = [
-  { src: 'https://picsum.photos/2560/1440?random=30', label: '結構作品一' },
-  { src: 'https://picsum.photos/2560/1440?random=31', label: '結構作品二' },
-  { src: 'https://picsum.photos/2560/1440?random=32', label: '結構作品三' },
-  { src: 'https://picsum.photos/2560/1440?random=33', label: '結構作品四' },
+  { src: '/images/b5/works/LINE_ALBUM_國泰森林苑_251221_3.jpg', label: '國泰森林苑' },
+  { src: '/images/b5/works/LINE_ALBUM_鄉林皇居_251221_5.jpg', label: '鄉林皇居' },
+  { src: '/images/b5/works/LINE_ALBUM_帝璟謙和_251221_11.jpg', label: '帝璟謙和' },
 ];
 
 const StructuralEngineeringPage: React.FC = () => {
@@ -48,9 +47,10 @@ const StructuralEngineeringPage: React.FC = () => {
     currentIndex: 0,
   });
 
-  // 開啟燈箱
-  const openLightbox = () => {
-    setLightbox({ isOpen: true, currentIndex: 0 });
+  // 開啟燈箱（可指定起始圖片索引）
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const openLightbox = (index: number = 0) => {
+    setLightbox({ isOpen: true, currentIndex: index });
   };
 
   // 關閉燈箱
@@ -228,21 +228,16 @@ const StructuralEngineeringPage: React.FC = () => {
         {/* 底部按鈕 - 循環漸變文字，點擊開啟燈箱 */}
         <div className="mt-12">
           <div
-            // onClick={openLightbox}
-            className="inline-flex flex-col items-start border border-white/30 px-8 py-4 hover:border-white/50 transition-all bg-white/10 backdrop-blur-sm"
+            className="inline-flex flex-col items-start border border-white/30 px-8 py-4 bg-white/10 backdrop-blur-sm"
             style={{ letterSpacing: '0.08em' }}
           >
             <span
               className="gradient-text-animate text-small"
             >
               作品代表<br/>
-              九川建設「四方研」結構設計<br/>
-              多項中大型集合住宅結構工程
-            </span>
-            <span
-              className="!hidden gradient-text-animate italic text-micro mt-1"
-            >
-              Collection
+              <span onClick={() => openLightbox(0)} className="cursor-pointer hover:underline">國泰森林苑</span>、
+              <span onClick={() => openLightbox(1)} className="cursor-pointer hover:underline">鄉林皇居</span>、
+              <span onClick={() => openLightbox(2)} className="cursor-pointer hover:underline">帝璟謙和</span>
             </span>
           </div>
         </div>

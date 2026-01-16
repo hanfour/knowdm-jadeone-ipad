@@ -27,6 +27,7 @@ const HomePage: React.FC = () => {
   // 檢查是否已經播放過動畫（使用 sessionStorage）
   const hasPlayedIntro = safeSessionStorage.getItem(STORAGE_KEYS.HAS_PLAYED_INTRO) === 'true';
   const [showIntro, setShowIntro] = useState(!hasPlayedIntro);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [menuOpen, setMenuOpen] = useState(false);
   const [altMenuOpen, setAltMenuOpen] = useState(false);
   const [currentMenuIndex, setCurrentMenuIndex] = useState(0);

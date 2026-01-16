@@ -2,14 +2,10 @@ import React, { useState, useEffect } from 'react';
 import SubpageMenuBar from '../components/SubpageMenuBar';
 import CloseButton from '../components/CloseButton';
 
-// 作品圖片資料（暫用 picsum.photos）
+// 作品圖片資料
 const portfolioImages = [
-  { src: 'https://picsum.photos/2560/1440?random=1', label: '作品一' },
-  { src: 'https://picsum.photos/2560/1440?random=2', label: '作品二' },
-  { src: 'https://picsum.photos/2560/1440?random=3', label: '作品三' },
-  { src: 'https://picsum.photos/2560/1440?random=4', label: '作品四' },
-  { src: 'https://picsum.photos/2560/1440?random=5', label: '作品五' },
-  { src: 'https://picsum.photos/2560/1440?random=6', label: '作品六' },
+  { src: '/images/b2/works/DJI_0620.jpg', label: '餘白' },
+  { src: '/images/b2/works/PB280246.jpg', label: '餘白' },
 ];
 
 const ArchitectAestheticsPage: React.FC = () => {
@@ -46,9 +42,10 @@ const ArchitectAestheticsPage: React.FC = () => {
     currentIndex: 0,
   });
 
-  // 開啟燈箱
-  const openLightbox = () => {
-    setLightbox({ isOpen: true, currentIndex: 0 });
+  // 開啟燈箱（可指定起始圖片索引）
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const openLightbox = (index: number = 0) => {
+    setLightbox({ isOpen: true, currentIndex: index });
   };
 
   // 關閉燈箱
@@ -189,24 +186,24 @@ const ArchitectAestheticsPage: React.FC = () => {
             <p>擅長運用 BIM 聚碩建設聯合單元二國際豪墅-餘白建築師_蔡長恩建築師，再創水湳經貿無可取代的經典鉅作。凝練法式優雅美學外觀與工藝理念，同時引入 BIM 建築管理系統，以數位化精準掌握施工的每一個細節，打造國際級美學居所，獻給追求極致生活的少數人。</p>
           </div>
 
-          {/* 底部按鈕 - 循環漸變文字，點擊開啟燈箱 */}
+          {/* 底部按鈕 - 循環漸變文字 */}
           <div className="mt-16">
             <div
-              // onClick={openLightbox}
-              className="inline-flex flex-col items-start border border-white/25 px-8 py-4 hover:border-white/40 transition-all"
+              className="inline-flex flex-col items-start border border-white/25 px-8 py-4"
               style={{ letterSpacing: '0.08em' }}
             >
               <span
                 className="gradient-text-animate text-small"
               >
                 作品代表<br/>
+                <span
+                  onClick={() => openLightbox(0)}
+                  className="cursor-pointer hover:underline"
+                >
+                  鑫大略「餘白」
+                </span><br/>
                 有春建設「青田芯、青田蒔」<br/>
                 匠泰開發「日日」、「琢力自然」
-              </span>
-              <span
-                className="!hidden gradient-text-animate italic text-micro mt-1"
-              >
-                Collection
               </span>
             </div>
           </div>

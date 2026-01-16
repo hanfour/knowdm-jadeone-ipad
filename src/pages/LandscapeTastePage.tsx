@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import SubpageMenuBar from '../components/SubpageMenuBar';
 import CloseButton from '../components/CloseButton';
 
-// 作品圖片資料（暫用 picsum.photos）
+// 作品圖片資料
 const portfolioImages = [
-  { src: 'https://picsum.photos/2560/1440?random=20', label: '景觀作品一' },
-  { src: 'https://picsum.photos/2560/1440?random=21', label: '景觀作品二' },
-  { src: 'https://picsum.photos/2560/1440?random=22', label: '景觀作品三' },
-  { src: 'https://picsum.photos/2560/1440?random=23', label: '景觀作品四' },
+  { src: '/images/b4/works/LINE_ALBUM_慶仁林境_251221_6.jpg', label: '慶仁林境' },
+  { src: '/images/b4/works/LINE_ALBUM_雙橡園1617_251221_5.jpg', label: '雙橡園1617' },
+  { src: '/images/b4/works/LINE_ALBUM_帝璟謙和_251221_1.jpg', label: '帝璟謙和' },
 ];
 
 const LandscapeTastePage: React.FC = () => {
@@ -40,9 +39,10 @@ const LandscapeTastePage: React.FC = () => {
     currentIndex: 0,
   });
 
-  // 開啟燈箱
-  const openLightbox = () => {
-    setLightbox({ isOpen: true, currentIndex: 0 });
+  // 開啟燈箱（可指定起始圖片索引）
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const openLightbox = (index: number = 0) => {
+    setLightbox({ isOpen: true, currentIndex: index });
   };
 
   // 關閉燈箱
@@ -289,21 +289,16 @@ const LandscapeTastePage: React.FC = () => {
           {/* 底部按鈕 - 循環漸變文字，點擊開啟燈箱 */}
           <div className="mt-12">
             <div
-              // onClick={openLightbox}
-              className="inline-flex flex-col items-start border border-white/25 px-8 py-4 hover:border-white/40 transition-all"
+              className="inline-flex flex-col items-start border border-white/25 px-8 py-4"
               style={{ letterSpacing: '0.08em' }}
             >
               <span
                 className="gradient-text-animate text-small"
               >
                 作品代表<br/>
-                慶仁建設「慶仁林境」景觀與公設（A’ Design Award 銀獎）<br/>
-                城揚建設「御廳苑」景觀設計（MUSE 銀獎）
-              </span>
-              <span
-                className="!hidden gradient-text-animate italic text-micro mt-1"
-              >
-                Collection
+                <span onClick={() => openLightbox(0)} className="cursor-pointer hover:underline">慶仁林境</span>、
+                <span onClick={() => openLightbox(1)} className="cursor-pointer hover:underline">雙橡園1617</span>、
+                <span onClick={() => openLightbox(2)} className="cursor-pointer hover:underline">帝璟謙和</span>
               </span>
             </div>
           </div>
