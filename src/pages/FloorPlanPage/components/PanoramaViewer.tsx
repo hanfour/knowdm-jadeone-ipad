@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import CloseButton from '../../../components/CloseButton';
 
-// Pannellum 需要動態載入
+// Photo Sphere Viewer 動態載入
 declare global {
   interface Window {
-    pannellum: any;
+    PhotoSphereViewer: any;
   }
 }
 
@@ -26,62 +26,141 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const viewerRef = useRef<any>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
     if (!isOpen || !containerRef.current) return;
 
-    // 動態載入 pannellum
-    const loadPannellum = async () => {
-      if (!window.pannellum) {
-        // 載入 CSS
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = 'https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css';
-        document.head.appendChild(link);
+    let isMounted = true;
 
-        // 載入 JS
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js';
-        script.async = true;
+    const loadPhotoSphereViewer = async () => {
+      try {
+        // 載入 Photo Sphere Viewer CSS
+        if (!document.querySelector('link[href*="photo-sphere-viewer"]')) {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = 'https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core@5/index.min.css';
+          document.head.appendChild(link);
+        }
 
-        await new Promise<void>((resolve, reject) => {
-          script.onload = () => resolve();
-          script.onerror = () => reject(new Error('Failed to load pannellum'));
-          document.head.appendChild(script);
-        });
-      }
+        // 載入 Three.js (Photo Sphere Viewer 依賴)
+        if (!window.hasOwnProperty('THREE')) {
+          const threeScript = document.createElement('script');
+          threeScript.src = 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js';
+          await new Promise<void>((resolve, reject) => {
+            threeScript.onload = () => resolve();
+            threeScript.onerror = () => reject(new Error('Failed to load Three.js'));
+            document.head.appendChild(threeScript);
+          });
+        }
 
-      // 初始化 viewer
-      if (containerRef.current && window.pannellum) {
-        viewerRef.current = window.pannellum.viewer(containerRef.current, {
-          type: 'equirectangular',
-          panorama: imageSrc,
-          autoLoad: true,
-          autoRotate: -2, // 自動旋轉速度
-          compass: false,
-          showZoomCtrl: true,
-          showFullscreenCtrl: true,
-          mouseZoom: true,
-          hfov: 100, // 初始水平視野
-          minHfov: 50, // 最小水平視野 (最大放大)
-          maxHfov: 120, // 最大水平視野 (最小放大)
-          pitch: 0, // 初始垂直角度
-          yaw: 0, // 初始水平角度
-        });
-        setIsLoaded(true);
+        // 載入 Photo Sphere Viewer
+        if (!window.PhotoSphereViewer) {
+          const psvScript = document.createElement('script');
+          psvScript.src = 'https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core@5/index.min.js';
+          await new Promise<void>((resolve, reject) => {
+            psvScript.onload = () => resolve();
+            psvScript.onerror = () => reject(new Error('Failed to load Photo Sphere Viewer'));
+            document.head.appendChild(psvScript);
+          });
+        }
+
+        // 等待一小段時間確保腳本完全載入
+        await new Promise(resolve => setTimeout(resolve, 100));
+
+        if (!isMounted || !containerRef.current) return;
+
+        // 初始化 viewer
+        const Viewer = window.PhotoSphereViewer?.Viewer;
+        if (Viewer) {
+          viewerRef.current = new Viewer({
+            container: containerRef.current,
+            panorama: imageSrc,
+            defaultZoomLvl: 50,
+            minFov: 30,
+            maxFov: 90,
+            navbar: false,
+            loadingTxt: '載入中...',
+            touchmoveTwoFingers: false,
+            mousewheelCtrlKey: false,
+          });
+
+          viewerRef.current.addEventListener('ready', () => {
+            if (isMounted) {
+              setIsLoaded(true);
+              // 開始自動旋轉
+              viewerRef.current.rotate({ longitude: '+0.001rad' });
+            }
+          });
+        }
+      } catch (error) {
+        console.error('Failed to load Photo Sphere Viewer:', error);
+        if (isMounted) setLoadError(true);
       }
     };
 
-    loadPannellum();
+    loadPhotoSphereViewer();
 
     return () => {
+      isMounted = false;
       if (viewerRef.current) {
         viewerRef.current.destroy();
         viewerRef.current = null;
       }
       setIsLoaded(false);
+      setLoadError(false);
     };
   }, [isOpen, imageSrc]);
+
+  // 自動旋轉效果
+  useEffect(() => {
+    if (!isLoaded || !viewerRef.current) return;
+
+    let animationId: number;
+    let lastTime = 0;
+    const rotateSpeed = 0.0003; // 旋轉速度
+
+    const animate = (time: number) => {
+      if (lastTime) {
+        const delta = time - lastTime;
+        const position = viewerRef.current.getPosition();
+        viewerRef.current.rotate({
+          longitude: position.longitude + rotateSpeed * delta,
+          latitude: position.latitude,
+        });
+      }
+      lastTime = time;
+      animationId = requestAnimationFrame(animate);
+    };
+
+    // 延遲啟動自動旋轉
+    const timeoutId = setTimeout(() => {
+      animationId = requestAnimationFrame(animate);
+    }, 1000);
+
+    // 使用者互動時暫停自動旋轉
+    const handleInteraction = () => {
+      cancelAnimationFrame(animationId);
+      lastTime = 0;
+      // 5秒後重新開始自動旋轉
+      setTimeout(() => {
+        if (viewerRef.current) {
+          animationId = requestAnimationFrame(animate);
+        }
+      }, 5000);
+    };
+
+    const container = containerRef.current;
+    container?.addEventListener('mousedown', handleInteraction);
+    container?.addEventListener('touchstart', handleInteraction);
+
+    return () => {
+      clearTimeout(timeoutId);
+      cancelAnimationFrame(animationId);
+      container?.removeEventListener('mousedown', handleInteraction);
+      container?.removeEventListener('touchstart', handleInteraction);
+    };
+  }, [isLoaded]);
 
   if (!isOpen) return null;
 
@@ -95,32 +174,14 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
         .panorama-fade-animation {
           animation: panoramaFadeIn 0.3s ease-out forwards;
         }
-        .pnlm-container {
+        .psv-container {
           background: #1a1a1a !important;
         }
-        .pnlm-load-box {
+        .psv-loader {
+          color: #d4a853 !important;
+        }
+        .psv-loader-container {
           background: rgba(0,0,0,0.7) !important;
-        }
-        .pnlm-lbox {
-          color: #d4a853 !important;
-        }
-        .pnlm-load-box p {
-          color: #d4a853 !important;
-        }
-        .pnlm-zoom-controls {
-          right: 100px !important;
-          left: auto !important;
-          top: 50% !important;
-          transform: translateY(-50%) !important;
-        }
-        .pnlm-zoom-in, .pnlm-zoom-out {
-          background: rgba(255,255,255,0.9) !important;
-          border: 1px solid #ccc !important;
-          width: 36px !important;
-          height: 36px !important;
-        }
-        .pnlm-fullscreen-toggle-button {
-          display: none !important;
         }
       `}</style>
 
@@ -129,14 +190,14 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
         style={{ zIndex: 9999 }}
       >
         {/* 標題區 */}
-        <div className="absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/70 to-transparent p-6">
+        <div className="absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/70 to-transparent p-6 pointer-events-none">
           <div className="text-center">
             <p className="text-gold text-h4 tracking-wide-custom">{floorLabel}</p>
             <p className="text-white/70 text-small mt-1">{title}</p>
           </div>
         </div>
 
-        {/* Pannellum 容器 */}
+        {/* Photo Sphere Viewer 容器 */}
         <div
           ref={containerRef}
           className="w-full h-full"
@@ -145,17 +206,26 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
 
         {/* 操作提示 */}
         {isLoaded && (
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 bg-black/50 px-4 py-2 rounded-full">
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 bg-black/50 px-4 py-2 rounded-full pointer-events-none">
             <p className="text-white/70 text-xsmall">拖曳旋轉 • 滾輪縮放</p>
           </div>
         )}
 
         {/* 載入中提示 */}
-        {!isLoaded && (
-          <div className="absolute inset-0 flex items-center justify-center">
+        {!isLoaded && !loadError && (
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div className="text-center">
               <div className="w-12 h-12 border-2 border-gold border-t-transparent rounded-full animate-spin mx-auto mb-4" />
               <p className="text-gold text-small">載入環景中...</p>
+            </div>
+          </div>
+        )}
+
+        {/* 錯誤提示 */}
+        {loadError && (
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="text-center">
+              <p className="text-red-400 text-small">載入失敗，請重試</p>
             </div>
           </div>
         )}
