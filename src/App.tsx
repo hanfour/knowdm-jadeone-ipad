@@ -12,6 +12,7 @@ import PublicFacilityPage from './pages/PublicFacilityPage';
 import LandscapeTastePage from './pages/LandscapeTastePage';
 import StructuralMechanicsPage from './pages/StructuralEngineeringPage';
 import StructuralEngineeringPage from './pages/StructuralEngineeringPage/index';
+import LightingAestheticsPage from './pages/LightingAestheticsPage';
 import FrenchAestheticsPage from './pages/FrenchAestheticsPage';
 import FloorPlanPage from './pages/FloorPlanPage';
 import BoutiqueMansionPage from './pages/BoutiqueMansionPage';
@@ -27,6 +28,7 @@ import WaterproofEngineeringPage from './pages/WaterproofEngineeringPage';
 import FireProtectionEngineeringPage from './pages/FireProtectionEngineeringPage';
 import ThoughtfulEngineeringPage from './pages/ThoughtfulEngineeringPage';
 import AnchorFuturePage from './pages/AnchorFuturePage';
+import InternationalCityPage from './pages/InternationalCityPage';
 import PreciousCollectionPage from './pages/PreciousCollectionPage';
 import PolygonDrawer from './components/dev/PolygonDrawer';
 
@@ -102,17 +104,7 @@ function App() {
           <Route path="/fu-ju-shui-nan/ding-mao-wei-lai" element={<AnchorFuturePage />} />
 
           {/* 富居水湳 - 國際新都 */}
-          <Route
-            path="/fu-ju-shui-nan/guo-ji-xin-du"
-            element={
-              <ImageGalleryPage
-                images={pageData.locationIntro.images}
-                title={pageData.locationIntro.title}
-                description={pageData.locationIntro.description}
-                videoButton={{ label: '水湳空拍', videoId: 'PLACEHOLDER_VIDEO_ID' }}
-              />
-            }
-          />
+          <Route path="/fu-ju-shui-nan/guo-ji-xin-du" element={<InternationalCityPage />} />
 
           {/* 富居水湳 - 雍雅森綠 */}
           <Route
@@ -162,6 +154,9 @@ function App() {
 
           {/* 巨擘薈萃 - 結構力學 */}
           <Route path="/ju-bo-hui-cui/jie-gou-li-xue" element={<StructuralMechanicsPage />} />
+
+          {/* 巨擘薈萃 - 燈光設計 */}
+          <Route path="/ju-bo-hui-cui/deng-guang-mei-xue" element={<LightingAestheticsPage />} />
 
           {/* 優雅精琢 - 結構工學 */}
           <Route path="/you-ya-jing-zhuo/jie-gou-gong-xue" element={<StructuralEngineeringPage />} />

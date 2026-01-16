@@ -151,11 +151,12 @@ export const floors: FloorData[] = [
         id: '1F-lobby',
         label: '入口門廳',
         images: [
-          { src: '/images/c2/facilities/01-大廳-01.webp', label: '入口門廳 1' },
-          { src: '/images/c2/facilities/01-大廳-02.webp', label: '入口門廳 2' },
-          { src: '/images/c2/facilities/01-大廳-03.webp', label: '入口門廳 3' },
-          { src: '/images/c2/facilities/01-大廳-04.webp', label: '入口門廳 4' },
-          { src: '/images/c2/facilities/01-大廳-05.webp', label: '入口門廳 5' },
+          { src: '/images/c2/facilities/01-大廳-06.jpg', label: '入口門廳 1' },
+          { src: '/images/c2/facilities/01-大廳-01.webp', label: '入口門廳 2' },
+          { src: '/images/c2/facilities/01-大廳-02.webp', label: '入口門廳 3' },
+          { src: '/images/c2/facilities/01-大廳-03.webp', label: '入口門廳 4' },
+          { src: '/images/c2/facilities/01-大廳-04.webp', label: '入口門廳 5' },
+          { src: '/images/c2/facilities/01-大廳-05.webp', label: '入口門廳 6' },
         ],
         region: [
           { x: 20.86, y: 7.6 }, { x: 20.73, y: 41.28 }, { x: 22.86, y: 41.28 }, { x: 22.99, y: 42.27 },

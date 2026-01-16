@@ -18,6 +18,7 @@ interface DistrictDetail {
     greenArea?: string;
   };
   images: string[];
+  alt?: string; // 圖片說明
 }
 
 // 重劃區區塊資料（含詳細內容）
@@ -66,10 +67,9 @@ const districts: DistrictDetail[] = [
       greenArea: '約25.73公頃',
     },
     images: [
-      '/images/anchor-future/14th-01.jpg',
-      '/images/anchor-future/14th-02.jpg',
-      '/images/anchor-future/14th-03.jpg',
+      '/images/anchor-future/_0005_pixta_38952988_M.jpg',
     ],
+    alt: '情境示意圖',
   },
   {
     id: '_機捷特區',
@@ -88,9 +88,8 @@ const districts: DistrictDetail[] = [
     },
     images: [
       '/images/anchor-future/mrt-01.jpg',
-      '/images/anchor-future/mrt-02.jpg',
-      '/images/anchor-future/mrt-03.jpg',
     ],
+    alt: '台中捷運綠線',
   },
   {
     id: '_十二期',
@@ -98,14 +97,8 @@ const districts: DistrictDetail[] = [
     color: '#ed9471',
     adminArea: '西屯區',
     majorProjects: [
-      '綠美圖',
-      '台中流行影音中心',
-      '水湳轉運中心',
-      '臺中中央公園',
-      '臺中國際會展中心',
-      '台灣智慧營運塔',
-      '超巨蛋',
-      '捷運橘線',
+      '低密度開發住宅區',
+      '舊市區商圈',
     ],
     development: {
       totalArea: '約88.65公頃',
@@ -115,10 +108,9 @@ const districts: DistrictDetail[] = [
       greenArea: '約5.27公頃',
     },
     images: [
-      '/images/anchor-future/12th-01.jpg',
-      '/images/anchor-future/12th-02.jpg',
-      '/images/anchor-future/12th-03.jpg',
+      '/images/anchor-future/_0001_pixta_118049052_M.jpg',
     ],
+    alt: '情境示意圖',
   },
   {
     id: '_七期',
@@ -139,10 +131,9 @@ const districts: DistrictDetail[] = [
       greenArea: '約19.13公頃',
     },
     images: [
-      '/images/anchor-future/7th-01.jpg',
-      '/images/anchor-future/7th-02.jpg',
-      '/images/anchor-future/7th-03.jpg',
+      '/images/anchor-future/_0002_pixta_97838656_M.jpg',
     ],
+    alt: '臺中國家歌劇院',
   },
   {
     id: '_八期',
@@ -161,10 +152,9 @@ const districts: DistrictDetail[] = [
       greenArea: '約13.11公頃',
     },
     images: [
-      '/images/anchor-future/8th-01.jpg',
-      '/images/anchor-future/8th-02.jpg',
-      '/images/anchor-future/8th-03.jpg',
+      '/images/anchor-future/_0000_pixta_121496522_M.jpg',
     ],
+    alt: '情境示意圖',
   },
   {
     id: '_十三期',
@@ -184,10 +174,9 @@ const districts: DistrictDetail[] = [
       greenArea: '約37.22公頃',
     },
     images: [
-      '/images/anchor-future/13th-01.jpg',
-      '/images/anchor-future/13th-02.jpg',
-      '/images/anchor-future/13th-03.jpg',
+      '/images/anchor-future/_0004_pixta_69952978_M.jpg',
     ],
+    alt: '情境示意圖',
   },
 ];
 
@@ -361,22 +350,24 @@ const AnchorFuturePage: React.FC = () => {
             </h2>
 
             {/* 重大建設 */}
-            <div className="mb-8">
-              <h3 className="text-large tracking-wide-custom font-medium text-text-secondary mb-4">
-                重大建設
-              </h3>
-              <ul className="space-y-1">
-                {modalDistrictData.majorProjects.map((project, index) => (
-                  <li
-                    key={index}
-                    className="flex text-body leading-relaxed text-text-primary"
-                  >
-                    <span className="mr-3 text-gray-400 flex-shrink-0">◆</span>
-                    <span>{project}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {modalDistrictData.majorProjects.length > 0 && (
+              <div className="mb-8">
+                <h3 className="text-large tracking-wide-custom font-medium text-text-secondary mb-4">
+                  重大建設
+                </h3>
+                <ul className="space-y-1">
+                  {modalDistrictData.majorProjects.map((project, index) => (
+                    <li
+                      key={index}
+                      className="flex text-body leading-relaxed text-text-primary"
+                    >
+                      <span className="mr-3 text-gray-400 flex-shrink-0">◆</span>
+                      <span>{project}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* 開發比例 */}
             <div>
@@ -414,6 +405,9 @@ const AnchorFuturePage: React.FC = () => {
               className="w-full h-full object-cover animate-fade-in"
             />
 
+            {/* 圖片說明 */}
+            <div className="absolute z-10 text-white text-micro" style={{ right: '5rem', bottom: '1rem' }}>{modalDistrictData.alt}</div>
+
             {/* 圖片指示器 */}
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
               {modalDistrictData.images.map((_, index) => (
@@ -430,24 +424,26 @@ const AnchorFuturePage: React.FC = () => {
             </div>
 
             {/* 箭頭導航 */}
-            <div className="absolute bottom-8 right-8 flex items-center gap-3">
-              <button
-                onClick={goToPrevImage}
-                className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                  <polyline points="15 18 9 12 15 6" />
-                </svg>
-              </button>
-              <button
-                onClick={goToNextImage}
-                className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                  <polyline points="9 18 15 12 9 6" />
-                </svg>
-              </button>
-            </div>
+            {modalDistrictData.images.length > 1 && (
+              <div className="absolute bottom-8 right-8 flex items-center gap-3">
+                <button
+                  onClick={goToPrevImage}
+                  className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                    <polyline points="15 18 9 12 15 6" />
+                  </svg>
+                </button>
+                <button
+                  onClick={goToNextImage}
+                  className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -495,8 +491,8 @@ const AnchorFuturePage: React.FC = () => {
             <div className="flex-1 h-full flex items-center justify-center bg-gray-100 relative">
               {/* TODO: 請替換為 74 快速道路實際圖片 */}
               <img
-                src="/images/a1/IMG_004.jpg"
-                alt="74快速道路"
+                src="/images/anchor-future/_0003_pixta_97593564_M.jpg"
+                alt="情境示意圖"
                 className="w-full h-full object-cover animate-fade-in"
               />
             </div>
@@ -513,7 +509,7 @@ const AnchorFuturePage: React.FC = () => {
           {/* 滿版圖片 */}
           <div className="h-full flex items-center justify-center p-8">
             <img
-              src="/images/anchor-future/重劃區比較表.jpg"
+              src="/images/anchor-future/聚碩-重劃區比較表.png"
               alt="重劃區比較表"
               className="max-w-full max-h-full object-contain animate-fade-in"
             />

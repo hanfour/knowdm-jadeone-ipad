@@ -33,6 +33,7 @@ export const menuSections: MenuSection[] = [
       { id: '03', name: '公設語境', link: '/ju-bo-hui-cui/gong-she-yu-jing' },
       { id: '04', name: '景觀品味', link: '/ju-bo-hui-cui/jing-guan-pin-wei' },
       { id: '05', name: '結構力學', link: '/ju-bo-hui-cui/jie-gou-li-xue' },
+      { id: '06', name: '燈光設計', link: '/ju-bo-hui-cui/deng-guang-mei-xue' },
     ]
   },
   {

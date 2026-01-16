@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SubpageMenuBar from '../components/SubpageMenuBar';
+import CloseButton from '../components/close-button';
+import RippleButton from '../components/ripple-button';
 
 const ArchitectLeaderPage: React.FC = () => {
 
@@ -16,6 +18,9 @@ const ArchitectLeaderPage: React.FC = () => {
 
   // 動畫狀態
   const [isAnimated, setIsAnimated] = useState(false);
+
+  // 影片彈窗狀態
+  const [currentVideoId, setCurrentVideoId] = useState<string | null>(null);
 
   // 頁面載入時觸發動畫
   useEffect(() => {
@@ -144,7 +149,7 @@ const ArchitectLeaderPage: React.FC = () => {
               className="text-[#f5e6b8] text-h2"
               style={{ letterSpacing: '0.15em', }}
             >
-              聚碩建設
+              聚碩建設 李碩祺 董事長
             </h1>
             <h3
               className="text-[#f5e6b8] text-large font-medium mt-4"
@@ -152,15 +157,79 @@ const ArchitectLeaderPage: React.FC = () => {
             >
               獨領經典 風格執筆
             </h3>
-            <div className='mt-2 pb-12 text-body text-justify leading-relaxed' style={{ filter: 'drop-shadow(0 1px 1px rgb(0 0 0 / 0.25))', }}>
+            <div className='mt-2 text-body text-justify leading-relaxed' style={{ filter: 'drop-shadow(0 1px 1px rgb(0 0 0 / 0.25))', }}>
               <p>
                 以建築，塑造國際的生活高度。在聚碩建築眼中，住宅不是被複製的格局，而是一件獨一無二、經得起時間考驗的藝術品。從比例的拿捏中尋找和諧，讓空間在尺度之間呼吸；在光影的流動裡，創造日夜的韻律與生活的詩意；透過材質的打磨，賦予建築高度質感，讓居者觸摸到時光的厚度。
               </p>
+            </div>
+
+            {/* 團隊訪談按鈕 */}
+            <div className="mt-8">
+              <RippleButton onClick={() => setCurrentVideoId('VB6m9Kb6ha4')}>
+                <span>團隊訪談</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </RippleButton>
             </div>
           </div>
         </div>
       </div>
 
+      {/* 影片彈窗 */}
+      {currentVideoId && (
+        <>
+          <style>{`
+            @keyframes videoSlideDown {
+              0% {
+                transform: translateY(-100%);
+              }
+              100% {
+                transform: translateY(0);
+              }
+            }
+
+            @keyframes backdropFadeIn {
+              0% {
+                opacity: 0;
+              }
+              100% {
+                opacity: 1;
+              }
+            }
+
+            .video-slide-animation {
+              animation: videoSlideDown 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            }
+
+            .backdrop-fade-animation {
+              animation: backdropFadeIn 0.3s ease-out forwards;
+            }
+          `}</style>
+          <div
+            className="fixed inset-0 flex items-center justify-center bg-black/90 backdrop-fade-animation"
+            style={{ zIndex: 9999 }}
+            onClick={() => setCurrentVideoId(null)}
+          >
+            {/* 影片容器 */}
+            <div
+              className="relative w-full h-full video-slide-animation"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <iframe
+                key={currentVideoId}
+                className="w-full h-full border-0"
+                src={`https://www.youtube.com/embed/${currentVideoId}?autoplay=1&rel=0`}
+                title="團隊訪談影片"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+
+            <CloseButton onClick={(e) => { e.stopPropagation(); setCurrentVideoId(null); }} />
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -16,12 +16,40 @@
         "mainFile": "index.tsx",
         "rootDir": "src/components/aspect-ratio-container"
     },
+    "ui/backgrounds": {
+        "name": "ui/backgrounds",
+        "scope": "hanfour.richpark-ui",
+        "version": "0.0.1",
+        "mainFile": "index.ts",
+        "rootDir": "src/components/backgrounds"
+    },
     "ui/close-button": {
         "name": "ui/close-button",
         "scope": "hanfour.richpark-ui",
         "version": "0.0.3",
         "mainFile": "index.tsx",
         "rootDir": "src/components/close-button"
+    },
+    "ui/engineering-layouts": {
+        "name": "ui/engineering-layouts",
+        "scope": "hanfour.richpark-ui",
+        "version": "0.0.1",
+        "mainFile": "index.ts",
+        "rootDir": "src/components/engineering-layouts"
+    },
+    "ui/fullscreen-menu": {
+        "name": "ui/fullscreen-menu",
+        "scope": "hanfour.richpark-ui",
+        "version": "0.0.1",
+        "mainFile": "index.tsx",
+        "rootDir": "src/components/fullscreen-menu"
+    },
+    "ui/intro-animation": {
+        "name": "ui/intro-animation",
+        "scope": "hanfour.richpark-ui",
+        "version": "0.0.1",
+        "mainFile": "index.tsx",
+        "rootDir": "src/components/intro-animation"
     },
     "ui/menu-button": {
         "name": "ui/menu-button",
@@ -30,12 +58,26 @@
         "mainFile": "index.tsx",
         "rootDir": "src/components/menu-button"
     },
+    "ui/page-header": {
+        "name": "ui/page-header",
+        "scope": "hanfour.richpark-ui",
+        "version": "0.0.1",
+        "mainFile": "index.tsx",
+        "rootDir": "src/components/page-header"
+    },
     "ui/ripple-button": {
         "name": "ui/ripple-button",
         "scope": "hanfour.richpark-ui",
         "version": "0.0.3",
         "mainFile": "index.tsx",
         "rootDir": "src/components/ripple-button"
+    },
+    "ui/subpage-menu-bar": {
+        "name": "ui/subpage-menu-bar",
+        "scope": "hanfour.richpark-ui",
+        "version": "0.0.1",
+        "mainFile": "index.tsx",
+        "rootDir": "src/components/subpage-menu-bar"
     },
     "$schema-version": "17.0.0"
 }

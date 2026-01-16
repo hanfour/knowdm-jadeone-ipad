@@ -4,20 +4,21 @@ import CloseButton from '../components/close-button';
 
 // 作品圖片資料
 const portfolioImages = [
-  { src: '/images/b2/works/DJI_0620.jpg', label: '餘白' },
-  { src: '/images/b2/works/PB280246.jpg', label: '餘白' },
+  { src: '/images/b6/works/冠軍磁磚台中展示中心.jpg', label: '冠軍磁磚台中展示中心' },
+  { src: '/images/b6/works/理合建設時光嶼.jpg', label: '理合建設 時光嶼' },
+  { src: '/images/b6/works/惠宇建設千曦.jpg', label: '惠宇建設 千曦' },
+  { src: '/images/b6/works/惠宇建設大其心.jpg', label: '惠宇建設 大其心' },
 ];
 
-const ArchitectAestheticsPage: React.FC = () => {
-  // 人物圖片 URL
-  const personImage = '/images/b2/蔡長恩建築師.jpg';
+const LightingAestheticsPage: React.FC = () => {
+  // 背景圖片 URL
+  const backgroundImage = '/images/b6/lighting-bg.jpg';
 
   // ===== 飛入動畫設定 =====
   const charDelay = 0.12;  // 每個字的延遲時間（秒）- 較慢以產生交錯重疊效果
-
-  // 文字內容
-  const titleText = '細梳環境紋理';
-  const subtitleText = '建築以優雅之姿生長';
+  const titleText = '光影共生';
+  const subtitleText = '為城市而生的溫柔尺度';
+  const subtitleStartDelay = titleText.length * charDelay + 0.2;
 
   // 動畫狀態
   const [isAnimated, setIsAnimated] = useState(false);
@@ -26,12 +27,9 @@ const ArchitectAestheticsPage: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsAnimated(true);
-    }, 100); // 延遲 100ms 開始動畫
+    }, 100);
     return () => clearTimeout(timer);
   }, []);
-
-  // 計算副標題開始動畫的延遲（主標題所有字動畫完成後）
-  const subtitleStartDelay = titleText.length * charDelay + 0.2;
 
   // 燈箱狀態
   const [lightbox, setLightbox] = useState<{
@@ -43,7 +41,6 @@ const ArchitectAestheticsPage: React.FC = () => {
   });
 
   // 開啟燈箱（可指定起始圖片索引）
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const openLightbox = (index: number = 0) => {
     setLightbox({ isOpen: true, currentIndex: index });
   };
@@ -75,7 +72,7 @@ const ArchitectAestheticsPage: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-full overflow-hidden bg-[#1a1a1a]">
+    <div className="relative w-full h-full overflow-hidden">
       {/* 循環漸變動畫 CSS */}
       <style>{`
         @keyframes gradientShift {
@@ -130,49 +127,63 @@ const ArchitectAestheticsPage: React.FC = () => {
             background-position: -200% 0;
           }
         }
-
       `}</style>
 
-      {/* 背景裝飾 - 模糊的人物圖片 */}
+      {/* 全螢幕背景圖片 */}
       <div
         className="absolute inset-0"
-        style={{
-          backgroundImage: `url(${personImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          filter: 'blur(50px) brightness(0.3)',
-          transform: 'scale(1.3)',
-          opacity: 0.6,
-        }}
-      />
+        style={{ top: '80px' }}
+      >
+        <img
+          src={backgroundImage}
+          alt="燈光設計背景"
+          className="w-full h-full object-cover"
+          style={{ objectPosition: 'left center' }}
+        />
+        {/* 右側漸層遮罩 - 讓文字更清晰 */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(to left, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, transparent 70%)',
+          }}
+        />
+      </div>
 
       {/* 右上角子頁面導航列 */}
       <SubpageMenuBar sectionIndex={1} />
 
-      {/* 主要內容區域 */}
+      {/* 右側內容區 - 帶滿版高度半透明黑色遮罩 */}
       <div
-        className="relative w-full h-full flex"
-        style={{ paddingTop: '80px' }}
+        className="absolute right-0 h-full flex flex-col justify-center"
+        style={{
+          top: '80px',
+          width: '45%',
+        }}
       >
-        {/* 左側內容區 - 約 50% */}
+        {/* 滿版高度半透明黑色遮罩 */}
         <div
-          className="relative flex flex-col justify-center"
+          className="absolute inset-0 bg-black/0"
+        />
+
+        {/* 內容 */}
+        <div
+          className="relative z-10 flex flex-col justify-center h-full"
           style={{
-            width: '50%',
             padding: '4rem',
-            paddingLeft: '6%',
+            paddingRight: '6%',
           }}
         >
           {/* 標題區 */}
-          <div className="mb-6">
+          <div className="mb-4">
             <p
               className="text-[#f5e6b8] text-large font-medium"
               style={{
-                letterSpacing: '0.1em',
+                letterSpacing: '0.15em',
               }}
             >
-              <span className='italic text-small'>建築美學 / </span><br/>
-              艸引子事務所 蔡長恩建築師
+              <span className="italic text-small">燈光設計 / </span>
+              <br/>
+              偶得設計
             </p>
           </div>
 
@@ -183,126 +194,88 @@ const ArchitectAestheticsPage: React.FC = () => {
               maxWidth: '28rem',
             }}
           >
-            <p>擅長運用 BIM 聚碩建設聯合單元二國際豪墅-餘白建築師_蔡長恩建築師，再創水湳經貿無可取代的經典鉅作。凝練法式優雅美學外觀與工藝理念，同時引入 BIM 建築管理系統，以數位化精準掌握施工的每一個細節，打造國際級美學居所，獻給追求極致生活的少數人。</p>
+            <p className="text-justify">
+              以光為筆，為建築描繪一種介於城市與自然之間的從容姿態。一面溫潤靜謐，一面鮮明有力，讓建築在日與夜的轉換中，始終保持恰到好處的尺度。當步行自公園歸返，東向立面以低色溫燈光層層鋪展，宛如樹影輕落，溫柔勾勒建築輪廓；入口暖光靜靜迎候，如同家人佇立門前，在回家的一瞬間，歸屬感與安心感自然湧現。頂部光帶如一頂內斂的冠冕，為水湳夜景留下最耀眼的歸心之所。
+            </p>
           </div>
 
-          {/* 底部按鈕 - 循環漸變文字 */}
-          <div className="mt-16">
+          {/* 底部按鈕 - 作品代表，點擊開啟燈箱 */}
+          <div className="mt-12">
             <div
-              className="inline-flex flex-col items-start border border-white/25 px-8 py-4"
+              className="inline-flex flex-col items-start border border-white/30 px-8 py-4 bg-white/10 backdrop-blur-sm"
               style={{ letterSpacing: '0.08em' }}
             >
               <span
                 className="gradient-text-animate text-small"
               >
                 作品代表<br/>
-                <span
-                  onClick={() => openLightbox(0)}
-                  className="cursor-pointer hover:underline"
-                >
-                  鑫大略「餘白」
-                </span><br/>
-                有春建設「青田芯、青田蒔」<br/>
-                匠泰開發「日日」、「琢力自然」
+                <span onClick={() => openLightbox(0)} className="cursor-pointer hover:underline">冠軍磁磚台中展示中心</span>、
+                <span onClick={() => openLightbox(1)} className="cursor-pointer hover:underline">理合建設 時光嶼</span><br/>
+                <span onClick={() => openLightbox(2)} className="cursor-pointer hover:underline">惠宇建設 千曦</span>、
+                <span onClick={() => openLightbox(3)} className="cursor-pointer hover:underline">惠宇建設 大其心</span>
               </span>
             </div>
           </div>
-
         </div>
+      </div>
 
-        {/* 右側人物照片區 - 約 50% */}
-        <div
-          className="relative h-full w-1/2"
+      {/* 橫向飛入文字區域 - 左下角 */}
+      <div
+        className="absolute z-10 flex flex-col items-start"
+        style={{
+          left: '6%',
+          bottom: '12%',
+        }}
+      >
+        {/* 第一行：光影共生 - 橫排，每字從左上飛入 */}
+        <h2
+          className="text-white text-h2 font-light"
+          style={{
+            letterSpacing: '0.2em',
+          }}
         >
-          {/* 圖片左側直排文字 - 每字從左上飛入 */}
-          <div
-            className="absolute left-0 top-1/2 -translate-y-1/2 pt-32 flex items-start gap-3 z-10"
-          >
-            {/* 左側，直排，每字從左上飛入 */}
-            <h3
-              className="text-white text-h2 font-light -mt-32"
+          {titleText.split('').map((char, index) => (
+            <span
+              key={index}
               style={{
-                writingMode: 'vertical-rl',
-                letterSpacing: '0.25em',
+                display: 'inline-block',
+                textShadow: '2px 2px 15px rgba(0,0,0,0.7)',
+                transform: isAnimated
+                  ? 'translate(0, 0) scale(1)'
+                  : 'translate(-100px, -100px) scale(1.8)',
+                opacity: isAnimated ? 1 : 0,
+                transition: `transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * charDelay}s, opacity 0.6s ease-out ${index * charDelay}s`,
               }}
             >
-              {titleText.split('').map((char, index) => (
-                <span
-                  key={index}
-                  style={{
-                    display: 'inline-block',
-                    textShadow: '2px 2px 15px rgba(0,0,0,0.7)',
-                    transform: isAnimated
-                      ? 'translate(0, 0) scale(1)'
-                      : 'translate(-100px, -100px) scale(1.8)',
-                    opacity: isAnimated ? 1 : 0,
-                    transition: `transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * charDelay}s, opacity 0.6s ease-out ${index * charDelay}s`,
-                  }}
-                >
-                  {char}
-                </span>
-              ))}
-            </h3>
+              {char}
+            </span>
+          ))}
+        </h2>
 
-            {/* 右側：主持建築師 蔡長恩建築師 - 直排，每字從左上飛入 */}
-            <h3
-              className="text-white text-h2 font-light"
+        {/* 第二行：為城市而生的溫柔尺度 - 橫排，每字從左上飛入 */}
+        <h2
+          className="text-white text-h2 font-light"
+          style={{
+            letterSpacing: '0.2em',
+          }}
+        >
+          {subtitleText.split('').map((char, index) => (
+            <span
+              key={index}
               style={{
-                writingMode: 'vertical-rl',
-                letterSpacing: '0.25em',
+                display: 'inline-block',
+                textShadow: '2px 2px 15px rgba(0,0,0,0.7)',
+                transform: isAnimated
+                  ? 'translate(0, 0) scale(1)'
+                  : 'translate(-100px, -100px) scale(1.8)',
+                opacity: isAnimated ? 1 : 0,
+                transition: `transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${subtitleStartDelay + index * charDelay}s, opacity 0.6s ease-out ${subtitleStartDelay + index * charDelay}s`,
               }}
             >
-              {subtitleText.split('').map((char, index) => (
-                <span
-                  key={index}
-                  style={{
-                    display: 'inline-block',
-                    textShadow: '2px 2px 15px rgba(0,0,0,0.7)',
-                    transform: isAnimated
-                      ? 'translate(0, 0) scale(1)'
-                      : 'translate(-80px, -80px) scale(1.5)',
-                    opacity: isAnimated ? 1 : 0,
-                    transition: `transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${subtitleStartDelay + index * charDelay}s, opacity 0.6s ease-out ${subtitleStartDelay + index * charDelay}s`,
-                  }}
-                >
-                  {char === ' ' ? '\u00A0' : char}
-                </span>
-              ))}
-            </h3>
-          </div>
-
-          {/* 人物照片 - 帶漸層遮罩 */}
-          <div className="absolute inset-0">
-            <div className="w-full h-full flex justify-end items-center">
-              <div className="w-full">
-                <img
-                  src={personImage}
-                  alt="蔡長恩建築師"
-                  className="h-full w-full object-cover"
-                  style={{
-                    objectPosition: 'center top',
-                    maskImage: 'linear-gradient(to left, black 50%, transparent 95%)',
-                    WebkitMaskImage: 'linear-gradient(to left, black 50%, transparent 95%)',
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* 右下角署名 */}
-          <div
-            className="!hidden absolute right-12 bottom-10 text-right"
-          >
-            <p
-              className="text-white/50 text-xsmall"
-              style={{
-                letterSpacing: '0.15em',
-              }}
-            >
-              建築師/ 蔡長恩
-            </p>
-          </div>
-        </div>
+              {char}
+            </span>
+          ))}
+        </h2>
       </div>
 
       {/* 燈箱 */}
@@ -423,4 +396,4 @@ const ArchitectAestheticsPage: React.FC = () => {
   );
 };
 
-export default ArchitectAestheticsPage;
+export default LightingAestheticsPage;
