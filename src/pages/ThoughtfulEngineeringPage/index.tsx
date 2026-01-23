@@ -6,6 +6,7 @@ import {
   VideoPlayer,
 } from '../../components/EngineeringPage';
 import type { ComparisonItem } from '../../components/EngineeringPage';
+import SocketDesignSVG from '../../components/SocketDesignSVG';
 
 // 五大服務項目結構
 interface ServiceItem {
@@ -21,6 +22,7 @@ interface TabData {
   id: string;
   name: string;
   title: string;
+  subtitle?: string; // 副標題（如：「插座」）
   content?: string;
   details?: string[];
   services?: ServiceItem[];
@@ -34,6 +36,7 @@ interface TabData {
     right: ComparisonItem;
   };
   bgColor?: string;
+  useSVGComponent?: boolean; // 是否使用 SVG 組件
 }
 
 // 五大有感服務資料
@@ -137,6 +140,21 @@ const tabs: TabData[] = [
     title: '地下室導流系統',
     content: '地下室空氣品質採用機械式排風系統，除可由中央監控定時控制外，並可結合一氧化碳及濕度偵測達到自動啟閉功能，同時也與消防系統連動，當火災發生時立即停止風機，避免助長火勢。',
     image: '/images/thoughtful/drainage-system.png',
+    bgColor: 'rgb(232, 228, 223)',
+  },
+  {
+    id: 'socket-design',
+    name: '插座設計',
+    title: '電氣插座',
+    details: [
+      '各戶依建築家配規劃設置插座。',
+      '工作陽台設置洗衣、瓦斯熱水器電源插座。',
+      '廚房設置設備使用專用回路三迴路。',
+      '浴室設置免治馬桶及除霧鏡插座，並預留暖風機專用迴路。',
+      '空調室外機依空間規劃1:2設計為原則。',
+    ],
+    image: '/images/thoughtful/socket-design.svg',
+    useSVGComponent: true,
     bgColor: 'rgb(232, 228, 223)',
   },
   {
@@ -386,6 +404,11 @@ const ThoughtfulEngineeringPage: React.FC = () => {
               <h1 className="text-h2 tracking-widest-custom font-medium text-text-primary mb-4">
                 {currentTab.title}
               </h1>
+              {currentTab.subtitle && (
+                <h2 className="text-h3 tracking-wide-custom font-medium text-text-secondary mb-4">
+                  {currentTab.subtitle}
+                </h2>
+              )}
               {currentTab.content && (
                 <p className="text-body text-justify leading-relaxed text-text-primary text-justify">
                   {currentTab.content}
@@ -404,13 +427,17 @@ const ThoughtfulEngineeringPage: React.FC = () => {
           </div>
 
           {/* 右側示意圖 */}
-          <div className="flex-1 h-full overflow-hidden flex items-center justify-center p-8">
+          <div className="flex-1 h-full overflow-hidden flex items-center justify-center p-8 pb-24">
             {currentTab.image && (
-              <img
-                src={currentTab.image}
-                alt={currentTab.title}
-                className="max-w-full max-h-full object-contain"
-              />
+              currentTab.useSVGComponent ? (
+                <SocketDesignSVG className="w-full h-full" />
+              ) : (
+                <img
+                  src={currentTab.image}
+                  alt={currentTab.title}
+                  className="max-w-full max-h-full object-contain"
+                />
+              )
             )}
           </div>
         </div>
