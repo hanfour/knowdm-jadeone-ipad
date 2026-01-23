@@ -77,7 +77,7 @@ const AuroraBackground: React.FC<AuroraBackgroundProps> = ({
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {/* 主要極光效果層 */}
+      {/* 主要極光效果層 - 已優化 GPU 加速 */}
       <div
         className="absolute inset-0"
         style={{
@@ -87,10 +87,14 @@ const AuroraBackground: React.FC<AuroraBackgroundProps> = ({
           filter: `blur(${blurAmount}px) ${invert ? 'invert(100%)' : ''} saturate(${saturation}%) opacity(${opacity}%)`,
           maskImage: getMaskImage(),
           WebkitMaskImage: getMaskImage(),
+          // GPU 加速優化
+          willChange: 'transform, opacity',
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden' as const,
         }}
       />
 
-      {/* 動畫疊加層 */}
+      {/* 動畫疊加層 - 已優化 GPU 加速 */}
       <div
         className="absolute inset-0 aurora-animate"
         style={{
@@ -99,6 +103,9 @@ const AuroraBackground: React.FC<AuroraBackgroundProps> = ({
           backgroundAttachment: 'fixed',
           mixBlendMode: 'difference',
           '--animation-duration': `${animationDuration}s`,
+          // GPU 加速優化
+          willChange: 'background-position',
+          transform: 'translateZ(0)',
         } as React.CSSProperties}
       />
 

@@ -16,6 +16,7 @@ interface RippleBackgroundProps {
   autoRippleInterval?: number; // 自動波紋間隔（毫秒）
   overlayGradient?: string; // 覆蓋層漸層
   onClick?: boolean; // 是否響應點擊產生波紋
+  maxRipples?: number; // 最大同時存在的波紋數量（效能優化）
 }
 
 const RippleBackground: React.FC<RippleBackgroundProps> = ({
@@ -27,12 +28,13 @@ const RippleBackground: React.FC<RippleBackgroundProps> = ({
   autoRippleInterval = 2000,
   overlayGradient = 'linear-gradient(to left, rgba(0,0,0,0.7), rgba(0,0,0,0.3), transparent)',
   onClick = true,
+  maxRipples = 10, // 預設最多 10 個波紋同時存在
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [ripples, setRipples] = useState<RippleConfig[]>([]);
   const rippleIdRef = useRef(0);
 
-  // 建立波紋
+  // 建立波紋（已優化：限制數量）
   const createRipple = useCallback((x: number, y: number) => {
     const newRipple: RippleConfig = {
       x,
@@ -40,13 +42,18 @@ const RippleBackground: React.FC<RippleBackgroundProps> = ({
       id: rippleIdRef.current++,
       startTime: Date.now(),
     };
-    setRipples(prev => [...prev, newRipple]);
+
+    setRipples(prev => {
+      // 如果達到最大數量，移除最舊的波紋
+      const updatedRipples = prev.length >= maxRipples ? prev.slice(1) : prev;
+      return [...updatedRipples, newRipple];
+    });
 
     // 在動畫結束後移除波紋
     setTimeout(() => {
       setRipples(prev => prev.filter(r => r.id !== newRipple.id));
     }, rippleDuration);
-  }, [rippleDuration]);
+  }, [rippleDuration, maxRipples]);
 
   // 點擊產生波紋
   const handleClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
@@ -104,7 +111,7 @@ const RippleBackground: React.FC<RippleBackgroundProps> = ({
         />
       )}
 
-      {/* 波紋容器 */}
+      {/* 波紋容器 - 已優化 GPU 加速 */}
       <div className="absolute inset-0 pointer-events-none">
         {ripples.map(ripple => (
           <div
@@ -113,10 +120,13 @@ const RippleBackground: React.FC<RippleBackgroundProps> = ({
             style={{
               left: `${ripple.x}%`,
               top: `${ripple.y}%`,
-              transform: 'translate(-50%, -50%)',
+              transform: 'translate(-50%, -50%) translateZ(0)',
               background: generateRippleGradient(),
               '--ripple-duration': `${rippleDuration}ms`,
               '--ripple-max-size': `${maxRippleSize}vw`,
+              // GPU 加速優化
+              willChange: 'transform, opacity',
+              backfaceVisibility: 'hidden' as const,
             } as React.CSSProperties}
           />
         ))}
