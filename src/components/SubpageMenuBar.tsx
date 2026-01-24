@@ -50,6 +50,8 @@ const SubpageMenuBar: React.FC<SubpageMenuBarProps> = ({ sectionIndex }) => {
             <img
             src="/images/logo.svg"
             alt="聚碩仁玉"
+            loading="lazy"
+            decoding="async"
             style={{ height: '1.75rem', width: 'auto' }}
           />
           </Link>

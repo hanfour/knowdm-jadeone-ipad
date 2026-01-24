@@ -84,6 +84,8 @@ const LockBrandPage: React.FC = () => {
           <img
             src="/images/lock/lock-bg.jpg"
             alt="電子鎖情境"
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover"
           />
         </div>
@@ -109,6 +111,8 @@ const LockBrandPage: React.FC = () => {
                   <img
                     src={feature.icon}
                     alt={feature.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-8 h-8 object-contain transition-transform duration-300 group-hover:scale-110"
                   />
                 </div>

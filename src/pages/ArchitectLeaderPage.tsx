@@ -37,6 +37,8 @@ const ArchitectLeaderPage: React.FC = () => {
         <img
           src={backgroundImage}
           alt="建築領導者背景"
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover"
           style={{
             objectPosition: 'center center',

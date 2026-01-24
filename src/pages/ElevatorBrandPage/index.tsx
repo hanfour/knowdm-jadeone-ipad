@@ -99,6 +99,8 @@ const ElevatorBrandPage: React.FC = () => {
           <img
             src="/images/elevator/logo-hitachi.png"
             alt="日立永大電梯"
+            loading="lazy"
+            decoding="async"
             className="h-12 object-contain"
           />
         </div>
@@ -172,6 +174,8 @@ const ElevatorBrandPage: React.FC = () => {
             <img
               src="/images/elevator/elevator-product.jpg"
               alt="日立電梯"
+              loading="lazy"
+              decoding="async"
               className="max-w-full max-h-full object-contain"
             />
           </div>
@@ -266,6 +270,8 @@ const ElevatorBrandPage: React.FC = () => {
               key={sharpImageIndex}
               src={sharpImages[sharpImageIndex]}
               alt={`SHARP 空氣清淨機 ${sharpImageIndex + 1}`}
+              loading="lazy"
+              decoding="async"
               className="w-[75%] h-auto object-contain animate-fade-in"
             />
           </div>

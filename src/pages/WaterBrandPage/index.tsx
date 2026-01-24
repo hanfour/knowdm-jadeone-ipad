@@ -102,6 +102,8 @@ const WaterBrandPage: React.FC = () => {
             <img
               src={selectedProduct.image}
               alt={selectedProduct.name}
+              loading="lazy"
+              decoding="async"
               className="w-full max-w-full max-h-72 object-contain"
             />
           </div>
@@ -159,6 +161,8 @@ const WaterBrandPage: React.FC = () => {
               <img
                 src={currentTab.logo}
                 alt={currentTab.logoAlt}
+                loading="lazy"
+                decoding="async"
                 className="h-12 object-contain"
               />
               {currentTab.id === 'yungho' && (
@@ -224,6 +228,8 @@ const WaterBrandPage: React.FC = () => {
                       <img
                         src={product.image}
                         alt={product.name}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-contain"
                       />
                     </div>
@@ -250,6 +256,8 @@ const WaterBrandPage: React.FC = () => {
             <img
               src={currentTab.productImage}
               alt={currentTab.title}
+              loading="lazy"
+              decoding="async"
               className="h-[80vh] object-contain"
             />
           </div>

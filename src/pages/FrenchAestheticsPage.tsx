@@ -238,6 +238,8 @@ const FrenchAestheticsPage: React.FC = () => {
           <img
             src={carouselImages[nextIndex].src}
             alt={carouselImages[nextIndex].label}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover"
             style={{ transform: 'scale(1.1)' }}
           />
@@ -253,6 +255,8 @@ const FrenchAestheticsPage: React.FC = () => {
           <img
             src={carouselImages[currentIndex].src}
             alt={carouselImages[currentIndex].label}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover carousel-zoom"
           />
         </div>
@@ -467,6 +471,8 @@ const FrenchAestheticsPage: React.FC = () => {
                   <img
                     src={award.src}
                     alt={award.alt}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-contain p-1"
                   />
                 </div>
@@ -498,6 +504,8 @@ const FrenchAestheticsPage: React.FC = () => {
                 key={image.src}
                 src={image.src}
                 alt={image.label}
+                loading="lazy"
+                decoding="async"
                 className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${
                   index === lightbox.currentIndex ? 'opacity-100' : 'opacity-0'
                 }`}
@@ -577,6 +585,8 @@ const FrenchAestheticsPage: React.FC = () => {
                     <img
                       src={image.src}
                       alt={image.label}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -747,6 +757,8 @@ const FrenchAestheticsPage: React.FC = () => {
                   <img
                     src={awards[awardsModal.currentIndex].image}
                     alt={awards[awardsModal.currentIndex].name}
+                    loading="lazy"
+                    decoding="async"
                     className="max-w-full max-h-full object-contain drop-shadow-2xl"
                   />
                 </div>

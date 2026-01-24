@@ -202,6 +202,8 @@ const PipingEngineeringPage: React.FC = () => {
               <img
                 src={currentTab.image}
                 alt={currentTab.title}
+                loading="lazy"
+                decoding="async"
                 className="h-full w-auto object-contain mix-blend-darken"
               />
               {/* 影片 */}
@@ -230,6 +232,8 @@ const PipingEngineeringPage: React.FC = () => {
             <img
               src={currentTab.image}
               alt={currentTab.title}
+              loading="lazy"
+              decoding="async"
               className="max-w-full max-h-[70vh] object-contain"
             />
           )}

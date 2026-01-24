@@ -455,6 +455,8 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
               <img
                 src="/images/logo-gold.svg"
                 alt="聚碩仁玉"
+                loading="lazy"
+                decoding="async"
                 className="logo-base"
                 style={{ height: '12rem', width: 'auto' }}
               />
@@ -463,6 +465,8 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
                 <img
                   src="/images/logo-gold.svg"
                   alt=""
+                  loading="lazy"
+                  decoding="async"
                   style={{ height: '12rem', width: 'auto', visibility: 'hidden' }}
                 />
                 <div className="shine-effect" />

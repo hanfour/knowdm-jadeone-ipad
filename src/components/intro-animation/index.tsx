@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import './intro-animation.css';
 
 export interface AnimationConfig {
   phase0?: boolean;  // 第一幕：第一段文字
@@ -374,32 +375,6 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
           </div>
         )}
 
-        <style>{`
-          .text-shine-sweep {
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(
-              105deg,
-              transparent 20%,
-              rgba(243, 207, 154, 0.2) 30%,
-              rgba(243, 207, 154, 0.4) 43%,
-              rgba(255, 255, 255, 0.7) 50%,
-              rgba(243, 207, 154, 0.6) 57%,
-              rgba(244, 244, 244, 0.2) 70%,
-              transparent 80%
-            );
-            filter: blur(500px);
-            animation: textShineMove 1.5s ease-in-out forwards;
-          }
-
-          @keyframes textShineMove {
-            0% { left: -100%; }
-            100% { left: 200%; }
-          }
-        `}</style>
 
         <div
           className="absolute text-white/60 text-body z-10"
@@ -433,6 +408,8 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
               <img
                 src={logoSrc}
                 alt={logoAlt}
+                loading="lazy"
+                decoding="async"
                 className="logo-base"
                 style={{ height: '12rem', width: 'auto' }}
               />
@@ -440,6 +417,8 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
                 <img
                   src={logoSrc}
                   alt=""
+                  loading="lazy"
+                  decoding="async"
                   style={{ height: '12rem', width: 'auto', visibility: 'hidden' }}
                 />
                 <div className="shine-effect" />
@@ -448,55 +427,11 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
           </div>
         </div>
 
+        {/* 動態 mask-image 必須保留在元件中 */}
         <style>{`
-          .logo-container {
-            position: relative;
-            display: inline-block;
-          }
-
-          .logo-base {
-            display: block;
-          }
-
           .logo-shine-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            overflow: hidden;
             -webkit-mask-image: url('${logoSrc}');
             mask-image: url('${logoSrc}');
-            -webkit-mask-size: contain;
-            mask-size: contain;
-            -webkit-mask-repeat: no-repeat;
-            mask-repeat: no-repeat;
-            -webkit-mask-position: center;
-            mask-position: center;
-          }
-
-          .shine-effect {
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(
-              105deg,
-              transparent 20%,
-              rgba(255, 255, 255, 0.1) 35%,
-              rgba(255, 255, 255, 0.4) 45%,
-              rgba(255, 255, 255, 0.8) 50%,
-              rgba(255, 255, 255, 0.4) 55%,
-              rgba(255, 255, 255, 0.1) 65%,
-              transparent 80%
-            );
-            animation: shineMove 3.5s ease-in-out infinite;
-          }
-
-          @keyframes shineMove {
-            0% { left: -100%; }
-            60%, 100% { left: 200%; }
           }
         `}</style>
 

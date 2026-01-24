@@ -295,6 +295,8 @@ const KitchenBrandPage: React.FC = () => {
             <img
               src={currentTab.logo}
               alt="Brand Logo"
+              loading="lazy"
+              decoding="async"
               className="h-16 object-contain"
             />
           </div>
@@ -343,6 +345,8 @@ const KitchenBrandPage: React.FC = () => {
                     key={imgIndex}
                     src={img}
                     alt={`${item.category} ${imgIndex + 1}`}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-auto object-contain"
                   />
                 ))}
@@ -413,6 +417,8 @@ const KitchenBrandPage: React.FC = () => {
                 <img
                   src={item.image}
                   alt={item.name}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-contain transition-all duration-300"
                   style={{
                     filter: hoveredEquipment === item.id ? 'brightness(1.05)' : 'none',
@@ -452,6 +458,8 @@ const KitchenBrandPage: React.FC = () => {
         <img
           src={specImages[specImageIndex].image}
           alt={specImages[specImageIndex].label}
+          loading="lazy"
+          decoding="async"
           className="max-w-full max-h-full object-contain transition-opacity duration-500 cursor-pointer hover:opacity-90"
           onClick={() => { setShowSpecViewer(true); setSpecViewerScale(1); }}
         />
@@ -615,6 +623,8 @@ const KitchenBrandPage: React.FC = () => {
           <img
             src={specImages[specImageIndex].image}
             alt={specImages[specImageIndex].label}
+            loading="lazy"
+            decoding="async"
             className="max-w-full max-h-full object-contain select-none"
             draggable={false}
             style={{
@@ -664,6 +674,8 @@ const KitchenBrandPage: React.FC = () => {
             <img
               src={specImages[specImageIndex].image3d}
               alt={`${specImages[specImageIndex].label} 3D示意圖`}
+              loading="lazy"
+              decoding="async"
               className="w-32 h-24 object-cover transition-transform duration-300 group-hover:scale-105"
             />
             {/* Hover 遮罩 */}
@@ -711,6 +723,8 @@ const KitchenBrandPage: React.FC = () => {
               <img
                 src={specImages[specImageIndex].image3d}
                 alt={`${specImages[specImageIndex].label} 3D示意圖`}
+                loading="lazy"
+                decoding="async"
                 className="max-w-full max-h-full object-contain pointer-events-auto"
                 onClick={(e) => e.stopPropagation()}
               />
@@ -758,6 +772,8 @@ const KitchenBrandPage: React.FC = () => {
                       <img
                         src={subBrand.brandLogo}
                         alt={subBrand.brand}
+                        loading="lazy"
+                        decoding="async"
                         className="h-full max-w-[120px] object-contain"
                       />
                     </div>
@@ -769,6 +785,8 @@ const KitchenBrandPage: React.FC = () => {
                 <img
                   src={selectedEquipment.brandLogo}
                   alt={selectedEquipment.brand}
+                  loading="lazy"
+                  decoding="async"
                   className="h-full max-w-[160px] object-contain"
                 />
               </div>
@@ -786,6 +804,8 @@ const KitchenBrandPage: React.FC = () => {
               <img
                 src={selectedEquipment.image}
                 alt={selectedEquipment.name}
+                loading="lazy"
+                decoding="async"
                 className="w-full max-w-full max-h-72 object-contain"
               />
             </div>

@@ -25,6 +25,8 @@ const FullscreenMenuAlt: React.FC<FullscreenMenuAltProps> = ({ isOpen, onClose }
           <img
             src="/images/logo-gold.svg"
             alt="聚碩仁玉"
+            loading="lazy"
+            decoding="async"
             style={{ height: '5rem', width: 'auto' }}
           />
         </Link>

@@ -162,6 +162,8 @@ const LandscapeTastePage: React.FC = () => {
               <img
                   src={personImage}
                   alt="許富居設計師"
+                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full object-cover"
                   style={{
                     objectPosition: 'center top',
@@ -323,6 +325,8 @@ const LandscapeTastePage: React.FC = () => {
                 key={image.src}
                 src={image.src}
                 alt={image.label}
+                loading="lazy"
+                decoding="async"
                 className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${
                   index === lightbox.currentIndex ? 'opacity-100' : 'opacity-0'
                 }`}
@@ -402,6 +406,8 @@ const LandscapeTastePage: React.FC = () => {
                     <img
                       src={image.src}
                       alt={image.label}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover"
                     />
                   </div>

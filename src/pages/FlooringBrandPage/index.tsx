@@ -51,6 +51,8 @@ const FlooringBrandPage: React.FC = () => {
                       <img
                         src="/images/window-flooring/robina/logo.png"
                         alt="Robina"
+                        loading="lazy"
+                        decoding="async"
                         className="h-24 object-contain"
                       />
                     </div>
@@ -90,6 +92,8 @@ const FlooringBrandPage: React.FC = () => {
                   <img
                     src="/images/window-flooring/robina/product-structure.jpg"
                     alt="ROBINA 地板結構圖說"
+                    loading="lazy"
+                    decoding="async"
                     className="max-h-[90%] w-auto object-contain animate-fade-in-left hover:opacity-90 transition-opacity"
                     style={{ animationDelay: '0.4s', mixBlendMode: 'darken' }}
                     // onClick={() => setLightboxOpen(true)}
@@ -112,6 +116,8 @@ const FlooringBrandPage: React.FC = () => {
                     <img
                       src="/images/window-flooring/sekisui-logo.png"
                       alt="sekisui"
+                      loading="lazy"
+                      decoding="async"
                       className="h-14 object-contain"
                     />
                   </div>
@@ -131,6 +137,8 @@ const FlooringBrandPage: React.FC = () => {
                       <img
                         src="/images/window-flooring/sekisui/icons/防潮.png"
                         alt="抗潮效果"
+                        loading="lazy"
+                        decoding="async"
                         className="w-20 h-20 object-contain mb-4"
                       />
                       <h3 className="text-large tracking-wide-custom text-brand-sekisui font-bold mb-2">抗潮效果</h3>
@@ -144,6 +152,8 @@ const FlooringBrandPage: React.FC = () => {
                       <img
                         src="/images/window-flooring/sekisui/icons/抗壓.png"
                         alt="抗壓強度"
+                        loading="lazy"
+                        decoding="async"
                         className="w-20 h-20 object-contain mb-4"
                       />
                       <h3 className="text-large tracking-wide-custom text-brand-sekisui font-bold mb-2">抗壓強度</h3>
@@ -157,6 +167,8 @@ const FlooringBrandPage: React.FC = () => {
                       <img
                         src="/images/window-flooring/sekisui/icons/行走聲響.png"
                         alt="行走聲響"
+                        loading="lazy"
+                        decoding="async"
                         className="w-20 h-20 object-contain mb-4"
                       />
                       <h3 className="text-large tracking-wide-custom text-brand-sekisui font-bold mb-2">行走聲響</h3>
@@ -170,6 +182,8 @@ const FlooringBrandPage: React.FC = () => {
                       <img
                         src="/images/window-flooring/sekisui/icons/彈性.png"
                         alt="極佳彈性"
+                        loading="lazy"
+                        decoding="async"
                         className="w-20 h-20 object-contain mb-4"
                       />
                       <h3 className="text-large tracking-wide-custom text-brand-sekisui font-bold mb-2">極佳彈性</h3>
@@ -183,6 +197,8 @@ const FlooringBrandPage: React.FC = () => {
                       <img
                         src="/images/window-flooring/sekisui/icons/隔音.png"
                         alt="結構隔音"
+                        loading="lazy"
+                        decoding="async"
                         className="w-20 h-20 object-contain mb-4"
                       />
                       <h3 className="text-large tracking-wide-custom text-brand-sekisui font-bold mb-2">結構隔音</h3>
@@ -242,6 +258,8 @@ const FlooringBrandPage: React.FC = () => {
             <img
               src="/images/window-flooring/robina/product-structure.jpg"
               alt="ROBINA 地板結構圖說"
+              loading="lazy"
+              decoding="async"
               className="max-w-[90%] max-h-[90%] object-contain"
             />
           </div>

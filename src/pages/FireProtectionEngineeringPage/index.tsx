@@ -254,6 +254,8 @@ const AnimatedExhaustDisplay: React.FC<{
         <img
           src={baseImage}
           alt="當層排氣系統"
+          loading="lazy"
+          decoding="async"
           className={`max-w-full max-h-[80vh] object-contain transition-opacity duration-700 ${
             visibleWaves >= 0 ? 'opacity-100' : 'opacity-0'
           }`}
@@ -264,6 +266,8 @@ const AnimatedExhaustDisplay: React.FC<{
           <img
             src={shine}
             alt="shine effect"
+            loading="lazy"
+            decoding="async"
             className="absolute inset-0 w-full h-full object-contain pointer-events-none animate-shine"
           />
         )}
@@ -277,6 +281,8 @@ const AnimatedExhaustDisplay: React.FC<{
               key={index}
               src={wave}
               alt={`wave ${index + 1}`}
+              loading="lazy"
+              decoding="async"
               className={`absolute inset-0 w-full h-full object-contain pointer-events-none ${
                 visibleWaves > index ? animationClass : 'opacity-0'
               }`}
@@ -484,6 +490,8 @@ const FireProtectionEngineeringPage: React.FC = () => {
               <img
                 src={currentTab.image}
                 alt={currentTab.title}
+                loading="lazy"
+                decoding="async"
                 className="max-w-full max-h-full object-contain"
               />
             )}

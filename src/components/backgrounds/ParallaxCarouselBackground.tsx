@@ -102,6 +102,8 @@ const ParallaxCarouselBackground: React.FC<ParallaxCarouselBackgroundProps> = ({
             key={idx}
             src={image}
             alt={`背景 ${idx + 1}`}
+            loading="lazy"
+            decoding="async"
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
               idx === currentIndex ? 'opacity-100' : 'opacity-0'
             }`}

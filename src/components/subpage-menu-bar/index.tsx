@@ -47,6 +47,8 @@ const SubpageMenuBar: React.FC<SubpageMenuBarProps> = ({
             <img
               src={logo}
               alt={logoAlt}
+              loading="lazy"
+              decoding="async"
               style={{ height: '1.75rem', width: 'auto' }}
             />
           </Link>

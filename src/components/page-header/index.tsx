@@ -47,6 +47,8 @@ const PageHeader: React.FC<PageHeaderProps> = ({
           <img
             src={styles.logo}
             alt={logoAlt}
+            loading="lazy"
+            decoding="async"
             style={{ height: '5rem', width: 'auto' }}
           />
         </Link>

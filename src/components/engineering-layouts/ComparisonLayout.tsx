@@ -37,6 +37,8 @@ const ComparisonLayout: React.FC<ComparisonLayoutProps> = ({
               <img
                 src={left.image}
                 alt={left.title}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-auto object-contain"
               />
             </div>
@@ -56,6 +58,8 @@ const ComparisonLayout: React.FC<ComparisonLayoutProps> = ({
               <img
                 src={right.image}
                 alt={right.title}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-auto object-contain"
               />
             </div>

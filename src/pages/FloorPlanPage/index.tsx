@@ -204,6 +204,8 @@ const FloorPlanPage: React.FC = () => {
               ref={imageRef}
               src={currentImage}
               alt={`${selectedSubFloor?.label || selectedFloor.label} 平面圖`}
+              loading="lazy"
+              decoding="async"
               className="select-none"
               style={{ width: '500px', height: 'auto', cursor: DEV_MODE ? 'crosshair' : undefined }}
               draggable={false}

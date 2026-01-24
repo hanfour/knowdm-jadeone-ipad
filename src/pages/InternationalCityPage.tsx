@@ -127,6 +127,8 @@ const InternationalCityPage: React.FC = () => {
           <img
             src={selectedLandmark.image}
             alt={selectedLandmark.name}
+            loading="lazy"
+            decoding="async"
             className="w-full max-w-full max-h-full object-contain animate-fade-in"
           />
           <div className="absolute z-10 text-[#0b2d2a]/50 text-micro" style={{ right: '5rem', bottom: '1rem' }}>{selectedLandmark.alt}</div>

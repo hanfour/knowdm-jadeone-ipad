@@ -144,6 +144,8 @@ const GalleryViewer: React.FC<GalleryViewerProps> = ({
               <img
                 src={gallery.images[currentIndex].src}
                 alt={gallery.images[currentIndex].label}
+                loading="lazy"
+                decoding="async"
                 className="max-w-full max-h-full object-contain select-none"
                 draggable={false}
                 style={{

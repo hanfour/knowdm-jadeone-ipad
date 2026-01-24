@@ -201,6 +201,8 @@ const FurnitureSheet: React.FC<FurnitureSheetProps> = ({
             <img
               src={getFurnitureImage()}
               alt={`${unit.label} 傢俱配置圖`}
+              loading="lazy"
+              decoding="async"
               className="max-w-full max-h-full object-contain select-none"
               draggable={false}
               style={{

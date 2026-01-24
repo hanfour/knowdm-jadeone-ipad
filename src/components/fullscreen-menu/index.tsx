@@ -41,6 +41,8 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({
           <img
             src={logo}
             alt={logoAlt}
+            loading="lazy"
+            decoding="async"
             style={{ height: '5rem', width: 'auto' }}
           />
         </Link>

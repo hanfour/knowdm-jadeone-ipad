@@ -253,6 +253,8 @@ const StructuralEngineeringPage: React.FC = () => {
                 <img
                   src={currentTab.contentImage}
                   alt={currentTab.title}
+                  loading="lazy"
+                  decoding="async"
                   className="max-w-full h-auto mix-blend-darken"
                 />
               </div>
@@ -278,6 +280,8 @@ const StructuralEngineeringPage: React.FC = () => {
             <img
               src={currentTab.image}
               alt={currentTab.title}
+              loading="lazy"
+              decoding="async"
               className="max-w-full max-h-full object-contain"
             />
           )}
@@ -290,6 +294,8 @@ const StructuralEngineeringPage: React.FC = () => {
                   <img
                     src={currentTab.images[0]}
                     alt={`${currentTab.title} 1`}
+                    loading="lazy"
+                    decoding="async"
                     className="w-[55%] max-w-md h-auto object-contain"
                   />
                 </div>
@@ -299,6 +305,8 @@ const StructuralEngineeringPage: React.FC = () => {
                   <img
                     src={currentTab.images[1]}
                     alt={`${currentTab.title} 2`}
+                    loading="lazy"
+                    decoding="async"
                     className="w-[60%] max-w-lg h-auto object-contain mix-blend-darken"
                   />
                 </div>

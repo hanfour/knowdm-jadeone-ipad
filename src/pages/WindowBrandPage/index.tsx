@@ -63,6 +63,8 @@ const WindowBrandPage: React.FC = () => {
             <img
               src="/images/window-flooring/ykk/context.jpg"
               alt="YKK氣密窗情境"
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover"
             />
             {/* YKK Logo 壓在右上角 */}
@@ -70,6 +72,8 @@ const WindowBrandPage: React.FC = () => {
               <img
                 src="/images/window-flooring/ykk/logo.png"
                 alt="YKK AP"
+                loading="lazy"
+                decoding="async"
                 className="h-12 object-contain"
               />
             </div>
@@ -105,6 +109,8 @@ const WindowBrandPage: React.FC = () => {
               <img
                 src="/images/window-flooring/ykk/performance.jpg"
                 alt="基本性能"
+                loading="lazy"
+                decoding="async"
                 className="w-full max-w-2xl rounded-lg shadow-sm"
               />
             </div>
@@ -122,6 +128,8 @@ const WindowBrandPage: React.FC = () => {
                     <img
                       src={project.image}
                       alt={project.name}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
@@ -153,6 +161,8 @@ const WindowBrandPage: React.FC = () => {
               key={galleryIndex}
               src={ykkGalleryImages[galleryIndex]}
               alt={`YKK 氣密窗介紹 ${galleryIndex + 1}`}
+              loading="lazy"
+              decoding="async"
               className="w-full max-h-[90%] object-contain animate-fade-in"
             />
           </div>

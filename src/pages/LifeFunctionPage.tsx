@@ -443,6 +443,8 @@ const LifeFunctionPage: React.FC = () => {
         <img
           src="/images/a5/背景圖.webp"
           alt="生活機能地圖"
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-contain object-left transition-all duration-500"
           style={{
             filter: activeCategory ? 'grayscale(100%)' : 'grayscale(0%)',
@@ -540,6 +542,8 @@ const LifeFunctionPage: React.FC = () => {
                 key={idx}
                 src={imageSrc}
                 alt={category.name}
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 w-full h-full object-contain object-left"
               />
             ))}
@@ -550,6 +554,8 @@ const LifeFunctionPage: React.FC = () => {
         <img
           src="/images/a5/聚碩仁玉.png"
           alt="聚碩仁玉"
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-contain object-left pointer-events-none animate-breathing"
         />
 
@@ -557,6 +563,8 @@ const LifeFunctionPage: React.FC = () => {
         <img
           src="/images/a5/樹木群.png"
           alt="聚碩仁玉"
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-contain object-left pointer-events-none"
           style={{
             filter: activeCategory ? 'grayscale(100%)' : 'grayscale(0%)',
@@ -572,6 +580,8 @@ const LifeFunctionPage: React.FC = () => {
           <img
             src="/images/a5/大標.svg"
             alt="生活機能圖"
+            loading="lazy"
+            decoding="async"
             style={{ height: '3rem', width: 'auto' }}
           />
         </div>
@@ -747,6 +757,8 @@ const LifeFunctionPage: React.FC = () => {
             <img
               src={lightbox.images[lightbox.currentIndex]}
               alt="燈箱圖片"
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-contain pointer-events-auto"
               onClick={(e) => e.stopPropagation()}
             />

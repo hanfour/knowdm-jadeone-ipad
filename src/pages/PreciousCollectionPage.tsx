@@ -558,6 +558,8 @@ const PreciousCollectionPage: React.FC = () => {
               key={ecoGalleryIndex}
               src={ecoGalleryImages[ecoGalleryIndex]}
               alt={`生態專用區介紹 ${ecoGalleryIndex + 1}`}
+              loading="lazy"
+              decoding="async"
               className="max-w-full max-h-full object-contain animate-fade-in"
             />
           </div>

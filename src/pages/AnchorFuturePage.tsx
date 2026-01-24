@@ -402,6 +402,8 @@ const AnchorFuturePage: React.FC = () => {
               key={currentImageIndex}
               src={modalDistrictData.images[currentImageIndex]}
               alt={`${modalDistrictData.name} ${currentImageIndex + 1}`}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover animate-fade-in"
             />
 
@@ -493,6 +495,8 @@ const AnchorFuturePage: React.FC = () => {
               <img
                 src="/images/anchor-future/_0003_pixta_97593564_M.jpg"
                 alt="情境示意圖"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover animate-fade-in"
               />
             </div>
@@ -511,6 +515,8 @@ const AnchorFuturePage: React.FC = () => {
             <img
               src="/images/anchor-future/聚碩-重劃區比較表.png"
               alt="重劃區比較表"
+              loading="lazy"
+              decoding="async"
               className="max-w-full max-h-full object-contain animate-fade-in"
             />
           </div>

@@ -254,6 +254,8 @@ const BathroomBrandPage: React.FC = () => {
         <img
           src={currentTab.backgroundImage}
           alt="TOTO 衛浴情境"
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
         />
       </div>
@@ -267,6 +269,8 @@ const BathroomBrandPage: React.FC = () => {
               <img
                 src={currentTab.logo}
                 alt="TOTO Logo"
+                loading="lazy"
+                decoding="async"
                 className="h-14 object-contain"
               />
             </div>
@@ -341,6 +345,8 @@ const BathroomBrandPage: React.FC = () => {
                   <img
                     src={item.image}
                     alt={item.name}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-contain transition-all duration-300"
                     style={{
                       filter: isClickable && hoveredEquipment === item.id ? 'brightness(1.05)' : 'none',
@@ -400,6 +406,8 @@ const BathroomBrandPage: React.FC = () => {
                       <img
                         src={subBrand.brandLogo}
                         alt={subBrand.brand}
+                        loading="lazy"
+                        decoding="async"
                         className="h-full max-w-[120px] object-contain"
                       />
                     </div>
@@ -411,6 +419,8 @@ const BathroomBrandPage: React.FC = () => {
                 <img
                   src={selectedEquipment.brandLogo}
                   alt={selectedEquipment.brand}
+                  loading="lazy"
+                  decoding="async"
                   className="h-full max-w-[160px] object-contain"
                 />
               </div>
@@ -431,6 +441,8 @@ const BathroomBrandPage: React.FC = () => {
               <img
                 src={selectedEquipment.image}
                 alt={selectedEquipment.name}
+                loading="lazy"
+                decoding="async"
                 className="w-full max-w-full max-h-72 object-contain"
               />
             </div>
@@ -443,6 +455,8 @@ const BathroomBrandPage: React.FC = () => {
                   <img
                     src={selectedEquipment.featureImage}
                     alt={`${selectedEquipment.name} 功能說明`}
+                    loading="lazy"
+                    decoding="async"
                     className="max-w-full max-h-[60vh] object-contain"
                   />
                 </div>

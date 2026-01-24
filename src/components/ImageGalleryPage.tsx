@@ -146,6 +146,8 @@ const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, desc
                 <img
                   src={image.src}
                   alt={image.label}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
               </div>

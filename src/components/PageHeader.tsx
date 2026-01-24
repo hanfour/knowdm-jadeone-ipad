@@ -44,6 +44,8 @@ const PageHeader: React.FC<PageHeaderProps> = ({ theme = 'white', onMenuOpen, sh
           <img
             src={styles.logo}
             alt="聚碩仁玉"
+            loading="lazy"
+            decoding="async"
             style={{ height: '5rem', width: 'auto' }}
           />
         </Link>

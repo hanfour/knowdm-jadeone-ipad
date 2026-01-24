@@ -139,6 +139,8 @@ const HomePage: React.FC = () => {
           <img
             src="/images/logo-gold.svg"
             alt="聚碩仁玉"
+            loading="lazy"
+            decoding="async"
             style={{ height: '5rem', width: 'auto' }}
           />
         </div>

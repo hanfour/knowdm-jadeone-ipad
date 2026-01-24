@@ -270,6 +270,8 @@ const AnimatedLayersDisplay: React.FC<{
         <img
           src={baseImage}
           alt="動畫底圖"
+          loading="lazy"
+          decoding="async"
           className={`max-w-full max-h-[80vh] object-contain transition-opacity duration-700 ${
             visibleLayers >= 0 ? 'opacity-100' : 'opacity-0'
           }`}
@@ -288,6 +290,8 @@ const AnimatedLayersDisplay: React.FC<{
               <img
                 src={layer.line}
                 alt={`line ${index + 1}`}
+                loading="lazy"
+                decoding="async"
                 className={`absolute inset-0 w-full h-full object-contain ${
                   visibleLayers > index ? 'animate-draw-line' : 'opacity-0'
                 }`}
@@ -298,6 +302,8 @@ const AnimatedLayersDisplay: React.FC<{
             <img
               src={layer.font}
               alt={`font ${index + 1}`}
+              loading="lazy"
+              decoding="async"
               className={`absolute inset-0 w-full h-full object-contain ${
                 visibleLayers > index ? 'animate-fade-in-up' : 'opacity-0'
               }`}
@@ -417,6 +423,8 @@ const WaterproofEngineeringPage: React.FC = () => {
                 <img
                   src={currentTab.contentImage}
                   alt={currentTab.title}
+                  loading="lazy"
+                  decoding="async"
                   className="max-w-full h-auto mix-blend-darken"
                 />
               </div>
@@ -452,6 +460,8 @@ const WaterproofEngineeringPage: React.FC = () => {
             <img
               src={currentTab.image}
               alt={currentTab.title}
+              loading="lazy"
+              decoding="async"
               className="max-w-full max-h-full object-contain"
             />
           )}
@@ -464,6 +474,8 @@ const WaterproofEngineeringPage: React.FC = () => {
                   <img
                     src={currentTab.images[0]}
                     alt={`${currentTab.title} 1`}
+                    loading="lazy"
+                    decoding="async"
                     className="w-[55%] max-w-md h-auto object-contain"
                   />
                 </div>
@@ -473,6 +485,8 @@ const WaterproofEngineeringPage: React.FC = () => {
                   <img
                     src={currentTab.images[1]}
                     alt={`${currentTab.title} 2`}
+                    loading="lazy"
+                    decoding="async"
                     className="w-[60%] max-w-lg h-auto object-contain mix-blend-darken"
                   />
                 </div>

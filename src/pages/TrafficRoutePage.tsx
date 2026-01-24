@@ -149,6 +149,8 @@ const TrafficRoutePage: React.FC = () => {
         <img
           src="/images/a6/背景圖.webp"
           alt="交通動線地圖"
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-contain object-left transition-all duration-500"
           style={{
             filter: activeCategory ? 'grayscale(100%)' : 'grayscale(0%)',
@@ -175,6 +177,8 @@ const TrafficRoutePage: React.FC = () => {
             <img
               src={category.image}
               alt={category.name}
+              loading="lazy"
+              decoding="async"
               className="absolute inset-0 w-full h-full object-contain object-left"
             />
           </div>
@@ -184,6 +188,8 @@ const TrafficRoutePage: React.FC = () => {
         <img
           src="/images/a6/最上層圖示.webp"
           alt="圖示"
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-contain object-left pointer-events-none"
           style={{
             filter: activeCategory ? 'grayscale(100%)' : 'grayscale(0%)',
@@ -195,6 +201,8 @@ const TrafficRoutePage: React.FC = () => {
         <img
           src="/images/a6/聚碩仁玉.png"
           alt="聚碩仁玉"
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-contain object-left pointer-events-none animate-breathing"
         />
 
@@ -206,6 +214,8 @@ const TrafficRoutePage: React.FC = () => {
           <img
             src="/images/a6/大標.svg"
             alt="交通動線圖"
+            loading="lazy"
+            decoding="async"
             style={{ height: '3rem', width: 'auto' }}
           />
         </div>
