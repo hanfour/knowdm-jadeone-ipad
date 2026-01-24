@@ -70,36 +70,63 @@ npx serve -s build -p 3000
 
 ## 📈 測試結果
 
-### 測試 1: 首頁 (HomePage)
+### 測試 1: 首頁 (HomePage) - 初步測試
 
-**測試日期**: _待執行_
-**測試環境**: Desktop / Mobile
+**測試日期**: 2026-01-23
+**測試環境**: Desktop (Playwright)
 **頁面**: http://localhost:3000
 
-#### 效能指標
+#### 效能指標 (Playwright 測量)
 ```
-FCP: _____ s
-LCP: _____ s
-TBT: _____ ms
-CLS: _____
-SI: _____ s
-TTI: _____ s
-Performance Score: _____ / 100
+First Paint: 6356 ms ⚠️ (目標: < 1800 ms)
+First Contentful Paint: 6356 ms ⚠️ (目標: < 1800 ms)
+DOM Content Loaded: 173 ms ✅
+Load Complete: 174 ms ✅
+DOM Interactive: 40 ms ✅
+Server Response: 33 ms ✅
 ```
+
+**注意**: FCP 高達 6.3 秒主要是因為 IntroAnimation 延遲顯示內容
 
 #### 資源載入
 ```
-Total Resources: _____
-Total Size: _____ MB
-JS Size: _____ MB
-CSS Size: _____ KB
-Image Size: _____ MB
+Total Resources: 8
+Total Transfer Size: 1368 KB (1.34 MB)
+JS Size: 146 KB (gzipped)
+CSS Size: 9 KB
+Image Size: 1203 KB ⚠️
+  - green-diamond-pattern.jpg: 1199 KB (最大資源!)
+  - logo-gold.svg: 4 KB
 ```
 
-#### 截圖
-```
-_[將 Lighthouse 報告截圖貼於此]_
-```
+#### 關鍵發現
+
+**🚨 效能瓶頸識別**:
+
+1. **超大背景圖片** (P0 - 嚴重)
+   - `green-diamond-pattern.jpg`: 1199 KB
+   - 佔總傳輸量的 87.6%
+   - 載入時間: 119 ms
+   - **建議**: 壓縮或轉換為 WebP 格式
+
+2. **FCP 過長** (P1 - 重要)
+   - 6.3 秒才顯示第一個內容
+   - 原因: IntroAnimation 設計上延遲顯示
+   - **建議**: 提供跳過選項或減少動畫時間
+
+3. **記憶體使用**
+   - JS Heap: 4 MB / 7 MB
+   - 狀態: 正常 ✅
+
+#### 資源分類明細
+| 類型 | 數量 | 大小 | 佔比 |
+|------|------|------|------|
+| CSS (背景圖) | 1 | 1199 KB | 87.6% |
+| JS (主程式) | 1 | 146 KB | 10.7% |
+| CSS (樣式) | 2 | 9 KB | 0.7% |
+| Image (Logo) | 1 | 4 KB | 0.3% |
+| Other | 2 | 9 KB | 0.7% |
+| **總計** | **8** | **1368 KB** | **100%** |
 
 ---
 
