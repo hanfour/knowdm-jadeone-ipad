@@ -13,12 +13,12 @@ interface LandmarkData {
 
 // 可點擊的地標（_水湳轉運中心 到 _台中超巨蛋）
 const landmarks: LandmarkData[] = [
-  { id: '_水湳轉運中心', name: '水湳轉運中心', image: '/images/a1/IMG_004.jpg', alt: '水湳轉運中心實景拍攝' },
-  { id: '_台中國際會議中心', name: '台中國際會議中心', image: '/images/a1/IMG_002.jpg', alt: '台中國際會議中心實景拍攝' },
-  { id: '_台中綠美圖', name: '綠美圖', image: '/images/a1/IMG_003.jpg', alt: '綠美圖實景拍攝' },
-  { id: '_中央公園', name: '中央公園', image: '/images/a3/03.jpg', alt: '中央公園實景拍攝' },
-  { id: '_台中流行影音中心', name: '台中流行影音中心', image: '/images/a3/02.jpg', alt: '台中流行影音中心實景拍攝' },
-  { id: '_台中超巨蛋', name: '台中超巨蛋', image: '/images/a1/157f7b46-031b-9a6a-f3be-cba5a4aea814.jpg', alt: '政府示意圖' },
+  { id: '_水湳轉運中心', name: '水湳轉運中心', image: '/images/a1/IMG_004.webp', alt: '水湳轉運中心實景拍攝' },
+  { id: '_台中國際會議中心', name: '台中國際會議中心', image: '/images/a1/IMG_002.webp', alt: '台中國際會議中心實景拍攝' },
+  { id: '_台中綠美圖', name: '綠美圖', image: '/images/a1/IMG_003.webp', alt: '綠美圖實景拍攝' },
+  { id: '_中央公園', name: '中央公園', image: '/images/a3/03.webp', alt: '中央公園實景拍攝' },
+  { id: '_台中流行影音中心', name: '台中流行影音中心', image: '/images/a3/02.webp', alt: '台中流行影音中心實景拍攝' },
+  { id: '_台中超巨蛋', name: '台中超巨蛋', image: '/images/a1/157f7b46-031b-9a6a-f3be-cba5a4aea814.webp', alt: '政府示意圖' },
 ];
 
 const InternationalCityPage: React.FC = () => {

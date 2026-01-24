@@ -39,12 +39,12 @@ const sampleLabelFeatures: FeatureLabelItem[] = [
 
 const sampleComparison: { left: ComparisonItem; right: ComparisonItem } = {
   left: {
-    image: '/images/placeholder.jpg',
+    image: '/images/placeholder.webp',
     title: '傳統工法',
     description: '傳統施工方式，效果一般',
   },
   right: {
-    image: '/images/placeholder.jpg',
+    image: '/images/placeholder.webp',
     title: '新式工法',
     description: '採用創新技術，效果顯著提升',
   },

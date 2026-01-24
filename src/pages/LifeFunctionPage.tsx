@@ -9,27 +9,27 @@ const categories = [
     id: 'leisure',
     name: '休閒購物',
     images: [
-      '/images/a5/休閒購物/中清商圈.png',
-      '/images/a5/休閒購物/中科商圈.png',
-      '/images/a5/休閒購物/中部科學園區餐飲.png',
-      '/images/a5/休閒購物/市場.png',
-      '/images/a5/休閒購物/逢甲商圈.png',
+      '/images/a5/休閒購物/中清商圈.webp',
+      '/images/a5/休閒購物/中科商圈.webp',
+      '/images/a5/休閒購物/中部科學園區餐飲.webp',
+      '/images/a5/休閒購物/市場.webp',
+      '/images/a5/休閒購物/逢甲商圈.webp',
     ],
   },
   {
     id: 'development',
     name: '建設發展',
-    images: ['/images/a5/建設發展/建設發展.png'],
+    images: ['/images/a5/建設發展/建設發展.webp'],
   },
   {
     id: 'education',
     name: '書香校園',
-    images: ['/images/a5/書香校園/學校.png'],
+    images: ['/images/a5/書香校園/學校.webp'],
   },
   {
     id: 'industry',
     name: '產業園區',
-    images: ['/images/a5/產業園區/中部科學園區.png'],
+    images: ['/images/a5/產業園區/中部科學園區.webp'],
   },
 ];
 
@@ -37,47 +37,47 @@ const categories = [
 const lightboxImages: Record<string, string[]> = {
   // 休閒購物
   '中清商圈': [
-    '/images/a5/燈箱/_0000_中清商圈.jpg',
-    '/images/a5/燈箱/_0001_中清商圈.jpg',
+    '/images/a5/燈箱/_0000_中清商圈.webp',
+    '/images/a5/燈箱/_0001_中清商圈.webp',
   ],
   '中科商圈': [
-    '/images/a5/燈箱/_0002_中科商圈.jpg',
-    '/images/a5/燈箱/_0003_中科商圈.jpg',
+    '/images/a5/燈箱/_0002_中科商圈.webp',
+    '/images/a5/燈箱/_0003_中科商圈.webp',
   ],
   '逢甲商圈': [
-    '/images/a5/燈箱/_0004_逢甲商圈.jpg',
-    '/images/a5/燈箱/_0005_逢甲商圈.jpg',
+    '/images/a5/燈箱/_0004_逢甲商圈.webp',
+    '/images/a5/燈箱/_0005_逢甲商圈.webp',
   ],
   // 建設發展
   '綠美圖': [
-    '/images/a5/燈箱/未命名-1_0004_綠美圖.jpg',
+    '/images/a5/燈箱/未命名-1_0004_綠美圖.webp',
   ],
   '水湳轉運站': [
-    '/images/a5/燈箱/未命名-1_0002_水湳轉運中心.jpg',
+    '/images/a5/燈箱/未命名-1_0002_水湳轉運中心.webp',
   ],
   '流行影音中心': [
-    '/images/a5/燈箱/未命名-1_0003_流行影音中心.jpg',
+    '/images/a5/燈箱/未命名-1_0003_流行影音中心.webp',
   ],
   '國際會議展覽中心': [
-    '/images/a5/燈箱/未命名-1_0005_會展中心.jpg',
+    '/images/a5/燈箱/未命名-1_0005_會展中心.webp',
   ],
   // 產業園區
   '中部科學園區': [
-    '/images/a5/燈箱/未命名-1_0000_中科.jpg',
-    '/images/a5/燈箱/未命名-1_0001_中科.jpg',
+    '/images/a5/燈箱/未命名-1_0000_中科.webp',
+    '/images/a5/燈箱/未命名-1_0001_中科.webp',
   ],
   // 書香校園
   '中國醫藥大學': [
-    '/images/a5/燈箱/_0000_中國醫藥大學02.jpg',
+    '/images/a5/燈箱/_0000_中國醫藥大學02.webp',
   ],
   '僑光科技大學': [
-    '/images/a5/燈箱/_0003_僑光科大02.jpg',
+    '/images/a5/燈箱/_0003_僑光科大02.webp',
   ],
   '逢甲大學': [
-    '/images/a5/燈箱/_0002_逢甲大學01.jpg',
+    '/images/a5/燈箱/_0002_逢甲大學01.webp',
   ],
   '西屯小學': [
-    '/images/a5/燈箱/_0001_西屯國小01.jpg',
+    '/images/a5/燈箱/_0001_西屯國小01.webp',
   ],
 };
 
@@ -552,7 +552,7 @@ const LifeFunctionPage: React.FC = () => {
 
         {/* 聚碩仁玉 - 建案插畫（呼吸燈效果） */}
         <img
-          src="/images/a5/聚碩仁玉.png"
+          src="/images/a5/聚碩仁玉.webp"
           alt="聚碩仁玉"
           loading="lazy"
           decoding="async"
@@ -561,7 +561,7 @@ const LifeFunctionPage: React.FC = () => {
 
         {/* 樹木群 */}
         <img
-          src="/images/a5/樹木群.png"
+          src="/images/a5/樹木群.webp"
           alt="聚碩仁玉"
           loading="lazy"
           decoding="async"

@@ -5,7 +5,7 @@ export const units: UnitData[] = [
   {
     id: 'A',
     label: 'A戶',
-    getImage: (f) => f === '2F' ? '/images/c2/furniture-layouts/A-2F.jpg' : '/images/c2/furniture-layouts/A-3~11.jpg',
+    getImage: (f) => f === '2F' ? '/images/c2/furniture-layouts/A-2F.webp' : '/images/c2/furniture-layouts/A-3~11.webp',
     getVrUrl: (f) => ['3F', '4F', '5F', '6F', '7F', '8F', '9F', '10F', '11F'].includes(f) ? 'https://yun.kujiale.com/design/3FO3HPP1YMO1/airoaming' : null,
     region: [
       { x: 18.61, y: 10.4 }, { x: 27.26, y: 10.4 }, { x: 27.26, y: 13.55 }, { x: 31.12, y: 13.55 },
@@ -16,7 +16,7 @@ export const units: UnitData[] = [
   {
     id: 'B',
     label: 'B戶',
-    getImage: (f) => f === '2F' ? '/images/c2/furniture-layouts/B-2F.jpg' : '/images/c2/furniture-layouts/B-3~11.jpg',
+    getImage: (f) => f === '2F' ? '/images/c2/furniture-layouts/B-2F.webp' : '/images/c2/furniture-layouts/B-3~11.webp',
     getVrUrl: (f) => ['3F', '4F', '5F', '6F', '7F', '8F', '9F', '10F', '11F'].includes(f) ? 'https://yun.kujiale.com/design/3FO3I3G0ACHF/airoaming' : null,
     region: [
       { x: 20.95, y: 71.79 }, { x: 35.68, y: 71.79 }, { x: 35.68, y: 70.13 }, { x: 42.81, y: 70.13 },
@@ -27,7 +27,7 @@ export const units: UnitData[] = [
   {
     id: 'C',
     label: 'C戶',
-    getImage: (f) => f === '2F' ? '/images/c2/furniture-layouts/C-2F.jpg' : '/images/c2/furniture-layouts/C-3~11.jpg',
+    getImage: (f) => f === '2F' ? '/images/c2/furniture-layouts/C-2F.webp' : '/images/c2/furniture-layouts/C-3~11.webp',
     region: [
       { x: 43.05, y: 70.13 }, { x: 43.05, y: 45.35 }, { x: 58.59, y: 45.35 }, { x: 58.59, y: 52.01 },
       { x: 63.05, y: 52.01 }, { x: 63.05, y: 57.8 }, { x: 65.37, y: 57.8 }, { x: 65.37, y: 71.8 },
@@ -37,7 +37,7 @@ export const units: UnitData[] = [
   {
     id: 'D',
     label: 'D戶',
-    getImage: (f) => f === '2F' ? '/images/c2/furniture-layouts/D-2F.jpg' : '/images/c2/furniture-layouts/D-3~11.jpg',
+    getImage: (f) => f === '2F' ? '/images/c2/furniture-layouts/D-2F.webp' : '/images/c2/furniture-layouts/D-3~11.webp',
     region: [
       { x: 67.24, y: 10.59 }, { x: 58.82, y: 10.59 }, { x: 58.82, y: 13.55 }, { x: 54.96, y: 13.55 },
       { x: 54.96, y: 20.76 }, { x: 50.87, y: 20.76 }, { x: 50.87, y: 36.48 }, { x: 49.59, y: 36.48 },
@@ -67,11 +67,11 @@ export const floorDefaults: Record<string, { x: number; y: number; scale: number
 
 // 生成景觀空拍按鈕資料
 export const getAerialButtons = (floorId: string): GalleryButtonData[] => [
-  { id: `${floorId}-east`, label: '東向景觀空拍', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(東向).jpg`, label: '東向景觀空拍' }] },
-  { id: `${floorId}-south`, label: '南向景觀空拍', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(南向).jpg`, label: '南向景觀空拍' }] },
-  { id: `${floorId}-west`, label: '西向景觀空拍', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(西向).jpg`, label: '西向景觀空拍' }] },
-  { id: `${floorId}-north`, label: '北向景觀空拍', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(北向).jpg`, label: '北向景觀空拍' }] },
-  { id: `${floorId}-360`, label: '360度環景', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(360).jpg`, label: '360度環景' }] },
+  { id: `${floorId}-east`, label: '東向景觀空拍', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(東向).webp`, label: '東向景觀空拍' }] },
+  { id: `${floorId}-south`, label: '南向景觀空拍', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(南向).webp`, label: '南向景觀空拍' }] },
+  { id: `${floorId}-west`, label: '西向景觀空拍', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(西向).webp`, label: '西向景觀空拍' }] },
+  { id: `${floorId}-north`, label: '北向景觀空拍', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(北向).webp`, label: '北向景觀空拍' }] },
+  { id: `${floorId}-360`, label: '360度環景', images: [{ src: `/images/c2/aerial/仁玉-${floorId}(360).webp`, label: '360度環景' }] },
 ];
 
 // 標準樓層標記點
@@ -87,12 +87,12 @@ export const floors: FloorData[] = [
   {
     id: 'RF',
     label: 'RF',
-    image: '/images/c2/floor-plans/RF-1.png',
+    image: '/images/c2/floor-plans/RF-1.webp',
     subFloors: [
       {
         id: 'RF-1',
         label: '屋突一層',
-        image: '/images/c2/floor-plans/RF-1.png',
+        image: '/images/c2/floor-plans/RF-1.webp',
         galleryButtons: [
           {
             id: 'RF-lobby',
@@ -116,24 +116,24 @@ export const floors: FloorData[] = [
           },
         ],
       },
-      { id: 'RF-2', label: '屋突二層', image: '/images/c2/floor-plans/RF-2.png' },
-      { id: 'RF-3', label: '屋突三層', image: '/images/c2/floor-plans/RF-3.png' },
+      { id: 'RF-2', label: '屋突二層', image: '/images/c2/floor-plans/RF-2.webp' },
+      { id: 'RF-3', label: '屋突三層', image: '/images/c2/floor-plans/RF-3.webp' },
     ],
     galleryButtons: getAerialButtons('RF'),
   },
-  { id: '11F', label: '11F', image: '/images/c2/floor-plans/3-11F.png', markers: standardMarkers('11F'), galleryButtons: getAerialButtons('11F') },
-  { id: '10F', label: '10F', image: '/images/c2/floor-plans/3-11F.png', markers: standardMarkers('10F'), galleryButtons: getAerialButtons('10F') },
-  { id: '9F', label: '9F', image: '/images/c2/floor-plans/3-11F.png', markers: standardMarkers('9F'), galleryButtons: getAerialButtons('9F') },
-  { id: '8F', label: '8F', image: '/images/c2/floor-plans/3-11F.png', markers: standardMarkers('8F'), galleryButtons: getAerialButtons('8F') },
-  { id: '7F', label: '7F', image: '/images/c2/floor-plans/3-11F.png', markers: standardMarkers('7F'), galleryButtons: getAerialButtons('7F') },
-  { id: '6F', label: '6F', image: '/images/c2/floor-plans/3-11F.png', markers: standardMarkers('6F'), galleryButtons: getAerialButtons('6F') },
-  { id: '5F', label: '5F', image: '/images/c2/floor-plans/3-11F.png', markers: standardMarkers('5F'), galleryButtons: getAerialButtons('5F') },
-  { id: '4F', label: '4F', image: '/images/c2/floor-plans/3-11F.png', markers: standardMarkers('4F'), galleryButtons: getAerialButtons('4F') },
-  { id: '3F', label: '3F', image: '/images/c2/floor-plans/3-11F.png', markers: standardMarkers('3F'), galleryButtons: getAerialButtons('3F') },
+  { id: '11F', label: '11F', image: '/images/c2/floor-plans/3-11F.webp', markers: standardMarkers('11F'), galleryButtons: getAerialButtons('11F') },
+  { id: '10F', label: '10F', image: '/images/c2/floor-plans/3-11F.webp', markers: standardMarkers('10F'), galleryButtons: getAerialButtons('10F') },
+  { id: '9F', label: '9F', image: '/images/c2/floor-plans/3-11F.webp', markers: standardMarkers('9F'), galleryButtons: getAerialButtons('9F') },
+  { id: '8F', label: '8F', image: '/images/c2/floor-plans/3-11F.webp', markers: standardMarkers('8F'), galleryButtons: getAerialButtons('8F') },
+  { id: '7F', label: '7F', image: '/images/c2/floor-plans/3-11F.webp', markers: standardMarkers('7F'), galleryButtons: getAerialButtons('7F') },
+  { id: '6F', label: '6F', image: '/images/c2/floor-plans/3-11F.webp', markers: standardMarkers('6F'), galleryButtons: getAerialButtons('6F') },
+  { id: '5F', label: '5F', image: '/images/c2/floor-plans/3-11F.webp', markers: standardMarkers('5F'), galleryButtons: getAerialButtons('5F') },
+  { id: '4F', label: '4F', image: '/images/c2/floor-plans/3-11F.webp', markers: standardMarkers('4F'), galleryButtons: getAerialButtons('4F') },
+  { id: '3F', label: '3F', image: '/images/c2/floor-plans/3-11F.webp', markers: standardMarkers('3F'), galleryButtons: getAerialButtons('3F') },
   {
     id: '2F',
     label: '2F',
-    image: '/images/c2/floor-plans/2F.png',
+    image: '/images/c2/floor-plans/2F.webp',
     markers: [
       { id: '2F-A', unitId: 'A', x: 27.85, y: 39.59, label: 'A戶' },
       { id: '2F-B', unitId: 'B', x: 39.21, y: 57.83, label: 'B戶' },
@@ -145,13 +145,13 @@ export const floors: FloorData[] = [
   {
     id: '1F',
     label: '1F',
-    image: '/images/c2/floor-plans/1F.png',
+    image: '/images/c2/floor-plans/1F.webp',
     galleryButtons: [
       {
         id: '1F-lobby',
         label: '入口門廳',
         images: [
-          { src: '/images/c2/facilities/01-大廳-06.jpg', label: '入口門廳 1' },
+          { src: '/images/c2/facilities/01-大廳-06.webp', label: '入口門廳 1' },
           { src: '/images/c2/facilities/01-大廳-01.webp', label: '入口門廳 2' },
           { src: '/images/c2/facilities/01-大廳-02.webp', label: '入口門廳 3' },
           { src: '/images/c2/facilities/01-大廳-03.webp', label: '入口門廳 4' },
@@ -182,11 +182,11 @@ export const floors: FloorData[] = [
       },
     ]
   },
-  { id: 'B1F', label: 'B1F', image: '/images/c2/floor-plans/B1.png' },
+  { id: 'B1F', label: 'B1F', image: '/images/c2/floor-plans/B1.webp' },
   {
     id: 'B2F',
     label: 'B2F',
-    image: '/images/c2/floor-plans/B2.png',
+    image: '/images/c2/floor-plans/B2.webp',
     galleryButtons: [
       {
         id: 'B2F-lobby',
@@ -205,7 +205,7 @@ export const floors: FloorData[] = [
   {
     id: 'B3F',
     label: 'B3F',
-    image: '/images/c2/floor-plans/B3.png',
+    image: '/images/c2/floor-plans/B3.webp',
     galleryButtons: [
       {
         id: 'B3F-lobby',

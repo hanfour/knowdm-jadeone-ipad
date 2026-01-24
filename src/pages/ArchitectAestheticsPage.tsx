@@ -4,13 +4,13 @@ import CloseButton from '../components/close-button';
 
 // 作品圖片資料
 const portfolioImages = [
-  { src: '/images/b2/works/DJI_0620.jpg', label: '餘白' },
-  { src: '/images/b2/works/PB280246.jpg', label: '餘白' },
+  { src: '/images/b2/works/DJI_0620.webp', label: '餘白' },
+  { src: '/images/b2/works/PB280246.webp', label: '餘白' },
 ];
 
 const ArchitectAestheticsPage: React.FC = () => {
   // 人物圖片 URL
-  const personImage = '/images/b2/蔡長恩建築師.jpg';
+  const personImage = '/images/b2/蔡長恩建築師.webp';
 
   // ===== 飛入動畫設定 =====
   const charDelay = 0.12;  // 每個字的延遲時間（秒）- 較慢以產生交錯重疊效果

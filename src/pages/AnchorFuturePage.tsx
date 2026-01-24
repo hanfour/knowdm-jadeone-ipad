@@ -46,9 +46,9 @@ const districts: DistrictDetail[] = [
       greenArea: '約83.63公頃',
     },
     images: [
-      '/images/a1/IMG_004.jpg',
-      '/images/a1/IMG_003.jpg',
-      '/images/a1/IMG_002.jpg',
+      '/images/a1/IMG_004.webp',
+      '/images/a1/IMG_003.webp',
+      '/images/a1/IMG_002.webp',
     ],
   },
   {
@@ -67,7 +67,7 @@ const districts: DistrictDetail[] = [
       greenArea: '約25.73公頃',
     },
     images: [
-      '/images/anchor-future/_0005_pixta_38952988_M.jpg',
+      '/images/anchor-future/_0005_pixta_38952988_M.webp',
     ],
     alt: '情境示意圖',
   },
@@ -87,7 +87,7 @@ const districts: DistrictDetail[] = [
       greenArea: '約15.65公頃',
     },
     images: [
-      '/images/anchor-future/mrt-01.jpg',
+      '/images/anchor-future/mrt-01.webp',
     ],
     alt: '台中捷運綠線',
   },
@@ -108,7 +108,7 @@ const districts: DistrictDetail[] = [
       greenArea: '約5.27公頃',
     },
     images: [
-      '/images/anchor-future/_0001_pixta_118049052_M.jpg',
+      '/images/anchor-future/_0001_pixta_118049052_M.webp',
     ],
     alt: '情境示意圖',
   },
@@ -131,7 +131,7 @@ const districts: DistrictDetail[] = [
       greenArea: '約19.13公頃',
     },
     images: [
-      '/images/anchor-future/_0002_pixta_97838656_M.jpg',
+      '/images/anchor-future/_0002_pixta_97838656_M.webp',
     ],
     alt: '臺中國家歌劇院',
   },
@@ -152,7 +152,7 @@ const districts: DistrictDetail[] = [
       greenArea: '約13.11公頃',
     },
     images: [
-      '/images/anchor-future/_0000_pixta_121496522_M.jpg',
+      '/images/anchor-future/_0000_pixta_121496522_M.webp',
     ],
     alt: '情境示意圖',
   },
@@ -174,7 +174,7 @@ const districts: DistrictDetail[] = [
       greenArea: '約37.22公頃',
     },
     images: [
-      '/images/anchor-future/_0004_pixta_69952978_M.jpg',
+      '/images/anchor-future/_0004_pixta_69952978_M.webp',
     ],
     alt: '情境示意圖',
   },
@@ -493,7 +493,7 @@ const AnchorFuturePage: React.FC = () => {
             <div className="flex-1 h-full flex items-center justify-center bg-gray-100 relative">
               {/* TODO: 請替換為 74 快速道路實際圖片 */}
               <img
-                src="/images/anchor-future/_0003_pixta_97593564_M.jpg"
+                src="/images/anchor-future/_0003_pixta_97593564_M.webp"
                 alt="情境示意圖"
                 loading="lazy"
                 decoding="async"
@@ -513,7 +513,7 @@ const AnchorFuturePage: React.FC = () => {
           {/* 滿版圖片 */}
           <div className="h-full flex items-center justify-center p-8">
             <img
-              src="/images/anchor-future/聚碩-重劃區比較表.png"
+              src="/images/anchor-future/聚碩-重劃區比較表.webp"
               alt="重劃區比較表"
               loading="lazy"
               decoding="async"

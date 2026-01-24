@@ -41,11 +41,11 @@ const pageConfig = [
 
 // SHARP 空氣清淨機圖片
 const sharpImages = [
-  '/images/elevator/sharp-01.jpg',
-  '/images/elevator/sharp-02.jpg',
-  '/images/elevator/sharp-03.jpg',
-  '/images/elevator/sharp-04.jpg',
-  '/images/elevator/sharp-05.jpg',
+  '/images/elevator/sharp-01.webp',
+  '/images/elevator/sharp-02.webp',
+  '/images/elevator/sharp-03.webp',
+  '/images/elevator/sharp-04.webp',
+  '/images/elevator/sharp-05.webp',
 ];
 
 const ElevatorBrandPage: React.FC = () => {
@@ -97,7 +97,7 @@ const ElevatorBrandPage: React.FC = () => {
         {/* 品牌 Logo - 左上角 */}
         <div className="absolute top-24 left-8">
           <img
-            src="/images/elevator/logo-hitachi.png"
+            src="/images/elevator/logo-hitachi.webp"
             alt="日立永大電梯"
             loading="lazy"
             decoding="async"
@@ -172,7 +172,7 @@ const ElevatorBrandPage: React.FC = () => {
           {/* 右側：產品圖片 */}
           <div className="w-1/2 pt-24 h-full flex items-center justify-center bg-gray-50 p-12">
             <img
-              src="/images/elevator/elevator-product.jpg"
+              src="/images/elevator/elevator-product.webp"
               alt="日立電梯"
               loading="lazy"
               decoding="async"
@@ -194,7 +194,7 @@ const ElevatorBrandPage: React.FC = () => {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           top: '80px',
-          backgroundImage: 'url(/images/elevator/elevator-bg.jpg)',
+          backgroundImage: 'url(/images/elevator/elevator-bg.webp)',
           backgroundColor: '#1a1a1a',
         }}
       >

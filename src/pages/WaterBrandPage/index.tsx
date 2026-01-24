@@ -28,7 +28,7 @@ const yunghoProducts: ProductItem[] = [
   {
     id: 'filter-bag',
     name: '中央濾袋式過濾器',
-    image: '/images/water/filter-bag.jpg',
+    image: '/images/water/filter-bag.webp',
     features: [
       '成本效益高：投資成本和運營費用相對較低，且濾袋更換便捷，減少了停機時間。',
       '處理量大、容污量大：在小體積下能實現大流量的過濾，並能容納較多雜質。',
@@ -38,7 +38,7 @@ const yunghoProducts: ProductItem[] = [
   {
     id: 'dual-filter',
     name: '不鏽鋼雙效過濾',
-    image: '/images/water/product.png',
+    image: '/images/water/product.webp',
     description: '過濾器通常安裝在水塔或自來水進水處，處理整個家庭的用水，可用來淨化日常的洗滌用水。',
     features: [
       '10吋大胖不鏽鋼全戶型單道雙效水塔過濾器：採用 SUS304 不鏽鋼桶身，並配備雙效複合式濾芯，可過濾泥沙、鐵鏽、氯氣、異味、重金屬等物質。',
@@ -51,7 +51,7 @@ const tabs: TabData[] = [
   {
     id: 'yungho',
     name: '永賀能源科技',
-    logo: '/images/water/yungho-logo.png',
+    logo: '/images/water/yungho-logo.webp',
     logoAlt: '永賀能源科技',
     title: '',
     subtitle: '全方位水處理專家\n用水點滴純淨',
@@ -63,12 +63,12 @@ const tabs: TabData[] = [
   {
     id: 'sakura',
     name: 'SAKURA 櫻花',
-    logo: '/images/water/sakura-logo.png',
+    logo: '/images/water/sakura-logo.webp',
     logoAlt: 'SAKURA 櫻花',
     title: '廚下雙溫淨熱飲',
     content: '免費淨水器健檢服務，把關飲水品質\n創新專利，淨水+熱水雙機合一\n內建軟水淨水模組，可安心生飲\n獨特進水設計，熱水使用不降溫\n貼心溫度模式，可設定保溫溫度\n節能省電模式，8小時保溫不加熱',
     contentType: 'list',
-    productImage: '/images/water/sakura-product.png',
+    productImage: '/images/water/sakura-product.webp',
   },
 ];
 
@@ -150,7 +150,7 @@ const WaterBrandPage: React.FC = () => {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700"
         style={{
           top: '80px',
-          backgroundImage: 'url(/images/water/water-bg.jpg)',
+          backgroundImage: 'url(/images/water/water-bg.webp)',
         }}
       >
         {/* 左側內容區塊 - 文字 */}

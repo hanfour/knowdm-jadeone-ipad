@@ -199,7 +199,7 @@ const TrafficRoutePage: React.FC = () => {
 
         {/* 聚碩仁玉 - 建案插畫（呼吸燈效果） */}
         <img
-          src="/images/a6/聚碩仁玉.png"
+          src="/images/a6/聚碩仁玉.webp"
           alt="聚碩仁玉"
           loading="lazy"
           decoding="async"

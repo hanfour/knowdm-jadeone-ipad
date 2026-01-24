@@ -4,15 +4,15 @@ import CloseButton from '../components/close-button';
 
 // 作品圖片資料
 const portfolioImages = [
-  { src: '/images/b6/works/冠軍磁磚台中展示中心.jpg', label: '冠軍磁磚台中展示中心' },
-  { src: '/images/b6/works/理合建設時光嶼.jpg', label: '理合建設 時光嶼' },
-  { src: '/images/b6/works/惠宇建設千曦.jpg', label: '惠宇建設 千曦' },
-  { src: '/images/b6/works/惠宇建設大其心.jpg', label: '惠宇建設 大其心' },
+  { src: '/images/b6/works/冠軍磁磚台中展示中心.webp', label: '冠軍磁磚台中展示中心' },
+  { src: '/images/b6/works/理合建設時光嶼.webp', label: '理合建設 時光嶼' },
+  { src: '/images/b6/works/惠宇建設千曦.webp', label: '惠宇建設 千曦' },
+  { src: '/images/b6/works/惠宇建設大其心.webp', label: '惠宇建設 大其心' },
 ];
 
 const LightingAestheticsPage: React.FC = () => {
   // 背景圖片 URL
-  const backgroundImage = '/images/b6/lighting-bg.jpg';
+  const backgroundImage = '/images/b6/lighting-bg.webp';
 
   // ===== 飛入動畫設定 =====
   const charDelay = 0.12;  // 每個字的延遲時間（秒）- 較慢以產生交錯重疊效果

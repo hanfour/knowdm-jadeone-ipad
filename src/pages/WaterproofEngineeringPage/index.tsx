@@ -64,13 +64,13 @@ const tabs: TabData[] = [
     subtitle: 'Roof Waterproofing',
     content: '針對頂樓住戶最顧慮的漏水及隔熱問題，於屋頂全面施作液態膜防水層。並於防水層施作完成前，屋頂全面存水，進行屋頂試水檢驗。確認無漏水後鋪設水泥砂漿，最後表面鋪設表面裝修材，達到最佳防水隔熱效果。',
     animatedLayers: {
-      baseImage: '/images/waterproof/roof/屋頂防水_img.png',
+      baseImage: '/images/waterproof/roof/屋頂防水_img.webp',
       layers: [
-        { line: '/images/waterproof/roof/屋頂防水_line01.png', font: '/images/waterproof/roof/屋頂防水_font01.png' },
-        { line: '/images/waterproof/roof/屋頂防水_line02.png', font: '/images/waterproof/roof/屋頂防水_font02.png' },
-        { line: '/images/waterproof/roof/屋頂防水_line03.png', font: '/images/waterproof/roof/屋頂防水_font03.png' },
-        { line: '/images/waterproof/roof/屋頂防水_line04.png', font: '/images/waterproof/roof/屋頂防水_font04.png' },
-        { font: '/images/waterproof/roof/屋頂防水_font05.png' },
+        { line: '/images/waterproof/roof/屋頂防水_line01.webp', font: '/images/waterproof/roof/屋頂防水_font01.webp' },
+        { line: '/images/waterproof/roof/屋頂防水_line02.webp', font: '/images/waterproof/roof/屋頂防水_font02.webp' },
+        { line: '/images/waterproof/roof/屋頂防水_line03.webp', font: '/images/waterproof/roof/屋頂防水_font03.webp' },
+        { line: '/images/waterproof/roof/屋頂防水_line04.webp', font: '/images/waterproof/roof/屋頂防水_font04.webp' },
+        { font: '/images/waterproof/roof/屋頂防水_font05.webp' },
       ],
     },
   },
@@ -108,9 +108,9 @@ const tabs: TabData[] = [
     subtitle: 'Drain Installation',
     content: '本案露臺及頂樓安裝落水頭，以防排水管阻塞反冒或落水頭阻塞時，雨水反而溢入室內。地坪洩水坡度為 1% 確保排水順暢。',
     animatedLayers: {
-      baseImage: '/images/waterproof/drain/落水頭_img.png',
+      baseImage: '/images/waterproof/drain/落水頭_img.webp',
       layers: [
-        { line: '/images/waterproof/drain/落水頭_line.png', font: '/images/waterproof/drain/落水頭_font.png' },
+        { line: '/images/waterproof/drain/落水頭_line.webp', font: '/images/waterproof/drain/落水頭_font.webp' },
       ],
       showRain: true,
     },

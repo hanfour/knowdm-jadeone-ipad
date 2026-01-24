@@ -37,7 +37,7 @@ const BackgroundLayer: React.FC<{ type: 'green' | 'pattern' }> = React.memo(({ t
       <>
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: 'url(/images/green-diamond-pattern.jpg)' }}
+          style={{ backgroundImage: 'url(/images/green-diamond-pattern.webp)' }}
         />
         <div className="absolute inset-0 bg-black/50" />
       </>

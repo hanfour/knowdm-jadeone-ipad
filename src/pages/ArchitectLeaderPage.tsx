@@ -6,7 +6,7 @@ import RippleButton from '../components/ripple-button';
 const ArchitectLeaderPage: React.FC = () => {
 
   // 滿版背景圖片 URL
-  const backgroundImage = '/images/b1/architect-leader-bg.jpg';
+  const backgroundImage = '/images/b1/architect-leader-bg.webp';
 
   // ===== 飛入動畫設定 =====
   const charDelay = 0.12;  // 每個字的延遲時間（秒）- 較慢以產生交錯重疊效果

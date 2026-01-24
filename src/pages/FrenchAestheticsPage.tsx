@@ -21,7 +21,7 @@ const awards = [
     history: '繆思設計獎自 2015 年由國際獎項協會（International Awards Associate, IAA）設立以來，一直致力於發掘全球設計界的創新人才與標竿作品，其名稱來自於希臘神話中的「繆思」，象徵靈感與創造力。獎項透過嚴謹的國際評審與完整的作品曝光機制，逐步成為國際設計界受關注的年度盛事之一。',
     description: '美國繆思設計獎全球性設計競賽，旨在表彰全球設計領域中的優秀作品，涵蓋建築設計、室內設計、景觀、產品、時尚及其他多元設計類別。評選標準重視創意原創性、設計品質、技術與效果表現，由國際專業評審團隊依據嚴格標準進行匿名審查，保證獎項的專業性與公信力。',
     authority: 'MUSE Design Awards 是全球極具影響力的設計類國際獎項之一，表彰來自世界各地在產品設計、建築、室內、時尚、照明、包裝、概念設計等領域中表現卓越與創新的作品。該獎項以「追尋卓越設計美學與靈感繆思」為核心理念，致力於發掘設計行業的未來之星與業界翹楚。',
-    image: '/images/awards/muse.png',
+    image: '/images/awards/muse.webp',
   },
   {
     id: 'london',
@@ -32,7 +32,7 @@ const awards = [
     history: 'LONDON Design Awards 由歷史悠久的國際獎項協會 International Awards Associates（IAA）主辦，自 2016 年起提供一個全球性的平台，表彰多元設計領域的創新與卓越，並與未來設計趨勢接軌。該獎項透過對現今趨勢潮流的認可，結合多元迥異的精密見解，期許設計師將流行觀點重新詮釋為獨特的設計語言，並表彰全球達至此成就的傑出設計與創意作品。',
     description: '倫敦設計獎策劃的全球設計競賽平台，通過結合時下的設計潮流及趨勢，結合不同的風格見解，倫敦設計獎重新定義了世界對這種獨特設計語言的觀點，使倫敦這個偉大的都市，與象徵著卓越的概念，同步帶領著全球創意人才閃耀於設計舞台。涵蓋廣泛設計類別，包括建築、產品、室內、傳達設計、UX/UI 等。',
     authority: '英國 IAA 倫敦設計大獎是一項國際競賽，代表著過去與未來，旨在表彰全球傑出的設計和創意項目。通過對現有趨勢的認可，融合了不同的見解，重新制定了世界對這些獨特語言的看法，更透過其評審機制與國際品牌參與案例，使其成為設計、建築及創意業界衡量作品影響力的重要平台。',
-    image: '/images/awards/london-design-awards.png',
+    image: '/images/awards/london-design-awards.webp',
   },
   {
     id: 'rome',
@@ -43,22 +43,22 @@ const awards = [
     history: '羅馬設計獎由 International Awards Associate（IAA）主辦的一項全球性設計競賽，結合義大利深厚的藝術與設計文化傳統，將羅馬作為國際創意舞台，其主題往往呼應設計的歷史根源與現代創新。自首屆啟動以來，該獎已吸引來自不同國家與文化背景的參賽者，展示多樣設計語彙與價值。',
     description: '羅馬設計獎強調設計作品在人文精神、創意價值與功能性方面的整體表現，並透過專業評審團衡量作品的設計品質。鼓勵並表彰在建築、室內、產品、燈光、家具等多元設計領域中的創新與傑出實踐。鼓勵設計師發揚文藝復興精神，創造具有遠見的傑作。',
     authority: '羅馬設計獎全球參賽者及多國評審組成的評審機制，其國際認證性逐年增強。羅馬設計獎（Rome Design Awards）為全球設計師提供一個展示創意和才華的舞台。鼓勵新技術、新標準的建立，並以現代文藝復興精神為指引，表彰那些重新定義設計行業的領袖。',
-    image: '/images/awards/rda-design-awards.png',
+    image: '/images/awards/rda-design-awards.webp',
   },
 ];
 
 // 輪播圖片資料
 const carouselImages = [
-  { src: '/images/c1/3D渲染_0000_正面.jpg', label: '立面3D透視圖，實際以施工為準' },
-  { src: '/images/c1/3D渲染_0001_左.jpg', label: '立面3D透視圖，實際以施工為準' },
-  { src: '/images/c1/3D渲染_0002_右.jpg', label: '立面3D透視圖，實際以施工為準' },
-  { src: '/images/c1/3D渲染_0003_仰角.jpg', label: '立面3D透視圖，實際以施工為準' },
-  { src: '/images/c1/3D透視_0000_立面正門.jpg', label: '立面3D透視圖，實際以施工為準' },
-  { src: '/images/c1/3D透視_0001_立面仰角.jpg', label: '立面3D透視圖，實際以施工為準' },
-  { src: '/images/c1/3D透視_0002_立面正面.jpg', label: '立面3D透視圖，實際以施工為準' },
-  { src: '/images/c1/3D透視_0003_立面側面.jpg', label: '立面3D透視圖，實際以施工為準' },
-  { src: '/images/c1/3D透視_0004_立面左.jpg', label: '立面3D透視圖，實際以施工為準' },
-  { src: '/images/c1/3D透視_0005_立面右.jpg', label: '立面3D透視圖，實際以施工為準' },
+  { src: '/images/c1/3D渲染_0000_正面.webp', label: '立面3D透視圖，實際以施工為準' },
+  { src: '/images/c1/3D渲染_0001_左.webp', label: '立面3D透視圖，實際以施工為準' },
+  { src: '/images/c1/3D渲染_0002_右.webp', label: '立面3D透視圖，實際以施工為準' },
+  { src: '/images/c1/3D渲染_0003_仰角.webp', label: '立面3D透視圖，實際以施工為準' },
+  { src: '/images/c1/3D透視_0000_立面正門.webp', label: '立面3D透視圖，實際以施工為準' },
+  { src: '/images/c1/3D透視_0001_立面仰角.webp', label: '立面3D透視圖，實際以施工為準' },
+  { src: '/images/c1/3D透視_0002_立面正面.webp', label: '立面3D透視圖，實際以施工為準' },
+  { src: '/images/c1/3D透視_0003_立面側面.webp', label: '立面3D透視圖，實際以施工為準' },
+  { src: '/images/c1/3D透視_0004_立面左.webp', label: '立面3D透視圖，實際以施工為準' },
+  { src: '/images/c1/3D透視_0005_立面右.webp', label: '立面3D透視圖，實際以施工為準' },
 ];
 
 const FrenchAestheticsPage: React.FC = () => {
@@ -440,12 +440,12 @@ const FrenchAestheticsPage: React.FC = () => {
           {/* 獎項照片區域 */}
           <div className="mt-14 flex gap-2">
             {[
-              { src: '/images/awards/london-design-awards.png', alt: 'London Design Awards' },
-              { src: '/images/awards/muse.png', alt: 'MUSE Design Awards' },
-              { src: '/images/awards/rda-design-awards.png', alt: 'RDA Design Awards' },
-              { src: '/images/awards/undesign.png', alt: 'UNDESIGN Awards' },
-              { src: '/images/awards/european-design-awards-2025.png', alt: 'European Design Awards 2025' },
-              { src: '/images/awards/ny-architectural-design-awards-2025.png', alt: 'NY Architectural Design Awards 2025' },
+              { src: '/images/awards/london-design-awards.webp', alt: 'London Design Awards' },
+              { src: '/images/awards/muse.webp', alt: 'MUSE Design Awards' },
+              { src: '/images/awards/rda-design-awards.webp', alt: 'RDA Design Awards' },
+              { src: '/images/awards/undesign.webp', alt: 'UNDESIGN Awards' },
+              { src: '/images/awards/european-design-awards-2025.webp', alt: 'European Design Awards 2025' },
+              { src: '/images/awards/ny-architectural-design-awards-2025.webp', alt: 'NY Architectural Design Awards 2025' },
             ].map((award, index) => (
               <div
                 key={index}

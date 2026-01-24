@@ -7,7 +7,7 @@ const VideoPage: React.FC = () => {
       {/* 背景 */}
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: 'url(/images/green-diamond-pattern.jpg)', top: '80px' }}
+        style={{ backgroundImage: 'url(/images/green-diamond-pattern.webp)', top: '80px' }}
       />
       <div className="absolute inset-0 bg-black/60" style={{ top: '80px' }} />
 

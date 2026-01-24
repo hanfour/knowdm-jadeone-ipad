@@ -4,14 +4,14 @@ import CloseButton from '../components/close-button';
 
 // 作品圖片資料
 const portfolioImages = [
-  { src: '/images/b5/works/LINE_ALBUM_國泰森林苑_251221_3.jpg', label: '國泰森林苑' },
-  { src: '/images/b5/works/LINE_ALBUM_鄉林皇居_251221_5.jpg', label: '鄉林皇居' },
-  { src: '/images/b5/works/LINE_ALBUM_帝璟謙和_251221_11.jpg', label: '帝璟謙和' },
+  { src: '/images/b5/works/LINE_ALBUM_國泰森林苑_251221_3.webp', label: '國泰森林苑' },
+  { src: '/images/b5/works/LINE_ALBUM_鄉林皇居_251221_5.webp', label: '鄉林皇居' },
+  { src: '/images/b5/works/LINE_ALBUM_帝璟謙和_251221_11.webp', label: '帝璟謙和' },
 ];
 
 const StructuralEngineeringPage: React.FC = () => {
   // 人物圖片 URL
-  const personImage = '/images/b5/許庭偉.jpg';
+  const personImage = '/images/b5/許庭偉.webp';
 
   // ===== 飛入動畫設定 =====
   const charDelay = 0.12;  // 每個字的延遲時間（秒）- 較慢以產生交錯重疊效果

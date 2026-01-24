@@ -26,7 +26,7 @@ const BoutiqueMansionPage: React.FC = () => {
       <div
         className="absolute inset-0 bg-cover bg-bottom bg-no-repeat"
         style={{
-          backgroundImage: `url('/images/boutique/background.jpg')`,
+          backgroundImage: `url('/images/boutique/background.webp')`,
           backgroundColor: '#1a1a1a',
           top: '80px',
         }}

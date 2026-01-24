@@ -42,12 +42,12 @@ const sampleLabelFeatures: FeatureLabelItem[] = [
 
 const sampleComparison: { left: ComparisonItem; right: ComparisonItem } = {
   left: {
-    image: '/images/placeholder.jpg',
+    image: '/images/placeholder.webp',
     title: '傳統工法',
     description: '傳統施工方式，效果一般',
   },
   right: {
-    image: '/images/placeholder.jpg',
+    image: '/images/placeholder.webp',
     title: '新式工法',
     description: '採用創新技術，效果顯著提升',
   },
@@ -133,7 +133,7 @@ export const ComparisonLayoutDemo = () => (
 export const FullBgImageLayoutDemo = () => (
   <div style={{ ...containerStyle, minHeight: '500px', padding: 0 }}>
     <FullBgImageLayout
-      bgImage="/images/placeholder.jpg"
+      bgImage="/images/placeholder.webp"
       title="全幅背景佈局"
       content="這是一個帶有全屏背景圖的版面配置，適合用於展示大型視覺內容。"
       details={['特點一：視覺衝擊力強', '特點二：文字清晰可讀']}

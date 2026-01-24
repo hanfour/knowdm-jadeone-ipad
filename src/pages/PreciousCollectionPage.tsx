@@ -5,10 +5,10 @@ import RippleButton from '../components/ripple-button';
 
 // 生態專用區介紹輪播圖片
 const ecoGalleryImages = [
-  '/images/precious-collection/eco-gallery/01.jpg',
-  '/images/precious-collection/eco-gallery/02.jpg',
-  '/images/precious-collection/eco-gallery/03.jpg',
-  '/images/precious-collection/eco-gallery/04.jpg',
+  '/images/precious-collection/eco-gallery/01.webp',
+  '/images/precious-collection/eco-gallery/02.webp',
+  '/images/precious-collection/eco-gallery/03.webp',
+  '/images/precious-collection/eco-gallery/04.webp',
 ];
 
 // 可點擊區域的詳細資料

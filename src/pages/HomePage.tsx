@@ -115,7 +115,7 @@ const HomePage: React.FC = () => {
         {/* 背景底圖 - 綠色菱格底紋 */}
         <div
           className="absolute inset-0 bg-cover bg-center pointer-events-none"
-          style={{ backgroundImage: 'url(/images/green-diamond-pattern.jpg)' }}
+          style={{ backgroundImage: 'url(/images/green-diamond-pattern.webp)' }}
         />
 
         {/* 背景效果 */}

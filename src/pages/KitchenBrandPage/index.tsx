@@ -44,22 +44,22 @@ const cabinetItems: CabinetItem[] = [
   {
     category: '檯面介紹',
     content: '源自韓國樂天的頂級人造石，採一體成型無接縫工藝，表裡一致的實心結構告別傳統板材剝落問題。吸水率僅0.03%，有效抵禦潮濕與細菌，具備耐熱、抗紫外線特性，表面打磨即可恢復如新，是廚房及衛浴空間的理想選擇。',
-    images: ['/images/kitchen/countertop.jpg'],
+    images: ['/images/kitchen/countertop.webp'],
   },
   {
     category: '門板介紹',
     content: '傳承五十年西班牙工藝，以業界頂尖7.5牛頓高耐刮塗層重新定義門板品質。95度高光澤面呈現超越鋼琴烤漆的鏡面效果，專利工藝確保色彩歷久不褪，100%可回收材質獲綠建材認證，兼具美感與環保價值。',
-    images: ['/images/kitchen/door-panel.jpg'],
+    images: ['/images/kitchen/door-panel.webp'],
   },
   {
     category: '烤漆玻璃介紹',
     content: '採用歐洲進口E1級V313防潮塑合板，甲醛含量低於0.1ppm，外覆白色美耐皿處理。無異味、無毛細孔、質地堅硬不變形，24小時浸泡膨脹率僅6%，完美對應台灣潮濕氣候，是兼顧環保與安全的高科技建材。',
-    images: ['/images/kitchen/painted-glass.jpg'],
+    images: ['/images/kitchen/painted-glass.webp'],
   },
   {
     category: '桶身介紹',
     content: '清玻璃背面施以特殊漆料，經強化爐高溫烘烤定色，賦予空間無限色彩可能。具備耐高溫、耐酸鹼、抗刮耐磨等優異性能，表面光滑不易掉色且易清潔，輕量化設計適用於牆面、檯面及廚房空間。',
-    images: ['/images/kitchen/cabinet-body.jpg'],
+    images: ['/images/kitchen/cabinet-body.webp'],
   },
 ];
 
@@ -69,9 +69,9 @@ const equipmentItems: EquipmentItem[] = [
     id: 'glemgas-hood',
     name: 'GlemGas 掛壁式油機',
     brand: 'GlemGas',
-    brandLogo: '/images/kitchen/equipment/glemgas-logo.png',
+    brandLogo: '/images/kitchen/equipment/glemgas-logo.webp',
     brandColor: '#1a1a1a',
-    image: '/images/kitchen/equipment/掛壁式油機.png',
+    image: '/images/kitchen/equipment/掛壁式油機.webp',
     features: [
       '近吸式設計',
       '材質：不鏽鋼+強化玻璃',
@@ -85,9 +85,9 @@ const equipmentItems: EquipmentItem[] = [
     id: 'glemgas-ih',
     name: 'GlemGas 橫式雙口感應爐',
     brand: 'GlemGas',
-    brandLogo: '/images/kitchen/equipment/glemgas-logo.png',
+    brandLogo: '/images/kitchen/equipment/glemgas-logo.webp',
     brandColor: '#1a1a1a',
-    image: '/images/kitchen/equipment/橫式雙口感應爐.png',
+    image: '/images/kitchen/equipment/橫式雙口感應爐.webp',
     features: [
       '九段火力調整',
       'Eurokera玻璃面板',
@@ -106,9 +106,9 @@ const equipmentItems: EquipmentItem[] = [
     id: 'glemgas-dishwasher',
     name: 'GlemGas 全嵌洗碗機（滑門）',
     brand: 'GlemGas',
-    brandLogo: '/images/kitchen/equipment/glemgas-logo.png',
+    brandLogo: '/images/kitchen/equipment/glemgas-logo.webp',
     brandColor: '#1a1a1a',
-    image: '/images/kitchen/equipment/洗碗機.png',
+    image: '/images/kitchen/equipment/洗碗機.webp',
     features: [
       '八種洗程適合不同需求：強力、一般、節能、玻璃、90分鐘、30分鐘快洗、預洗、自動',
       'LED螢幕觸控功能',
@@ -123,9 +123,9 @@ const equipmentItems: EquipmentItem[] = [
     id: 'glemgas-microwave',
     name: 'GlemGas 嵌入式微波烤箱（選配）',
     brand: 'GlemGas',
-    brandLogo: '/images/kitchen/equipment/glemgas-logo.png',
+    brandLogo: '/images/kitchen/equipment/glemgas-logo.webp',
     brandColor: '#1a1a1a',
-    image: '/images/kitchen/equipment/微波烤箱.png',
+    image: '/images/kitchen/equipment/微波烤箱.webp',
     features: [
       '電子計時器 0 到 95"',
       '按重量/時間進行解凍',
@@ -142,9 +142,9 @@ const equipmentItems: EquipmentItem[] = [
     id: 'jtl-cabinet',
     name: 'JTL 豪華型收納櫃（選配）',
     brand: 'JTL',
-    brandLogo: '/images/kitchen/equipment/jtl-logo.png',
+    brandLogo: '/images/kitchen/equipment/jtl-logo.webp',
     brandColor: '#c41230',
-    image: '/images/kitchen/equipment/收納櫃.png',
+    image: '/images/kitchen/equipment/收納櫃.webp',
     features: [
       '獨特「橫流扇」設計，有效排出蒸氣延長廚櫃壽命',
       '嵌入式收納設計，與廚櫃完美搭配',
@@ -160,9 +160,9 @@ const equipmentItems: EquipmentItem[] = [
     id: 'tub-faucet',
     name: 'TUB 英國廚房龍頭',
     brand: 'TUB',
-    brandLogo: '/images/kitchen/equipment/tub-logo.png',
+    brandLogo: '/images/kitchen/equipment/tub-logo.webp',
     brandColor: '#1a5276',
-    image: '/images/kitchen/equipment/水龍頭.png',
+    image: '/images/kitchen/equipment/水龍頭.webp',
     description: '累積40年衛浴優良產品製造經驗，並同時為多家知名衛浴品牌代工，獲得多項專利及獎項認證，從產品設計、使用材料、表面處理、功能檢測，皆依照歐美知名衛浴大廠標準，致力於提供消費者獨一無二的生活化體驗',
     features: [
       'SUS304不鏽鋼主體 - 抗腐蝕、抗氧化、持久耐用',
@@ -178,9 +178,9 @@ const equipmentItems: EquipmentItem[] = [
     id: 'sink',
     name: '不鏽鋼水槽',
     brand: 'TUB',
-    brandLogo: '/images/kitchen/equipment/tub-logo.png',
+    brandLogo: '/images/kitchen/equipment/tub-logo.webp',
     brandColor: '#1a5276',
-    image: '/images/kitchen/equipment/水槽.png',
+    image: '/images/kitchen/equipment/水槽.webp',
     features: [
       'SUS304不鏽鋼，通過CUPC認證耐久持用',
       'R10 - 小R角設計，清潔方便',
@@ -193,12 +193,12 @@ const equipmentItems: EquipmentItem[] = [
     name: '精品五金',
     brand: 'Taya / BLUM',
     brandColor: '#ee6611',
-    image: '/images/kitchen/equipment/薄牆抽&緩衝式後鈕.jpg',
+    image: '/images/kitchen/equipment/薄牆抽&緩衝式後鈕.webp',
     features: [],
     subBrands: [
       {
         brand: 'Taya薄牆抽',
-        brandLogo: '/images/kitchen/equipment/taya-logo.png',
+        brandLogo: '/images/kitchen/equipment/taya-logo.webp',
         features: [
           '緩衝系統結合三節同步滑軌且載重量35KG，壽命長且通過德國萊茵標準測試',
           '垂直式設計不僅外觀美麗，更增加了內部橫向空間',
@@ -210,7 +210,7 @@ const equipmentItems: EquipmentItem[] = [
       },
       {
         brand: 'BLUM緩衝式後鈕',
-        brandLogo: '/images/kitchen/equipment/blum-logo.png',
+        brandLogo: '/images/kitchen/equipment/blum-logo.webp',
         features: [
           '廚具門板專用 緩衝靜音角鍊',
           '結構安全（三支安全桿能防止門片下垂）',
@@ -231,13 +231,13 @@ const tabs: TabData[] = [
     logo: '/images/kitchen/taya-logo.avif',
     title: 'MIT高品質廚具美學',
     content: '大雅廚具堅持全程MIT的台灣品牌,堅持產品品質,藉由時尚設計及貼心的售後服務,不僅是全台建商愛用廠商,更跨足代理國際精品品牌義大利Rastelli和德國Pronorm,台灣MiiX合作聯名,產品供應深廣並進。',
-    backgroundImage: '/images/kitchen/taya-bg.jpg',
+    backgroundImage: '/images/kitchen/taya-bg.webp',
     layout: 'default',
   },
   {
     id: 'cabinet',
     name: '櫃體檯面',
-    backgroundImage: '/images/kitchen/cabinet-bg.jpg',
+    backgroundImage: '/images/kitchen/cabinet-bg.webp',
     layout: 'cabinet',
     cabinetItems: cabinetItems,
   },
@@ -245,24 +245,24 @@ const tabs: TabData[] = [
     id: 'equipment',
     name: '廚具設備',
     title: '廚具設備',
-    backgroundImage: '/images/kitchen/cabinet-bg.jpg',
+    backgroundImage: '/images/kitchen/cabinet-bg.webp',
     layout: 'equipment',
     equipmentItems: equipmentItems,
   },
   {
     id: 'spec',
     name: '規格尺寸圖',
-    backgroundImage: '/images/kitchen/cabinet-bg.jpg',
+    backgroundImage: '/images/kitchen/cabinet-bg.webp',
     layout: 'spec',
   },
 ];
 
 // 規格尺寸圖資料
 const specImages = [
-  { id: 'A', label: 'A戶', image: '/images/kitchen/specs/A.jpg', image3d: '/images/kitchen/specs/3d/廚房3D示意圖_A.jpg' },
-  { id: 'B', label: 'B戶', image: '/images/kitchen/specs/B.jpg', image3d: '/images/kitchen/specs/3d/廚房3D示意圖_B.jpg' },
-  { id: 'C', label: 'C戶', image: '/images/kitchen/specs/C.jpg', image3d: '/images/kitchen/specs/3d/廚房3D示意圖_C.jpg' },
-  { id: 'D', label: 'D戶', image: '/images/kitchen/specs/D.jpg', image3d: '/images/kitchen/specs/3d/廚房3D示意圖_D.jpg' },
+  { id: 'A', label: 'A戶', image: '/images/kitchen/specs/A.webp', image3d: '/images/kitchen/specs/3d/廚房3D示意圖_A.webp' },
+  { id: 'B', label: 'B戶', image: '/images/kitchen/specs/B.webp', image3d: '/images/kitchen/specs/3d/廚房3D示意圖_B.webp' },
+  { id: 'C', label: 'C戶', image: '/images/kitchen/specs/C.webp', image3d: '/images/kitchen/specs/3d/廚房3D示意圖_C.webp' },
+  { id: 'D', label: 'D戶', image: '/images/kitchen/specs/D.webp', image3d: '/images/kitchen/specs/3d/廚房3D示意圖_D.webp' },
 ];
 
 const KitchenBrandPage: React.FC = () => {

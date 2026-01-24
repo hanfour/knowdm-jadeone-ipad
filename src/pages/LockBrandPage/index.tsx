@@ -82,7 +82,7 @@ const LockBrandPage: React.FC = () => {
         {/* 左側：情境示意圖 (40%) */}
         <div className="w-[40%] h-full overflow-hidden">
           <img
-            src="/images/lock/lock-bg.jpg"
+            src="/images/lock/lock-bg.webp"
             alt="電子鎖情境"
             loading="lazy"
             decoding="async"

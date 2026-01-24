@@ -98,7 +98,7 @@ const tabs: TabData[] = [
     title: '預留電動汽車線架',
     content: '根據106年12月21日行政院發布的「空氣污染防治行動方案」中指出，2035年新售機車預計全面電動化，2040年新售汽車全面電動化，面對環保新趨勢，您的房子也必須跟上時代腳步。',
     details: ['預留：充電專用線槽', '坪頂配置：線架'],
-    fullBgImage: '/images/thoughtful/ev-charging-bg.jpg',
+    fullBgImage: '/images/thoughtful/ev-charging-bg.webp',
   },
   {
     id: 'emergency-outlet',
@@ -108,12 +108,12 @@ const tabs: TabData[] = [
     bgColor: 'rgb(232, 228, 223)',
     comparison: {
       left: {
-        image: '/images/thoughtful/emergency-outlet-01.jpg',
+        image: '/images/thoughtful/emergency-outlet-01.webp',
         title: '傳統工法',
         description: '家用冰箱與一般電器使用相同電源，無規劃緊急供電專用迴路設計，當停電時間過長冰箱內食品蔬果易腐壞。',
       },
       right: {
-        image: '/images/thoughtful/emergency-outlet-02.jpg',
+        image: '/images/thoughtful/emergency-outlet-02.webp',
         title: '本案工法',
         description: '本案採用緊急供電專用迴路，連結緊急發電機。當停電時，客廳電視、冰箱插座可正常使用，避免食品蔬果腐壞，同時也可以藉由電視接收相關消息。',
       },
@@ -139,7 +139,7 @@ const tabs: TabData[] = [
     name: '地下室導流',
     title: '地下室導流系統',
     content: '地下室空氣品質採用機械式排風系統，除可由中央監控定時控制外，並可結合一氧化碳及濕度偵測達到自動啟閉功能，同時也與消防系統連動，當火災發生時立即停止風機，避免助長火勢。',
-    image: '/images/thoughtful/drainage-system.png',
+    image: '/images/thoughtful/drainage-system.webp',
     bgColor: 'rgb(232, 228, 223)',
   },
   {
@@ -173,7 +173,7 @@ const tabs: TabData[] = [
       '防蟲防臭排水蓋：阻絕異味回竄與蟲害侵入，讓浴室與廚房始終保持清新潔淨。',
       '排水孔加大：排水孔加大 50%，排水更快速，洗澡後不積水，降低濕滑與清潔負擔。',
     ],
-    rightBgImage: '/images/thoughtful/bathroom-drain-bg.jpg',
+    rightBgImage: '/images/thoughtful/bathroom-drain-bg.webp',
     bgColor: 'rgb(232, 228, 223)',
   },
 ];
@@ -204,7 +204,7 @@ const ThoughtfulEngineeringPage: React.FC = () => {
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
             style={{
-              backgroundImage: `url('/images/thoughtful-bg.jpg')`,
+              backgroundImage: `url('/images/thoughtful-bg.webp')`,
             }}
           />
           <div

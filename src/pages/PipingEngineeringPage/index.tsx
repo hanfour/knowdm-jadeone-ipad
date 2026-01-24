@@ -42,7 +42,7 @@ const tabs: TabData[] = [
     title: '總儲水彎規劃',
     subtitle: 'Water Storage Planning',
     content: '污、廢水多管分流分排，衛生工程排水分管各司其職，污水、廢水分開，採多管分流分排，排水不致造成阻塞、逆流，排水更順暢。',
-    image: '/images/piping/總儲水彎規劃.png',
+    image: '/images/piping/總儲水彎規劃.webp',
     tableData: [
       {
         項目: '排水/排氣',
@@ -76,7 +76,7 @@ const tabs: TabData[] = [
         desc: '具有保溫效果，集中熱能輸送，減少熱水器頻頻提高水溫，造成電力或瓦斯的浪費。'
       },
     ],
-    image: '/images/piping/pipe-insulation.png',
+    image: '/images/piping/pipe-insulation.webp',
     video: '/images/piping/pipe-insulation.mov',
     videoLoop: { start: 0, end: 7 },
     layout: 'side-by-side',

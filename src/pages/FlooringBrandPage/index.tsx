@@ -40,7 +40,7 @@ const FlooringBrandPage: React.FC = () => {
                 {/* 背景情境圖 */}
                 <div
                   className="absolute inset-0 bg-cover bg-left bg-no-repeat"
-                  style={{ backgroundImage: 'url(/images/window-flooring/robina/context.jpg)' }}
+                  style={{ backgroundImage: 'url(/images/window-flooring/robina/context.webp)' }}
                 />
 
                 {/* 文字內容 */}
@@ -49,7 +49,7 @@ const FlooringBrandPage: React.FC = () => {
                     {/* 品牌 Logo */}
                     <div className="mb-8 animate-fade-in-left" style={{ animationDelay: '0.2s' }}>
                       <img
-                        src="/images/window-flooring/robina/logo.png"
+                        src="/images/window-flooring/robina/logo.webp"
                         alt="Robina"
                         loading="lazy"
                         decoding="async"
@@ -90,7 +90,7 @@ const FlooringBrandPage: React.FC = () => {
               >
                 <div className="w-full px-20">
                   <img
-                    src="/images/window-flooring/robina/product-structure.jpg"
+                    src="/images/window-flooring/robina/product-structure.webp"
                     alt="ROBINA 地板結構圖說"
                     loading="lazy"
                     decoding="async"
@@ -106,7 +106,7 @@ const FlooringBrandPage: React.FC = () => {
           {activeTab === 'sekisui' && (
             <div
               className="h-full relative bg-cover bg-center bg-no-repeat"
-              style={{ backgroundImage: 'url(/images/window-flooring/robina/context.jpg)' }}
+              style={{ backgroundImage: 'url(/images/window-flooring/robina/context.webp)' }}
             >
               {/* 內容區 */}
               <div className="relative h-full flex flex-col justify-center items-center">
@@ -114,7 +114,7 @@ const FlooringBrandPage: React.FC = () => {
                   {/* 品牌 Logo */}
                   <div className="mb-8 animate-fade-in-left" style={{ animationDelay: '0.2s' }}>
                     <img
-                      src="/images/window-flooring/sekisui-logo.png"
+                      src="/images/window-flooring/sekisui-logo.webp"
                       alt="sekisui"
                       loading="lazy"
                       decoding="async"
@@ -135,7 +135,7 @@ const FlooringBrandPage: React.FC = () => {
                     {/* 抗潮效果 */}
                     <div className="flex flex-col items-center animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
                       <img
-                        src="/images/window-flooring/sekisui/icons/防潮.png"
+                        src="/images/window-flooring/sekisui/icons/防潮.webp"
                         alt="抗潮效果"
                         loading="lazy"
                         decoding="async"
@@ -150,7 +150,7 @@ const FlooringBrandPage: React.FC = () => {
                     {/* 抗壓強度 */}
                     <div className="flex flex-col items-center animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
                       <img
-                        src="/images/window-flooring/sekisui/icons/抗壓.png"
+                        src="/images/window-flooring/sekisui/icons/抗壓.webp"
                         alt="抗壓強度"
                         loading="lazy"
                         decoding="async"
@@ -165,7 +165,7 @@ const FlooringBrandPage: React.FC = () => {
                     {/* 行走聲響 */}
                     <div className="flex flex-col items-center animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
                       <img
-                        src="/images/window-flooring/sekisui/icons/行走聲響.png"
+                        src="/images/window-flooring/sekisui/icons/行走聲響.webp"
                         alt="行走聲響"
                         loading="lazy"
                         decoding="async"
@@ -180,7 +180,7 @@ const FlooringBrandPage: React.FC = () => {
                     {/* 極佳彈性 */}
                     <div className="flex flex-col items-center animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
                       <img
-                        src="/images/window-flooring/sekisui/icons/彈性.png"
+                        src="/images/window-flooring/sekisui/icons/彈性.webp"
                         alt="極佳彈性"
                         loading="lazy"
                         decoding="async"
@@ -195,7 +195,7 @@ const FlooringBrandPage: React.FC = () => {
                     {/* 結構隔音 */}
                     <div className="flex flex-col items-center animate-fade-in-up" style={{ animationDelay: '0.7s' }}>
                       <img
-                        src="/images/window-flooring/sekisui/icons/隔音.png"
+                        src="/images/window-flooring/sekisui/icons/隔音.webp"
                         alt="結構隔音"
                         loading="lazy"
                         decoding="async"
@@ -256,7 +256,7 @@ const FlooringBrandPage: React.FC = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src="/images/window-flooring/robina/product-structure.jpg"
+              src="/images/window-flooring/robina/product-structure.webp"
               alt="ROBINA 地板結構圖說"
               loading="lazy"
               decoding="async"

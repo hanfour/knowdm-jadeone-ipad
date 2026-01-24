@@ -43,7 +43,7 @@ const BackgroundLayer: React.FC<{ type: 'green' | 'pattern'; backgroundImage?: s
       <>
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${backgroundImage || '/images/green-diamond-pattern.jpg'})` }}
+          style={{ backgroundImage: `url(${backgroundImage || '/images/green-diamond-pattern.webp'})` }}
         />
         <div className="absolute inset-0 bg-black/50" />
       </>
@@ -60,7 +60,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
   subtitle = '水湳生態核心｜限量 40 席｜25 坪法式寓邸',
   logoSrc = '/images/logo-gold.svg',
   logoAlt = 'Logo',
-  backgroundImage = '/images/green-diamond-pattern.jpg',
+  backgroundImage = '/images/green-diamond-pattern.webp',
   skipText = '點擊跳過',
 }) => {
   // 根據設定決定起始階段

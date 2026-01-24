@@ -46,8 +46,8 @@ const tabs: TabData[] = [
     ],
     advantages: ['減少差異沉陷', '防水，阻水滲透', '對荷重有補償作用'],
     images: [
-      '/images/structural/raft-foundation-01.png',
-      '/images/structural/raft-foundation-02.jpg',
+      '/images/structural/raft-foundation-01.webp',
+      '/images/structural/raft-foundation-02.webp',
     ],
   },
   {
@@ -85,7 +85,7 @@ const tabs: TabData[] = [
       { title: '使鋼筋主筋維持正確之垂直度，避免主筋偏心，導致結構損壞', desc: '' },
       { title: '鋼筋分隔器之設置可預防鋼筋保護層不足，避免鋼筋裸露，造成鏽蝕，導致混凝土中性化', desc: '' },
     ],
-    image: '/images/structural/rebar-spacer.png',
+    image: '/images/structural/rebar-spacer.webp',
   },
   {
     id: 'rebar-tying',
@@ -111,7 +111,7 @@ const tabs: TabData[] = [
     title: '鋼筋續接器',
     subtitle: 'Rebar Coupler',
     content: '考量傳統柱搭接方式，於搭接處鋼筋過密，易造成混凝土搗實不良，直接影響鋼筋握裹力；每只鋼筋的續接點應分佈在兩個不同斷面上，並採用國家認證之（SA）級施作，當受到外力時，柱體較不易發生挫屈或破壞的情況，以達成耐震設計規範，大幅提升結構耐震度。採二層續接一次（錯開一半）位置一律續接於樓板至樑下淨高中間1/2範圍內。',
-    contentImage: '/images/structural/rebar-coupler.png',
+    contentImage: '/images/structural/rebar-coupler.webp',
     video: '/images/structural/rebar-coupler.mov',
     videoLoop: { start: 0, end: 5 },
     videoFullHeight: true,

@@ -4,16 +4,16 @@ import CloseButton from '../components/close-button';
 
 // 作品圖片資料
 const portfolioImages = [
-  { src: '/images/b3/works/福倉埕藝.jpg', label: '福倉埕藝' },
-  { src: '/images/b3/works/福倉朗朗溫州.jpg', label: '福倉朗朗溫州' },
-  { src: '/images/b3/works/鵬程烏日新三和段.jpg', label: '鵬程烏日新三和段' },
-  { src: '/images/b3/works/鵬程高雄獅甲段.jpg', label: '鵬程高雄獅甲段' },
-  { src: '/images/b3/works/鵬程新店秀水段.jpg', label: '鵬程新店秀水段' },
+  { src: '/images/b3/works/福倉埕藝.webp', label: '福倉埕藝' },
+  { src: '/images/b3/works/福倉朗朗溫州.webp', label: '福倉朗朗溫州' },
+  { src: '/images/b3/works/鵬程烏日新三和段.webp', label: '鵬程烏日新三和段' },
+  { src: '/images/b3/works/鵬程高雄獅甲段.webp', label: '鵬程高雄獅甲段' },
+  { src: '/images/b3/works/鵬程新店秀水段.webp', label: '鵬程新店秀水段' },
 ];
 
 const PublicFacilityPage: React.FC = () => {
   // 人物圖片 URL（大圖，人物在左側）
-  const personImage = '/images/b3/劉守書.jpg';
+  const personImage = '/images/b3/劉守書.webp';
 
   // ===== 飛入動畫設定 =====
   const charDelay = 0.12;  // 每個字的延遲時間（秒）- 較慢以產生交錯重疊效果
