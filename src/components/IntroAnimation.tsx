@@ -12,6 +12,17 @@ const ANIMATION_CONFIG = {
   phase6: true,  // Logo 階段
 };
 
+// 動畫時序配置 (毫秒)
+const TIMING_CONFIG = {
+  charDelay: 50,        // 文字逐字顯示間隔 (原: 80-150)
+  titleHoldTime: 1000,  // 標題停留時間 (原: 2000)
+  subtitleDelay: 300,   // 副標題延遲 (原: 500)
+  shineDelay: 600,      // 掃光效果延遲 (原: 1000)
+  fadeOutTime: 400,     // 淡出時間 (原: 800)
+  logoDelay: 400,       // Logo 顯示延遲 (原: 800)
+  logoHoldTime: 800,    // Logo 停留時間 (原: 1500)
+};
+
 // 背景組件 - 移到外部避免每次 render 重新創建
 const BackgroundLayer: React.FC<{ type: 'green' | 'pattern' }> = React.memo(({ type }) => (
   <>
@@ -152,21 +163,21 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
       }, chars.length * 100 + 2000);
       timeoutRefs.current.push(phaseTimeout);
     } else if (phase === 3 && ANIMATION_CONFIG.phase3) {
-      // 第二段：主標題打字效果
+      // 第二段：主標題打字效果 (已優化時序)
       const chars = mainTitle.split('');
       chars.forEach((_, index) => {
         const timeout = setTimeout(() => {
           setTextVisible(prev => [...prev, index]);
-        }, index * 280);
+        }, index * TIMING_CONFIG.charDelay);
         timeoutRefs.current.push(timeout);
       });
-      // 主標題完成後 0.5 秒顯示副標題
+      // 主標題完成後顯示副標題
       const subtitleTimeout = setTimeout(() => {
         setSubtitleVisible(true);
-        // 停頓 1.5 秒後觸發 shine 掃光效果
+        // 停頓後觸發 shine 掃光效果
         const shineTimeout = setTimeout(() => {
           setShineVisible(true);
-          // Shine 掃光持續 2 秒後淡出整個畫面
+          // Shine 掃光後淡出整個畫面
           const fadeTimeout = setTimeout(() => {
             setFadeOut(true);
             const logoTimeout = setTimeout(() => {
@@ -180,20 +191,24 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
               } else {
                 setPhase(next);
               }
-            }, 1000);
+            }, TIMING_CONFIG.fadeOutTime);
             timeoutRefs.current.push(logoTimeout);
-          }, 2000);
+          }, TIMING_CONFIG.titleHoldTime);
           timeoutRefs.current.push(fadeTimeout);
-        }, 1500);
+        }, TIMING_CONFIG.shineDelay);
         timeoutRefs.current.push(shineTimeout);
-      }, chars.length * 280 + 500);
+      }, chars.length * TIMING_CONFIG.charDelay + TIMING_CONFIG.subtitleDelay);
       timeoutRefs.current.push(subtitleTimeout);
     } else if (phase === 6 && ANIMATION_CONFIG.phase6) {
-      // Logo 階段 - 持續停留在此畫面，shine 動畫循環播放
-      // 只有點擊跳過才會離開
+      // Logo 階段 (已優化時序)
       const showLogoTimeout = setTimeout(() => {
         setLogoVisible(true);
-      }, 300);
+        // Logo 顯示後自動完成 (不再無限停留)
+        const autoCompleteTimeout = setTimeout(() => {
+          onComplete();
+        }, TIMING_CONFIG.logoHoldTime);
+        timeoutRefs.current.push(autoCompleteTimeout);
+      }, TIMING_CONFIG.logoDelay);
       timeoutRefs.current.push(showLogoTimeout);
     }
 
