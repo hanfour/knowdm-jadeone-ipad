@@ -1,36 +1,39 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
-import HomePage from './pages/HomePage';
-import VideoPage from './pages/VideoPage';
-import ImageGalleryPage from './components/ImageGalleryPage';
-import LifeFunctionPage from './pages/LifeFunctionPage';
-import TrafficRoutePage from './pages/TrafficRoutePage';
-import ArchitectLeaderPage from './pages/ArchitectLeaderPage';
-import ArchitectAestheticsPage from './pages/ArchitectAestheticsPage';
-import PublicFacilityPage from './pages/PublicFacilityPage';
-import LandscapeTastePage from './pages/LandscapeTastePage';
-import StructuralMechanicsPage from './pages/StructuralEngineeringPage';
-import StructuralEngineeringPage from './pages/StructuralEngineeringPage/index';
-import LightingAestheticsPage from './pages/LightingAestheticsPage';
-import FrenchAestheticsPage from './pages/FrenchAestheticsPage';
-import FloorPlanPage from './pages/FloorPlanPage';
-import BoutiqueMansionPage from './pages/BoutiqueMansionPage';
-import KitchenBrandPage from './pages/KitchenBrandPage';
-import BathroomBrandPage from './pages/BathroomBrandPage';
-import LockBrandPage from './pages/LockBrandPage';
-import WaterBrandPage from './pages/WaterBrandPage';
-import WindowBrandPage from './pages/WindowBrandPage';
-import FlooringBrandPage from './pages/FlooringBrandPage';
-import ElevatorBrandPage from './pages/ElevatorBrandPage';
-import PipingEngineeringPage from './pages/PipingEngineeringPage';
-import WaterproofEngineeringPage from './pages/WaterproofEngineeringPage';
-import FireProtectionEngineeringPage from './pages/FireProtectionEngineeringPage';
-import ThoughtfulEngineeringPage from './pages/ThoughtfulEngineeringPage';
-import AnchorFuturePage from './pages/AnchorFuturePage';
-import InternationalCityPage from './pages/InternationalCityPage';
-import PreciousCollectionPage from './pages/PreciousCollectionPage';
-import PolygonDrawer from './components/dev/PolygonDrawer';
+import PageLoading from './components/PageLoading';
+
+// 懶載入所有頁面
+const HomePage = lazy(() => import('./pages/HomePage'));
+const VideoPage = lazy(() => import('./pages/VideoPage'));
+const ImageGalleryPage = lazy(() => import('./components/ImageGalleryPage'));
+const LifeFunctionPage = lazy(() => import('./pages/LifeFunctionPage'));
+const TrafficRoutePage = lazy(() => import('./pages/TrafficRoutePage'));
+const ArchitectLeaderPage = lazy(() => import('./pages/ArchitectLeaderPage'));
+const ArchitectAestheticsPage = lazy(() => import('./pages/ArchitectAestheticsPage'));
+const PublicFacilityPage = lazy(() => import('./pages/PublicFacilityPage'));
+const LandscapeTastePage = lazy(() => import('./pages/LandscapeTastePage'));
+const StructuralMechanicsPage = lazy(() => import('./pages/StructuralEngineeringPage'));
+const StructuralEngineeringPage = lazy(() => import('./pages/StructuralEngineeringPage/index'));
+const LightingAestheticsPage = lazy(() => import('./pages/LightingAestheticsPage'));
+const FrenchAestheticsPage = lazy(() => import('./pages/FrenchAestheticsPage'));
+const FloorPlanPage = lazy(() => import('./pages/FloorPlanPage'));
+const BoutiqueMansionPage = lazy(() => import('./pages/BoutiqueMansionPage'));
+const KitchenBrandPage = lazy(() => import('./pages/KitchenBrandPage'));
+const BathroomBrandPage = lazy(() => import('./pages/BathroomBrandPage'));
+const LockBrandPage = lazy(() => import('./pages/LockBrandPage'));
+const WaterBrandPage = lazy(() => import('./pages/WaterBrandPage'));
+const WindowBrandPage = lazy(() => import('./pages/WindowBrandPage'));
+const FlooringBrandPage = lazy(() => import('./pages/FlooringBrandPage'));
+const ElevatorBrandPage = lazy(() => import('./pages/ElevatorBrandPage'));
+const PipingEngineeringPage = lazy(() => import('./pages/PipingEngineeringPage'));
+const WaterproofEngineeringPage = lazy(() => import('./pages/WaterproofEngineeringPage'));
+const FireProtectionEngineeringPage = lazy(() => import('./pages/FireProtectionEngineeringPage'));
+const ThoughtfulEngineeringPage = lazy(() => import('./pages/ThoughtfulEngineeringPage'));
+const AnchorFuturePage = lazy(() => import('./pages/AnchorFuturePage'));
+const InternationalCityPage = lazy(() => import('./pages/InternationalCityPage'));
+const PreciousCollectionPage = lazy(() => import('./pages/PreciousCollectionPage'));
+const PolygonDrawer = lazy(() => import('./components/dev/PolygonDrawer'));
 
 // ⚠️ 開發模式開關 - 正式上線時設為 false
 const DEV_MODE = false;
@@ -91,121 +94,127 @@ function App() {
   return (
     <Router>
       {/* 開發工具：多邊形繪製器 */}
-      {DEV_MODE && <PolygonDrawer enabled={DEV_MODE} targetSelector="[data-map-container]" />}
+      {DEV_MODE && (
+        <Suspense fallback={null}>
+          <PolygonDrawer enabled={DEV_MODE} targetSelector="[data-map-container]" />
+        </Suspense>
+      )}
       <MainLayout>
-        <Routes>
-          {/* 首頁 */}
-          <Route path="/" element={<HomePage />} />
+        <Suspense fallback={<PageLoading />}>
+          <Routes>
+            {/* 首頁 */}
+            <Route path="/" element={<HomePage />} />
 
-          {/* 影片頁面 */}
-          <Route path="/video" element={<VideoPage />} />
+            {/* 影片頁面 */}
+            <Route path="/video" element={<VideoPage />} />
 
-          {/* 富居水湳 - 定錨未來 */}
-          <Route path="/fu-ju-shui-nan/ding-mao-wei-lai" element={<AnchorFuturePage />} />
+            {/* 富居水湳 - 定錨未來 */}
+            <Route path="/fu-ju-shui-nan/ding-mao-wei-lai" element={<AnchorFuturePage />} />
 
-          {/* 富居水湳 - 國際新都 */}
-          <Route path="/fu-ju-shui-nan/guo-ji-xin-du" element={<InternationalCityPage />} />
+            {/* 富居水湳 - 國際新都 */}
+            <Route path="/fu-ju-shui-nan/guo-ji-xin-du" element={<InternationalCityPage />} />
 
-          {/* 富居水湳 - 雍雅森綠 */}
-          <Route
-            path="/fu-ju-shui-nan/yong-ya-sen-lv"
-            element={
-              <ImageGalleryPage
-                images={pageData.elegantGreen.images.concat(pageData.preciousCollection.images)}
-                title={pageData.elegantGreen.title}
-                description={pageData.elegantGreen.description}
-              />
-            }
-          />
+            {/* 富居水湳 - 雍雅森綠 */}
+            <Route
+              path="/fu-ju-shui-nan/yong-ya-sen-lv"
+              element={
+                <ImageGalleryPage
+                  images={pageData.elegantGreen.images.concat(pageData.preciousCollection.images)}
+                  title={pageData.elegantGreen.title}
+                  description={pageData.elegantGreen.description}
+                />
+              }
+            />
 
-          {/* 富居水湳 - 珍稀收藏 */}
-          <Route path="/fu-ju-shui-nan/zhen-xi-shou-cang" element={<PreciousCollectionPage />} />
+            {/* 富居水湳 - 珍稀收藏 */}
+            <Route path="/fu-ju-shui-nan/zhen-xi-shou-cang" element={<PreciousCollectionPage />} />
 
-          {/* 富居水湳 - 生活機能 */}
-          <Route path="/fu-ju-shui-nan/sheng-huo-ji-neng" element={<LifeFunctionPage />} />
+            {/* 富居水湳 - 生活機能 */}
+            <Route path="/fu-ju-shui-nan/sheng-huo-ji-neng" element={<LifeFunctionPage />} />
 
-          {/* 富居水湳 - 交通動線 */}
-          <Route path="/fu-ju-shui-nan/jiao-tong-dong-xian" element={<TrafficRoutePage />} />
+            {/* 富居水湳 - 交通動線 */}
+            <Route path="/fu-ju-shui-nan/jiao-tong-dong-xian" element={<TrafficRoutePage />} />
 
-          {/* 富居水湳 - 繁華時區（隱藏備用）
-          <Route
-            path="/fu-ju-shui-nan/fan-hua-shi-qu"
-            element={
-              <ImageGalleryPage
-                images={pageData.prosperousDistrict.images}
-                title={pageData.prosperousDistrict.title}
-                description={pageData.prosperousDistrict.description}
-              />
-            }
-          />
-          */}
+            {/* 富居水湳 - 繁華時區（隱藏備用）
+            <Route
+              path="/fu-ju-shui-nan/fan-hua-shi-qu"
+              element={
+                <ImageGalleryPage
+                  images={pageData.prosperousDistrict.images}
+                  title={pageData.prosperousDistrict.title}
+                  description={pageData.prosperousDistrict.description}
+                />
+              }
+            />
+            */}
 
-          {/* 巨擘薈萃 - 建築領航 */}
-          <Route path="/ju-bo-hui-cui/jian-zhu-ling-hang" element={<ArchitectLeaderPage />} />
+            {/* 巨擘薈萃 - 建築領航 */}
+            <Route path="/ju-bo-hui-cui/jian-zhu-ling-hang" element={<ArchitectLeaderPage />} />
 
-          {/* 巨擘薈萃 - 建築美學 */}
-          <Route path="/ju-bo-hui-cui/jian-zhu-mei-xue" element={<ArchitectAestheticsPage />} />
+            {/* 巨擘薈萃 - 建築美學 */}
+            <Route path="/ju-bo-hui-cui/jian-zhu-mei-xue" element={<ArchitectAestheticsPage />} />
 
-          {/* 巨擘薈萃 - 公設語境 */}
-          <Route path="/ju-bo-hui-cui/gong-she-yu-jing" element={<PublicFacilityPage />} />
+            {/* 巨擘薈萃 - 公設語境 */}
+            <Route path="/ju-bo-hui-cui/gong-she-yu-jing" element={<PublicFacilityPage />} />
 
-          {/* 巨擘薈萃 - 景觀品味 */}
-          <Route path="/ju-bo-hui-cui/jing-guan-pin-wei" element={<LandscapeTastePage />} />
+            {/* 巨擘薈萃 - 景觀品味 */}
+            <Route path="/ju-bo-hui-cui/jing-guan-pin-wei" element={<LandscapeTastePage />} />
 
-          {/* 巨擘薈萃 - 結構力學 */}
-          <Route path="/ju-bo-hui-cui/jie-gou-li-xue" element={<StructuralMechanicsPage />} />
+            {/* 巨擘薈萃 - 結構力學 */}
+            <Route path="/ju-bo-hui-cui/jie-gou-li-xue" element={<StructuralMechanicsPage />} />
 
-          {/* 巨擘薈萃 - 燈光設計 */}
-          <Route path="/ju-bo-hui-cui/deng-guang-mei-xue" element={<LightingAestheticsPage />} />
+            {/* 巨擘薈萃 - 燈光設計 */}
+            <Route path="/ju-bo-hui-cui/deng-guang-mei-xue" element={<LightingAestheticsPage />} />
 
-          {/* 優雅精琢 - 結構工學 */}
-          <Route path="/you-ya-jing-zhuo/jie-gou-gong-xue" element={<StructuralEngineeringPage />} />
+            {/* 優雅精琢 - 結構工學 */}
+            <Route path="/you-ya-jing-zhuo/jie-gou-gong-xue" element={<StructuralEngineeringPage />} />
 
-          {/* 優雅精琢 - 管線工學 */}
-          <Route path="/you-ya-jing-zhuo/guan-xian-gong-xue" element={<PipingEngineeringPage />} />
+            {/* 優雅精琢 - 管線工學 */}
+            <Route path="/you-ya-jing-zhuo/guan-xian-gong-xue" element={<PipingEngineeringPage />} />
 
-          {/* 優雅精琢 - 防水工學 */}
-          <Route path="/you-ya-jing-zhuo/fang-shui-gong-xue" element={<WaterproofEngineeringPage />} />
+            {/* 優雅精琢 - 防水工學 */}
+            <Route path="/you-ya-jing-zhuo/fang-shui-gong-xue" element={<WaterproofEngineeringPage />} />
 
-          {/* 優雅精琢 - 防火工學 */}
-          <Route path="/you-ya-jing-zhuo/fang-huo-gong-xue" element={<FireProtectionEngineeringPage />} />
+            {/* 優雅精琢 - 防火工學 */}
+            <Route path="/you-ya-jing-zhuo/fang-huo-gong-xue" element={<FireProtectionEngineeringPage />} />
 
-          {/* 優雅精琢 - 貼心工學 */}
-          <Route path="/you-ya-jing-zhuo/tie-xin-gong-xue" element={<ThoughtfulEngineeringPage />} />
+            {/* 優雅精琢 - 貼心工學 */}
+            <Route path="/you-ya-jing-zhuo/tie-xin-gong-xue" element={<ThoughtfulEngineeringPage />} />
 
-          {/* 法式寓邸 - 法式美學 */}
-          <Route path="/fa-shi-yu-di/fa-shi-mei-xue" element={<FrenchAestheticsPage />} />
+            {/* 法式寓邸 - 法式美學 */}
+            <Route path="/fa-shi-yu-di/fa-shi-mei-xue" element={<FrenchAestheticsPage />} />
 
-          {/* 法式寓邸 - 風格訂製 */}
-          <Route path="/fa-shi-yu-di/feng-ge-ding-zhi" element={<FloorPlanPage />} />
+            {/* 法式寓邸 - 風格訂製 */}
+            <Route path="/fa-shi-yu-di/feng-ge-ding-zhi" element={<FloorPlanPage />} />
 
-          {/* 優雅精琢 - 精品工學 */}
-          <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue" element={<BoutiqueMansionPage />} />
+            {/* 優雅精琢 - 精品工學 */}
+            <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue" element={<BoutiqueMansionPage />} />
 
-          {/* 優雅精琢 - 精品工學 - 廚具品牌 */}
-          <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/kitchen" element={<KitchenBrandPage />} />
+            {/* 優雅精琢 - 精品工學 - 廚具品牌 */}
+            <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/kitchen" element={<KitchenBrandPage />} />
 
-          {/* 優雅精琢 - 精品工學 - 衛浴品牌 */}
-          <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/bathroom" element={<BathroomBrandPage />} />
+            {/* 優雅精琢 - 精品工學 - 衛浴品牌 */}
+            <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/bathroom" element={<BathroomBrandPage />} />
 
-          {/* 優雅精琢 - 精品工學 - 電子鎖品牌 */}
-          <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/lock" element={<LockBrandPage />} />
+            {/* 優雅精琢 - 精品工學 - 電子鎖品牌 */}
+            <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/lock" element={<LockBrandPage />} />
 
-          {/* 優雅精琢 - 精品工學 - 淨水設備 */}
-          <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/water" element={<WaterBrandPage />} />
+            {/* 優雅精琢 - 精品工學 - 淨水設備 */}
+            <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/water" element={<WaterBrandPage />} />
 
-          {/* 優雅精琢 - 精品工學 - 窗戶 */}
-          <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/window" element={<WindowBrandPage />} />
+            {/* 優雅精琢 - 精品工學 - 窗戶 */}
+            <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/window" element={<WindowBrandPage />} />
 
-          {/* 優雅精琢 - 精品工學 - 木地板 */}
-          <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/flooring" element={<FlooringBrandPage />} />
+            {/* 優雅精琢 - 精品工學 - 木地板 */}
+            <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/flooring" element={<FlooringBrandPage />} />
 
-          {/* 優雅精琢 - 精品工學 - 電梯 */}
-          <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/elevator" element={<ElevatorBrandPage />} />
+            {/* 優雅精琢 - 精品工學 - 電梯 */}
+            <Route path="/you-ya-jing-zhuo/jing-pin-gong-xue/elevator" element={<ElevatorBrandPage />} />
 
-          {/* 其他頁面待開發，暫時導向首頁 */}
-          <Route path="*" element={<HomePage />} />
-        </Routes>
+            {/* 其他頁面待開發，暫時導向首頁 */}
+            <Route path="*" element={<HomePage />} />
+          </Routes>
+        </Suspense>
       </MainLayout>
     </Router>
   );
