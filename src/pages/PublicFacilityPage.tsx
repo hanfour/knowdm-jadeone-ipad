@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SubpageMenuBar from '../components/SubpageMenuBar';
 import CloseButton from '../components/close-button';
+import RippleButton from '../components/ripple-button';
 
 // 作品圖片資料
 const portfolioImages = [
@@ -31,6 +32,9 @@ const PublicFacilityPage: React.FC = () => {
     }, 100);
     return () => clearTimeout(timer);
   }, []);
+
+  // 影片彈窗狀態
+  const [currentVideoId, setCurrentVideoId] = useState<string | null>(null);
 
   // 燈箱狀態
   const [lightbox, setLightbox] = useState<{
@@ -245,6 +249,16 @@ const PublicFacilityPage: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* 採訪影片按鈕 */}
+        <div className="mt-6">
+          <RippleButton onClick={() => setCurrentVideoId('uMOy6pbv3kI')}>
+            <span>採訪影片</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </RippleButton>
+        </div>
       </div>
 
       {/* 左下角大字 - 直排，每字從左上飛入 */}
@@ -306,6 +320,61 @@ const PublicFacilityPage: React.FC = () => {
           ))}
         </h3>
       </div>
+
+      {/* 影片彈窗 */}
+      {currentVideoId && (
+        <>
+          <style>{`
+            @keyframes videoSlideDown {
+              0% {
+                transform: translateY(-100%);
+              }
+              100% {
+                transform: translateY(0);
+              }
+            }
+
+            @keyframes backdropFadeIn {
+              0% {
+                opacity: 0;
+              }
+              100% {
+                opacity: 1;
+              }
+            }
+
+            .video-slide-animation {
+              animation: videoSlideDown 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            }
+
+            .backdrop-fade-animation {
+              animation: backdropFadeIn 0.3s ease-out forwards;
+            }
+          `}</style>
+          <div
+            className="fixed inset-0 flex items-center justify-center bg-black/90 backdrop-fade-animation"
+            style={{ zIndex: 9999 }}
+            onClick={() => setCurrentVideoId(null)}
+          >
+            {/* 影片容器 */}
+            <div
+              className="relative w-full h-full video-slide-animation"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <iframe
+                key={currentVideoId}
+                className="w-full h-full border-0"
+                src={`https://www.youtube.com/embed/${currentVideoId}?autoplay=1&rel=0`}
+                title="採訪影片"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+
+            <CloseButton onClick={(e) => { e.stopPropagation(); setCurrentVideoId(null); }} />
+          </div>
+        </>
+      )}
 
       {/* 燈箱 */}
       {lightbox.isOpen && (

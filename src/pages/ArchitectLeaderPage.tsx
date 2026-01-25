@@ -165,10 +165,10 @@ const ArchitectLeaderPage: React.FC = () => {
               </p>
             </div>
 
-            {/* 團隊訪談按鈕 */}
+            {/* 採訪影片按鈕 */}
             <div className="mt-8">
-              <RippleButton onClick={() => setCurrentVideoId('VB6m9Kb6ha4')}>
-                <span>團隊訪談</span>
+              <RippleButton onClick={() => setCurrentVideoId('X5gldhZenDE')}>
+                <span>採訪影片</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                   <polyline points="9 18 15 12 9 6" />
                 </svg>
@@ -222,7 +222,7 @@ const ArchitectLeaderPage: React.FC = () => {
                 key={currentVideoId}
                 className="w-full h-full border-0"
                 src={`https://www.youtube.com/embed/${currentVideoId}?autoplay=1&rel=0`}
-                title="團隊訪談影片"
+                title="採訪影片"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
