@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import { vi } from 'vitest';
 import MenuButton from './index';
 
 describe('MenuButton', () => {
@@ -9,7 +10,7 @@ describe('MenuButton', () => {
   });
 
   test('應該響應點擊事件', () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     const { container } = render(<MenuButton onClick={handleClick} />);
 
     const button = container.firstChild as HTMLElement;
@@ -31,6 +32,5 @@ describe('MenuButton', () => {
 
     const button = container.firstChild as HTMLElement;
     expect(button).toBeInTheDocument();
-    // 檢查元素可以接收點擊事件即可
   });
 });

@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import { vi } from 'vitest';
 import CloseButton from './index';
 
 describe('CloseButton', () => {
@@ -9,7 +10,7 @@ describe('CloseButton', () => {
   });
 
   test('應該響應點擊事件', () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     const { container } = render(<CloseButton onClick={handleClick} />);
 
     const button = container.firstChild as HTMLElement;

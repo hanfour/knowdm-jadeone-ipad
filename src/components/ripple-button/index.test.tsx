@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import { vi } from 'vitest';
 import RippleButton from './index';
 
 describe('RippleButton', () => {
@@ -9,7 +10,7 @@ describe('RippleButton', () => {
   });
 
   test('應該響應點擊事件', () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     const { getByText } = render(
       <RippleButton onClick={handleClick}>點擊我</RippleButton>
     );
