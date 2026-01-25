@@ -59,7 +59,7 @@ export const floorDefaults: Record<string, { x: number; y: number; scale: number
   '4F': { x: 140, y: 90, scale: 3 },
   '3F': { x: 140, y: 90, scale: 3 },
   '2F': { x: 70, y: 90, scale: 3 },
-  '1F': { x: -50, y: 80, scale: 2.9 },
+  '1F': { x: 8, y: -23, scale: 2.4 },
   'B1F': { x: 0, y: -10, scale: 2.5 },
   'B2F': { x: 0, y: -10, scale: 2.5 },
   'B3F': { x: 0, y: -10, scale: 2.5 },
@@ -145,7 +145,7 @@ export const floors: FloorData[] = [
   {
     id: '1F',
     label: '1F',
-    image: '/images/c2/floor-plans/1F.webp',
+    image: '/images/c2/floor-plans/1F_new.webp',
     galleryButtons: [
       {
         id: '1F-lobby',
@@ -159,9 +159,9 @@ export const floors: FloorData[] = [
           { src: '/images/c2/facilities/01-大廳-05.webp', label: '入口門廳 6' },
         ],
         region: [
-          { x: 20.86, y: 7.6 }, { x: 20.73, y: 41.28 }, { x: 22.86, y: 41.28 }, { x: 22.99, y: 42.27 },
-          { x: 35.14, y: 42.27 }, { x: 35.14, y: 17.9 }, { x: 45.78, y: 18.1 }, { x: 45.78, y: 7.6 },
-          { x: 40.9, y: 7.4 }, { x: 40.9, y: 9.38 }, { x: 33.38, y: 9.38 }, { x: 33.26, y: 7.6 },
+          { x: 24.62, y: 11.75 }, { x: 24.62, y: 38.65 }, { x: 26.47, y: 38.65 },
+          { x: 26.47, y: 39.40 }, { x: 37.35, y: 39.40 }, { x: 37.35, y: 19.98 },
+          { x: 46.97, y: 19.98 }, { x: 46.97, y: 11.75 }
         ],
       },
       {
@@ -176,7 +176,7 @@ export const floors: FloorData[] = [
           { src: '/images/c2/facilities/02-交誼廳-06.webp', label: '交誼廳 6' },
         ],
         region: [
-          { x: 20.59, y: 63.12 }, { x: 26.52, y: 63.12 }, { x: 26.52, y: 71.15 }, { x: 20.59, y: 71.15 },
+          { x: 24.41, y: 56.45 }, { x: 29.65, y: 56.45 }, { x: 29.65, y: 62.72 }, { x: 24.41, y: 62.72 },
         ],
         noHighlight: true,
       },

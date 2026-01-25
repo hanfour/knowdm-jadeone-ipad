@@ -212,6 +212,40 @@ const FloorPlanPage: React.FC = () => {
               onClick={handleImageClick}
             />
 
+            {/* 1F 路名標示 */}
+            {selectedFloor.id === '1F' && (
+              <>
+                {/* 左側直式：僑大五路25m */}
+                <div
+                  className="absolute pointer-events-none text-gray-600 text-small font-medium"
+                  style={{
+                    left: '-2rem',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    WebkitWritingMode: 'vertical-lr',
+                    writingMode: 'vertical-lr',
+                    whiteSpace: 'nowrap',
+                    letterSpacing: '0.1em',
+                  }}
+                >
+                  僑大五路<span style={{ WebkitWritingMode: 'horizontal-tb', writingMode: 'horizontal-tb' }}>25</span><span className="-mt-2" style={{ WebkitWritingMode: 'horizontal-tb', writingMode: 'horizontal-tb' }}>m</span>
+                </div>
+                {/* 下方橫式：廣順街12m */}
+                <div
+                  className="absolute pointer-events-none text-gray-600 text-small font-medium"
+                  style={{
+                    bottom: '-1.5rem',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    whiteSpace: 'nowrap',
+                    letterSpacing: '0.1em',
+                  }}
+                >
+                  廣順街12m
+                </div>
+              </>
+            )}
+
             {/* 開發模式錨點視覺化 */}
             {DEV_MODE && anchorPoints.length > 0 && (
               <>
@@ -229,8 +263,8 @@ const FloorPlanPage: React.FC = () => {
               </>
             )}
 
-            {/* 區域高亮 */}
-            {activeGalleryButtons.filter(btn => btn.region?.length).map(btn => (
+            {/* 區域高亮 - DEV_MODE 時停用點擊 */}
+            {!DEV_MODE && activeGalleryButtons.filter(btn => btn.region?.length).map(btn => (
               <svg key={btn.id} className="absolute inset-0 pointer-events-none" style={{ width: '500px', height: '100%' }} viewBox="0 0 100 100" preserveAspectRatio="none">
                 <polygon
                   points={btn.region!.map(p => `${p.x},${p.y}`).join(' ')}
@@ -243,8 +277,8 @@ const FloorPlanPage: React.FC = () => {
               </svg>
             ))}
 
-            {/* 標記點 */}
-            {selectedFloor.markers?.map(marker => (
+            {/* 標記點 - DEV_MODE 時停用 */}
+            {!DEV_MODE && selectedFloor.markers?.map(marker => (
               <button
                 key={marker.id}
                 onClick={(e) => { e.stopPropagation(); openBottomSheet(marker); }}
