@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SubpageMenuBar from '../components/SubpageMenuBar';
 import CloseButton from '../components/close-button';
+import RippleButton from '../components/ripple-button';
 
 // 作品圖片資料
 const portfolioImages = [
@@ -8,6 +9,19 @@ const portfolioImages = [
   { src: '/images/b6/works/理合建設時光嶼.webp', label: '理合建設 時光嶼' },
   { src: '/images/b6/works/惠宇建設千曦.webp', label: '惠宇建設 千曦' },
   { src: '/images/b6/works/惠宇建設大其心.webp', label: '惠宇建設 大其心' },
+];
+
+// 得獎獎項圖片資料（單張）
+const awardImages = [
+  '/images/b6/awards/lighter-awards.webp',
+];
+
+// 燈光計劃圖片資料
+const lightingPlanImages = [
+  '/images/b6/lighting-plan/lighter-01.webp',
+  '/images/b6/lighting-plan/lighter-02.webp',
+  '/images/b6/lighting-plan/lighter-03.webp',
+  '/images/b6/lighting-plan/lighter-04.webp',
 ];
 
 const LightingAestheticsPage: React.FC = () => {
@@ -40,6 +54,14 @@ const LightingAestheticsPage: React.FC = () => {
     currentIndex: 0,
   });
 
+  // 得獎獎項 Modal 狀態
+  const [showAwardModal, setShowAwardModal] = useState(false);
+  const [awardIndex, setAwardIndex] = useState(0);
+
+  // 燈光計劃 Modal 狀態
+  const [showLightingPlanModal, setShowLightingPlanModal] = useState(false);
+  const [lightingPlanIndex, setLightingPlanIndex] = useState(0);
+
   // 開啟燈箱（可指定起始圖片索引）
   const openLightbox = (index: number = 0) => {
     setLightbox({ isOpen: true, currentIndex: index });
@@ -69,6 +91,42 @@ const LightingAestheticsPage: React.FC = () => {
       ...prev,
       currentIndex: (prev.currentIndex - 1 + portfolioImages.length) % portfolioImages.length,
     }));
+  };
+
+  // 得獎獎項 Modal 控制
+  const openAwardModal = () => {
+    setShowAwardModal(true);
+    setAwardIndex(0);
+  };
+
+  const closeAwardModal = () => {
+    setShowAwardModal(false);
+  };
+
+  const goToPrevAward = () => {
+    setAwardIndex((prev) => (prev > 0 ? prev - 1 : awardImages.length - 1));
+  };
+
+  const goToNextAward = () => {
+    setAwardIndex((prev) => (prev < awardImages.length - 1 ? prev + 1 : 0));
+  };
+
+  // 燈光計劃 Modal 控制
+  const openLightingPlanModal = () => {
+    setShowLightingPlanModal(true);
+    setLightingPlanIndex(0);
+  };
+
+  const closeLightingPlanModal = () => {
+    setShowLightingPlanModal(false);
+  };
+
+  const goToPrevLightingPlan = () => {
+    setLightingPlanIndex((prev) => (prev > 0 ? prev - 1 : lightingPlanImages.length - 1));
+  };
+
+  const goToNextLightingPlan = () => {
+    setLightingPlanIndex((prev) => (prev < lightingPlanImages.length - 1 ? prev + 1 : 0));
   };
 
   return (
@@ -185,7 +243,7 @@ const LightingAestheticsPage: React.FC = () => {
             >
               <span className="italic text-small">燈光設計 / </span>
               <br/>
-              偶得設計
+              偶得設計 陳怡彰
             </p>
           </div>
 
@@ -217,6 +275,22 @@ const LightingAestheticsPage: React.FC = () => {
                 <span onClick={() => openLightbox(3)} className="cursor-pointer hover:underline">惠宇建設 大其心</span>
               </span>
             </div>
+          </div>
+
+          {/* 得獎獎項 & 燈光計劃按鈕 */}
+          <div className="mt-6 flex gap-4">
+            <RippleButton onClick={openAwardModal}>
+              <span>得獎獎項</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </RippleButton>
+            <RippleButton onClick={openLightingPlanModal}>
+              <span>燈光計劃</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </RippleButton>
           </div>
         </div>
       </div>
@@ -395,6 +469,98 @@ const LightingAestheticsPage: React.FC = () => {
             style={{ zIndex: 10 }}
           >
             {lightbox.currentIndex + 1} / {portfolioImages.length}
+          </div>
+        </div>
+      )}
+
+      {/* 得獎獎項 Modal */}
+      {showAwardModal && (
+        <div className="fixed inset-0 z-50 bg-white animate-fade-in" style={{ top: '80px' }}>
+          <div className="w-full h-full flex items-center justify-center p-8">
+            <img
+              key={awardIndex}
+              src={awardImages[awardIndex]}
+              alt={`得獎獎項 ${awardIndex + 1}`}
+              loading="lazy"
+              decoding="async"
+              className="max-w-full max-h-full object-contain animate-fade-in"
+            />
+          </div>
+
+          <CloseButton onClick={closeAwardModal} />
+
+          {/* 箭頭導航 - 僅多張圖片時顯示 */}
+          {awardImages.length > 1 && (
+            <div className="absolute bottom-8 right-8 flex items-center gap-3 z-20">
+              <button
+                onClick={goToPrevAward}
+                className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </button>
+
+              <button
+                onClick={goToNextAward}
+                className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+            </div>
+          )}
+
+          {/* 頁碼指示 - 僅多張圖片時顯示 */}
+          {awardImages.length > 1 && (
+            <div className="absolute bottom-8 left-8 text-body text-gray-600 z-20">
+              {awardIndex + 1} / {awardImages.length}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* 燈光計劃 Modal */}
+      {showLightingPlanModal && (
+        <div className="fixed inset-0 z-50 bg-white animate-fade-in" style={{ top: '80px' }}>
+          <div className="w-full h-full flex items-center justify-center p-8">
+            <img
+              key={lightingPlanIndex}
+              src={lightingPlanImages[lightingPlanIndex]}
+              alt={`燈光計劃 ${lightingPlanIndex + 1}`}
+              loading="lazy"
+              decoding="async"
+              className="max-w-full max-h-full object-contain animate-fade-in"
+            />
+          </div>
+
+          <CloseButton onClick={closeLightingPlanModal} />
+
+          {/* 箭頭導航 - 固定在右下角 */}
+          <div className="absolute bottom-8 right-8 flex items-center gap-3 z-20">
+            <button
+              onClick={goToPrevLightingPlan}
+              className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </button>
+
+            <button
+              onClick={goToNextLightingPlan}
+              className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
+
+          {/* 頁碼指示 - 左下角 */}
+          <div className="absolute bottom-8 left-8 text-body text-gray-600 z-20">
+            {lightingPlanIndex + 1} / {lightingPlanImages.length}
           </div>
         </div>
       )}
