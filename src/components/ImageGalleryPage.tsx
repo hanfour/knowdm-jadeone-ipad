@@ -31,6 +31,16 @@ const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, desc
     setActiveIndex(0);
   }, [location.pathname]);
 
+  // 上一張圖片
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  // 下一張圖片
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
   return (
     <div className="relative w-full h-full overflow-hidden bg-black">
       {/* 右上角子頁面導航列 + MenuButton */}
@@ -64,6 +74,26 @@ const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, desc
           </React.Fragment>
         ))}
       </div>
+
+      {/* 左右箭頭導航 */}
+      <button
+        onClick={handlePrev}
+        className="absolute left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center border border-[#d4a853] text-[#0b2d2a] hover:border-[#0b2d2a] hover:text-[#d4a853] bg-[#d4a853]/60 hover:bg-[#0b2d2a]/60 transition-colors duration-300"
+        aria-label="上一張"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+      </button>
+      <button
+        onClick={handleNext}
+        className="absolute right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center border border-[#d4a853] text-[#0b2d2a] hover:border-[#0b2d2a] hover:text-[#d4a853] bg-[#d4a853]/60 hover:bg-[#0b2d2a]/60 transition-colors duration-300"
+        aria-label="下一張"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </button>
 
       {/* 右側內容區 - 僅第一張圖顯示 */}
       <div
