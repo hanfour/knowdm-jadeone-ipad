@@ -66,23 +66,71 @@ const PreciousCollectionPage: React.FC = () => {
   const [ecoGalleryIndex, setEcoGalleryIndex] = useState(0);
   const svgRef = useRef<HTMLObjectElement>(null);
 
+  // 縮放與拖曳狀態
+  const [ecoScale, setEcoScale] = useState(1);
+  const [ecoPosition, setEcoPosition] = useState({ x: 0, y: 0 });
+  const [isEcoDragging, setIsEcoDragging] = useState(false);
+  const [ecoDragStart, setEcoDragStart] = useState({ x: 0, y: 0 });
+
   // 生態專用區 Modal 控制
   const openEcoModal = () => {
     setShowEcoModal(true);
     setEcoGalleryIndex(0);
+    setEcoScale(1);
+    setEcoPosition({ x: 0, y: 0 });
   };
 
   const closeEcoModal = () => {
     setShowEcoModal(false);
+    setEcoScale(1);
+    setEcoPosition({ x: 0, y: 0 });
   };
 
   const goToPrevEcoImage = () => {
     setEcoGalleryIndex((prev) => (prev > 0 ? prev - 1 : ecoGalleryImages.length - 1));
+    setEcoScale(1);
+    setEcoPosition({ x: 0, y: 0 });
   };
 
   const goToNextEcoImage = () => {
     setEcoGalleryIndex((prev) => (prev < ecoGalleryImages.length - 1 ? prev + 1 : 0));
+    setEcoScale(1);
+    setEcoPosition({ x: 0, y: 0 });
   };
+
+  // 縮放控制
+  const handleEcoZoomIn = () => {
+    setEcoScale((prev) => Math.min(prev + 0.5, 4));
+  };
+
+  const handleEcoZoomOut = () => {
+    setEcoScale((prev) => {
+      const newScale = Math.max(prev - 0.5, 1);
+      if (newScale === 1) setEcoPosition({ x: 0, y: 0 });
+      return newScale;
+    });
+  };
+
+  const handleEcoReset = () => {
+    setEcoScale(1);
+    setEcoPosition({ x: 0, y: 0 });
+  };
+
+  // 拖曳處理
+  const handleEcoMouseDown = (e: React.MouseEvent) => {
+    if (ecoScale > 1) {
+      setIsEcoDragging(true);
+      setEcoDragStart({ x: e.clientX - ecoPosition.x, y: e.clientY - ecoPosition.y });
+    }
+  };
+
+  const handleEcoMouseMove = (e: React.MouseEvent) => {
+    if (isEcoDragging && ecoScale > 1) {
+      setEcoPosition({ x: e.clientX - ecoDragStart.x, y: e.clientY - ecoDragStart.y });
+    }
+  };
+
+  const handleEcoMouseUp = () => setIsEcoDragging(false);
 
   // 處理區域點擊（切換展開/收起）
   const handleAreaClick = (areaId: string) => {
@@ -553,18 +601,70 @@ const PreciousCollectionPage: React.FC = () => {
       {/* 生態專用區介紹 Modal */}
       {showEcoModal && (
         <div className="fixed inset-0 z-50 bg-white animate-fade-in" style={{ top: '80px' }}>
-          <div className="w-full h-full flex items-center justify-center p-8">
+          <div
+            className="w-full h-full flex items-center justify-center overflow-hidden p-8"
+            style={{ cursor: ecoGalleryIndex >= 1 && ecoScale > 1 ? (isEcoDragging ? 'grabbing' : 'grab') : 'default' }}
+            onMouseDown={ecoGalleryIndex >= 1 ? handleEcoMouseDown : undefined}
+            onMouseMove={ecoGalleryIndex >= 1 ? handleEcoMouseMove : undefined}
+            onMouseUp={ecoGalleryIndex >= 1 ? handleEcoMouseUp : undefined}
+            onMouseLeave={ecoGalleryIndex >= 1 ? handleEcoMouseUp : undefined}
+          >
             <img
               key={ecoGalleryIndex}
               src={ecoGalleryImages[ecoGalleryIndex]}
               alt={`生態專用區介紹 ${ecoGalleryIndex + 1}`}
               loading="lazy"
               decoding="async"
-              className="max-w-full max-h-full object-contain animate-fade-in"
+              className="max-w-full max-h-full object-contain select-none animate-fade-in"
+              draggable={false}
+              style={ecoGalleryIndex >= 1 ? {
+                transform: `translate(${ecoPosition.x}px, ${ecoPosition.y}px) scale(${ecoScale})`,
+                transition: isEcoDragging ? 'none' : 'transform 0.3s ease-out',
+              } : undefined}
             />
           </div>
 
           <CloseButton onClick={closeEcoModal} />
+
+          {/* 縮放控制按鈕 - 右側中央（僅第 2、3、4 張圖顯示） */}
+          {ecoGalleryIndex >= 1 && (
+            <div
+              className="absolute z-20 flex flex-col gap-2"
+              style={{ right: '2rem', top: '50%', transform: 'translateY(-50%)' }}
+            >
+              <button
+                onClick={handleEcoZoomIn}
+                className="w-10 h-10 bg-white shadow-md flex items-center justify-center hover:bg-gray-100 transition-colors"
+                aria-label="放大"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </button>
+              <button
+                onClick={handleEcoZoomOut}
+                disabled={ecoScale <= 1}
+                className={`w-10 h-10 bg-white shadow-md flex items-center justify-center transition-colors ${
+                  ecoScale <= 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100'
+                }`}
+                aria-label="縮小"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M5 12h14" />
+                </svg>
+              </button>
+              <button
+                onClick={handleEcoReset}
+                className="w-10 h-10 bg-white shadow-md flex items-center justify-center hover:bg-gray-100 transition-colors"
+                aria-label="還原"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                  <path d="M3 3v5h5" />
+                </svg>
+              </button>
+            </div>
+          )}
 
           {/* 箭頭導航 - 固定在右下角 */}
           <div className="absolute bottom-8 right-8 flex items-center gap-3 z-20">
