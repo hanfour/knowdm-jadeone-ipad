@@ -63,8 +63,8 @@ const districts: DistrictDetail[] = [
       totalArea: '約404公頃',
       publicRatio: '約45.30%',
       residentialRatio: '約54.70%',
-      greenRatio: '約6.38%',
-      greenArea: '約25.73公頃',
+      greenRatio: '約6.31%',
+      greenArea: '約25.44公頃',
     },
     images: [
       '/images/anchor-future/_0005_pixta_38952988_M.webp',
@@ -127,8 +127,8 @@ const districts: DistrictDetail[] = [
       totalArea: '約353.39公頃',
       publicRatio: '約42.69%',
       residentialRatio: '約57.31%',
-      greenRatio: '約17.70%',
-      greenArea: '約19.13公頃',
+      greenRatio: '約16%',
+      greenArea: '約56.54公頃',
     },
     images: [
       '/images/anchor-future/_0002_pixta_97838656_M.webp',
