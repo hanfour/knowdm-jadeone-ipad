@@ -56,14 +56,9 @@ const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, desc
               loading={index === 0 ? 'eager' : 'lazy'} // 首圖立即載入，其他延遲載入
               decoding="async" // 非同步解碼
               fetchPriority={index === 0 ? 'high' : 'auto'} // 首圖高優先級
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-                index === activeIndex ? 'opacity-100' : 'opacity-0'
+              className={`absolute inset-0 w-full h-full object-cover ${
+                index === activeIndex ? 'opacity-100 visible' : 'opacity-0 invisible'
               }`}
-              style={{
-                // GPU 加速優化
-                willChange: index === activeIndex ? 'opacity' : 'auto',
-                transform: 'translateZ(0)',
-              }}
             />
             {/* 右側漸層遮罩 - 僅第一張顯示 */}
             <div
