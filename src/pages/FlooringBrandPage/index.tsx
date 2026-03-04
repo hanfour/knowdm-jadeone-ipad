@@ -70,7 +70,7 @@ const FlooringBrandPage: React.FC = () => {
                       className="text-body text-justify leading-relaxed text-gray-800 text-justify animate-fade-in-left"
                       style={{ animationDelay: '0.4s' }}
                     >
-                      美國Robina羅賓木地板，符合歐盟低甲醛、綠建材標章、國家CNS防焰一級保證，使用熱帶快生複合硬木種，最適台灣氣候的超耐潮地板，獨創真空邊緣防護系統「專利雙卡扣設計」有效防滲漏，10年耐白蟻保證。
+                      馬來西亞Robina羅賓木地板，符合歐盟低甲醛、綠建材標章、國家CNS防焰一級保證，使用熱帶快生複合硬木種，最適台灣氣候的超耐潮地板，獨創真空邊緣防護系統「專利雙卡扣設計」有效防滲漏，10年耐白蟻保證。
                     </p>
                   </div>
                 </div>

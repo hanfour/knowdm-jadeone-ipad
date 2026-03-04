@@ -9,7 +9,14 @@ const ecoGalleryImages = [
   '/images/precious-collection/eco-gallery/02.webp',
   '/images/precious-collection/eco-gallery/03.webp',
   '/images/precious-collection/eco-gallery/04.webp',
+  '/images/precious-collection/eco-gallery/05.webp',
+  '/images/precious-collection/eco-gallery/06.webp',
+  '/images/precious-collection/eco-gallery/07.webp',
+  '/images/precious-collection/eco-gallery/08.webp',
 ];
+
+// 生態專用區1 實景照片起始索引
+const ECO_ZONE1_START_INDEX = 4;
 
 // 可點擊區域的詳細資料
 interface AreaDetail {
@@ -80,10 +87,12 @@ const PreciousCollectionPage: React.FC = () => {
     setEcoPosition({ x: 0, y: 0 });
   };
 
-  const closeEcoModal = () => {
+  const closeEcoModal = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
     setShowEcoModal(false);
     setEcoScale(1);
     setEcoPosition({ x: 0, y: 0 });
+    setIsEcoDragging(false);
   };
 
   const goToPrevEcoImage = () => {
@@ -531,7 +540,7 @@ const PreciousCollectionPage: React.FC = () => {
 
       {/* 左側 SVG 地圖容器 - 左下角定位 */}
       <div
-        className="absolute svg-container"
+        className="absolute svg-container z-[1]"
         style={{
           left: '0',
           bottom: '0',
@@ -609,19 +618,41 @@ const PreciousCollectionPage: React.FC = () => {
             onMouseUp={ecoGalleryIndex >= 1 ? handleEcoMouseUp : undefined}
             onMouseLeave={ecoGalleryIndex >= 1 ? handleEcoMouseUp : undefined}
           >
-            <img
-              key={ecoGalleryIndex}
-              src={ecoGalleryImages[ecoGalleryIndex]}
-              alt={`生態專用區介紹 ${ecoGalleryIndex + 1}`}
-              loading="lazy"
-              decoding="async"
-              className="max-w-full max-h-full object-contain select-none animate-fade-in"
-              draggable={false}
+            <div className="relative max-w-full max-h-full flex items-center justify-center"
               style={ecoGalleryIndex >= 1 ? {
                 transform: `translate(${ecoPosition.x}px, ${ecoPosition.y}px) scale(${ecoScale})`,
                 transition: isEcoDragging ? 'none' : 'transform 0.3s ease-out',
               } : undefined}
-            />
+            >
+              <img
+                key={ecoGalleryIndex}
+                src={ecoGalleryImages[ecoGalleryIndex]}
+                alt={`生態專用區介紹 ${ecoGalleryIndex + 1}`}
+                loading="lazy"
+                decoding="async"
+                className="max-w-full max-h-full object-contain select-none animate-fade-in"
+                draggable={false}
+              />
+              {/* 生態專用區1 可點擊熱區 - 僅在第一張地圖顯示 */}
+              {ecoGalleryIndex === 0 && (
+                <button
+                  onClick={() => {
+                    setEcoGalleryIndex(ECO_ZONE1_START_INDEX);
+                    setEcoScale(1);
+                    setEcoPosition({ x: 0, y: 0 });
+                  }}
+                  className="absolute cursor-pointer hover:bg-white/20 transition-colors duration-300 rounded"
+                  style={{
+                    left: '35.5%',
+                    top: '50%',
+                    width: '14.75%',
+                    height: '20.5%',
+                  }}
+                  aria-label="查看生態專用區1實景照片"
+                  title="點擊查看實景照片"
+                />
+              )}
+            </div>
           </div>
 
           <CloseButton onClick={closeEcoModal} />

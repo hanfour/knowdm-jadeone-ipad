@@ -7,23 +7,41 @@ import RippleButton from '../components/ripple-button';
 interface LandmarkData {
   id: string;
   name: string;
-  image: string;
-  alt?: string; // 圖片說明
+  images: { src: string; alt: string }[];
 }
 
 // 可點擊的地標（_水湳轉運中心 到 _台中超巨蛋）
 const landmarks: LandmarkData[] = [
-  { id: '_水湳轉運中心', name: '水湳轉運中心', image: '/images/a1/IMG_004.webp', alt: '水湳轉運中心實景拍攝' },
-  { id: '_台中國際會議中心', name: '台中國際會議中心', image: '/images/a1/IMG_002.webp', alt: '台中國際會議中心實景拍攝' },
-  { id: '_台中綠美圖', name: '綠美圖', image: '/images/a1/IMG_003.webp', alt: '綠美圖實景拍攝' },
-  { id: '_中央公園', name: '中央公園', image: '/images/a3/03.webp', alt: '中央公園實景拍攝' },
-  { id: '_台中流行影音中心', name: '台中流行影音中心', image: '/images/a3/02.webp', alt: '台中流行影音中心實景拍攝' },
-  { id: '_台中超巨蛋', name: '台中超巨蛋', image: '/images/a1/157f7b46-031b-9a6a-f3be-cba5a4aea814.webp', alt: '政府示意圖' },
+  { id: '_水湳轉運中心', name: '水湳轉運中心', images: [
+    { src: '/images/a1/IMG_004.webp', alt: '水湳轉運中心實景拍攝' },
+    { src: '/images/a1/international-city-01.webp', alt: '水湳轉運中心' },
+  ]},
+  { id: '_台中國際會議中心', name: '台中國際會議中心', images: [
+    { src: '/images/a1/IMG_002.webp', alt: '台中國際會議中心實景拍攝' },
+    { src: '/images/a1/international-city-02.webp', alt: '台中國際會議中心' },
+  ]},
+  { id: '_台中綠美圖', name: '綠美圖', images: [
+    { src: '/images/a1/IMG_003.webp', alt: '綠美圖實景拍攝' },
+    { src: '/images/a1/international-city-03.webp', alt: '綠美圖' },
+  ]},
+  { id: '_中央公園', name: '中央公園', images: [
+    { src: '/images/a3/03.webp', alt: '中央公園實景拍攝' },
+    { src: '/images/a1/international-city-04.webp', alt: '中央公園' },
+  ]},
+  { id: '_台中流行影音中心', name: '台中流行影音中心', images: [
+    { src: '/images/a3/02.webp', alt: '台中流行影音中心實景拍攝' },
+    { src: '/images/a1/international-city-05.webp', alt: '台中流行影音中心' },
+  ]},
+  { id: '_台中超巨蛋', name: '台中超巨蛋', images: [
+    { src: '/images/a1/157f7b46-031b-9a6a-f3be-cba5a4aea814.webp', alt: '政府示意圖' },
+    { src: '/images/a1/international-city-06.webp', alt: '台中超巨蛋' },
+  ]},
 ];
 
 const InternationalCityPage: React.FC = () => {
   const [currentVideoId, setCurrentVideoId] = useState<string | null>(null);
   const [selectedLandmark, setSelectedLandmark] = useState<LandmarkData | null>(null);
+  const [carouselIndex, setCarouselIndex] = useState(0);
   const svgContainerRef = useRef<HTMLDivElement>(null);
 
   // 設置 SVG 互動事件
@@ -97,6 +115,7 @@ const InternationalCityPage: React.FC = () => {
         const element = svgDoc.getElementById(landmark.id);
         if (element) {
           element.addEventListener('click', () => {
+            setCarouselIndex(0);
             setSelectedLandmark(landmark);
           });
         }
@@ -114,25 +133,70 @@ const InternationalCityPage: React.FC = () => {
     };
   }, []);
 
-  // 渲染地標彈窗（類似重劃區比較表）
+  // 渲染地標彈窗（輪播 - 與 FrenchAestheticsPage 燈箱風格一致）
   const renderLandmarkModal = () => {
     if (!selectedLandmark) return null;
 
-    return (
-      <div className="fixed inset-0 z-50 bg-white animate-fade-in" style={{ top: '80px' }}>
-        <CloseButton onClick={() => setSelectedLandmark(null)} />
+    const { images } = selectedLandmark;
 
-        {/* 滿版圖片 */}
-        <div className="h-full flex items-center justify-center p-8 relative">
-          <img
-            src={selectedLandmark.image}
-            alt={selectedLandmark.name}
-            loading="lazy"
-            decoding="async"
-            className="w-full max-w-full max-h-full object-contain animate-fade-in"
-          />
-          <div className="absolute z-10 text-[#0b2d2a]/50 text-micro" style={{ right: '5rem', bottom: '1rem' }}>{selectedLandmark.alt}</div>
+    return (
+      <div
+        className="fixed inset-0 flex items-center justify-center bg-black/90"
+        style={{ zIndex: 9999 }}
+        onClick={() => setSelectedLandmark(null)}
+      >
+        {/* 主圖片區域 */}
+        <div
+          className="relative w-full h-full flex items-center justify-center"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {images.map((image, index) => (
+            <img
+              key={image.src}
+              src={image.src}
+              alt={image.alt}
+              loading="lazy"
+              decoding="async"
+              className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${
+                index === carouselIndex ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          ))}
+
+          {/* 上一張按鈕 */}
+          <button
+            onClick={() => setCarouselIndex(i => (i - 1 + images.length) % images.length)}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors"
+            style={{ zIndex: 10, boxShadow: '0 2px 8px rgba(0,0,0,0.3)' }}
+            aria-label="上一張"
+          >
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+
+          {/* 下一張按鈕 */}
+          <button
+            onClick={() => setCarouselIndex(i => (i + 1) % images.length)}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors"
+            style={{ zIndex: 10, boxShadow: '0 2px 8px rgba(0,0,0,0.3)' }}
+            aria-label="下一張"
+          >
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+
+          {/* 圖片計數器 */}
+          <div
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-sm"
+            style={{ zIndex: 10 }}
+          >
+            {carouselIndex + 1} / {images.length}
+          </div>
         </div>
+
+        <CloseButton onClick={(e) => { e.stopPropagation(); setSelectedLandmark(null); }} />
       </div>
     );
   };
