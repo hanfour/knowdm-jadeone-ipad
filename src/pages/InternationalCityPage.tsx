@@ -14,11 +14,11 @@ interface LandmarkData {
 const landmarks: LandmarkData[] = [
   { id: '_水湳轉運中心', name: '水湳轉運中心', images: [
     { src: '/images/a1/IMG_004.webp', alt: '水湳轉運中心實景拍攝' },
-    { src: '/images/a1/international-city-01.webp', alt: '水湳轉運中心' },
+    { src: '/images/a1/international-city-02.webp', alt: '水湳轉運中心' },
   ]},
   { id: '_台中國際會議中心', name: '台中國際會議中心', images: [
     { src: '/images/a1/IMG_002.webp', alt: '台中國際會議中心實景拍攝' },
-    { src: '/images/a1/international-city-02.webp', alt: '台中國際會議中心' },
+    { src: '/images/a1/international-city-01.webp', alt: '台中國際會議中心' },
   ]},
   { id: '_台中綠美圖', name: '綠美圖', images: [
     { src: '/images/a1/IMG_003.webp', alt: '綠美圖實景拍攝' },
