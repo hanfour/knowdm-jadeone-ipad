@@ -319,7 +319,7 @@ const FloorPlanPage: React.FC = () => {
       {/* 公設/景觀按鈕 */}
       {(activeGalleryButtons.filter(btn => !btn.region?.length).length > 0 || selectedFloor.id === '1F') && (
         <div className="absolute z-20 flex flex-col gap-2" style={{ left: '5%', bottom: '10%' }}>
-          {activeGalleryButtons.filter(btn => !btn.region?.length).map(btn => (
+          {activeGalleryButtons.filter(btn => !btn.region?.length && btn.id !== '1F-facilities').map(btn => (
             <button
               key={btn.id}
               onClick={() => openGalleryViewer(btn)}
@@ -340,6 +340,16 @@ const FloorPlanPage: React.FC = () => {
               </svg>
             </button>
           )}
+          {/* 1F 公設規劃按鈕 */}
+          {activeGalleryButtons.filter(btn => btn.id === '1F-facilities').map(btn => (
+            <button
+              key={btn.id}
+              onClick={() => openGalleryViewer(btn)}
+              className="px-4 py-2 backdrop-blur-sm border transition-all shadow-sm bg-white/90 border-gray-300 text-gray-700 text-xsmall hover:bg-gray-50 hover:border-gray-400"
+            >
+              {btn.label}
+            </button>
+          ))}
         </div>
       )}
 

@@ -165,6 +165,13 @@ export const floors: FloorData[] = [
         ],
       },
       {
+        id: '1F-facilities',
+        label: '公設規劃',
+        images: [
+          { src: '/images/c2/facilities/06-公設規劃-01.webp', label: '公設規劃' },
+        ],
+      },
+      {
         id: '1F-lounge',
         label: '交誼廳',
         images: [

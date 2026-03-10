@@ -179,7 +179,9 @@ const GalleryViewer: React.FC<GalleryViewerProps> = ({
             </>
           )}
 
-          <Compass style={{ right: '8%', bottom: '5%', transform: 'translate(-50%, -50%)' }} />
+          {gallery.id !== '1F-facilities' && (
+            <Compass style={{ right: '8%', bottom: '5%', transform: 'translate(-50%, -50%)' }} />
+          )}
 
           {/* 景觀空拍不顯示警語 */}
           {!gallery.label.includes('景觀空拍') && (
