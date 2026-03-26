@@ -14,7 +14,11 @@ interface LandmarkData {
 const landmarks: LandmarkData[] = [
   { id: '_水湳轉運中心', name: '水湳轉運中心', images: [
     { src: '/images/a1/IMG_004.webp', alt: '水湳轉運中心實景拍攝' },
-    { src: '/images/a1/international-city-02.webp', alt: '水湳轉運中心' },
+    { src: '/images/a1/水湳轉運站.webp', alt: '水湳轉運中心' },
+    { src: '/images/a1/水湳轉運站2.webp', alt: '水湳轉運中心' },
+    { src: '/images/a1/水湳轉運站3.webp', alt: '水湳轉運中心' },
+    { src: '/images/a1/水湳轉運站4.webp', alt: '水湳轉運中心' },
+    { src: '/images/a1/水湳轉運站5.webp', alt: '水湳轉運中心' },
   ]},
   { id: '_台中國際會議中心', name: '台中國際會議中心', images: [
     { src: '/images/a1/IMG_002.webp', alt: '台中國際會議中心實景拍攝' },
@@ -33,8 +37,12 @@ const landmarks: LandmarkData[] = [
     { src: '/images/a1/international-city-05.webp', alt: '台中流行影音中心' },
   ]},
   { id: '_台中超巨蛋', name: '台中超巨蛋', images: [
-    { src: '/images/a1/157f7b46-031b-9a6a-f3be-cba5a4aea814.webp', alt: '政府示意圖' },
+    { src: '/images/a1/超巨蛋.jpg', alt: '台中超巨蛋' },
+    // { src: '/images/a1/157f7b46-031b-9a6a-f3be-cba5a4aea814.webp', alt: '政府示意圖' },
     { src: '/images/a1/international-city-06.webp', alt: '台中超巨蛋' },
+    { src: '/images/a1/超巨蛋2.jpg', alt: '台中超巨蛋' },
+    { src: '/images/a1/超巨蛋3.jpg', alt: '台中超巨蛋' },
+    { src: '/images/a1/超巨蛋4.jpg', alt: '台中超巨蛋' },
   ]},
 ];
 

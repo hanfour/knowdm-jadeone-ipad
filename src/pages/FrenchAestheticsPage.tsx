@@ -12,8 +12,8 @@ const videos = [
 
 // 國際大獎圖片
 const awardImages = [
-  { src: '/images/awards/聚碩-建築設計大獎-01.webp', alt: '建築設計大獎 01' },
-  { src: '/images/awards/聚碩-建築設計大獎-02.webp', alt: '建築設計大獎 02' },
+  { src: '/images/awards/聚碩-建築設計大獎-03.webp', alt: '建築設計大獎 01' },
+  { src: '/images/awards/聚碩-建築設計大獎-04.webp', alt: '建築設計大獎 02' },
 ];
 
 // 輪播圖片資料
