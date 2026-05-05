@@ -37,6 +37,7 @@ const FloorPlanPage: React.FC = () => {
   const [galleryViewer, setGalleryViewer] = useState<GalleryViewerState>({
     isOpen: false, gallery: null, currentIndex: 0, scale: 1,
   });
+  const [galleryStack, setGalleryStack] = useState<GalleryViewerState[]>([]);
 
   // 影片彈窗狀態
   const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -131,7 +132,21 @@ const FloorPlanPage: React.FC = () => {
     const isAerial = gallery.id.includes('-east') || gallery.id.includes('-south') || gallery.id.includes('-west') || gallery.id.includes('-north');
     setGalleryViewer({ isOpen: true, gallery, currentIndex: 0, scale: isAerial ? 1.325 : 1 });
   };
-  const closeGalleryViewer = () => setGalleryViewer(prev => ({ ...prev, isOpen: false }));
+  const closeGalleryViewer = () => {
+    if (galleryStack.length > 0) {
+      // 返回上一層
+      const parent = galleryStack[galleryStack.length - 1];
+      setGalleryStack(prev => prev.slice(0, -1));
+      setGalleryViewer(parent);
+    } else {
+      setGalleryViewer(prev => ({ ...prev, isOpen: false }));
+    }
+  };
+  const openNestedGallery = (gallery: GalleryButtonData) => {
+    setGalleryStack(prev => [...prev, galleryViewer]);
+    const isAerial = gallery.id.includes('-east') || gallery.id.includes('-south') || gallery.id.includes('-west') || gallery.id.includes('-north');
+    setGalleryViewer({ isOpen: true, gallery, currentIndex: 0, scale: isAerial ? 1.325 : 1 });
+  };
   const handleGalleryZoomIn = () => setGalleryViewer(prev => ({ ...prev, scale: Math.min(prev.scale + 0.5, 8) }));
   const handleGalleryZoomOut = () => setGalleryViewer(prev => ({ ...prev, scale: Math.max(prev.scale - 0.5, 1) }));
   const handleGalleryReset = () => {
@@ -385,6 +400,8 @@ const FloorPlanPage: React.FC = () => {
         currentIndex={galleryViewer.currentIndex}
         scale={galleryViewer.scale}
         floorLabel={selectedFloor.label}
+        hasParent={galleryStack.length > 0}
+        devMode={DEV_MODE}
         onClose={closeGalleryViewer}
         onZoomIn={handleGalleryZoomIn}
         onZoomOut={handleGalleryZoomOut}
@@ -392,6 +409,7 @@ const FloorPlanPage: React.FC = () => {
         onFullscreen={toggleFullscreen}
         onPrev={prevGalleryImage}
         onNext={nextGalleryImage}
+        onOpenNested={openNestedGallery}
       />
 
       {/* 影片彈窗 */}

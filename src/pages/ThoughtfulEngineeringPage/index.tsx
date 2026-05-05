@@ -162,6 +162,10 @@ const tabs: TabData[] = [
     name: '專屬收納櫃',
     title: '住戶專屬收納櫃',
     content: 'B2、B3梯廳內每戶專屬獨立置物空間，生活用品各有歸屬，將雜物留在家門之外，室內留下純粹舒適',
+    details: [
+      '地下室置物櫃尺寸：',
+      '50cm(寬)*45cm(深)*105cm(高)',
+    ],
     fullBgImage: '/images/c2/facilities/04-BF梯廳-02.webp',
   },
   {

@@ -114,6 +114,20 @@ export const floors: FloorData[] = [
               { x: 40.54, y: 44.67 },
             ],
           },
+          {
+            id: 'RF-toilet',
+            label: 'RF廁所',
+            images: [
+              { src: '/images/c2/facilities/07-RF廁所-01.webp', label: 'RF廁所 1' },
+              { src: '/images/c2/facilities/07-RF廁所-02.webp', label: 'RF廁所 2' },
+            ],
+            region: [
+              { x: 35.52, y: 36.75 },
+              { x: 40.13, y: 36.75 },
+              { x: 40.29, y: 42.09 },
+              { x: 35.61, y: 41.96 },
+            ],
+          },
         ],
       },
       { id: 'RF-2', label: '屋突二層', image: '/images/c2/floor-plans/RF-2.webp' },
@@ -168,7 +182,44 @@ export const floors: FloorData[] = [
         id: '1F-facilities',
         label: '公設規劃',
         images: [
-          { src: '/images/c2/facilities/06-公設規劃-01.webp', label: '公設規劃' },
+          {
+            src: '/images/c2/facilities/06-公設規劃-01.webp',
+            label: '公設規劃',
+            regions: [
+              {
+                points: [
+                  { x: 52.56, y: 48.45 },
+                  { x: 58.21, y: 48.45 },
+                  { x: 58.21, y: 53.09 },
+                  { x: 52.66, y: 53.48 },
+                ],
+                gallery: {
+                  id: '1F-toilet',
+                  label: '1F廁所',
+                  images: [
+                    { src: '/images/c2/facilities/09-1F廁所-01.webp', label: '1F廁所 1' },
+                    { src: '/images/c2/facilities/09-1F廁所-02.webp', label: '1F廁所 2' },
+                  ],
+                },
+              },
+              {
+                points: [
+                  { x: 52.66, y: 53.86 },
+                  { x: 58.21, y: 53.86 },
+                  { x: 58.21, y: 63.34 },
+                  { x: 52.56, y: 63.53 },
+                ],
+                gallery: {
+                  id: '1F-tutor-room',
+                  label: '1F家教室',
+                  images: [
+                    { src: '/images/c2/facilities/08-1F家教室-01.webp', label: '1F家教室 1' },
+                    { src: '/images/c2/facilities/08-1F家教室-02.webp', label: '1F家教室 2' },
+                  ],
+                },
+              },
+            ],
+          },
         ],
       },
       {

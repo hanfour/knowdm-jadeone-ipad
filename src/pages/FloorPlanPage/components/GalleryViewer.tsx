@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { GalleryButtonData } from '../types';
 import Compass from './Compass';
 import CloseButton from '../../../components/close-button';
@@ -9,6 +9,8 @@ interface GalleryViewerProps {
   currentIndex: number;
   scale: number;
   floorLabel: string;
+  hasParent?: boolean;
+  devMode?: boolean;
   onClose: () => void;
   onZoomIn: () => void;
   onZoomOut: () => void;
@@ -16,6 +18,7 @@ interface GalleryViewerProps {
   onFullscreen: () => void;
   onPrev: () => void;
   onNext: () => void;
+  onOpenNested?: (gallery: GalleryButtonData) => void;
 }
 
 const GalleryViewer: React.FC<GalleryViewerProps> = ({
@@ -24,6 +27,8 @@ const GalleryViewer: React.FC<GalleryViewerProps> = ({
   currentIndex,
   scale,
   floorLabel,
+  hasParent = false,
+  devMode = false,
   onClose,
   onZoomIn,
   onZoomOut,
@@ -31,10 +36,17 @@ const GalleryViewer: React.FC<GalleryViewerProps> = ({
   onFullscreen,
   onPrev,
   onNext,
+  onOpenNested,
 }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const imageRef = useRef<HTMLImageElement>(null);
+  const [devPoints, setDevPoints] = useState<{ x: number; y: number }[]>([]);
+  const [devCopied, setDevCopied] = useState(false);
+
+  const currentImage = gallery?.images[currentIndex];
+  const regions = currentImage?.regions;
 
   // 拖曳處理
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -68,6 +80,27 @@ const GalleryViewer: React.FC<GalleryViewerProps> = ({
     onReset();
   };
 
+  // DEV：點擊圖片取得百分比座標
+  const handleDevClick = (e: React.MouseEvent<HTMLImageElement>) => {
+    if (!devMode || !imageRef.current) return;
+    const rect = imageRef.current.getBoundingClientRect();
+    const x = parseFloat((((e.clientX - rect.left) / rect.width) * 100).toFixed(2));
+    const y = parseFloat((((e.clientY - rect.top) / rect.height) * 100).toFixed(2));
+    setDevPoints(prev => [...prev, { x, y }]);
+  };
+  const devUndo = () => setDevPoints(prev => prev.slice(0, -1));
+  const devClear = () => setDevPoints([]);
+  const devCopy = () => {
+    navigator.clipboard.writeText(JSON.stringify(devPoints, null, 2));
+    setDevCopied(true);
+    setTimeout(() => setDevCopied(false), 2000);
+  };
+
+  // 切換圖片時清空 dev points
+  useEffect(() => {
+    setDevPoints([]);
+  }, [currentIndex, gallery?.id]);
+
   return (
     <div
       className={`fixed inset-x-0 bottom-0 bg-white shadow-2xl z-40 transition-transform duration-500 ease-out ${
@@ -84,7 +117,20 @@ const GalleryViewer: React.FC<GalleryViewerProps> = ({
             <p className="mt-1 text-center text-xsmall">{gallery.label}</p>
           </div>
 
-          <CloseButton onClick={onClose} />
+          {hasParent ? (
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 z-30 px-4 py-2 bg-white/90 hover:bg-white text-gray-800 text-xsmall shadow-md flex items-center gap-2 transition-colors"
+              aria-label="返回公設規劃"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
+              <span>返回公設規劃</span>
+            </button>
+          ) : (
+            <CloseButton onClick={onClose} />
+          )}
 
           <div
             className="absolute z-10 flex flex-col gap-2"
@@ -133,7 +179,7 @@ const GalleryViewer: React.FC<GalleryViewerProps> = ({
           </div>
 
           <div
-            className="w-full h-full flex items-center justify-center overflow-hidden p-8"
+            className="relative w-full h-full flex items-center justify-center overflow-hidden p-8"
             style={{ cursor: scale > 1 ? (isDragging ? 'grabbing' : 'grab') : 'default' }}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
@@ -141,20 +187,102 @@ const GalleryViewer: React.FC<GalleryViewerProps> = ({
             onMouseLeave={handleMouseUp}
           >
             {gallery.images.length > 0 && (
-              <img
-                src={gallery.images[currentIndex].src}
-                alt={gallery.images[currentIndex].label}
-                loading="lazy"
-                decoding="async"
-                className="max-w-full max-h-full object-contain select-none"
-                draggable={false}
-                style={{
-                  transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
-                  transition: isDragging ? 'none' : 'transform 0.3s ease-out',
-                }}
-              />
+              <>
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    backgroundImage: `url(${gallery.images[currentIndex].src})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    filter: 'blur(40px) brightness(0.7)',
+                    transform: 'scale(1.1)',
+                  }}
+                />
+                <div
+                  className="relative"
+                  style={{
+                    transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
+                    transition: isDragging ? 'none' : 'transform 0.3s ease-out',
+                    display: 'inline-block',
+                    lineHeight: 0,
+                  }}
+                >
+                  <img
+                    ref={imageRef}
+                    src={gallery.images[currentIndex].src}
+                    alt={gallery.images[currentIndex].label}
+                    loading="lazy"
+                    decoding="async"
+                    className="select-none block"
+                    draggable={false}
+                    onClick={handleDevClick}
+                    style={{
+                      maxWidth: 'calc(100vw - 4rem)',
+                      maxHeight: 'calc(100vh - 80px - 4rem)',
+                      width: 'auto',
+                      height: 'auto',
+                      cursor: devMode ? 'crosshair' : undefined,
+                    }}
+                  />
+
+                  {/* 區域點擊熱區（巢狀圖庫入口） */}
+                  {!devMode && regions && regions.length > 0 && (
+                    <svg
+                      className="absolute inset-0"
+                      style={{ width: '100%', height: '100%', pointerEvents: 'none' }}
+                      viewBox="0 0 100 100"
+                      preserveAspectRatio="none"
+                    >
+                      {regions.map((region, idx) => (
+                        <polygon
+                          key={idx}
+                          points={region.points.map(p => `${p.x},${p.y}`).join(' ')}
+                          className="region-highlight pointer-events-auto"
+                          stroke="rgba(255, 215, 0, 0.6)"
+                          strokeWidth="0.3"
+                          onClick={() => onOpenNested?.(region.gallery)}
+                        />
+                      ))}
+                    </svg>
+                  )}
+
+                  {/* DEV：取座標視覺化 */}
+                  {devMode && devPoints.length > 0 && (
+                    <svg
+                      className="absolute inset-0"
+                      style={{ width: '100%', height: '100%', pointerEvents: 'none' }}
+                      viewBox="0 0 100 100"
+                      preserveAspectRatio="none"
+                    >
+                      {devPoints.length >= 3 && (
+                        <polygon
+                          points={devPoints.map(p => `${p.x},${p.y}`).join(' ')}
+                          fill="rgba(255, 215, 0, 0.2)"
+                          stroke="rgba(255, 215, 0, 0.8)"
+                          strokeWidth="0.3"
+                        />
+                      )}
+                      {devPoints.map((p, i) => (
+                        <circle key={i} cx={p.x} cy={p.y} r="0.6" fill="red" stroke="white" strokeWidth="0.15" />
+                      ))}
+                    </svg>
+                  )}
+                </div>
+              </>
             )}
           </div>
+
+          {/* DEV 面板 */}
+          {devMode && (
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 bg-black/90 text-white px-4 py-2 rounded shadow-lg text-xs font-mono">
+              <div className="mb-2">🔧 點擊圖片建立座標 ({devPoints.length} 點)</div>
+              <div className="flex gap-2">
+                <button onClick={devUndo} disabled={devPoints.length === 0} className="px-2 py-1 bg-orange-600 hover:bg-orange-500 disabled:bg-gray-600 rounded">↩ 復原</button>
+                <button onClick={devClear} disabled={devPoints.length === 0} className="px-2 py-1 bg-red-600 hover:bg-red-500 disabled:bg-gray-600 rounded">🗑 清除</button>
+                <button onClick={devCopy} disabled={devPoints.length === 0} className="px-2 py-1 bg-blue-600 hover:bg-blue-500 disabled:bg-gray-600 rounded">{devCopied ? '✓ 已複製' : '📋 複製 JSON'}</button>
+              </div>
+            </div>
+          )}
 
           {gallery.images.length > 1 && (
             <>
@@ -186,10 +314,13 @@ const GalleryViewer: React.FC<GalleryViewerProps> = ({
           {/* 景觀空拍不顯示警語 */}
           {!gallery.label.includes('景觀空拍') && (
             <div
-              className="absolute z-10 text-gray-400 text-micro"
-              style={{ right: '5rem', bottom: '0.5rem' }}
+              className="absolute z-10 text-gray-100 text-micro text-right"
+              style={{ right: '8rem', bottom: '2.5rem' }}
             >
-              此為示意圖僅供參考，實際以施工為準
+              {gallery.id === 'B2F-lobby' && (
+                <div>地下室置物櫃尺寸：50cm(寬)*45cm(深)*105cm(高)</div>
+              )}
+              <div>此為示意圖僅供參考，實際以施工為準</div>
             </div>
           )}
 

@@ -31,11 +31,24 @@ export interface MarkerData {
   label: string;
 }
 
+// 圖片內的點擊區域（可開啟巢狀圖庫）
+export interface ImageRegion {
+  points: { x: number; y: number }[];
+  gallery: GalleryButtonData;
+}
+
+// 圖庫圖片
+export interface GalleryImage {
+  src: string;
+  label: string;
+  regions?: ImageRegion[];
+}
+
 // 圖庫按鈕資料
 export interface GalleryButtonData {
   id: string;
   label: string;
-  images: { src: string; label: string }[];
+  images: GalleryImage[];
   region?: { x: number; y: number }[];
   noHighlight?: boolean;
 }
