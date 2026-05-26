@@ -130,7 +130,7 @@ const FloorPlanPage: React.FC = () => {
       return;
     }
     const isAerial = gallery.id.includes('-east') || gallery.id.includes('-south') || gallery.id.includes('-west') || gallery.id.includes('-north');
-    setGalleryViewer({ isOpen: true, gallery, currentIndex: 0, scale: isAerial ? 1.325 : 1 });
+    setGalleryViewer({ isOpen: true, gallery, currentIndex: 0, scale: isAerial ? 1.325 : 1.35 });
   };
   const closeGalleryViewer = () => {
     if (galleryStack.length > 0) {
@@ -145,13 +145,13 @@ const FloorPlanPage: React.FC = () => {
   const openNestedGallery = (gallery: GalleryButtonData) => {
     setGalleryStack(prev => [...prev, galleryViewer]);
     const isAerial = gallery.id.includes('-east') || gallery.id.includes('-south') || gallery.id.includes('-west') || gallery.id.includes('-north');
-    setGalleryViewer({ isOpen: true, gallery, currentIndex: 0, scale: isAerial ? 1.325 : 1 });
+    setGalleryViewer({ isOpen: true, gallery, currentIndex: 0, scale: isAerial ? 1.325 : 1.35 });
   };
   const handleGalleryZoomIn = () => setGalleryViewer(prev => ({ ...prev, scale: Math.min(prev.scale + 0.5, 8) }));
   const handleGalleryZoomOut = () => setGalleryViewer(prev => ({ ...prev, scale: Math.max(prev.scale - 0.5, 1) }));
   const handleGalleryReset = () => {
     const isAerial = galleryViewer.gallery?.id.includes('-east') || galleryViewer.gallery?.id.includes('-south') || galleryViewer.gallery?.id.includes('-west') || galleryViewer.gallery?.id.includes('-north');
-    setGalleryViewer(prev => ({ ...prev, scale: isAerial ? 1.325 : 1 }));
+    setGalleryViewer(prev => ({ ...prev, scale: isAerial ? 1.325 : 1.35 }));
   };
   const nextGalleryImage = () => {
     if (!galleryViewer.gallery) return;
