@@ -513,7 +513,7 @@ const AnchorFuturePage: React.FC = () => {
           {/* 滿版圖片 */}
           <div className="h-full flex items-center justify-center p-8">
             <img
-              src="/images/anchor-future/聚碩-重劃區比較表.webp"
+              src="/images/anchor-future/聚碩-重劃區比較表-02.webp"
               alt="重劃區比較表"
               loading="lazy"
               decoding="async"
