@@ -93,9 +93,9 @@ const ElevatorBrandPage: React.FC = () => {
     if (showModal !== 'elevator-feature') return null;
 
     return (
-      <div className="fixed inset-0 z-50 bg-white animate-fade-in">
+      <div className="fixed inset-0 z-50 bg-white animate-fade-in" style={{ top: '80px' }}>
         {/* 品牌 Logo - 左上角 */}
-        <div className="absolute top-24 left-8">
+        <div className="absolute top-8 left-8">
           <img
             src="/images/elevator/logo-hitachi.webp"
             alt="日立永大電梯"
@@ -105,8 +105,8 @@ const ElevatorBrandPage: React.FC = () => {
           />
         </div>
 
-        {/* 關閉按鈕 - 右上角 */}
-        <CloseButton onClick={closeModal} className="top-20 z-10" />
+        {/* 關閉按鈕 - 右上角（與 SHARP 彈窗一致，使用預設定位） */}
+        <CloseButton onClick={closeModal} />
 
         {/* 主要內容區 */}
         <div className="h-full flex">
@@ -170,7 +170,7 @@ const ElevatorBrandPage: React.FC = () => {
           </div>
 
           {/* 右側：產品圖片 */}
-          <div className="w-1/2 pt-24 h-full flex items-center justify-center bg-gray-50 p-12">
+          <div className="w-1/2 h-full flex items-center justify-center bg-gray-50 p-12">
             <img
               src="/images/elevator/elevator-product.webp"
               alt="日立電梯"
