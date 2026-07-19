@@ -248,8 +248,8 @@ const ThoughtfulEngineeringPage: React.FC = () => {
                   service-circle w-32 h-32 rounded-full border-2
                   flex flex-col items-center justify-center cursor-pointer
                   ${activeService === service.id
-                    ? 'active border-[#0b2d2a] bg-[#0b2d2a] text-white'
-                    : 'border-[#0b2d2a] bg-transparent text-[#0b2d2a] hover:bg-[#0b2d2a]/10'
+                    ? 'active border-brand-sekisui bg-brand-sekisui text-white'
+                    : 'border-brand-sekisui bg-transparent text-brand-sekisui hover:bg-brand-sekisui/10'
                   }
                 `}
               >

@@ -170,17 +170,13 @@ const PublicFacilityPage: React.FC = () => {
         }}
       >
         <p
-          className="text-white/70 text-small order-1"
-          style={{
-            letterSpacing: '0.2em',
-          }}
+          className="text-white/70 text-small order-1 tracking-widest-custom"
         >
           公設設計師/
         </p>
         <p
-          className="text-white text-small mt-12"
+          className="text-white text-small mt-12 tracking-ultra-custom"
           style={{
-            letterSpacing: '0.25em',
             fontWeight: '300',
           }}
         >
@@ -201,10 +197,7 @@ const PublicFacilityPage: React.FC = () => {
         {/* 標題區 */}
         <div className="mb-4">
           <p
-            className="text-[#f5e6b8] text-large font-medium"
-            style={{
-              letterSpacing: '0.15em',
-            }}
+            className="text-gold text-large font-medium tracking-wider-custom"
           >
             <span className="italic text-small">公設語境 / </span>
             <br/>
@@ -227,8 +220,7 @@ const PublicFacilityPage: React.FC = () => {
         {/* 底部按鈕 - 作品列表，點擊各項進入對應燈箱 */}
         <div className="mt-12">
           <div
-            className="inline-flex flex-col items-start border border-white/30 px-8 py-5 bg-white/10 backdrop-blur-sm"
-            style={{ letterSpacing: '0.08em' }}
+            className="inline-flex flex-col items-start border border-white/30 px-8 py-5 bg-white/10 backdrop-blur-sm tracking-medium-custom"
           >
             <span
               className="gradient-text-animate text-small mb-1"
@@ -240,8 +232,7 @@ const PublicFacilityPage: React.FC = () => {
                 <span
                   key={image.label}
                   onClick={() => openLightbox(index)}
-                  className="gradient-text-animate cursor-pointer hover:font-bold text-small"
-                  style={{ letterSpacing: '0.05em' }}
+                  className="gradient-text-animate cursor-pointer hover:font-bold text-small tracking-normal-custom"
                 >
                   {image.label}
                 </span>
@@ -270,10 +261,9 @@ const PublicFacilityPage: React.FC = () => {
       >
         {/* 主標題 - 直排，每字從左上飛入 */}
         <h3
-          className="text-white text-h2 font-light -mt-32"
+          className="text-white text-h2 font-light -mt-32 tracking-widest-custom"
           style={{
             writingMode: 'vertical-rl',
-            letterSpacing: '0.2em',
           }}
         >
           {titleText.split('').map((char, index) => (
@@ -296,10 +286,9 @@ const PublicFacilityPage: React.FC = () => {
 
         {/* 副標題 - 直排，每字從左上飛入 */}
         <h3
-          className="text-white text-h2 font-light"
+          className="text-white text-h2 font-light tracking-widest-custom"
           style={{
             writingMode: 'vertical-rl',
-            letterSpacing: '0.2em',
           }}
         >
           {subtitleText.split('').map((char, index) => (
@@ -438,7 +427,7 @@ const PublicFacilityPage: React.FC = () => {
             {/* 當前圖片標籤 */}
             <div className="flex items-center" style={{ gap: '0.5rem', marginBottom: '0.25rem' }}>
               <span className="bg-white/60" style={{ width: '0.5rem', height: '0.5rem' }} />
-              <span className="text-white text-xsmall" style={{ letterSpacing: '0.05em' }}>
+              <span className="text-white text-xsmall tracking-normal-custom">
                 {portfolioImages[lightbox.currentIndex].label}
               </span>
             </div>
@@ -487,7 +476,7 @@ const PublicFacilityPage: React.FC = () => {
 
           {/* 圖片計數器 */}
           <div
-            className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-sm"
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-small"
             style={{ zIndex: 10 }}
           >
             {lightbox.currentIndex + 1} / {portfolioImages.length}

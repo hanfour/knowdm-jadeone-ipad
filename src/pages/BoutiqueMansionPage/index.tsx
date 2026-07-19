@@ -81,7 +81,7 @@ const BoutiqueMansionPage: React.FC = () => {
 
       {/* 底部提示 */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center z-10">
-        <p className="text-sm text-[#f5e6b8]/50 tracking-wider">
+        <p className="text-small text-gold/50 tracking-wider">
           點選項目查看詳細介紹
         </p>
       </div>

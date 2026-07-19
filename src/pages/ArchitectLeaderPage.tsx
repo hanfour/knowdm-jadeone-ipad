@@ -70,10 +70,7 @@ const ArchitectLeaderPage: React.FC = () => {
       >
         {/* 第一行：琢藝之心 - 橫排，每字從左上飛入 */}
         <h2
-          className="text-white text-h2 font-light"
-          style={{
-            letterSpacing: '0.2em',
-          }}
+          className="text-white text-h2 font-light tracking-widest-custom"
         >
           {titleText.split('').map((char, index) => (
             <span
@@ -95,7 +92,7 @@ const ArchitectLeaderPage: React.FC = () => {
 
         {/* 第二行：New House New Life - 小字，不需要飛入動態，只淡入 */}
         <p
-          className="text-[#f5e6b8] text-body italic font-extrabold"
+          className="text-gold text-body italic font-extrabold"
           style={{
             fontFamily: '"Apple Chancery", "Lucida Calligraphy", cursive',
             letterSpacing: '0.025em',
@@ -109,10 +106,7 @@ const ArchitectLeaderPage: React.FC = () => {
 
         {/* 第三行：創作名宅界經典 - 橫排，每字從左上飛入 */}
         <h2
-          className="text-white text-h2 font-light"
-          style={{
-            letterSpacing: '0.2em',
-          }}
+          className="text-white text-h2 font-light tracking-widest-custom"
         >
           {subtitleText.split('').map((char, index) => (
             <span
@@ -145,17 +139,15 @@ const ArchitectLeaderPage: React.FC = () => {
             style={{ paddingLeft: '1rem' }}>
             {/* 左側裝飾線 */}
             <div
-              className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#d4a853]/80 via-[#f5e6b8]/60 to-transparent"
+              className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-gold-deep/80 via-gold/60 to-transparent"
             />
             <h1
-              className="text-[#f5e6b8] text-h2"
-              style={{ letterSpacing: '0.15em', }}
+              className="text-gold text-h2 tracking-wider-custom"
             >
               聚碩建設 李碩祺 董事長
             </h1>
             <h3
-              className="text-[#f5e6b8] text-large font-medium mt-4"
-              style={{ letterSpacing: '0.15em', }}
+              className="text-gold text-large font-medium mt-4 tracking-wider-custom"
             >
               獨領經典 風格執筆
             </h3>

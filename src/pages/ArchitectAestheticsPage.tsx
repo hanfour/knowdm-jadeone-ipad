@@ -47,7 +47,7 @@ const ArchitectAestheticsPage: React.FC = () => {
   });
 
   // 開啟燈箱（可指定起始圖片索引）
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   const openLightbox = (index: number = 0) => {
     setLightbox({ isOpen: true, currentIndex: index });
   };
@@ -170,10 +170,7 @@ const ArchitectAestheticsPage: React.FC = () => {
           {/* 標題區 */}
           <div className="mb-6">
             <p
-              className="text-[#f5e6b8] text-large font-medium"
-              style={{
-                letterSpacing: '0.1em',
-              }}
+              className="text-gold text-large font-medium tracking-wide-custom"
             >
               <span className='italic text-small'>建築美學 / </span><br/>
               艸引子事務所 蔡長恩建築師
@@ -193,8 +190,7 @@ const ArchitectAestheticsPage: React.FC = () => {
           {/* 底部按鈕 - 循環漸變文字 */}
           <div className="mt-16">
             <div
-              className="inline-flex flex-col items-start border border-white/25 px-8 py-4"
-              style={{ letterSpacing: '0.08em' }}
+              className="inline-flex flex-col items-start border border-white/25 px-8 py-4 tracking-medium-custom"
             >
               <span
                 className="gradient-text-animate text-small"
@@ -234,10 +230,9 @@ const ArchitectAestheticsPage: React.FC = () => {
           >
             {/* 左側，直排，每字從左上飛入 */}
             <h3
-              className="text-white text-h2 font-light -mt-32"
+              className="text-white text-h2 font-light -mt-32 tracking-ultra-custom"
               style={{
                 writingMode: 'vertical-rl',
-                letterSpacing: '0.25em',
               }}
             >
               {titleText.split('').map((char, index) => (
@@ -260,10 +255,9 @@ const ArchitectAestheticsPage: React.FC = () => {
 
             {/* 右側：主持建築師 蔡長恩建築師 - 直排，每字從左上飛入 */}
             <h3
-              className="text-white text-h2 font-light"
+              className="text-white text-h2 font-light tracking-ultra-custom"
               style={{
                 writingMode: 'vertical-rl',
-                letterSpacing: '0.25em',
               }}
             >
               {subtitleText.split('').map((char, index) => (
@@ -310,10 +304,7 @@ const ArchitectAestheticsPage: React.FC = () => {
             className="!hidden absolute right-12 bottom-10 text-right"
           >
             <p
-              className="text-white/50 text-xsmall"
-              style={{
-                letterSpacing: '0.15em',
-              }}
+              className="text-white/50 text-xsmall tracking-wider-custom"
             >
               建築師/ 蔡長恩
             </p>
@@ -438,7 +429,7 @@ const ArchitectAestheticsPage: React.FC = () => {
             {/* 當前圖片標籤 */}
             <div className="flex items-center" style={{ gap: '0.5rem', marginBottom: '0.25rem' }}>
               <span className="bg-white/60" style={{ width: '0.5rem', height: '0.5rem' }} />
-              <span className="text-white text-xsmall" style={{ letterSpacing: '0.05em' }}>
+              <span className="text-white text-xsmall tracking-normal-custom">
                 {portfolioImages[lightbox.currentIndex].label}
               </span>
             </div>
@@ -487,7 +478,7 @@ const ArchitectAestheticsPage: React.FC = () => {
 
           {/* 圖片計數器 */}
           <div
-            className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-sm"
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-small"
             style={{ zIndex: 10 }}
           >
             {lightbox.currentIndex + 1} / {portfolioImages.length}

@@ -307,10 +307,10 @@ const PreciousCollectionPage: React.FC = () => {
         >
           {detail.items.map((item, index) => (
             <div key={index} className="text-xsmall">
-              <p className="font-medium text-[#0b2d2a]">{item.name}</p>
-              <div className="flex gap-3 text-[#0b2d2a]/70">
-                <span>建蔽率 <span className="font-medium text-[#0b2d2a]">{item.coverage}</span></span>
-                <span>容積率 <span className="font-medium text-[#0b2d2a]">{item.far}</span></span>
+              <p className="font-medium text-brand-sekisui">{item.name}</p>
+              <div className="flex gap-3 text-brand-sekisui/70">
+                <span>建蔽率 <span className="font-medium text-brand-sekisui">{item.coverage}</span></span>
+                <span>容積率 <span className="font-medium text-brand-sekisui">{item.far}</span></span>
               </div>
             </div>
           ))}
@@ -322,7 +322,7 @@ const PreciousCollectionPage: React.FC = () => {
   // 渲染右側面板內容
   const renderPanelContent = () => {
     return (
-      <div className="text-[#0b2d2a]">
+      <div className="text-brand-sekisui">
         {/* 細部計畫內容概要 */}
         <h2
           className="font-medium text-large"
@@ -340,19 +340,19 @@ const PreciousCollectionPage: React.FC = () => {
 
           {/* 公共設施用地 */}
           <div>
-            <p className="text-small text-[#0b2d2a]/70">公共設施用地（含綠地）</p>
+            <p className="text-small text-brand-sekisui/70">公共設施用地（含綠地）</p>
             <p className="text-body font-medium">共50.03%</p>
           </div>
 
           {/* 綠覆型用地 */}
           <div>
-            <p className="text-small text-[#0b2d2a]/70">綠覆型用地（公園、綠地、國道）</p>
+            <p className="text-small text-brand-sekisui/70">綠覆型用地（公園、綠地、國道）</p>
             <p className="text-body font-medium">共33.01%</p>
           </div>
 
           {/* 土地使用分區 */}
-          <div className="border-b border-[#0b2d2a]/20 pb-2">
-            <p className="text-small text-[#0b2d2a]/70">土地使用分區</p>
+          <div className="border-b border-brand-sekisui/20 pb-2">
+            <p className="text-small text-brand-sekisui/70">土地使用分區</p>
             <p className="text-body font-medium mb-2">共49.97%</p>
           </div>
           <div>
@@ -364,11 +364,11 @@ const PreciousCollectionPage: React.FC = () => {
                   onClick={() => toggleAreaSelection('eco-residential')}
                   className={`w-full flex justify-between items-center py-0.5 transition-colors text-left ${
                     selectedArea === 'eco-residential'
-                      ? 'text-[#0b2d2a]'
-                      : 'hover:bg-[#0b2d2a]/5 hover:text-[#0b2d2a]'
+                      ? 'text-brand-sekisui'
+                      : 'hover:bg-brand-sekisui/5 hover:text-brand-sekisui'
                   }`}
                 >
-                  <span className={`flex items-center ${selectedArea === 'eco-residential' ? 'text-[#0b2d2a] font-medium' : 'text-[#0b2d2a]/70'}`}>
+                  <span className={`flex items-center ${selectedArea === 'eco-residential' ? 'text-brand-sekisui font-medium' : 'text-brand-sekisui/70'}`}>
                     <span className="mr-2 text-body transition-colors duration-300" style={{ color: '#f7b27d' }}>◆</span>
                     生態住宅專用區
                   </span>
@@ -396,11 +396,11 @@ const PreciousCollectionPage: React.FC = () => {
                   onClick={() => toggleAreaSelection('cultural-commercial')}
                   className={`w-full flex justify-between items-center py-0.5 transition-colors text-left ${
                     selectedArea === 'cultural-commercial'
-                      ? 'text-[#0b2d2a]'
-                      : 'hover:bg-[#0b2d2a]/5 hover:text-[#0b2d2a]'
+                      ? 'text-brand-sekisui'
+                      : 'hover:bg-brand-sekisui/5 hover:text-brand-sekisui'
                   }`}
                 >
-                  <span className={`flex items-center ${selectedArea === 'cultural-commercial' ? 'text-[#0b2d2a] font-medium' : 'text-[#0b2d2a]/70'}`}>
+                  <span className={`flex items-center ${selectedArea === 'cultural-commercial' ? 'text-brand-sekisui font-medium' : 'text-brand-sekisui/70'}`}>
                     <span className="mr-2 text-body transition-colors duration-300" style={{ color: '#f9c9c9' }}>◆</span>
                     文化商業專用區
                   </span>
@@ -428,11 +428,11 @@ const PreciousCollectionPage: React.FC = () => {
                   onClick={() => toggleAreaSelection('innovation-rd')}
                   className={`w-full flex justify-between items-center py-0.5 transition-colors text-left ${
                     selectedArea === 'innovation-rd'
-                      ? 'text-[#0b2d2a]'
-                      : 'hover:bg-[#0b2d2a]/5 hover:text-[#0b2d2a]'
+                      ? 'text-brand-sekisui'
+                      : 'hover:bg-brand-sekisui/5 hover:text-brand-sekisui'
                   }`}
                 >
-                  <span className={`flex items-center ${selectedArea === 'innovation-rd' ? 'text-[#0b2d2a] font-medium' : 'text-[#0b2d2a]/70'}`}>
+                  <span className={`flex items-center ${selectedArea === 'innovation-rd' ? 'text-brand-sekisui font-medium' : 'text-brand-sekisui/70'}`}>
                     <span className="mr-2 text-body transition-colors duration-300" style={{ color: '#a894c1' }}>◆</span>
                     創新研發專用區
                   </span>
@@ -456,7 +456,7 @@ const PreciousCollectionPage: React.FC = () => {
 
               {/* 經貿專用區 - 不可展開 */}
               <div className="flex justify-between items-center py-0.5">
-                <span className="flex items-center text-[#0b2d2a]/70">
+                <span className="flex items-center text-brand-sekisui/70">
                   <span className="mr-2 text-body" style={{ color: '#946133' }}>◆</span>
                   經貿專用區
                 </span>
@@ -468,7 +468,7 @@ const PreciousCollectionPage: React.FC = () => {
 
               {/* 文教區 - 不可展開 */}
               <div className="flex justify-between items-center py-0.5">
-                <span className="flex items-center text-[#0b2d2a]/70">
+                <span className="flex items-center text-brand-sekisui/70">
                   <span className="mr-2 text-body" style={{ color: '#d7a6b6' }}>◆</span>
                   文教專用區
                 </span>
@@ -480,8 +480,8 @@ const PreciousCollectionPage: React.FC = () => {
 
               {/* 其他專區 - 不可展開 */}
               <div className="flex justify-between items-center py-0.5">
-                <span className="flex items-center text-[#0b2d2a]/70">
-                  <span className="mr-2 text-body text-gray-400">◆</span>
+                <span className="flex items-center text-brand-sekisui/70">
+                  <span className="mr-2 text-body text-text-light">◆</span>
                   其他專區
                 </span>
                 <div className="flex items-center gap-2">
@@ -497,7 +497,7 @@ const PreciousCollectionPage: React.FC = () => {
   };
 
   return (
-    <div className="absolute inset-0 overflow-hidden bg-[#f5f0e6]">
+    <div className="absolute inset-0 overflow-hidden bg-cream">
       {/* 動畫樣式 */}
       <style>{`
         @keyframes fadeIn {
@@ -566,11 +566,11 @@ const PreciousCollectionPage: React.FC = () => {
         className="absolute z-20"
         style={{ left: '5%', top: '20%', maxWidth: '50%' }}
       >
-        <div className="text-[#0b2d2a]">
+        <div className="text-brand-sekisui">
           {/* 主標題 */}
           <h1
-            className="font-light text-h2 leading-tight"
-            style={{ letterSpacing: '0.05em', marginBottom: '1rem' }}
+            className="font-light text-h2 leading-tight tracking-normal-custom"
+            style={{ marginBottom: '1rem' }}
           >
             水湳珍稀 最美收藏
           </h1>
@@ -603,7 +603,7 @@ const PreciousCollectionPage: React.FC = () => {
       </div>
 
       {/* 右下角註解 */}
-      <div className="absolute z-10 text-[#0b2d2a]/50 text-micro" style={{ right: '5rem', bottom: '1rem' }}>
+      <div className="absolute z-10 text-brand-sekisui/50 text-micro" style={{ right: '5rem', bottom: '1rem' }}>
         示意圖僅供參考
       </div>
 
@@ -701,7 +701,7 @@ const PreciousCollectionPage: React.FC = () => {
           <div className="absolute bottom-8 right-8 flex items-center gap-3 z-20">
             <button
               onClick={goToPrevEcoImage}
-              className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
+              className="w-12 h-12 flex items-center justify-center border border-gray-300 text-text-muted hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <polyline points="15 18 9 12 15 6" />
@@ -710,7 +710,7 @@ const PreciousCollectionPage: React.FC = () => {
 
             <button
               onClick={goToNextEcoImage}
-              className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
+              className="w-12 h-12 flex items-center justify-center border border-gray-300 text-text-muted hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <polyline points="9 18 15 12 9 6" />
@@ -719,7 +719,7 @@ const PreciousCollectionPage: React.FC = () => {
           </div>
 
           {/* 頁碼指示 - 左下角 */}
-          <div className="absolute bottom-8 left-8 text-body text-gray-600 z-20">
+          <div className="absolute bottom-8 left-8 text-body text-text-tertiary z-20">
             {ecoGalleryIndex + 1} / {ecoGalleryImages.length}
           </div>
         </div>

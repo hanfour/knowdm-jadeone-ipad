@@ -23,7 +23,7 @@ const ComparisonLayout: React.FC<ComparisonLayoutProps> = ({
     <div className="flex-1 flex flex-col h-full overflow-hidden relative z-10">
       {/* 標題區 */}
       <div className="text-center pt-12 pb-2 shrink-0">
-        <h1 className="text-h2 tracking-widest-custom font-medium text-[#0b2d2a]">
+        <h1 className="text-h2 tracking-widest-custom font-medium text-brand-sekisui">
           {title}
         </h1>
         {subtitle && (

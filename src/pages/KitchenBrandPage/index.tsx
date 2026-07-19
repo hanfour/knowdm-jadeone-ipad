@@ -358,7 +358,7 @@ const KitchenBrandPage: React.FC = () => {
               </h3>
 
               {/* 內文 */}
-              <p className="text-body text-justify leading-relaxed text-gray-800">
+              <p className="text-body text-justify leading-relaxed text-text-primary">
                 {item.content}
               </p>
             </div>
@@ -369,7 +369,7 @@ const KitchenBrandPage: React.FC = () => {
 
       {/* 右下角註解 */}
       <div className="absolute bottom-4 right-12">
-        <p className="text-micro text-gray-500">
+        <p className="text-micro text-text-muted">
           產品情境示意圖僅供參考，以實際施工及合約為準
         </p>
       </div>
@@ -381,7 +381,7 @@ const KitchenBrandPage: React.FC = () => {
     <div className="flex-1 flex flex-col relative ps-[60px]">
       {/* 標題 */}
       <div className="text-center pt-8 pb-6">
-        <h1 className="text-h3 tracking-widest-custom text-gray-800">
+        <h1 className="text-h3 tracking-widest-custom text-text-primary">
           {currentTab.title}
         </h1>
       </div>
@@ -406,7 +406,7 @@ const KitchenBrandPage: React.FC = () => {
                   relative bg-white aspect-square flex items-center justify-center p-4
                   border-4 transition-all duration-300
                   ${hoveredEquipment === item.id
-                    ? 'border-[#f5e6b8]'
+                    ? 'border-gold'
                     : 'border-transparent'
                   }
                 `}
@@ -430,7 +430,7 @@ const KitchenBrandPage: React.FC = () => {
               <p
                 className={`
                   text-center mt-3 transition-colors duration-300 text-xsmall tracking-normal-custom
-                  ${hoveredEquipment === item.id ? 'text-gray-900 font-medium' : 'text-gray-700'}
+                  ${hoveredEquipment === item.id ? 'text-text-primary font-medium' : 'text-text-secondary'}
                 `}
               >
                 {item.name}
@@ -442,7 +442,7 @@ const KitchenBrandPage: React.FC = () => {
 
       {/* 右下角註解 */}
       <div className="absolute bottom-4 right-12">
-        <p className="text-micro text-gray-500">
+        <p className="text-micro text-text-muted">
           產品情境示意圖僅供參考，以實際施工及合約為準
         </p>
       </div>
@@ -467,7 +467,7 @@ const KitchenBrandPage: React.FC = () => {
         {/* 左側切換按鈕 */}
         <button
           onClick={() => setSpecImageIndex((prev) => (prev - 1 + specImages.length) % specImages.length)}
-          className="absolute left-8 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/80 text-gray-700 hover:bg-white transition-all rounded-full shadow-md"
+          className="absolute left-8 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/80 text-text-secondary hover:bg-white transition-all rounded-full shadow-md"
           aria-label="上一張"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -478,7 +478,7 @@ const KitchenBrandPage: React.FC = () => {
         {/* 右側切換按鈕 */}
         <button
           onClick={() => setSpecImageIndex((prev) => (prev + 1) % specImages.length)}
-          className="absolute right-8 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/80 text-gray-700 hover:bg-white transition-all rounded-full shadow-md"
+          className="absolute right-8 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/80 text-text-secondary hover:bg-white transition-all rounded-full shadow-md"
           aria-label="下一張"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -511,7 +511,7 @@ const KitchenBrandPage: React.FC = () => {
 
       {/* 右下角註解 */}
       <div className="absolute bottom-4 right-12">
-        <p className="text-micro text-gray-500">
+        <p className="text-micro text-text-muted">
           產品情境示意圖僅供參考，以實際施工及合約為準
         </p>
       </div>
@@ -563,7 +563,7 @@ const KitchenBrandPage: React.FC = () => {
         style={{ top: '80px' }}
       >
         {/* 左上角標籤 */}
-        <div className="absolute z-20 bg-[#d4a853]/50 text-black px-6 py-4">
+        <div className="absolute z-20 bg-gold-deep/50 text-black px-6 py-4">
           <h3 className="font-bold text-h1 text-center leading-none">
             {specImages[specImageIndex].label}
           </h3>
@@ -655,7 +655,7 @@ const KitchenBrandPage: React.FC = () => {
         </button>
 
         {/* 底部頁碼 */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-sm">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-small">
           {specImageIndex + 1} / {specImages.length}
         </div>
 
@@ -680,7 +680,7 @@ const KitchenBrandPage: React.FC = () => {
             />
             {/* Hover 遮罩 */}
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-              <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50 px-2 py-1">
+              <span className="text-white text-xsmall opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50 px-2 py-1">
                 點擊查看 3D 示意圖
               </span>
             </div>
@@ -689,7 +689,7 @@ const KitchenBrandPage: React.FC = () => {
 
         {/* 右下角註解 */}
         <div
-          className="absolute z-10 text-gray-400 text-micro"
+          className="absolute z-10 text-text-light text-micro"
           style={{ right: '5rem', bottom: '0.5rem' }}
         >
           此為示意圖僅供參考，實際以施工為準
@@ -705,7 +705,7 @@ const KitchenBrandPage: React.FC = () => {
             <div className="absolute inset-0 bg-white" />
 
             {/* 左上角標籤 */}
-            <div className="absolute z-20 bg-[#d4a853]/50 text-black px-6 py-4">
+            <div className="absolute z-20 bg-gold-deep/50 text-black px-6 py-4">
               <h3 className="font-bold text-h1 text-center leading-none">
                 {specImages[specImageIndex].label}
               </h3>
@@ -732,7 +732,7 @@ const KitchenBrandPage: React.FC = () => {
 
             {/* 右下角註解 */}
             <div
-              className="absolute z-10 text-gray-400 text-micro"
+              className="absolute z-10 text-text-light text-micro"
               style={{ right: '5rem', bottom: '0.5rem' }}
             >
               此為示意圖僅供參考，實際以施工為準
@@ -815,14 +815,14 @@ const KitchenBrandPage: React.FC = () => {
           <div className="w-3/5 p-16 flex flex-col justify-center overflow-y-auto max-h-[80vh]">
             {/* 產品名稱（多品牌時不顯示） */}
             {!selectedEquipment.subBrands?.length && (
-              <h3 className="text-large tracking-wide-custom text-gray-900 font-medium mb-4">
+              <h3 className="text-large tracking-wide-custom text-text-primary font-medium mb-4">
                 {selectedEquipment.name}
               </h3>
             )}
 
             {/* 產品說明（如有） */}
             {selectedEquipment.description && (
-              <p className="text-xsmall leading-relaxed text-gray-600 mb-4">
+              <p className="text-xsmall leading-relaxed text-text-tertiary mb-4">
                 {selectedEquipment.description}
               </p>
             )}
@@ -840,7 +840,7 @@ const KitchenBrandPage: React.FC = () => {
                       }`}
                     >
                       {/* 子品牌產品名稱 */}
-                      <h4 className="text-large tracking-normal-custom font-medium text-gray-900 mb-3">
+                      <h4 className="text-large tracking-normal-custom font-medium text-text-primary mb-3">
                         {subBrand.brand}
                       </h4>
                       {/* 子品牌特色列表 */}
@@ -848,7 +848,7 @@ const KitchenBrandPage: React.FC = () => {
                         {subBrand.features.map((feature, fIdx) => (
                           <li
                             key={fIdx}
-                            className="flex items-start text-xsmall leading-normal-custom text-gray-700"
+                            className="flex items-start text-xsmall leading-normal-custom text-text-secondary"
                           >
                             <span className="mr-2 mt-1.5 w-1.5 h-1.5 bg-gray-500 rounded-full flex-shrink-0" />
                             {feature}
@@ -880,7 +880,7 @@ const KitchenBrandPage: React.FC = () => {
                   <div className="flex gap-2">
                     <button
                       onClick={() => setSubBrandIndex((prev) => (prev - 1 + selectedEquipment.subBrands!.length) % selectedEquipment.subBrands!.length)}
-                      className="w-8 h-8 flex items-center justify-center border border-gray-300 text-gray-600 hover:border-gray-500 hover:text-gray-800 transition-all"
+                      className="w-8 h-8 flex items-center justify-center border border-gray-300 text-text-tertiary hover:border-gray-500 hover:text-text-primary transition-all"
                       aria-label="上一個品牌"
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -889,7 +889,7 @@ const KitchenBrandPage: React.FC = () => {
                     </button>
                     <button
                       onClick={() => setSubBrandIndex((prev) => (prev + 1) % selectedEquipment.subBrands!.length)}
-                      className="w-8 h-8 flex items-center justify-center border border-gray-300 text-gray-600 hover:border-gray-500 hover:text-gray-800 transition-all"
+                      className="w-8 h-8 flex items-center justify-center border border-gray-300 text-text-tertiary hover:border-gray-500 hover:text-text-primary transition-all"
                       aria-label="下一個品牌"
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -905,7 +905,7 @@ const KitchenBrandPage: React.FC = () => {
                 {selectedEquipment.features.map((feature, index) => (
                   <li
                     key={index}
-                    className={`flex items-start text-body leading-normal-custom text-gray-700 ${feature.startsWith('【') ? 'font-medium mt-3' : ''}`}
+                    className={`flex items-start text-body leading-normal-custom text-text-secondary ${feature.startsWith('【') ? 'font-medium mt-3' : ''}`}
                   >
                     {!feature.startsWith('【') && (
                       <span className="mr-3 mt-1.5 w-1.5 h-1.5 bg-gray-500 rounded-full flex-shrink-0" />
@@ -972,7 +972,7 @@ const KitchenBrandPage: React.FC = () => {
                       ? 'border-text-primary bg-text-primary/10 text-text-primary'
                       : 'border-gold bg-gold/10 text-gold'
                     : (currentTab.layout === 'cabinet' || currentTab.layout === 'equipment')
-                      ? 'border-gray-400 bg-white/50 text-gray-600 hover:border-gray-600 hover:text-gray-800'
+                      ? 'border-gray-400 bg-white/50 text-text-tertiary hover:border-gray-600 hover:text-text-primary'
                       : 'border-white/30 bg-black/30 text-white/70 hover:border-white/50 hover:text-white'
                   }
                 `}

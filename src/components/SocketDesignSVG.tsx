@@ -149,7 +149,7 @@ const SocketDesignSVG: React.FC<SocketDesignSVGProps> = ({ className = '' }) => 
         style={{ top: '80px' }}
       >
         {/* 標題 */}
-        <div className="absolute z-20 bg-[#d4a853]/50 text-black px-6 py-4">
+        <div className="absolute z-20 bg-gold-deep/50 text-black px-6 py-4">
           <h3 className="font-bold text-h1 text-center leading-none">插座設計</h3>
           <p className="mt-1 text-center text-xsmall">電氣規劃示意圖</p>
         </div>
@@ -226,7 +226,7 @@ const SocketDesignSVG: React.FC<SocketDesignSVGProps> = ({ className = '' }) => 
 
         {/* 警語 */}
         <div
-          className="absolute z-10 text-gray-400 text-micro"
+          className="absolute z-10 text-text-light text-micro"
           style={{ right: '5rem', bottom: '0.5rem' }}
         >
           此為示意圖僅供參考，實際以施工為準

@@ -121,7 +121,7 @@ const TrafficRoutePage: React.FC = () => {
   };
 
   return (
-    <div ref={containerRef} className="absolute inset-0 overflow-hidden bg-[#f5f0e6]">
+    <div ref={containerRef} className="absolute inset-0 overflow-hidden bg-cream">
       {/* 整體背景 */}
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -235,12 +235,11 @@ const TrafficRoutePage: React.FC = () => {
             onClick={() => handleCategoryClick(category.id)}
             className={`px-6 py-1 rounded-full border-2 transition-all duration-300 ${
               activeCategory === category.id
-                ? 'bg-[#68583f] text-white border-[#68583f]'
+                ? 'bg-earth text-white border-earth'
                 : activeCategory === null
-                ? 'bg-white/80 text-[#68583f] border-[#68583f]/30 hover:border-[#68583f] hover:text-white hover:bg-[#68583f]'
-                : 'bg-white/50 text-[#68583f]/50 border-[#68583f]/20'
-            } text-xsmall`}
-            style={{ letterSpacing: '0.05em' }}
+                ? 'bg-white/80 text-earth border-earth/30 hover:border-earth hover:text-white hover:bg-earth'
+                : 'bg-white/50 text-earth/50 border-earth/20'
+            } text-xsmall tracking-normal-custom`}
           >
             {category.name}
           </button>
@@ -254,8 +253,8 @@ const TrafficRoutePage: React.FC = () => {
             disabled={!canZoomOut}
             className={`w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
               canZoomOut
-                ? 'border-[#68583f]/30 bg-white/80 text-[#68583f] hover:bg-[#68583f] hover:text-white hover:border-[#68583f] cursor-pointer'
-                : 'border-[#68583f]/10 bg-white/40 text-[#68583f]/30 cursor-not-allowed'
+                ? 'border-earth/30 bg-white/80 text-earth hover:bg-earth hover:text-white hover:border-earth cursor-pointer'
+                : 'border-earth/10 bg-white/40 text-earth/30 cursor-not-allowed'
             }`}
             aria-label="縮小"
           >
@@ -267,7 +266,7 @@ const TrafficRoutePage: React.FC = () => {
           {/* 放大按鈕 */}
           <button
             onClick={handleZoomIn}
-            className="w-8 h-8 rounded-full border-2 border-[#68583f]/30 bg-white/80 text-[#68583f] flex items-center justify-center hover:bg-[#68583f] hover:text-white hover:border-[#68583f] transition-all duration-300"
+            className="w-8 h-8 rounded-full border-2 border-earth/30 bg-white/80 text-earth flex items-center justify-center hover:bg-earth hover:text-white hover:border-earth transition-all duration-300"
             aria-label="放大"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -279,7 +278,7 @@ const TrafficRoutePage: React.FC = () => {
           {/* 全螢幕按鈕 */}
           <button
             onClick={handleFullscreen}
-            className="w-8 h-8 rounded-full border-2 border-[#68583f]/30 bg-white/80 text-[#68583f] flex items-center justify-center hover:bg-[#68583f] hover:text-white hover:border-[#68583f] transition-all duration-300"
+            className="w-8 h-8 rounded-full border-2 border-earth/30 bg-white/80 text-earth flex items-center justify-center hover:bg-earth hover:text-white hover:border-earth transition-all duration-300"
             aria-label={isFullscreen ? '退出全螢幕' : '全螢幕'}
           >
             {isFullscreen ? (
@@ -297,7 +296,7 @@ const TrafficRoutePage: React.FC = () => {
           {canDrag && (position.x !== 0 || position.y !== 0) && (
             <button
               onClick={() => setPosition({ x: 0, y: 0 })}
-              className="w-8 h-8 rounded-full border-2 border-[#68583f]/30 bg-white/80 text-[#68583f] flex items-center justify-center hover:bg-[#68583f] hover:text-white hover:border-[#68583f] transition-all duration-300"
+              className="w-8 h-8 rounded-full border-2 border-earth/30 bg-white/80 text-earth flex items-center justify-center hover:bg-earth hover:text-white hover:border-earth transition-all duration-300"
               aria-label="重置位置"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

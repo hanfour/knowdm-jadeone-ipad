@@ -278,14 +278,14 @@ const BathroomBrandPage: React.FC = () => {
 
           {/* 標題 */}
           {currentTab.subtitle && (
-            <h1 className="text-large tracking-wider-custom font-medium text-gray-800 mb-6">
+            <h1 className="text-large tracking-wider-custom font-medium text-text-primary mb-6">
               {currentTab.subtitle}
             </h1>
           )}
 
           {/* 內文 */}
           {currentTab.content && (
-            <p className="text-body text-justify leading-relaxed text-gray-700 text-justify">
+            <p className="text-body text-justify leading-relaxed text-text-secondary text-justify">
               {currentTab.content}
             </p>
           )}
@@ -293,7 +293,7 @@ const BathroomBrandPage: React.FC = () => {
 
         {/* 右下角註解 */}
         <div className="absolute bottom-4 right-12">
-          <p className="text-micro text-gray-500">
+          <p className="text-micro text-text-muted">
             產品情境示意圖僅供參考，以實際施工及合約為準
           </p>
         </div>
@@ -306,7 +306,7 @@ const BathroomBrandPage: React.FC = () => {
     <div className="flex-1 flex flex-col relative ps-[60px]">
       {/* 標題 */}
       <div className="text-center pt-8 pb-6">
-        <h1 className="text-h3 tracking-widest-custom text-gray-800">
+        <h1 className="text-h3 tracking-widest-custom text-text-primary">
           {currentTab.title}｜<span className="font-bold">衛浴設備</span>
         </h1>
       </div>
@@ -334,7 +334,7 @@ const BathroomBrandPage: React.FC = () => {
                     relative bg-white aspect-square flex items-center justify-center p-4
                     border-4 transition-all duration-300
                     ${isClickable && hoveredEquipment === item.id
-                      ? 'border-[#f5e6b8]'
+                      ? 'border-gold'
                       : 'border-transparent'
                     }
                   `}
@@ -358,7 +358,7 @@ const BathroomBrandPage: React.FC = () => {
                 <p
                   className={`
                     text-center mt-3 transition-colors duration-300 text-xsmall tracking-normal-custom
-                    ${isClickable && hoveredEquipment === item.id ? 'text-gray-900 font-medium' : 'text-gray-700'}
+                    ${isClickable && hoveredEquipment === item.id ? 'text-text-primary font-medium' : 'text-text-secondary'}
                   `}
                 >
                   {item.name}
@@ -371,7 +371,7 @@ const BathroomBrandPage: React.FC = () => {
 
       {/* 右下角註解 */}
       <div className="absolute bottom-4 right-12">
-        <p className="text-micro text-gray-500">
+        <p className="text-micro text-text-muted">
           產品情境示意圖僅供參考，以實際施工及合約為準
         </p>
       </div>
@@ -464,14 +464,14 @@ const BathroomBrandPage: React.FC = () => {
                 <>
                   {/* 產品名稱（多品牌時不顯示） */}
                   {/* {!selectedEquipment.subBrands?.length && (
-                    <h3 className="text-large tracking-wide-custom text-gray-900 font-medium mb-4">
+                    <h3 className="text-large tracking-wide-custom text-text-primary font-medium mb-4">
                       {selectedEquipment.name}
                     </h3>
                   )} */}
 
                   {/* 產品說明（如有） */}
                   {selectedEquipment.description && (
-                    <p className="text-body leading-normal-custom text-gray-700 mb-4">
+                    <p className="text-body leading-normal-custom text-text-secondary mb-4">
                       {selectedEquipment.description}
                     </p>
                   )}
@@ -482,7 +482,7 @@ const BathroomBrandPage: React.FC = () => {
                       {selectedEquipment.subBrands.map((subBrand, idx) => (
                         <div key={idx}>
                           {/* 子品牌產品名稱 */}
-                          <h4 className="text-large tracking-normal-custom font-medium text-gray-900 mb-2">
+                          <h4 className="text-large tracking-normal-custom font-medium text-text-primary mb-2">
                             {subBrand.brand}
                           </h4>
                           {/* 子品牌特色列表 */}
@@ -490,7 +490,7 @@ const BathroomBrandPage: React.FC = () => {
                             {subBrand.features.map((feature, fIdx) => (
                               <li
                                 key={fIdx}
-                                className="flex items-start text-xsmall leading-normal-custom text-gray-700"
+                                className="flex items-start text-xsmall leading-normal-custom text-text-secondary"
                               >
                                 <span className="mr-2 mt-1.5 w-1.5 h-1.5 bg-gray-500 rounded-full flex-shrink-0" />
                                 {feature}
@@ -506,7 +506,7 @@ const BathroomBrandPage: React.FC = () => {
                       {selectedEquipment.features.map((feature, index) => (
                         <li
                           key={index}
-                          className={`flex items-start text-body leading-normal-custom text-gray-700 ${feature.startsWith('【') ? 'font-medium mt-3' : ''}`}
+                          className={`flex items-start text-body leading-normal-custom text-text-secondary ${feature.startsWith('【') ? 'font-medium mt-3' : ''}`}
                         >
                           {!feature.startsWith('【') && (
                             <span className="mr-3 mt-1.5 w-1.5 h-1.5 bg-gray-500 rounded-full flex-shrink-0" />
@@ -551,7 +551,7 @@ const BathroomBrandPage: React.FC = () => {
                   [writing-mode:vertical-rl] [text-orientation:mixed]
                   ${activeTab === tab.id
                     ? 'border-text-primary bg-text-primary/10 text-text-primary'
-                    : 'border-gray-400 bg-white/50 text-gray-600 hover:border-gray-600 hover:text-gray-800'
+                    : 'border-gray-400 bg-white/50 text-text-tertiary hover:border-gray-600 hover:text-text-primary'
                   }
                 `}
               >

@@ -79,7 +79,7 @@ const WindowBrandPage: React.FC = () => {
             </div>
             {/* 左下角警示文字 */}
             <div className="absolute bottom-4 left-4">
-              <p className="text-micro text-gray-600">
+              <p className="text-micro text-text-tertiary">
                 產品情境示意圖僅供參考，以實際施工及合約為準
               </p>
             </div>
@@ -91,19 +91,19 @@ const WindowBrandPage: React.FC = () => {
             style={{ backgroundColor: '#f8f8f8' }}
           >
             {/* 產品標題 */}
-            <h2 className="text-large tracking-wide-custom text-gray-900 font-bold mb-4">
+            <h2 className="text-large tracking-wide-custom text-text-primary font-bold mb-4">
               YRB-A氣密窗 超高水密靜謐恆久
             </h2>
 
             {/* 產品介紹 */}
-            <p className="text-body text-justify leading-relaxed text-gray-700 mb-6 text-justify">
+            <p className="text-body text-justify leading-relaxed text-text-secondary mb-6 text-justify">
               日本YKK精密工學，以嚴苛的氣密與水密標準，運用新等壓原理開發高水密性能，『高耐風壓』提升內外部隔音效果，節省冷暖氣能源消耗，冷暖氣運轉負擔減輕，提供靜謐安穩的舒適生活。
             </p>
 
             {/* 基本性能圖 */}
             <div className="mb-8">
               <div className="w-full flex justify-between items-center">
-                <p className="text-body text-justify leading-relaxed text-gray-900 font-medium">基本性能</p>
+                <p className="text-body text-justify leading-relaxed text-text-primary font-medium">基本性能</p>
                 <p className="text-micro">＊通風門的水密性能為750Pa、耐風壓性能為2800Pa、隔音性能為25dB</p>
               </div>
               <img
@@ -116,7 +116,7 @@ const WindowBrandPage: React.FC = () => {
             </div>
 
             {/* 實績照片標題 */}
-            <p className="text-body text-justify leading-relaxed text-gray-900 font-medium mb-4">
+            <p className="text-body text-justify leading-relaxed text-text-primary font-medium mb-4">
               實績照片
             </p>
 
@@ -133,7 +133,7 @@ const WindowBrandPage: React.FC = () => {
                       className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
-                  <p className="text-micro text-gray-800 text-center truncate">
+                  <p className="text-micro text-text-primary text-center truncate">
                     {project.name}
                   </p>
                 </div>
@@ -182,7 +182,7 @@ const WindowBrandPage: React.FC = () => {
           <div className="absolute bottom-8 right-8 flex items-center gap-3 z-20">
             <button
               onClick={goToPrevImage}
-              className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
+              className="w-12 h-12 flex items-center justify-center border border-gray-300 text-text-muted hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <polyline points="15 18 9 12 15 6" />
@@ -191,7 +191,7 @@ const WindowBrandPage: React.FC = () => {
 
             <button
               onClick={goToNextImage}
-              className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
+              className="w-12 h-12 flex items-center justify-center border border-gray-300 text-text-muted hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <polyline points="9 18 15 12 9 6" />
@@ -200,7 +200,7 @@ const WindowBrandPage: React.FC = () => {
           </div>
 
           {/* 頁碼指示 - 左下角 */}
-          <div className="absolute bottom-8 left-8 text-body text-gray-600 z-20">
+          <div className="absolute bottom-8 left-8 text-body text-text-tertiary z-20">
             {galleryIndex + 1} / {ykkGalleryImages.length}
           </div>
         </div>

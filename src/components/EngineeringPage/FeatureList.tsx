@@ -80,7 +80,7 @@ export const BulletLabelList: React.FC<BulletLabelListProps> = ({
     <div className={`space-y-3 ${className}`}>
       {features.map((feature, index) => (
         <div key={index} className="flex items-start">
-          <span className="w-2 h-2 bg-[#0b2d2a] rounded-full mt-2 mr-3 shrink-0" />
+          <span className="w-2 h-2 bg-brand-sekisui rounded-full mt-2 mr-3 shrink-0" />
           <div>
             <span className="text-body font-medium text-text-primary">
               {feature.label}：
@@ -146,7 +146,7 @@ export const StepButtons: React.FC<StepButtonsProps> = ({
           className={`
             px-5 py-2 text-body font-medium transition-all
             ${activeIndex === index
-              ? 'bg-[#d4a853] text-white'
+              ? 'bg-gold-deep text-white'
               : 'bg-white/80 text-text-secondary hover:bg-white'
             }
           `}

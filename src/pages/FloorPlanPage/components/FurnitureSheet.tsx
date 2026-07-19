@@ -122,11 +122,11 @@ const FurnitureSheet: React.FC<FurnitureSheetProps> = ({
     >
       {unit && (
         <>
-          <div className="absolute top-0 left-0 z-10 bg-[#d4a853]/50 text-black px-6 py-4">
+          <div className="absolute top-0 left-0 z-10 bg-gold-deep/50 text-black px-6 py-4">
             <h3 className="font-bold text-h3 text-center">
               {unit.id}戶
             </h3>
-            <p className="text-sm">傢俱配置參考圖</p>
+            <p className="text-small">傢俱配置參考圖</p>
           </div>
 
           <CloseButton onClick={onClose} />
@@ -178,7 +178,7 @@ const FurnitureSheet: React.FC<FurnitureSheetProps> = ({
             {vrUrl && (
               <button
                 onClick={handleVrClick}
-                className="w-10 h-10 bg-[#d4a853] shadow-md flex items-center justify-center hover:bg-[#c49843] transition-colors"
+                className="w-10 h-10 bg-gold-deep shadow-md flex items-center justify-center hover:bg-[#c49843] transition-colors"
                 aria-label="VR 實境"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
@@ -215,11 +215,11 @@ const FurnitureSheet: React.FC<FurnitureSheetProps> = ({
           {/* 戶型面積資訊 */}
           {unitAreaData[unit.id] && (
             <div
-              className="absolute z-10 bg-white/90 px-3 py-2 text-sm"
+              className="absolute z-10 bg-white/90 px-3 py-2 text-small"
               style={{ left: '5%', bottom: '30%' }}
             >
-              <div className="font-bold text-gray-800 mb-1">{unit.id}戶</div>
-              <div className="text-gray-600 space-y-0.5">
+              <div className="font-bold text-text-primary mb-1">{unit.id}戶</div>
+              <div className="text-text-tertiary space-y-0.5">
                 <div>權狀面積：{unitAreaData[unit.id].權狀面積}</div>
                 <div>室內面積：{unitAreaData[unit.id].室內面積}</div>
                 <div>陽台面積：{unitAreaData[unit.id].陽台面積}</div>
@@ -235,7 +235,7 @@ const FurnitureSheet: React.FC<FurnitureSheetProps> = ({
           />
 
           <div
-            className="absolute z-10 text-gray-400 text-micro"
+            className="absolute z-10 text-text-light text-micro"
             style={{ right: '5rem', bottom: '.5rem' }}
           >
             本圖僅為傢俱配置參考，實際依施工為準<br/>本戶傢配置參考圖由室內設計公司提供
@@ -255,9 +255,9 @@ const FurnitureSheet: React.FC<FurnitureSheetProps> = ({
                   <path d="M18 6L6 18M6 6l12 12" />
                 </svg>
               </button>
-              <div className="absolute top-4 left-4 z-10 bg-[#d4a853] text-white px-4 py-2">
+              <div className="absolute top-4 left-4 z-10 bg-gold-deep text-white px-4 py-2">
                 <span className="font-bold">{unit.id}戶</span>
-                <span className="ml-2 text-sm">VR 實境</span>
+                <span className="ml-2 text-small">VR 實境</span>
               </div>
               <iframe
                 src={vrUrl}

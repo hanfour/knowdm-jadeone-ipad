@@ -361,7 +361,7 @@ const AnchorFuturePage: React.FC = () => {
                       key={index}
                       className="flex text-body leading-relaxed text-text-primary"
                     >
-                      <span className="mr-3 text-gray-400 flex-shrink-0">◆</span>
+                      <span className="mr-3 text-text-light flex-shrink-0">◆</span>
                       <span>{project}</span>
                     </li>
                   ))}
@@ -376,19 +376,19 @@ const AnchorFuturePage: React.FC = () => {
               </h3>
               <div className="space-y-1">
                 <div className="flex text-body leading-relaxed text-text-primary">
-                  <span className="mr-3 text-gray-400 flex-shrink-0">◆</span>
+                  <span className="mr-3 text-text-light flex-shrink-0">◆</span>
                   <span>重劃區面積：{modalDistrictData.development.totalArea}</span>
                 </div>
                 <div className="flex text-body leading-relaxed text-text-primary">
-                  <span className="mr-3 text-gray-400 flex-shrink-0">◆</span>
+                  <span className="mr-3 text-text-light flex-shrink-0">◆</span>
                   <span>公共建設比例：{modalDistrictData.development.publicRatio}</span>
                 </div>
                 <div className="flex text-body leading-relaxed text-text-primary">
-                  <span className="mr-3 text-gray-400 flex-shrink-0">◆</span>
+                  <span className="mr-3 text-text-light flex-shrink-0">◆</span>
                   <span>住宅面積比例：{modalDistrictData.development.residentialRatio}</span>
                 </div>
                 <div className="flex text-body leading-relaxed text-text-primary">
-                  <span className="mr-3 text-gray-400 flex-shrink-0">◆</span>
+                  <span className="mr-3 text-text-light flex-shrink-0">◆</span>
                   <span>綠化面積：{modalDistrictData.development.greenRatio}（{modalDistrictData.development.greenArea}）</span>
                 </div>
               </div>
@@ -430,7 +430,7 @@ const AnchorFuturePage: React.FC = () => {
               <div className="absolute bottom-8 right-8 flex items-center gap-3">
                 <button
                   onClick={goToPrevImage}
-                  className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
+                  className="w-12 h-12 flex items-center justify-center border border-gray-300 text-text-muted hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
                 >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                     <polyline points="15 18 9 12 15 6" />
@@ -438,7 +438,7 @@ const AnchorFuturePage: React.FC = () => {
                 </button>
                 <button
                   onClick={goToNextImage}
-                  className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
+                  className="w-12 h-12 flex items-center justify-center border border-gray-300 text-text-muted hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
                 >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                     <polyline points="9 18 15 12 9 6" />
@@ -528,7 +528,7 @@ const AnchorFuturePage: React.FC = () => {
   };
 
   return (
-    <div className="absolute inset-0 overflow-hidden bg-[#f5f0e6]">
+    <div className="absolute inset-0 overflow-hidden bg-cream">
       {/* 整體背景 */}
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -562,11 +562,11 @@ const AnchorFuturePage: React.FC = () => {
         className="absolute z-20"
         style={{ right: '5rem', bottom: '8rem' }}
       >
-        <div className="text-[#0b2d2a]" style={{ maxWidth: '28rem' }}>
+        <div className="text-brand-sekisui" style={{ maxWidth: '28rem' }}>
           {/* 主標題 */}
           <h1
-            className="font-light text-h2 leading-tight"
-            style={{ letterSpacing: '0.05em', marginBottom: '1rem' }}
+            className="font-light text-h2 leading-tight tracking-normal-custom"
+            style={{ marginBottom: '1rem' }}
           >
             重劃之姿 定錨未來
           </h1>

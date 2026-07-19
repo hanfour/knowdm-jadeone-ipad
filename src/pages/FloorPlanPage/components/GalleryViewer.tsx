@@ -110,7 +110,7 @@ const GalleryViewer: React.FC<GalleryViewerProps> = ({
     >
       {gallery && (
         <>
-          <div className="absolute z-20 bg-[#d4a853]/50 text-black px-6 py-4">
+          <div className="absolute z-20 bg-gold-deep/50 text-black px-6 py-4">
             <h3 className="font-bold text-h1 text-center leading-none">
               {floorLabel}
             </h3>
@@ -120,7 +120,7 @@ const GalleryViewer: React.FC<GalleryViewerProps> = ({
           {hasParent ? (
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-30 px-4 py-2 bg-white/90 hover:bg-white text-gray-800 text-xsmall shadow-md flex items-center gap-2 transition-colors"
+              className="absolute top-4 right-4 z-30 px-4 py-2 bg-white/90 hover:bg-white text-text-primary text-xsmall shadow-md flex items-center gap-2 transition-colors"
               aria-label="返回公設規劃"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -274,7 +274,7 @@ const GalleryViewer: React.FC<GalleryViewerProps> = ({
 
           {/* DEV 面板 */}
           {devMode && (
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 bg-black/90 text-white px-4 py-2 rounded shadow-lg text-xs font-mono">
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 bg-black/90 text-white px-4 py-2 rounded shadow-lg text-xsmall font-mono">
               <div className="mb-2">🔧 點擊圖片建立座標 ({devPoints.length} 點)</div>
               <div className="flex gap-2">
                 <button onClick={devUndo} disabled={devPoints.length === 0} className="px-2 py-1 bg-orange-600 hover:bg-orange-500 disabled:bg-gray-600 rounded">↩ 復原</button>
@@ -325,7 +325,7 @@ const GalleryViewer: React.FC<GalleryViewerProps> = ({
           )}
 
           {gallery.images.length > 1 && (
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-sm">
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-small">
               {currentIndex + 1} / {gallery.images.length}
             </div>
           )}

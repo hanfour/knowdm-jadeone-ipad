@@ -96,7 +96,7 @@ const LockBrandPage: React.FC = () => {
           style={{ backgroundColor: '#f5f5f5' }}
         >
           {/* 產品標題 */}
-          <h2 className="text-h3 tracking-wide-custom text-gray-900 font-medium mb-8">
+          <h2 className="text-h3 tracking-wide-custom text-text-primary font-medium mb-8">
             <b>Yale 歐規鎖匣型</b>（卡片密碼型電子鎖）
           </h2>
 
@@ -118,7 +118,7 @@ const LockBrandPage: React.FC = () => {
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <h3 className="text-large tracking-wide-custom text-gray-900 font-medium transition-colors duration-300 group-hover:text-brand-sekisui">
+                    <h3 className="text-large tracking-wide-custom text-text-primary font-medium transition-colors duration-300 group-hover:text-brand-sekisui">
                       {feature.title}
                     </h3>
                     {feature.badge && (
@@ -127,7 +127,7 @@ const LockBrandPage: React.FC = () => {
                       </span>
                     )}
                   </div>
-                  <p className="text-body leading-normal-custom text-gray-600 transition-colors duration-300 group-hover:text-gray-800">
+                  <p className="text-body leading-normal-custom text-text-tertiary transition-colors duration-300 group-hover:text-text-primary">
                     {feature.description}
                   </p>
                 </div>
@@ -137,7 +137,7 @@ const LockBrandPage: React.FC = () => {
 
           {/* 右下角註解 */}
           <div className="absolute bottom-4 right-8">
-            <p className="text-micro text-gray-500">
+            <p className="text-micro text-text-muted">
               產品情境示意圖僅供參考，以實際施工及合約為準
             </p>
           </div>

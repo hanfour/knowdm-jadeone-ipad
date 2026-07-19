@@ -139,7 +139,7 @@ const ElevatorBrandPage: React.FC = () => {
                         {index + 1}.
                       </span>
                     ) : (
-                      <span className="mr-3 text-gray-400 flex-shrink-0">◆</span>
+                      <span className="mr-3 text-text-light flex-shrink-0">◆</span>
                     )}
                     <span>{feature}</span>
                   </li>
@@ -151,7 +151,7 @@ const ElevatorBrandPage: React.FC = () => {
             <div className="absolute bottom-12 right-8 flex items-center gap-3">
               <button
                 onClick={goToPrevPage}
-                className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors"
+                className="w-12 h-12 flex items-center justify-center border border-gray-300 text-text-muted hover:border-text-primary hover:text-text-primary transition-colors"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                   <polyline points="15 18 9 12 15 6" />
@@ -160,7 +160,7 @@ const ElevatorBrandPage: React.FC = () => {
 
               <button
                 onClick={goToNextPage}
-                className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors"
+                className="w-12 h-12 flex items-center justify-center border border-gray-300 text-text-muted hover:border-text-primary hover:text-text-primary transition-colors"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                   <polyline points="9 18 15 12 9 6" />
@@ -231,7 +231,7 @@ const ElevatorBrandPage: React.FC = () => {
                   <span
                     className={`
                       mr-3 text-body transition-colors duration-300
-                      ${hoveredItem === item.id ? 'text-text-primary' : 'text-gray-400'}
+                      ${hoveredItem === item.id ? 'text-text-primary' : 'text-text-light'}
                     `}
                   >
                     ◆
@@ -253,7 +253,7 @@ const ElevatorBrandPage: React.FC = () => {
 
         {/* 右下角註解 */}
         <div className="absolute bottom-4 right-8">
-          <p className="text-micro text-gray-600">
+          <p className="text-micro text-text-tertiary">
             情境示意圖僅供參考，以實際施工及合約為準
           </p>
         </div>
@@ -283,7 +283,7 @@ const ElevatorBrandPage: React.FC = () => {
           <div className="absolute bottom-8 right-8 flex items-center gap-3 z-20">
             <button
               onClick={goToPrevSharpImage}
-              className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
+              className="w-12 h-12 flex items-center justify-center border border-gray-300 text-text-muted hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <polyline points="15 18 9 12 15 6" />
@@ -292,7 +292,7 @@ const ElevatorBrandPage: React.FC = () => {
 
             <button
               onClick={goToNextSharpImage}
-              className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
+              className="w-12 h-12 flex items-center justify-center border border-gray-300 text-text-muted hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <polyline points="9 18 15 12 9 6" />

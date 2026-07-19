@@ -111,13 +111,13 @@ const WaterBrandPage: React.FC = () => {
           {/* 右側：產品資訊 */}
           <div className="w-3/5 p-8 flex flex-col justify-center overflow-y-auto">
             {/* 產品名稱 */}
-            <h3 className="text-large tracking-wide-custom text-gray-900 font-bold mb-4">
+            <h3 className="text-large tracking-wide-custom text-text-primary font-bold mb-4">
               {selectedProduct.name}
             </h3>
 
             {/* 產品說明（如有） */}
             {selectedProduct.description && (
-              <p className="text-body leading-relaxed text-gray-600 mb-4">
+              <p className="text-body leading-relaxed text-text-tertiary mb-4">
                 {selectedProduct.description}
               </p>
             )}
@@ -127,7 +127,7 @@ const WaterBrandPage: React.FC = () => {
               {selectedProduct.features.map((feature, index) => (
                 <li
                   key={index}
-                  className="flex items-start text-body leading-relaxed text-gray-700"
+                  className="flex items-start text-body leading-relaxed text-text-secondary"
                 >
                   <span className="mr-3 mt-2 w-1.5 h-1.5 bg-gray-500 rounded-full flex-shrink-0" />
                   {feature}
@@ -172,18 +172,18 @@ const WaterBrandPage: React.FC = () => {
 
             {/* 標題/副標題 */}
             {currentTab.subtitle ? (
-              <h2 className="text-h3 tracking-wide-custom text-gray-900 font-bold mb-6 whitespace-pre-line">
+              <h2 className="text-h3 tracking-wide-custom text-text-primary font-bold mb-6 whitespace-pre-line">
                 {currentTab.subtitle}
               </h2>
             ) : (
-              <h2 className="text-h3 tracking-wide-custom text-gray-900 font-bold mb-6">
+              <h2 className="text-h3 tracking-wide-custom text-text-primary font-bold mb-6">
                 {currentTab.title}
               </h2>
             )}
 
             {/* 內文 */}
             {currentTab.contentType === 'paragraph' ? (
-              <p className="text-body text-justify leading-relaxed text-gray-700 text-justify">
+              <p className="text-body text-justify leading-relaxed text-text-secondary text-justify">
                 {currentTab.content}
               </p>
             ) : (
@@ -191,7 +191,7 @@ const WaterBrandPage: React.FC = () => {
                 {currentTab.content.split('\n').map((item, index) => (
                   <li
                     key={index}
-                    className="flex items-start text-body leading-relaxed text-gray-700"
+                    className="flex items-start text-body leading-relaxed text-text-secondary"
                   >
                     <span className="mr-3 mt-2 w-1.5 h-1.5 bg-brand-sakura rounded-full flex-shrink-0" />
                     {item}
@@ -238,7 +238,7 @@ const WaterBrandPage: React.FC = () => {
                       className={`
                         text-center mt-2 text-xsmall tracking-normal-custom
                         transition-colors duration-300
-                        ${hoveredProduct === product.id ? 'text-gray-900 font-medium' : 'text-gray-600'}
+                        ${hoveredProduct === product.id ? 'text-text-primary font-medium' : 'text-text-tertiary'}
                       `}
                     >
                       {product.name}
@@ -274,7 +274,7 @@ const WaterBrandPage: React.FC = () => {
                 [writing-mode:vertical-rl] [text-orientation:mixed]
                 ${activeTab === tab.id
                   ? 'border-text-primary bg-text-primary/10 text-text-primary'
-                  : 'border-gray-400 bg-white/50 text-gray-600 hover:border-gray-600 hover:text-gray-800'
+                  : 'border-gray-400 bg-white/50 text-text-tertiary hover:border-gray-600 hover:text-text-primary'
                 }
               `}
             >
@@ -285,7 +285,7 @@ const WaterBrandPage: React.FC = () => {
 
         {/* 右下角註解 */}
         <div className="absolute bottom-4 right-8">
-          <p className="text-micro text-gray-500">
+          <p className="text-micro text-text-muted">
             情境示意圖僅供參考，以實際施工及合約為準
           </p>
         </div>

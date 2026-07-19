@@ -39,8 +39,8 @@ const VerticalTabList: React.FC<VerticalTabListProps> = ({
                 tab-item px-2 py-4 h-28 text-micro tracking-normal-custom
                 [writing-mode:vertical-rl] [text-orientation:mixed]
                 ${activeTab === tab.id
-                  ? 'active bg-[#0b2d2a] text-gold'
-                  : 'bg-[#0b2d2a] text-white/80'
+                  ? 'active bg-brand-sekisui text-gold'
+                  : 'bg-brand-sekisui text-white/80'
                 }
               `}
             >

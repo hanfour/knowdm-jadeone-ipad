@@ -67,7 +67,7 @@ const FlooringBrandPage: React.FC = () => {
 
                     {/* 介紹 */}
                     <p
-                      className="text-body text-justify leading-relaxed text-gray-800 text-justify animate-fade-in-left"
+                      className="text-body text-justify leading-relaxed text-text-primary text-justify animate-fade-in-left"
                       style={{ animationDelay: '0.4s' }}
                     >
                       馬來西亞Robina羅賓木地板，符合歐盟低甲醛、綠建材標章、國家CNS防焰一級保證，使用熱帶快生複合硬木種，最適台灣氣候的超耐潮地板，獨創真空邊緣防護系統「專利雙卡扣設計」有效防滲漏，10年耐白蟻保證。
@@ -77,7 +77,7 @@ const FlooringBrandPage: React.FC = () => {
 
                 {/* 左下角警示文字 */}
                 <div className="absolute bottom-4 left-8">
-                  <p className="text-micro text-gray-500">
+                  <p className="text-micro text-text-muted">
                     產品情境示意圖僅供參考，以實際施工及合約為準
                   </p>
                 </div>
@@ -142,7 +142,7 @@ const FlooringBrandPage: React.FC = () => {
                         className="w-20 h-20 object-contain mb-4"
                       />
                       <h3 className="text-large tracking-wide-custom text-brand-sekisui font-bold mb-2">抗潮效果</h3>
-                      <p className="text-body text-justify leading-relaxed text-gray-800 text-justify max-w-[200px]">
+                      <p className="text-body text-justify leading-relaxed text-text-primary text-justify max-w-[200px]">
                         對水氣具有極好的抵抗，對台灣潮濕氣候所造成材料腐化具有極好的效果。
                       </p>
                     </div>
@@ -157,7 +157,7 @@ const FlooringBrandPage: React.FC = () => {
                         className="w-20 h-20 object-contain mb-4"
                       />
                       <h3 className="text-large tracking-wide-custom text-brand-sekisui font-bold mb-2">抗壓強度</h3>
-                      <p className="text-body text-justify leading-relaxed text-gray-800 text-justify max-w-[200px]">
+                      <p className="text-body text-justify leading-relaxed text-text-primary text-justify max-w-[200px]">
                         低壓縮永久變型率，極高的抗壓程度，具有出色的承重性能。
                       </p>
                     </div>
@@ -172,7 +172,7 @@ const FlooringBrandPage: React.FC = () => {
                         className="w-20 h-20 object-contain mb-4"
                       />
                       <h3 className="text-large tracking-wide-custom text-brand-sekisui font-bold mb-2">行走聲響</h3>
-                      <p className="text-body text-justify leading-relaxed text-gray-800 text-justify max-w-[200px]">
+                      <p className="text-body text-justify leading-relaxed text-text-primary text-justify max-w-[200px]">
                         有效隔絕行走時的響聲，消除各種硬質鞋底發出的共振。
                       </p>
                     </div>
@@ -187,7 +187,7 @@ const FlooringBrandPage: React.FC = () => {
                         className="w-20 h-20 object-contain mb-4"
                       />
                       <h3 className="text-large tracking-wide-custom text-brand-sekisui font-bold mb-2">極佳彈性</h3>
-                      <p className="text-body text-justify leading-relaxed text-gray-800 text-justify max-w-[200px]">
+                      <p className="text-body text-justify leading-relaxed text-text-primary text-justify max-w-[200px]">
                         即使在使用數年後，仍具有良好的彈性，也不會降低聲學性能。
                       </p>
                     </div>
@@ -202,7 +202,7 @@ const FlooringBrandPage: React.FC = () => {
                         className="w-20 h-20 object-contain mb-4"
                       />
                       <h3 className="text-large tracking-wide-custom text-brand-sekisui font-bold mb-2">結構隔音</h3>
-                      <p className="text-body text-justify leading-relaxed text-gray-800 text-justify max-w-[200px]">
+                      <p className="text-body text-justify leading-relaxed text-text-primary text-justify max-w-[200px]">
                         出色的結構隔音效果，在低頻範圍內有最佳的性能。
                       </p>
                     </div>
@@ -212,7 +212,7 @@ const FlooringBrandPage: React.FC = () => {
 
               {/* 右下角警示文字 */}
               <div className="absolute bottom-4 right-12">
-                <p className="text-micro text-gray-500">
+                <p className="text-micro text-text-muted">
                   產品情境示意圖僅供參考，以實際施工及合約為準
                 </p>
               </div>
@@ -232,7 +232,7 @@ const FlooringBrandPage: React.FC = () => {
                   [writing-mode:vertical-rl] [text-orientation:mixed]
                   ${activeTab === tab.id
                     ? 'border-text-primary bg-text-primary/10 text-text-primary'
-                    : 'border-gray-400 bg-white/50 text-gray-600 hover:border-gray-600 hover:text-gray-800'
+                    : 'border-gray-400 bg-white/50 text-text-tertiary hover:border-gray-600 hover:text-text-primary'
                   }
                 `}
               >

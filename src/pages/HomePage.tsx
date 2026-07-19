@@ -6,8 +6,7 @@ import {
   LightBlobsBackground,
   ClickRippleEffect
 } from '../components/backgrounds';
-// import FullscreenMenu from '../components/FullscreenMenu';
-import FullscreenMenuAlt from '../components/FullscreenMenuAlt';
+import FullscreenMenu from '../components/FullscreenMenu';
 import MenuButton from '../components/menu-button';
 import IntroAnimation from '../components/IntroAnimation';
 import { menuSections } from '../config/menu';
@@ -148,12 +147,11 @@ const HomePage: React.FC = () => {
         {/* 開場動畫按鈕 - 右下 */}
         <button
           onClick={(e) => { e.stopPropagation(); restartIntro(); }}
-          className="absolute z-20 text-white/60 hover:text-white active:text-white text-micro border border-white/40 hover:border-white active:border-white transition-all"
+          className="absolute z-20 text-white/60 hover:text-white active:text-white text-micro border border-white/40 hover:border-white active:border-white transition-all tracking-wide-custom"
           style={{
             bottom: '2rem',
             right: '2rem',
             padding: '0.25rem 1rem',
-            letterSpacing: '0.1em',
             background: 'rgba(0,0,0,0.2)'
           }}
         >
@@ -256,8 +254,7 @@ const HomePage: React.FC = () => {
             >
               {/* 主標題 - 可點擊區域 */}
               <div
-                className="font-semibold text-white text-display leading-normal-custom cursor-pointer"
-                style={{ letterSpacing: '0.2em' }}
+                className="font-semibold text-white text-display leading-normal-custom cursor-pointer tracking-widest-custom"
                 onTouchEnd={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
@@ -360,7 +357,6 @@ const HomePage: React.FC = () => {
         </div>
 
         {/* 全屏選單（左側 MENU 按鈕觸發） */}
-        {/* <FullscreenMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} /> */}
 
         {/* 右上角選單按鈕 */}
         <MenuButton
@@ -369,7 +365,7 @@ const HomePage: React.FC = () => {
         />
 
         {/* 全屏選單（右上角按鈕觸發，4欄版本） */}
-        <FullscreenMenuAlt isOpen={altMenuOpen} onClose={() => setAltMenuOpen(false)} />
+        <FullscreenMenu isOpen={altMenuOpen} onClose={() => setAltMenuOpen(false)} />
       </div>
     </>
   );

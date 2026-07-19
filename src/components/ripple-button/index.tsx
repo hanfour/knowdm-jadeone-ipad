@@ -56,7 +56,7 @@ const RippleButton: React.FC<RippleButtonProps> = ({ onClick, children, classNam
         onClick={onClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className={`relative overflow-hidden px-6 py-2.5 bg-[#0b2d2a] text-white text-small tracking-wide-custom transition-colors duration-300 flex items-center gap-2 ${className}`}
+        className={`relative overflow-hidden px-6 py-2.5 bg-brand-sekisui text-white text-small tracking-wide-custom transition-colors duration-300 flex items-center gap-2 ${className}`}
       >
         {/* 漣漪效果層 */}
         {ripples.map((ripple) => (

@@ -110,7 +110,7 @@ const PipingEngineeringPage: React.FC = () => {
       <div className="w-full overflow-hidden rounded border border-[#d4d0c8] mt-6">
         <table className="w-full text-xsmall border-collapse">
           <thead>
-            <tr className="bg-[#0b2d2a]">
+            <tr className="bg-brand-sekisui">
               {headers.map((header, index) => (
                 <th
                   key={index}
@@ -130,8 +130,8 @@ const PipingEngineeringPage: React.FC = () => {
                   <td
                     key={colIndex}
                     className={`py-2 px-3 border-t border-r border-[#d4d0c8] last:border-r-0 align-top whitespace-pre-line text-text-secondary ${
-                      colIndex === 0 ? 'text-center font-medium bg-[#0b2d2a]/5' : 'text-left'
-                    } ${colIndex === 1 ? 'text-[#0b2d2a] bg-[#f5f0e8]' : ''}`}
+                      colIndex === 0 ? 'text-center font-medium bg-brand-sekisui/5' : 'text-left'
+                    } ${colIndex === 1 ? 'text-brand-sekisui bg-[#f5f0e8]' : ''}`}
                   >
                     {row[header as keyof TableRow]}
                   </td>

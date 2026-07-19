@@ -322,7 +322,7 @@ const FireProtectionEngineeringPage: React.FC = () => {
       <div className="w-full overflow-hidden rounded border border-[#d4d0c8]">
         <table className="w-full text-xsmall border-collapse">
           <thead>
-            <tr className="bg-[#0b2d2a]">
+            <tr className="bg-brand-sekisui">
               {headers.map((header, index) => (
                 <th
                   key={index}
@@ -343,8 +343,8 @@ const FireProtectionEngineeringPage: React.FC = () => {
                   <td
                     key={colIndex}
                     className={`py-2 px-2 text-center border-t border-r border-[#d4d0c8] last:border-r-0 align-middle whitespace-pre-line ${
-                      colIndex === 0 ? 'font-medium bg-[#0b2d2a]/5' : ''
-                    } ${row.isHighlight && colIndex > 0 ? 'text-[#0b2d2a]' : 'text-text-secondary'}`}
+                      colIndex === 0 ? 'font-medium bg-brand-sekisui/5' : ''
+                    } ${row.isHighlight && colIndex > 0 ? 'text-brand-sekisui' : 'text-text-secondary'}`}
                   >
                     {row[header as keyof TableRow]}
                   </td>
@@ -398,7 +398,7 @@ const FireProtectionEngineeringPage: React.FC = () => {
                 <div className="space-y-3">
                   {currentTab.features.map((feature, index) => (
                     <div key={index} className="flex items-start">
-                      <span className="w-2 h-2 bg-[#0b2d2a] rounded-full mt-2 mr-3 shrink-0" />
+                      <span className="w-2 h-2 bg-brand-sekisui rounded-full mt-2 mr-3 shrink-0" />
                       <div>
                         <span className="text-body font-medium text-text-primary">
                           {feature.label}：
@@ -435,7 +435,7 @@ const FireProtectionEngineeringPage: React.FC = () => {
               {/* 表格區 */}
               {currentTab.tableData && (
                 <div>
-                  <h3 className="text-body font-medium text-[#0b2d2a] mb-3">
+                  <h3 className="text-body font-medium text-brand-sekisui mb-3">
                     隔間工法比較表
                   </h3>
                   {renderTable(currentTab.tableData)}

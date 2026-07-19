@@ -192,7 +192,7 @@ const FloorPlanPage: React.FC = () => {
       <SubpageMenuBar sectionIndex={3} />
 
       {/* 左上角旗幟 */}
-      <div className="absolute z-20 bg-[#d4a853]/50 text-black px-6 py-4" style={{ top: '80px', left: 0 }}>
+      <div className="absolute z-20 bg-gold-deep/50 text-black px-6 py-4" style={{ top: '80px', left: 0 }}>
         <p className="font-bold text-h1 text-center leading-none">
           {selectedFloor.id === 'RF' ? 'RF' : selectedFloor.label}
         </p>
@@ -232,7 +232,7 @@ const FloorPlanPage: React.FC = () => {
               <>
                 {/* 左側直式：僑大五路25m */}
                 <div
-                  className="absolute pointer-events-none text-gray-600 text-small font-medium"
+                  className="absolute pointer-events-none text-text-tertiary text-small font-medium tracking-wide-custom"
                   style={{
                     left: '-2rem',
                     top: '50%',
@@ -240,20 +240,18 @@ const FloorPlanPage: React.FC = () => {
                     WebkitWritingMode: 'vertical-lr',
                     writingMode: 'vertical-lr',
                     whiteSpace: 'nowrap',
-                    letterSpacing: '0.1em',
                   }}
                 >
                   僑大五路<span style={{ WebkitWritingMode: 'horizontal-tb', writingMode: 'horizontal-tb' }}>25</span><span className="-mt-2" style={{ WebkitWritingMode: 'horizontal-tb', writingMode: 'horizontal-tb' }}>m</span>
                 </div>
                 {/* 下方橫式：廣順街12m */}
                 <div
-                  className="absolute pointer-events-none text-gray-600 text-small font-medium"
+                  className="absolute pointer-events-none text-text-tertiary text-small font-medium tracking-wide-custom"
                   style={{
                     bottom: '-1.5rem',
                     left: '50%',
                     transform: 'translateX(-50%)',
                     whiteSpace: 'nowrap',
-                    letterSpacing: '0.1em',
                   }}
                 >
                   廣順街12m
@@ -272,7 +270,7 @@ const FloorPlanPage: React.FC = () => {
                 </svg>
                 {anchorPoints.map((point, i) => (
                   <div key={i} className="absolute w-1 h-1 bg-red-500/80 rounded-full shadow-lg pointer-events-none" style={{ left: `${point.x}%`, top: `${point.y}%`, transform: 'translate(-50%, -50%)', zIndex: 50 }}>
-                    <span className="absolute -top-5 left-1/2 -translate-x-1/2 bg-black/80 text-white text-xs px-1 rounded whitespace-nowrap">{i + 1}</span>
+                    <span className="absolute -top-5 left-1/2 -translate-x-1/2 bg-black/80 text-white text-xsmall px-1 rounded whitespace-nowrap">{i + 1}</span>
                   </div>
                 ))}
               </>
@@ -306,13 +304,13 @@ const FloorPlanPage: React.FC = () => {
             ))}
           </div>
         ) : (
-          <div className="text-gray-400 text-lg">此樓層無平面圖</div>
+          <div className="text-text-light text-lg">此樓層無平面圖</div>
         )}
       </div>
 
       <Compass style={{ right: '8%', bottom: '5%', transform: 'translate(-50%, -50%)' }} className="z-20" />
 
-      <div className="absolute z-10 text-gray-400 text-micro" style={{ right: '5rem', bottom: '0.5rem' }}>
+      <div className="absolute z-10 text-text-light text-micro" style={{ right: '5rem', bottom: '0.5rem' }}>
         此為示意圖僅供參考，實際以施工為準
       </div>
 
@@ -323,7 +321,7 @@ const FloorPlanPage: React.FC = () => {
             <button
               key={sub.id}
               onClick={() => setSelectedSubFloor(sub)}
-              className={`px-4 py-2 transition-all ${selectedSubFloor?.id === sub.id ? 'bg-[#d4a853] text-white' : 'bg-white/90 text-gray-700 hover:bg-gray-100'} text-xsmall`}
+              className={`px-4 py-2 transition-all ${selectedSubFloor?.id === sub.id ? 'bg-gold-deep text-white' : 'bg-white/90 text-text-secondary hover:bg-gray-100'} text-xsmall`}
             >
               {sub.label}
             </button>
@@ -338,7 +336,7 @@ const FloorPlanPage: React.FC = () => {
             <button
               key={btn.id}
               onClick={() => openGalleryViewer(btn)}
-              className="px-4 py-2 backdrop-blur-sm border transition-all shadow-sm bg-white/90 border-gray-300 text-gray-700 text-xsmall hover:bg-gray-50 hover:border-gray-400"
+              className="px-4 py-2 backdrop-blur-sm border transition-all shadow-sm bg-white/90 border-gray-300 text-text-secondary text-xsmall hover:bg-gray-50 hover:border-gray-400"
             >
               {btn.label}
             </button>
@@ -347,7 +345,7 @@ const FloorPlanPage: React.FC = () => {
           {selectedFloor.id === '1F' && (
             <button
               onClick={() => setIsVideoOpen(true)}
-              className="px-4 py-2 backdrop-blur-sm border transition-all shadow-sm bg-white/90 border-gray-300 text-gray-700 text-xsmall hover:bg-gray-50 hover:border-gray-400 flex items-center gap-2"
+              className="px-4 py-2 backdrop-blur-sm border transition-all shadow-sm bg-white/90 border-gray-300 text-text-secondary text-xsmall hover:bg-gray-50 hover:border-gray-400 flex items-center gap-2"
             >
               <span>觀賞影片</span>
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -360,7 +358,7 @@ const FloorPlanPage: React.FC = () => {
             <button
               key={btn.id}
               onClick={() => openGalleryViewer(btn)}
-              className="px-4 py-2 backdrop-blur-sm border transition-all shadow-sm bg-white/90 border-gray-300 text-gray-700 text-xsmall hover:bg-gray-50 hover:border-gray-400"
+              className="px-4 py-2 backdrop-blur-sm border transition-all shadow-sm bg-white/90 border-gray-300 text-text-secondary text-xsmall hover:bg-gray-50 hover:border-gray-400"
             >
               {btn.label}
             </button>

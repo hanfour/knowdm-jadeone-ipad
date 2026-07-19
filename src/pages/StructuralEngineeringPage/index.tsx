@@ -236,7 +236,7 @@ const StructuralEngineeringPage: React.FC = () => {
                     className={`
                       px-5 py-2 text-body font-medium transition-all
                       ${activeSegment === index
-                        ? 'bg-[#d4a853] text-white'
+                        ? 'bg-gold-deep text-white'
                         : 'bg-white/80 text-text-secondary hover:bg-white'
                       }
                     `}

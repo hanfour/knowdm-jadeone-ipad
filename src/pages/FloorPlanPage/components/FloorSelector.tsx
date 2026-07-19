@@ -30,9 +30,9 @@ const FloorSelector: React.FC<FloorSelectorProps> = ({
             disabled={!floor.image}
             className={`w-full py-3 text-center transition-all ${
               selectedFloor.id === floor.id
-                ? 'bg-[#f5e6b8] text-black font-bold'
+                ? 'bg-gold text-black font-bold'
                 : floor.image
-                ? 'hover:bg-gray-100 text-gray-700'
+                ? 'hover:bg-gray-100 text-text-secondary'
                 : 'text-gray-300 cursor-not-allowed'
             } text-small`}
           >

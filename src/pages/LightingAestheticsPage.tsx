@@ -236,10 +236,7 @@ const LightingAestheticsPage: React.FC = () => {
           {/* 標題區 */}
           <div className="mb-4">
             <p
-              className="text-[#f5e6b8] text-large font-medium"
-              style={{
-                letterSpacing: '0.15em',
-              }}
+              className="text-gold text-large font-medium tracking-wider-custom"
             >
               <span className="italic text-small">燈光設計 / </span>
               <br/>
@@ -262,8 +259,7 @@ const LightingAestheticsPage: React.FC = () => {
           {/* 底部按鈕 - 作品代表，點擊開啟燈箱 */}
           <div className="mt-12">
             <div
-              className="inline-flex flex-col items-start border border-white/30 px-8 py-4 bg-white/10 backdrop-blur-sm"
-              style={{ letterSpacing: '0.08em' }}
+              className="inline-flex flex-col items-start border border-white/30 px-8 py-4 bg-white/10 backdrop-blur-sm tracking-medium-custom"
             >
               <span
                 className="gradient-text-animate text-small"
@@ -305,10 +301,7 @@ const LightingAestheticsPage: React.FC = () => {
       >
         {/* 第一行：光影共生 - 橫排，每字從左上飛入 */}
         <h2
-          className="text-white text-h2 font-light"
-          style={{
-            letterSpacing: '0.2em',
-          }}
+          className="text-white text-h2 font-light tracking-widest-custom"
         >
           {titleText.split('').map((char, index) => (
             <span
@@ -330,10 +323,7 @@ const LightingAestheticsPage: React.FC = () => {
 
         {/* 第二行：為城市而生的溫柔尺度 - 橫排，每字從左上飛入 */}
         <h2
-          className="text-white text-h2 font-light"
-          style={{
-            letterSpacing: '0.2em',
-          }}
+          className="text-white text-h2 font-light tracking-widest-custom"
         >
           {subtitleText.split('').map((char, index) => (
             <span
@@ -416,7 +406,7 @@ const LightingAestheticsPage: React.FC = () => {
             {/* 當前圖片標籤 */}
             <div className="flex items-center" style={{ gap: '0.5rem', marginBottom: '0.25rem' }}>
               <span className="bg-white/60" style={{ width: '0.5rem', height: '0.5rem' }} />
-              <span className="text-white text-xsmall" style={{ letterSpacing: '0.05em' }}>
+              <span className="text-white text-xsmall tracking-normal-custom">
                 {portfolioImages[lightbox.currentIndex].label}
               </span>
             </div>
@@ -465,7 +455,7 @@ const LightingAestheticsPage: React.FC = () => {
 
           {/* 圖片計數器 */}
           <div
-            className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-sm"
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-small"
             style={{ zIndex: 10 }}
           >
             {lightbox.currentIndex + 1} / {portfolioImages.length}
@@ -494,7 +484,7 @@ const LightingAestheticsPage: React.FC = () => {
             <div className="absolute bottom-8 right-8 flex items-center gap-3 z-20">
               <button
                 onClick={goToPrevAward}
-                className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
+                className="w-12 h-12 flex items-center justify-center border border-gray-300 text-text-muted hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                   <polyline points="15 18 9 12 15 6" />
@@ -503,7 +493,7 @@ const LightingAestheticsPage: React.FC = () => {
 
               <button
                 onClick={goToNextAward}
-                className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
+                className="w-12 h-12 flex items-center justify-center border border-gray-300 text-text-muted hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                   <polyline points="9 18 15 12 9 6" />
@@ -514,7 +504,7 @@ const LightingAestheticsPage: React.FC = () => {
 
           {/* 頁碼指示 - 僅多張圖片時顯示 */}
           {awardImages.length > 1 && (
-            <div className="absolute bottom-8 left-8 text-body text-gray-600 z-20">
+            <div className="absolute bottom-8 left-8 text-body text-text-tertiary z-20">
               {awardIndex + 1} / {awardImages.length}
             </div>
           )}
@@ -541,7 +531,7 @@ const LightingAestheticsPage: React.FC = () => {
           <div className="absolute bottom-8 right-8 flex items-center gap-3 z-20">
             <button
               onClick={goToPrevLightingPlan}
-              className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
+              className="w-12 h-12 flex items-center justify-center border border-gray-300 text-text-muted hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <polyline points="15 18 9 12 15 6" />
@@ -550,7 +540,7 @@ const LightingAestheticsPage: React.FC = () => {
 
             <button
               onClick={goToNextLightingPlan}
-              className="w-12 h-12 flex items-center justify-center border border-gray-300 text-gray-500 hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
+              className="w-12 h-12 flex items-center justify-center border border-gray-300 text-text-muted hover:border-text-primary hover:text-text-primary transition-colors bg-white/80"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <polyline points="9 18 15 12 9 6" />
@@ -559,7 +549,7 @@ const LightingAestheticsPage: React.FC = () => {
           </div>
 
           {/* 頁碼指示 - 左下角 */}
-          <div className="absolute bottom-8 left-8 text-body text-gray-600 z-20">
+          <div className="absolute bottom-8 left-8 text-body text-text-tertiary z-20">
             {lightingPlanIndex + 1} / {lightingPlanImages.length}
           </div>
         </div>

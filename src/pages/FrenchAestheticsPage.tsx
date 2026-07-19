@@ -252,10 +252,7 @@ const FrenchAestheticsPage: React.FC = () => {
       >
         {/* 第一行：美學序列 - 橫排，每字從左上飛入 */}
         <h2
-          className="text-white text-display font-light"
-          style={{
-            letterSpacing: '0.2em',
-          }}
+          className="text-white text-display font-light tracking-widest-custom"
         >
           {titleText.split('').map((char, index) => (
             <span
@@ -277,10 +274,9 @@ const FrenchAestheticsPage: React.FC = () => {
 
         {/* 第二行：法式美學 / - 小字，淡入 */}
         <p
-          className="text-[#f5e6b8] text-body italic font-medium"
+          className="text-gold text-body italic font-medium tracking-normal-custom"
           style={{
             fontFamily: '"Apple Chancery", "Lucida Calligraphy", cursive',
-            letterSpacing: '0.05em',
             marginLeft: '0.5rem',
             opacity: isAnimated ? 1 : 0,
             transition: `opacity 0.6s ease-out ${smallTextDelay}s`,
@@ -291,10 +287,7 @@ const FrenchAestheticsPage: React.FC = () => {
 
         {/* 第三行：黃金剪裁 - 橫排，每字從左上飛入 */}
         <h2
-          className="text-white text-display font-light"
-          style={{
-            letterSpacing: '0.2em',
-          }}
+          className="text-white text-display font-light tracking-widest-custom"
         >
           {subtitleText.split('').map((char, index) => (
             <span
@@ -331,7 +324,7 @@ const FrenchAestheticsPage: React.FC = () => {
 
             {/* 左側裝飾線 */}
             <div
-              className=" absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-[#d4a853]/80 via-[#f5e6b8]/60 to-transparent"
+              className=" absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-gold-deep/80 via-gold/60 to-transparent"
             />
             <p>
               用建築為美學載體，打開巴黎的世界之窗，建築規格與尺度皆媲美法式都會美學，細緻的長序列，讓冷冽外牆於是有了輕盈唯美的曲線，從法式長型序列語彙著眼，演繹黃金比例，成就如同寶格麗酒店的浪漫氣息的法式風格建築誕生的，標誌恆久美學的點，風格生活在此優雅落籍。
@@ -343,8 +336,7 @@ const FrenchAestheticsPage: React.FC = () => {
             {/* 外觀透視按鈕 - 點擊開啟燈箱 */}
             <button
               onClick={openLightbox}
-              className="inline-flex items-center justify-center gap-2 bg-[#d4a853]/75 border border-[#d4a853]/50 py-1.5 hover:border-[#d4a853] hover:bg-white/5 transition-all group"
-              style={{ letterSpacing: '0.08em' }}
+              className="inline-flex items-center justify-center gap-2 bg-gold-deep/75 border border-gold-deep/50 py-1.5 hover:border-gold-deep hover:bg-white/5 transition-all group tracking-medium-custom"
             >
               <span
                 className="text-white text-xsmall"
@@ -366,8 +358,7 @@ const FrenchAestheticsPage: React.FC = () => {
               <button
                 key={video.id}
                 onClick={() => setCurrentVideoId(video.id)}
-                className="inline-flex items-center justify-center gap-2 bg-[#d4a853]/75 border border-[#d4a853]/50 py-1.5 hover:border-[#d4a853] hover:bg-white/5 transition-all group"
-                style={{ letterSpacing: '0.08em' }}
+                className="inline-flex items-center justify-center gap-2 bg-gold-deep/75 border border-gold-deep/50 py-1.5 hover:border-gold-deep hover:bg-white/5 transition-all group tracking-medium-custom"
               >
                 <span
                   className="text-white text-xsmall"
@@ -388,8 +379,7 @@ const FrenchAestheticsPage: React.FC = () => {
             {/* 國際大獎按鈕 - 放在最後 */}
             <button
               onClick={openAwardsModal}
-              className="inline-flex items-center justify-center gap-2 bg-[#d4a853]/75 border border-[#d4a853]/50 py-1.5 hover:border-[#d4a853] hover:bg-white/5 transition-all group"
-              style={{ letterSpacing: '0.08em' }}
+              className="inline-flex items-center justify-center gap-2 bg-gold-deep/75 border border-gold-deep/50 py-1.5 hover:border-gold-deep hover:bg-white/5 transition-all group tracking-medium-custom"
             >
               <span className="text-white text-xsmall">
                 國際大獎
@@ -517,7 +507,7 @@ const FrenchAestheticsPage: React.FC = () => {
             {/* 當前圖片標籤 */}
             <div className="flex items-center" style={{ gap: '0.5rem', marginBottom: '0.25rem' }}>
               <span className="bg-white/60" style={{ width: '0.5rem', height: '0.5rem' }} />
-              <span className="text-white text-xsmall" style={{ letterSpacing: '0.05em' }}>
+              <span className="text-white text-xsmall tracking-normal-custom">
                 {carouselImages[lightbox.currentIndex].label}
               </span>
             </div>
@@ -566,7 +556,7 @@ const FrenchAestheticsPage: React.FC = () => {
 
           {/* 圖片計數器 */}
           <div
-            className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-sm"
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-small"
             style={{ zIndex: 10 }}
           >
             {lightbox.currentIndex + 1} / {carouselImages.length}
@@ -683,7 +673,7 @@ const FrenchAestheticsPage: React.FC = () => {
 
           {/* 圖片計數器 */}
           <div
-            className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-sm"
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-small"
             style={{ zIndex: 10 }}
           >
             {awardsModal.currentIndex + 1} / {awardImages.length}

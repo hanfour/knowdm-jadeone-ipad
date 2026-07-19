@@ -20,9 +20,11 @@ module.exports = {
       },
       // 字距規範
       letterSpacing: {
+        'ultra-custom': '0.25em',   // 超寬字距（特殊主視覺標題）
         'widest-custom': '0.2em',   // 大標題、主視覺標題
         'wider-custom': '0.15em',   // 垂直文本、副標題
         'wide-custom': '0.1em',     // 一般標題、功能標題
+        'medium-custom': '0.08em',  // 中等字距（說明文字、副標）
         'normal-custom': '0.05em',  // 產品名稱、品牌名稱
       },
       // 行高規範
@@ -38,6 +40,10 @@ module.exports = {
           DEFAULT: '#f5e6b8',     // 金色主文字
           light: '#faf3dc',       // 淺金色
         },
+        'gold-deep': '#d4a853',   // 深金色
+        // 主題色
+        'earth': '#68583f',       // 棕色（交通/機能頁主題色）
+        'cream': '#f5f0e6',       // 米白背景
         // 品牌色
         'brand': {
           'jtl': '#c41230',       // JTL 喜特麗（紅）

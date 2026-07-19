@@ -62,7 +62,7 @@ const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, desc
             />
             {/* 右側漸層遮罩 - 僅第一張顯示 */}
             <div
-              className={`absolute inset-0 bg-gradient-to-l from-[#0b2d2a]/5 to-transparent duration-700 ${
+              className={`absolute inset-0 bg-gradient-to-l from-brand-sekisui/5 to-transparent duration-700 ${
                 activeIndex === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'
               }`}
             />
@@ -73,7 +73,7 @@ const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, desc
       {/* 左右箭頭導航 */}
       <button
         onClick={handlePrev}
-        className="absolute left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center border border-[#d4a853] text-[#0b2d2a] hover:border-[#0b2d2a] hover:text-[#d4a853] bg-[#d4a853]/60 hover:bg-[#0b2d2a]/60 transition-colors duration-300"
+        className="absolute left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center border border-gold-deep text-brand-sekisui hover:border-brand-sekisui hover:text-gold-deep bg-gold-deep/60 hover:bg-brand-sekisui/60 transition-colors duration-300"
         aria-label="上一張"
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -82,7 +82,7 @@ const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, desc
       </button>
       <button
         onClick={handleNext}
-        className="absolute right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center border border-[#d4a853] text-[#0b2d2a] hover:border-[#0b2d2a] hover:text-[#d4a853] bg-[#d4a853]/60 hover:bg-[#0b2d2a]/60 transition-colors duration-300"
+        className="absolute right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center border border-gold-deep text-brand-sekisui hover:border-brand-sekisui hover:text-gold-deep bg-gold-deep/60 hover:bg-brand-sekisui/60 transition-colors duration-300"
         aria-label="下一張"
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -100,8 +100,8 @@ const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, desc
         <div className="text-white" style={{ maxWidth: '32rem' }}>
           {/* 主標題 */}
           <h1
-            className="font-light text-h2 leading-tight"
-            style={{ letterSpacing: '0.05em', marginBottom: '1rem' }}
+            className="font-light text-h2 leading-tight tracking-normal-custom"
+            style={{ marginBottom: '1rem' }}
           >
             {title}
           </h1>
@@ -136,7 +136,7 @@ const ImageGalleryPage: React.FC<ImageGalleryPageProps> = ({ images, title, desc
         {/* 當前圖片標籤 - 固定在縮圖上方 */}
         <div className="flex items-center" style={{ gap: '0.5rem', marginBottom: '0.25rem' }}>
           <span className="bg-white/60" style={{ width: '0.5rem', height: '0.5rem' }} />
-          <span className="text-white text-xsmall" style={{ letterSpacing: '0.05em' }}>{images[activeIndex].label}</span>
+          <span className="text-white text-xsmall tracking-normal-custom">{images[activeIndex].label}</span>
         </div>
 
         {/* 縮圖網格 - 4 列排列 */}

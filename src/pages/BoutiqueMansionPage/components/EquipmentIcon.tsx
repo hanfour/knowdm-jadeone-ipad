@@ -25,7 +25,7 @@ const EquipmentIcon: React.FC<EquipmentIconProps> = ({
         className={`relative w-32 h-32 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
           isActive
             ? 'border-white shadow-[0_0_30px_rgba(255,255,255,0.5)]'
-            : 'border-[#f5e6b8] group-hover:border-white/70'
+            : 'border-gold group-hover:border-white/70'
         }`}
         style={{
           background: isActive
@@ -36,7 +36,7 @@ const EquipmentIcon: React.FC<EquipmentIconProps> = ({
         {/* 圖標 - 60% of circle size */}
         <div
           className={`transition-all duration-300 ${
-            isActive ? 'text-white' : 'text-[#f5e6b8] group-hover:text-white/70'
+            isActive ? 'text-white' : 'text-gold group-hover:text-white/70'
           }`}
           style={{ width: '60%', height: '60%' }}
         >
@@ -58,14 +58,14 @@ const EquipmentIcon: React.FC<EquipmentIconProps> = ({
       <div className="text-center">
         <p
           className={`tracking-wide transition-colors duration-300 ${
-            isActive ? 'text-white' : 'text-[#f5e6b8] group-hover:text-white/70'
+            isActive ? 'text-white' : 'text-gold group-hover:text-white/70'
           } text-body leading-relaxed`}
         >
           {name}
         </p>
         <p
           className={`uppercase mt-1 transition-colors duration-300 ${
-            isActive ? 'text-white/80' : 'text-[#f5e6b8]/70 group-hover:text-white/50'
+            isActive ? 'text-white/80' : 'text-gold/70 group-hover:text-white/50'
           } text-small`}
         >
           {englishName}
