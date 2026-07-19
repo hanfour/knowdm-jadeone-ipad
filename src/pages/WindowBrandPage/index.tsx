@@ -8,21 +8,21 @@ interface ProjectPhoto {
 }
 
 const ykkProjects: ProjectPhoto[] = [
-  { id: '1', image: '/images/window-flooring/ykk/projects/國家美術館.jpg', name: '國家美術館' },
-  { id: '2', image: '/images/window-flooring/ykk/projects/東騰信義.jpg', name: '東騰信義' },
-  { id: '3', image: '/images/window-flooring/ykk/projects/森林摩天41.jpg', name: '森林摩天41' },
-  { id: '4', image: '/images/window-flooring/ykk/projects/若山三期若蒔山.jpg', name: '若山三期若蒔山' },
-  { id: '5', image: '/images/window-flooring/ykk/projects/鑫輝昕奕居.jpg', name: '鑫輝昕奕居' },
+  { id: '1', image: '/images/window-flooring/ykk/projects/國家美術館.webp', name: '國家美術館' },
+  { id: '2', image: '/images/window-flooring/ykk/projects/東騰信義.webp', name: '東騰信義' },
+  { id: '3', image: '/images/window-flooring/ykk/projects/森林摩天41.webp', name: '森林摩天41' },
+  { id: '4', image: '/images/window-flooring/ykk/projects/若山三期若蒔山.webp', name: '若山三期若蒔山' },
+  { id: '5', image: '/images/window-flooring/ykk/projects/鑫輝昕奕居.webp', name: '鑫輝昕奕居' },
 ];
 
 // YKK 更多介紹輪播圖片
 const ykkGalleryImages = [
-  '/images/window-flooring/ykk/gallery/img_001.jpg',
-  '/images/window-flooring/ykk/gallery/img_002.jpg',
-  '/images/window-flooring/ykk/gallery/img_003.jpg',
-  '/images/window-flooring/ykk/gallery/img_004.jpg',
-  '/images/window-flooring/ykk/gallery/img_005.jpg',
-  '/images/window-flooring/ykk/gallery/img_006.jpg',
+  '/images/window-flooring/ykk/gallery/img_001.webp',
+  '/images/window-flooring/ykk/gallery/img_002.webp',
+  '/images/window-flooring/ykk/gallery/img_003.webp',
+  '/images/window-flooring/ykk/gallery/img_004.webp',
+  '/images/window-flooring/ykk/gallery/img_005.webp',
+  '/images/window-flooring/ykk/gallery/img_006.webp',
 ];
 
 const WindowBrandPage: React.FC = () => {
@@ -107,7 +107,7 @@ const WindowBrandPage: React.FC = () => {
                 <p className="text-micro">＊通風門的水密性能為750Pa、耐風壓性能為2800Pa、隔音性能為25dB</p>
               </div>
               <img
-                src="/images/window-flooring/ykk/performance.jpg"
+                src="/images/window-flooring/ykk/performance.webp"
                 alt="基本性能"
                 loading="lazy"
                 decoding="async"
