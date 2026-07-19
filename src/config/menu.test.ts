@@ -1,4 +1,4 @@
-import { menuSections, MenuItem, MenuSection } from './menu';
+import { menuSections } from './menu';
 
 describe('Menu Configuration', () => {
   test('應該包含選單區塊', () => {

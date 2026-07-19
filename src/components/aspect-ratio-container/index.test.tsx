@@ -1,11 +1,11 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import AspectRatioContainer from './index';
 
 describe('AspectRatioContainer', () => {
   test('應該正確渲染', () => {
     const { container } = render(
-      <AspectRatioContainer ratio={16 / 9}>
+      <AspectRatioContainer baseWidth={1920} baseHeight={1080}>
         <div>測試內容</div>
       </AspectRatioContainer>
     );
@@ -13,17 +13,17 @@ describe('AspectRatioContainer', () => {
   });
 
   test('應該渲染子元素', () => {
-    const { getByText } = render(
-      <AspectRatioContainer ratio={16 / 9}>
+    render(
+      <AspectRatioContainer baseWidth={1920} baseHeight={1080}>
         <div>測試子元素</div>
       </AspectRatioContainer>
     );
-    expect(getByText('測試子元素')).toBeInTheDocument();
+    expect(screen.getByText('測試子元素')).toBeInTheDocument();
   });
 
-  test('應該套用正確的比例', () => {
+  test('未指定基準尺寸時應使用預設值渲染', () => {
     const { container } = render(
-      <AspectRatioContainer ratio={16 / 9}>
+      <AspectRatioContainer>
         <div>內容</div>
       </AspectRatioContainer>
     );
@@ -32,12 +32,17 @@ describe('AspectRatioContainer', () => {
     expect(wrapper).toBeInTheDocument();
   });
 
-  test('應該支援不同的比例值', () => {
-    const ratios = [16 / 9, 4 / 3, 1, 21 / 9];
+  test('應該支援不同的基準尺寸', () => {
+    const sizes: Array<[number, number]> = [
+      [1920, 1080],
+      [1600, 1200],
+      [1080, 1080],
+      [2560, 1080],
+    ];
 
-    ratios.forEach(ratio => {
+    sizes.forEach(([baseWidth, baseHeight]) => {
       const { container } = render(
-        <AspectRatioContainer ratio={ratio}>
+        <AspectRatioContainer baseWidth={baseWidth} baseHeight={baseHeight}>
           <div>測試</div>
         </AspectRatioContainer>
       );
@@ -47,7 +52,7 @@ describe('AspectRatioContainer', () => {
 
   test('應該正確套用樣式', () => {
     const { container } = render(
-      <AspectRatioContainer ratio={16 / 9}>
+      <AspectRatioContainer baseWidth={1920} baseHeight={1080}>
         <div>內容</div>
       </AspectRatioContainer>
     );

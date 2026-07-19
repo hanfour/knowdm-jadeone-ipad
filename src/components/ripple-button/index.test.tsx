@@ -1,32 +1,32 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { vi } from 'vitest';
 import RippleButton from './index';
 
 describe('RippleButton', () => {
   test('應該正確渲染按鈕', () => {
-    const { getByText } = render(<RippleButton>測試按鈕</RippleButton>);
-    expect(getByText('測試按鈕')).toBeInTheDocument();
+    render(<RippleButton onClick={() => {}}>測試按鈕</RippleButton>);
+    expect(screen.getByText('測試按鈕')).toBeInTheDocument();
   });
 
   test('應該響應點擊事件', () => {
     const handleClick = vi.fn();
-    const { getByText } = render(
+    render(
       <RippleButton onClick={handleClick}>點擊我</RippleButton>
     );
 
-    const button = getByText('點擊我');
+    const button = screen.getByText('點擊我');
     fireEvent.click(button);
 
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
   test('應該產生波紋效果', () => {
-    const { container, getByText } = render(
-      <RippleButton>波紋按鈕</RippleButton>
+    const { container } = render(
+      <RippleButton onClick={() => {}}>波紋按鈕</RippleButton>
     );
 
-    const button = getByText('波紋按鈕');
+    const button = screen.getByText('波紋按鈕');
     fireEvent.click(button);
 
     // 檢查波紋容器存在
@@ -35,18 +35,18 @@ describe('RippleButton', () => {
   });
 
   test('應該正確傳遞子元素', () => {
-    const { getByText } = render(
+    render(
       <RippleButton onClick={() => {}}>
         <span>複雜子元素</span>
       </RippleButton>
     );
 
-    expect(getByText('複雜子元素')).toBeInTheDocument();
+    expect(screen.getByText('複雜子元素')).toBeInTheDocument();
   });
 
   test('應該接受自訂 className', () => {
     const { container } = render(
-      <RippleButton className="custom-class">自訂樣式</RippleButton>
+      <RippleButton onClick={() => {}} className="custom-class">自訂樣式</RippleButton>
     );
 
     const button = container.querySelector('.custom-class');

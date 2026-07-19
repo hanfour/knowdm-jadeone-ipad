@@ -1,4 +1,3 @@
-import React from 'react';
 
 describe('App', () => {
   test('App 元件應該存在', () => {

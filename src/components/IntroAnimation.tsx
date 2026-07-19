@@ -62,7 +62,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
   const [shineVisible, setShineVisible] = useState(false);
   const [logoVisible, setLogoVisible] = useState(false);
   const [skipped, setSkipped] = useState(false);
-  const timeoutRefs = useRef<NodeJS.Timeout[]>([]);
+  const timeoutRefs = useRef<ReturnType<typeof setTimeout>[]>([]);
   const isMountedRef = useRef(true);
 
   // 第一段動畫文字
@@ -215,7 +215,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
     return () => {
       clearAllTimeouts();
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [phase, skipped, onComplete]);
 
   // 如果階段無效，不渲染
@@ -286,8 +286,8 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
           className={`absolute inset-0 flex items-center justify-center transition-opacity duration-700 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}
         >
           <div
-            className="absolute text-[#244525] text-h1 font-light leading-none"
-            style={{ top: '25%', right: '25%', letterSpacing: '0.2em' }}
+            className="absolute text-[#244525] text-h1 font-light leading-none tracking-widest-custom"
+            style={{ top: '25%', right: '25%' }}
           >
             {introText2.split('').map((char, index) => (
               <span
@@ -373,8 +373,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
                 subtitleVisible
                   ? 'opacity-100 translate-y-0'
                   : 'opacity-0 translate-y-4'
-              }`}
-              style={{ letterSpacing: '0.2em' }}
+              } tracking-widest-custom`}
             >
               {subtitle}
             </div>
