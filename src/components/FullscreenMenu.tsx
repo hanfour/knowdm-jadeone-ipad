@@ -8,13 +8,17 @@ interface FullscreenMenuProps {
 }
 
 const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ isOpen, onClose }) => {
-  if (!isOpen) return null;
-
   return (
-    <div className="absolute inset-0 z-[100] bg-black/55 backdrop-blur-lg overflow-hidden">
+    <div
+      className={`fixed inset-0 z-[150] bg-black/55 backdrop-blur-lg overflow-hidden transition-all duration-500 ${
+        isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+      }`}
+    >
       {/* Logo - 左上角 */}
       <div
-        className="absolute z-[60]"
+        className={`absolute z-[60] transition-all duration-500 delay-100 !hidden ${
+          isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+        }`}
         style={{ top: '2rem', left: '2rem' }}
       >
         <Link to="/" onClick={onClose}>
@@ -28,32 +32,34 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ isOpen, onClose }) => {
         </Link>
       </div>
 
-      {/* BACK 按鈕 - 左側中間 */}
-      <button
-        onClick={onClose}
-        className="absolute top-1/2 -translate-y-1/2 text-white flex items-center hover:opacity-70 active:opacity-70 transition-opacity z-[60]"
-        style={{ left: '2rem', gap: '0.75rem' }}
+      {/* 四欄 grid - 左側 15% margin */}
+      <div
+        className="h-full grid"
+        style={{
+          gridTemplateColumns: '15% 1fr 1fr 1fr 1fr',
+        }}
       >
-        <span className="text-body">—</span>
-        <span className="text-xsmall" style={{ letterSpacing: '0.3em' }}>BACK</span>
-      </button>
-
-      {/* 五欄 grid - 所有尺寸都維持，間距隨螢幕調整 */}
-      <div className="w-full h-full grid grid-cols-5">
-        {/* 第一欄：空白區域 */}
+        {/* 第一欄：15% 左側留白 */}
         <div className="border-r border-white/10" />
 
         {/* 第 2-5 欄：選單內容 */}
         {menuSections.map((section, idx) => (
           <div
             key={idx}
-            className="border-r border-white/10 last:border-r-0"
-            style={{ paddingTop: '30vh', paddingLeft: '2rem', paddingRight: '2rem' }}
+            className={`border-r border-white/10 last:border-r-0 transition-all duration-500 ${
+              isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+            style={{
+              paddingTop: '30vh',
+              paddingLeft: '2rem',
+              paddingRight: '2rem',
+              transitionDelay: isOpen ? `${150 + idx * 75}ms` : '0ms',
+            }}
           >
             <div className="text-white">
               <div
-                className="opacity-50 text-micro"
-                style={{ letterSpacing: '0.2em', marginBottom: '1.5rem' }}
+                className="opacity-50 text-micro tracking-widest-custom"
+                style={{ marginBottom: '1.5rem' }}
               >
                 {section.category}
               </div>
@@ -61,8 +67,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ isOpen, onClose }) => {
                 {section.title.map((line, lineIdx) => (
                   <div
                     key={lineIdx}
-                    className="font-light text-h3"
-                    style={{ letterSpacing: '0.05em' }}
+                    className="font-light text-h3 tracking-normal-custom"
                   >
                     {line}
                   </div>
@@ -77,10 +82,12 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ isOpen, onClose }) => {
                     className="block text-body border border-transparent hover:border-white/60 active:border-white/60 transition-colors"
                     style={{
                       padding: '0.375rem 0.75rem',
-                      marginLeft: '-0.75rem'
+                      marginLeft: '-0.75rem',
                     }}
                   >
-                    <span className="opacity-50" style={{ marginRight: '0.5rem' }}>{item.id}</span>
+                    <span className="opacity-50" style={{ marginRight: '0.5rem' }}>
+                      {item.id}
+                    </span>
                     {item.name}
                   </Link>
                 ))}

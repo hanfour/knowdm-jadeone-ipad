@@ -13,7 +13,7 @@ const ArchitectLeaderPage = lazy(() => import('./pages/ArchitectLeaderPage'));
 const ArchitectAestheticsPage = lazy(() => import('./pages/ArchitectAestheticsPage'));
 const PublicFacilityPage = lazy(() => import('./pages/PublicFacilityPage'));
 const LandscapeTastePage = lazy(() => import('./pages/LandscapeTastePage'));
-const StructuralMechanicsPage = lazy(() => import('./pages/StructuralEngineeringPage'));
+const StructuralMechanicsPage = lazy(() => import('./pages/StructuralMechanicsPage'));
 const StructuralEngineeringPage = lazy(() => import('./pages/StructuralEngineeringPage/index'));
 const LightingAestheticsPage = lazy(() => import('./pages/LightingAestheticsPage'));
 const FrenchAestheticsPage = lazy(() => import('./pages/FrenchAestheticsPage'));
@@ -40,17 +40,6 @@ const DEV_MODE = false;
 
 // 圖片資料配置
 const pageData = {
-  // 國際新都
-  locationIntro: {
-    images: [
-      { src: '/images/a1/IMG_001.webp', label: '水湳經貿園區' },
-      { src: '/images/a1/IMG_002.webp', label: '國際會展中心' },
-      { src: '/images/a1/IMG_003.webp', label: '綠美圖' },
-      { src: '/images/a1/IMG_004.webp', label: '水湳轉運站' },
-    ],
-    title: '齊步世界 亮眼軸線',
-    description: '水湳經貿園區以國際新都姿態，開啟大台中核心新未來，齊聚經貿、商業與文化藝術的國際化價值，奠定國際核心地位，全球注目時代標的，國際建築大師作品齊聚爭豔，是台中國際建築密度最高的重劃區，兩大文化建：綠美圖、台中國際會展中心陸續啟用，最受矚目的超巨蛋、台灣智慧營塔等重大建設逐步到位，未來水湳轉運中心及未來捷運橘線的雙交通利多加持下，蓬勃商機發展不可限量。',
-  },
   // 雍雅森綠
   elegantGreen: {
     images: [

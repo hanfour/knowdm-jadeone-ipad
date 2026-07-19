@@ -10,7 +10,7 @@ const portfolioImages = [
   { src: '/images/b5/works/LINE_ALBUM_帝璟謙和_251221_11.webp', label: '帝璟謙和' },
 ];
 
-const StructuralEngineeringPage: React.FC = () => {
+const StructuralMechanicsPage: React.FC = () => {
   // 人物圖片 URL
   const personImage = '/images/b5/許庭偉.webp';
 
@@ -52,7 +52,6 @@ const StructuralEngineeringPage: React.FC = () => {
   });
 
   // 開啟燈箱（可指定起始圖片索引）
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const openLightbox = (index: number = 0) => {
     setLightbox({ isOpen: true, currentIndex: index });
   };
@@ -177,17 +176,13 @@ const StructuralEngineeringPage: React.FC = () => {
         }}
       >
         <p
-          className="text-white/70 text-small"
-          style={{
-            letterSpacing: '0.2em',
-          }}
+          className="text-white/70 text-small tracking-widest-custom"
         >
           結構設計師/
         </p>
         <p
-          className="text-white text-small mt-12"
+          className="text-white text-small mt-12 tracking-ultra-custom"
           style={{
-            letterSpacing: '0.25em',
             fontWeight: '300',
           }}
         >
@@ -208,10 +203,7 @@ const StructuralEngineeringPage: React.FC = () => {
         {/* 標題區 */}
         <div className="mb-4">
           <p
-            className="text-[#f5e6b8] text-large font-medium"
-            style={{
-              letterSpacing: '0.15em',
-            }}
+            className="text-gold text-large font-medium tracking-wider-custom"
           >
             <span className="italic text-small">結構力學 / </span>
             <br/>
@@ -234,8 +226,7 @@ const StructuralEngineeringPage: React.FC = () => {
         {/* 底部按鈕 - 循環漸變文字，點擊開啟燈箱 */}
         <div className="mt-12">
           <div
-            className="inline-flex flex-col items-start border border-white/30 px-8 py-4 bg-white/10 backdrop-blur-sm"
-            style={{ letterSpacing: '0.08em' }}
+            className="inline-flex flex-col items-start border border-white/30 px-8 py-4 bg-white/10 backdrop-blur-sm tracking-medium-custom"
           >
             <span
               className="gradient-text-animate text-small"
@@ -268,10 +259,9 @@ const StructuralEngineeringPage: React.FC = () => {
       >
         {/* 主標題 - 直排，每字從左上飛入 */}
         <h3
-          className="text-white text-h2 font-light -mt-60"
+          className="text-white text-h2 font-light -mt-60 tracking-widest-custom"
           style={{
             writingMode: 'vertical-rl',
-            letterSpacing: '0.2em',
           }}
         >
           {titleChars.map((char, index) => (
@@ -294,10 +284,9 @@ const StructuralEngineeringPage: React.FC = () => {
 
         {/* 副標題 - 直排，每字從左上飛入 */}
         <h3
-          className="text-white text-h2 font-light"
+          className="text-white text-h2 font-light tracking-widest-custom"
           style={{
             writingMode: 'vertical-rl',
-            letterSpacing: '0.2em',
           }}
         >
           {subtitleChars.map((char, index) => {
@@ -444,7 +433,7 @@ const StructuralEngineeringPage: React.FC = () => {
             {/* 當前圖片標籤 */}
             <div className="flex items-center" style={{ gap: '0.5rem', marginBottom: '0.25rem' }}>
               <span className="bg-white/60" style={{ width: '0.5rem', height: '0.5rem' }} />
-              <span className="text-white text-xsmall" style={{ letterSpacing: '0.05em' }}>
+              <span className="text-white text-xsmall tracking-normal-custom">
                 {portfolioImages[lightbox.currentIndex].label}
               </span>
             </div>
@@ -493,7 +482,7 @@ const StructuralEngineeringPage: React.FC = () => {
 
           {/* 圖片計數器 */}
           <div
-            className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-sm"
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-small"
             style={{ zIndex: 10 }}
           >
             {lightbox.currentIndex + 1} / {portfolioImages.length}
@@ -504,4 +493,4 @@ const StructuralEngineeringPage: React.FC = () => {
   );
 };
 
-export default StructuralEngineeringPage;
+export default StructuralMechanicsPage;

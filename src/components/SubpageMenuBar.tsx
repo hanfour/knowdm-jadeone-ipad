@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { menuSections, MenuItem } from '../config/menu';
 import MenuButton from './menu-button';
-import FullscreenMenuAlt from './FullscreenMenuAlt';
+import FullscreenMenu from './FullscreenMenu';
 
 interface SubpageMenuBarProps {
   // 可選：如果提供則使用，否則自動從 URL 偵測
@@ -43,7 +43,7 @@ const SubpageMenuBar: React.FC<SubpageMenuBarProps> = ({ sectionIndex }) => {
     <>
       {/* 右上角導航列容器 */}
       <div
-        className="fixed top-0 right-0 z-[200] flex justify-between items-stretch w-full backdrop-blur-md bg-[#0b2d2a]"
+        className="fixed top-0 right-0 z-[200] flex justify-between items-stretch w-full backdrop-blur-md bg-brand-sekisui"
       >
         <div className="logo flex items-center" style={{ paddingLeft: '2rem' }}>
           <Link to="/">
@@ -75,10 +75,7 @@ const SubpageMenuBar: React.FC<SubpageMenuBarProps> = ({ sectionIndex }) => {
                   isCurrentPage(item.link)
                     ? 'text-white active'
                     : 'text-white/70 hover:text-white'
-                } text-xsmall`}
-                style={{
-                  letterSpacing: '0.05em',
-                }}
+                } text-xsmall tracking-normal-custom`}
               >
                 <span className='text-white/50 me-1'>
                   {item.id}
@@ -101,7 +98,7 @@ const SubpageMenuBar: React.FC<SubpageMenuBarProps> = ({ sectionIndex }) => {
       </div>
 
       {/* 全屏選單 */}
-      <FullscreenMenuAlt isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
+      <FullscreenMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
 
       {/* 底線動畫樣式 */}
       <style>{`
