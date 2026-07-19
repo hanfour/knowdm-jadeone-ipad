@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import SubpageMenuBar from '../components/SubpageMenuBar';
 import CloseButton from '../components/close-button';
 import RippleButton from '../components/ripple-button';
@@ -7,12 +7,14 @@ import RippleButton from '../components/ripple-button';
 interface LandmarkData {
   id: string;
   name: string;
+  /** 地圖上黑色標籤框的位置（相對 map3.webp 2200x2931 的百分比） */
+  pos: { left: number; top: number; width: number; height: number };
   images: { src: string; alt: string }[];
 }
 
-// 可點擊的地標（_水湳轉運中心 到 _台中超巨蛋）
+// 可點擊的地標（點擊地圖上的黑色標籤框開啟圖庫）
 const landmarks: LandmarkData[] = [
-  { id: '_水湳轉運中心', name: '水湳轉運中心', images: [
+  { id: '_水湳轉運中心', name: '水湳轉運中心', pos: { left: 65.7, top: 5.0, width: 28.0, height: 7.4 }, images: [
     { src: '/images/a1/IMG_004.webp', alt: '水湳轉運中心實景拍攝' },
     { src: '/images/a1/水湳轉運站.webp', alt: '水湳轉運中心' },
     { src: '/images/a1/水湳轉運站2.webp', alt: '水湳轉運中心' },
@@ -20,23 +22,23 @@ const landmarks: LandmarkData[] = [
     { src: '/images/a1/水湳轉運站4.webp', alt: '水湳轉運中心' },
     { src: '/images/a1/水湳轉運站5.webp', alt: '水湳轉運中心' },
   ]},
-  { id: '_台中國際會議中心', name: '台中國際會議中心', images: [
+  { id: '_台中國際會議中心', name: '台中國際會議中心', pos: { left: 19.7, top: 34.6, width: 25.2, height: 7.9 }, images: [
     { src: '/images/a1/IMG_002.webp', alt: '台中國際會議中心實景拍攝' },
     { src: '/images/a1/international-city-01.webp', alt: '台中國際會議中心' },
   ]},
-  { id: '_台中綠美圖', name: '綠美圖', images: [
+  { id: '_台中綠美圖', name: '綠美圖', pos: { left: 71.4, top: 27.6, width: 22.2, height: 6.9 }, images: [
     { src: '/images/a1/IMG_003.webp', alt: '綠美圖實景拍攝' },
     { src: '/images/a1/international-city-03.webp', alt: '綠美圖' },
   ]},
-  { id: '_中央公園', name: '中央公園', images: [
+  { id: '_中央公園', name: '中央公園', pos: { left: 22.5, top: 47.3, width: 17.7, height: 7.0 }, images: [
     { src: '/images/a3/03.webp', alt: '中央公園實景拍攝' },
     { src: '/images/a1/international-city-04.webp', alt: '中央公園' },
   ]},
-  { id: '_台中流行影音中心', name: '台中流行影音中心', images: [
+  { id: '_台中流行影音中心', name: '台中流行影音中心', pos: { left: 72.7, top: 51.2, width: 27.2, height: 6.1 }, images: [
     { src: '/images/a3/02.webp', alt: '台中流行影音中心實景拍攝' },
     { src: '/images/a1/international-city-05.webp', alt: '台中流行影音中心' },
   ]},
-  { id: '_台中超巨蛋', name: '台中超巨蛋', images: [
+  { id: '_台中超巨蛋', name: '台中超巨蛋', pos: { left: 21.8, top: 78.0, width: 19.8, height: 6.5 }, images: [
     { src: '/images/a1/超巨蛋.jpg', alt: '台中超巨蛋' },
     { src: '/images/a1/超巨蛋5.jpg', alt: '台中超巨蛋' },
     // { src: '/images/a1/157f7b46-031b-9a6a-f3be-cba5a4aea814.webp', alt: '政府示意圖' },
@@ -64,96 +66,6 @@ const InternationalCityPage: React.FC = () => {
   const [currentVideoId, setCurrentVideoId] = useState<string | null>(null);
   const [selectedLandmark, setSelectedLandmark] = useState<LandmarkData | null>(null);
   const [carouselIndex, setCarouselIndex] = useState(0);
-  const svgContainerRef = useRef<HTMLDivElement>(null);
-
-  // 設置 SVG 互動事件
-  useEffect(() => {
-    const container = svgContainerRef.current;
-    if (!container) return;
-
-    const svgObject = container.querySelector('object');
-    if (!svgObject) return;
-
-    const handleSvgLoad = () => {
-      const svgDoc = (svgObject as HTMLObjectElement).contentDocument;
-      if (!svgDoc) return;
-
-      // 添加水波紋外散動畫樣式（最大 60px）
-      const style = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'style');
-      style.textContent = `
-        @keyframes ripple-wave {
-          0% {
-            filter:
-              drop-shadow(0 0 2px rgba(255, 220, 0, 1))
-              drop-shadow(0 0 5px rgba(255, 200, 0, 1));
-          }
-          25% {
-            filter:
-              drop-shadow(0 0 8px rgba(255, 220, 0, 1))
-              drop-shadow(0 0 18px rgba(255, 200, 0, 0.9))
-              drop-shadow(0 0 30px rgba(255, 180, 0, 0.7));
-          }
-          50% {
-            filter:
-              drop-shadow(0 0 15px rgba(255, 220, 0, 0.9))
-              drop-shadow(0 0 30px rgba(255, 200, 0, 0.7))
-              drop-shadow(0 0 45px rgba(255, 180, 0, 0.5))
-              drop-shadow(0 0 60px rgba(255, 150, 0, 0.3));
-          }
-          75% {
-            filter:
-              drop-shadow(0 0 20px rgba(255, 220, 0, 0.5))
-              drop-shadow(0 0 35px rgba(255, 200, 0, 0.3))
-              drop-shadow(0 0 50px rgba(255, 180, 0, 0.1));
-          }
-          100% {
-            filter:
-              drop-shadow(0 0 2px rgba(255, 220, 0, 1))
-              drop-shadow(0 0 5px rgba(255, 200, 0, 1));
-          }
-        }
-        #_水湳轉運中心, #_台中國際會議中心, #_台中綠美圖, #_中央公園, #_台中流行影音中心, #_台中超巨蛋 {
-          animation: ripple-wave 1.8s ease-in-out infinite;
-          cursor: pointer;
-          transition: filter 0.3s ease;
-        }
-        #_台中國際會議中心 { animation-delay: 0.3s; }
-        #_台中綠美圖 { animation-delay: 0.6s; }
-        #_中央公園 { animation-delay: 0.9s; }
-        #_台中流行影音中心 { animation-delay: 1.2s; }
-        #_台中超巨蛋 { animation-delay: 1.5s; }
-        #_水湳轉運中心:hover, #_台中國際會議中心:hover, #_台中綠美圖:hover, #_中央公園:hover, #_台中流行影音中心:hover, #_台中超巨蛋:hover {
-          animation: none;
-          filter:
-            drop-shadow(0 0 20px rgba(255, 220, 0, 1))
-            drop-shadow(0 0 40px rgba(255, 200, 0, 0.9))
-            drop-shadow(0 0 60px rgba(255, 180, 0, 0.7));
-        }
-      `;
-      svgDoc.querySelector('svg')?.appendChild(style);
-
-      // 為每個地標添加點擊事件
-      landmarks.forEach((landmark) => {
-        const element = svgDoc.getElementById(landmark.id);
-        if (element) {
-          element.addEventListener('click', () => {
-            setCarouselIndex(0);
-            setSelectedLandmark(landmark);
-          });
-        }
-      });
-    };
-
-    svgObject.addEventListener('load', handleSvgLoad);
-
-    if ((svgObject as HTMLObjectElement).contentDocument) {
-      handleSvgLoad();
-    }
-
-    return () => {
-      svgObject.removeEventListener('load', handleSvgLoad);
-    };
-  }, []);
 
   // 渲染地標彈窗（輪播 - 與 FrenchAestheticsPage 燈箱風格一致）
   const renderLandmarkModal = () => {
@@ -224,10 +136,10 @@ const InternationalCityPage: React.FC = () => {
   };
 
   return (
-    <div className="absolute inset-0 overflow-hidden bg-[#f5f0e6]">
+    <div className="absolute inset-0 overflow-hidden bg-cream">
       {/* 背景底色 */}
       <div
-        className="absolute inset-0 bg-[#f5f0e6]"
+        className="absolute inset-0 bg-cream"
         style={{ top: '80px' }}
       />
 
@@ -238,11 +150,11 @@ const InternationalCityPage: React.FC = () => {
       <div className="absolute inset-0 flex" style={{ top: '80px' }}>
         {/* 左側：文字內容 */}
         <div className="w-2/5 h-full flex items-center px-16">
-          <div className="text-[#0b2d2a]" style={{ maxWidth: '28rem' }}>
+          <div className="text-brand-sekisui" style={{ maxWidth: '28rem' }}>
             {/* 主標題 */}
             <h1
-              className="font-light text-h2 leading-tight"
-              style={{ letterSpacing: '0.05em', marginBottom: '1rem' }}
+              className="font-light text-h2 leading-tight tracking-normal-custom"
+              style={{ marginBottom: '1rem' }}
             >
               齊步世界 亮眼軸線
             </h1>
@@ -267,18 +179,38 @@ const InternationalCityPage: React.FC = () => {
           </div>
         </div>
 
-        {/* 右側：SVG 圖片 */}
-        <div
-          ref={svgContainerRef}
-          className="flex-1 h-full flex items-center justify-center"
-        >
-          <object
-            data="/images/a1/map2-2.svg"
-            type="image/svg+xml"
-            className="w-full h-full"
-            style={{ objectFit: 'contain', objectPosition: 'center' }}
-            aria-label="水湳經貿園區地圖"
-          />
+        {/* 右側：園區地圖 + 可點擊地標錨點 */}
+        <div className="flex-1 h-full flex items-center justify-center py-6">
+          <div
+            className="relative max-w-full"
+            style={{ height: '100%', aspectRatio: '2200 / 2931' }}
+          >
+            <img
+              src="/images/a1/map3.webp"
+              alt="水湳經貿園區地圖"
+              draggable={false}
+              className="w-full h-full select-none"
+            />
+
+            {/* 地標錨點：對準地圖上的黑色標籤框 */}
+            {landmarks.map((landmark) => (
+              <button
+                key={landmark.id}
+                onClick={() => {
+                  setCarouselIndex(0);
+                  setSelectedLandmark(landmark);
+                }}
+                className="map-anchor absolute"
+                style={{
+                  left: `${landmark.pos.left}%`,
+                  top: `${landmark.pos.top}%`,
+                  width: `${landmark.pos.width}%`,
+                  height: `${landmark.pos.height}%`,
+                }}
+                aria-label={`開啟${landmark.name}圖庫`}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
@@ -352,6 +284,34 @@ const InternationalCityPage: React.FC = () => {
         }
         .animate-fade-in {
           animation: fade-in 0.3s ease-out forwards;
+        }
+
+        /* 地標錨點：金色遮罩呼吸燈（multiply 只染白色文字，黑底不受影響） */
+        @keyframes text-breathe {
+          0%, 100% {
+            opacity: 0.15;
+          }
+          50% {
+            opacity: 1;
+          }
+        }
+        .map-anchor {
+          border-radius: 8px;
+          cursor: pointer;
+        }
+        .map-anchor::before {
+          content: '';
+          position: absolute;
+          inset: 4px;
+          border-radius: 4px;
+          background: #ffcb45;
+          mix-blend-mode: multiply;
+          animation: text-breathe 2.4s ease-in-out infinite;
+          pointer-events: none;
+        }
+        .map-anchor:hover::before {
+          animation: none;
+          opacity: 1;
         }
       `}</style>
     </div>
