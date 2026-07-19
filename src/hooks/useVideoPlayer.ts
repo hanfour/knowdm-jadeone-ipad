@@ -34,7 +34,6 @@ export function useVideoPlayer(
   const videoRef = useRef<HTMLVideoElement>(null);
   const [activeSegment, setActiveSegment] = useState<number>(0);
   const [showReplayButton, setShowReplayButton] = useState<boolean>(false);
-  const stopTimeRef = useRef<number | null>(null);
 
   // 影片時間更新監聽 - loop 播放
   useEffect(() => {
@@ -77,32 +76,44 @@ export function useVideoPlayer(
     const segment = segments[index];
     setActiveSegment(index);
     video.currentTime = segment.start;
-    stopTimeRef.current = segment.end;
-    video.play();
+    video.play()?.catch(() => {});
   }, [config.videoSegments]);
 
   // 切換 tab 時重置 segment 並自動播放
+  // video 元素隨 tab 內容重新掛載，以 rAF 輪詢等待掛載（至多 2 秒）
   useEffect(() => {
     setActiveSegment(0);
-    stopTimeRef.current = null;
     setShowReplayButton(false);
 
-    const timer = setTimeout(() => {
+    if (!config.video) return;
+
+    let cancelled = false;
+    let rafId: number;
+    const startedAt = performance.now();
+
+    const tryStart = () => {
+      if (cancelled) return;
       const video = videoRef.current;
-      if (!video || !config.video) return;
+      if (!video) {
+        if (performance.now() - startedAt < 2000) {
+          rafId = requestAnimationFrame(tryStart);
+        }
+        return;
+      }
 
       if (config.videoSegments) {
         playSegment(0);
-      } else if (config.videoLoop) {
+      } else if (config.videoLoop || config.videoShowReplay) {
         video.currentTime = 0;
-        video.play();
-      } else if (config.videoShowReplay) {
-        video.currentTime = 0;
-        video.play();
+        video.play()?.catch(() => {});
       }
-    }, 100);
+    };
 
-    return () => clearTimeout(timer);
+    rafId = requestAnimationFrame(tryStart);
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(rafId);
+    };
   }, [activeTab, config.video, config.videoSegments, config.videoLoop, config.videoShowReplay, playSegment]);
 
   // 監聽影片結束事件

@@ -20,14 +20,13 @@
 | H1 | `2.5rem` | `text-h1` | 一級標題 |
 | H2 | `2rem` | `text-h2` | 二級標題 |
 | H3 | `1.75rem` | `text-h3` | 三級標題（品牌設備區塊標題） |
-| H4 | `1.5rem` | `text-h4` | 四級標題 |
-| Large | `1.5rem` | `text-large` | 大號正文（功能標題、副標題） |
+| Large | `1.5rem` | `text-large` | 大號正文（功能標題、副標題、四級標題） |
 | Body | `1rem` | `text-body` | 正文 |
 | Small | `0.9rem` | `text-small` | 小型文字（特色列表項） |
 | XSmall | `0.85rem` | `text-xsmall` | 更小文字（產品說明、按鈕） |
 | Micro | `0.75rem` | `text-micro` | 極小文字（備註、提示） |
 
-> 備註：`text-h4` 與 `text-large` 目前同為 1.5rem，待後續整併。
+> 備註：原 `text-h4`（與 `text-large` 同為 1.5rem）已於 2026-07-19 整併移除，一律使用 `text-large`。
 
 **注意**：基礎 `html { font-size: 130%; }` 已在 `index.css` 設定。
 
@@ -51,13 +50,15 @@
 
 ### 行高 (Line Height)
 
-請使用以下標準行高設定：
+請使用以下標準行高設定（寬鬆與正常直接使用 Tailwind 原生 class，數值相同）：
 
 | 層級 | 數值 | Tailwind Class | 用途 |
 |------|------|----------------|------|
-| 寬鬆 | `2` | `leading-loose-custom` | 正文段落、介紹文 |
+| 寬鬆 | `2` | `leading-loose`（原生） | 正文段落、介紹文 |
 | 舒適 | `1.8` | `leading-relaxed-custom` | 產品說明、描述文字 |
-| 正常 | `1.5` | `leading-normal-custom` | 列表項、小文字 |
+| 正常 | `1.5` | `leading-normal`（原生） | 列表項、小文字 |
+
+> 備註：原 `leading-loose-custom`(2)、`leading-normal-custom`(1.5) 與原生同值，已於 2026-07-19 整併移除。
 
 ---
 
@@ -68,7 +69,6 @@
 | 用途 | 色碼 | Tailwind Class | 說明 |
 |------|------|----------------|------|
 | 主文字 | `#f5e6b8` | `text-gold` | 金色，用於標題 |
-| 淺金色 | `#faf3dc` | `text-gold-light` | 金色變體 |
 | 深金色 | `#d4a853` | `text-gold-deep` / `bg-gold-deep` / `border-gold-deep` | 深金色（按鈕、邊框、強調） |
 | 次文字 | `rgba(255,255,255,0.7)` | `text-white/70` | 淡白色 |
 | 輔助文字 | `rgba(255,255,255,0.3)` | `text-white/30` | 很淡白色 |
@@ -94,15 +94,11 @@
 
 | 品牌 | 色碼 | Tailwind Class |
 |------|------|----------------|
-| JTL 喜特麗 | `#c41230` | `text-brand-jtl` / `bg-brand-jtl` |
-| TUB 大雅廚具 | `#1a5276` | `text-brand-tub` / `bg-brand-tub` |
 | SEKISUI | `#0b2d2a` | `text-brand-sekisui` / `bg-brand-sekisui` |
-| 3M | `#ff0000` | `text-brand-3m` / `bg-brand-3m` |
 | 櫻花 | `#e74c3c` | `text-brand-sakura` / `bg-brand-sakura` |
-| TOTO | `#1a5276` | `text-brand-toto` / `bg-brand-toto` |
-| Yale | `#1a1a1a` | `text-brand-yale` / `bg-brand-yale` |
-| YKK | `#cc0000` | `text-brand-ykk` / `bg-brand-ykk` |
-| ROBINA | `#8b4513` | `text-brand-robina` / `bg-brand-robina` |
+
+> 備註：其餘品牌色（JTL、TUB、3M、TOTO、Yale、YKK、ROBINA 等）由各品牌頁 data 物件以動態
+> inline style 提供，token 從未被使用，已於 2026-07-19 移除；若日後要以 class 使用再行新增。
 
 ---
 
@@ -118,7 +114,7 @@
 
 ```tsx
 // 最佳：使用自訂 Tailwind class
-<h2 className="text-h3 tracking-wide-custom leading-loose-custom text-text-primary">
+<h2 className="text-h3 tracking-wide-custom leading-loose text-text-primary">
   標題文字
 </h2>
 
@@ -144,10 +140,10 @@
 <h1 className="text-h1 tracking-widest-custom text-text-primary">
 
 // 區塊標題
-<h2 className="text-h3 tracking-wide-custom leading-loose-custom text-text-primary">
+<h2 className="text-h3 tracking-wide-custom leading-loose text-text-primary">
 
 // 子區塊標題
-<h3 className="text-h4 tracking-wide-custom text-text-secondary">
+<h3 className="text-large tracking-wide-custom text-text-secondary">
 
 // 功能標題
 <h4 className="text-large tracking-normal-custom text-text-tertiary">
@@ -157,7 +153,7 @@
 
 ```tsx
 // 一般正文
-<p className="text-body leading-loose-custom text-text-tertiary">
+<p className="text-body leading-loose text-text-tertiary">
 
 // 說明文字
 <p className="text-small leading-relaxed-custom text-text-muted">
@@ -173,7 +169,7 @@
 <h2 className="text-h3 tracking-wide-custom text-gold">
 
 // 白色正文
-<p className="text-body leading-loose-custom text-white/70">
+<p className="text-body leading-loose text-white/70">
 ```
 
 ---
@@ -187,7 +183,9 @@
 3. **內聯 letterSpacing 已轉換為 tracking-* class**（僅限 0.05/0.08/0.1/0.15/0.2/0.25em 六個標準值；其他值如 0.3em、0.025em 保留）
 4. **`text-sm`/`text-xs` 已替換為 `text-small`/`text-xsmall`**
 
-**尚未對齊**：行高（leading-*）與其餘原生字級（text-xl、text-2xl 等）、內聯 fontSize/lineHeight/color。
+5. **design token 整併（2026-07-19）**：移除同值重複的 `text-h4`、`leading-loose-custom`、`leading-normal-custom` 與從未使用的 `gold-light`、7 個品牌色 token
+
+**尚未對齊（2026-07-19 全面掃描後確認僅剩個別特例，無等值替換空間）**：`text-lg` ×1（FloorPlanPage 無平面圖提示）、`text-[0.4rem]` ×1（戶別標記小字）、裝飾符號與 data 驅動的非 token 色碼。
 
 ---
 

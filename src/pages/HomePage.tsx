@@ -254,7 +254,7 @@ const HomePage: React.FC = () => {
             >
               {/* 主標題 - 可點擊區域 */}
               <div
-                className="font-semibold text-white text-display leading-normal-custom cursor-pointer tracking-widest-custom"
+                className="font-semibold text-white text-display leading-normal cursor-pointer tracking-widest-custom"
                 onTouchEnd={(e) => {
                   e.preventDefault();
                   e.stopPropagation();

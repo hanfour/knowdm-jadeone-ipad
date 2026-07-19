@@ -471,7 +471,7 @@ const BathroomBrandPage: React.FC = () => {
 
                   {/* 產品說明（如有） */}
                   {selectedEquipment.description && (
-                    <p className="text-body leading-normal-custom text-text-secondary mb-4">
+                    <p className="text-body leading-normal text-text-secondary mb-4">
                       {selectedEquipment.description}
                     </p>
                   )}
@@ -490,7 +490,7 @@ const BathroomBrandPage: React.FC = () => {
                             {subBrand.features.map((feature, fIdx) => (
                               <li
                                 key={fIdx}
-                                className="flex items-start text-xsmall leading-normal-custom text-text-secondary"
+                                className="flex items-start text-xsmall leading-normal text-text-secondary"
                               >
                                 <span className="mr-2 mt-1.5 w-1.5 h-1.5 bg-gray-500 rounded-full flex-shrink-0" />
                                 {feature}
@@ -506,7 +506,7 @@ const BathroomBrandPage: React.FC = () => {
                       {selectedEquipment.features.map((feature, index) => (
                         <li
                           key={index}
-                          className={`flex items-start text-body leading-normal-custom text-text-secondary ${feature.startsWith('【') ? 'font-medium mt-3' : ''}`}
+                          className={`flex items-start text-body leading-normal text-text-secondary ${feature.startsWith('【') ? 'font-medium mt-3' : ''}`}
                         >
                           {!feature.startsWith('【') && (
                             <span className="mr-3 mt-1.5 w-1.5 h-1.5 bg-gray-500 rounded-full flex-shrink-0" />

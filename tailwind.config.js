@@ -11,8 +11,7 @@ module.exports = {
         'h1': '2.5rem',         // 一級標題
         'h2': '2rem',           // 二級標題
         'h3': '1.75rem',        // 三級標題（品牌設備區塊標題）
-        'h4': '1.5rem',         // 四級標題
-        'large': '1.5rem',     // 大號正文（功能標題、副標題）
+        'large': '1.5rem',      // 大號正文（功能標題、副標題）
         'body': '1rem',         // 正文
         'small': '0.9rem',      // 小型文字（特色列表項）
         'xsmall': '0.85rem',    // 更小文字（產品說明、按鈕）
@@ -27,34 +26,22 @@ module.exports = {
         'medium-custom': '0.08em',  // 中等字距（說明文字、副標）
         'normal-custom': '0.05em',  // 產品名稱、品牌名稱
       },
-      // 行高規範
+      // 行高規範（正文段落用原生 leading-loose(2)、列表用原生 leading-normal(1.5)）
       lineHeight: {
-        'loose-custom': '2',      // 正文段落、介紹文
-        'relaxed-custom': '1.8',  // 產品說明、描述文字
-        'normal-custom': '1.5',   // 列表項、小文字
+        'relaxed-custom': '1.8',  // 產品說明、描述文字（介於原生 relaxed 與 loose 之間）
       },
       // 顏色規範
       colors: {
         // 深色背景模式
-        'gold': {
-          DEFAULT: '#f5e6b8',     // 金色主文字
-          light: '#faf3dc',       // 淺金色
-        },
+        'gold': '#f5e6b8',        // 金色主文字
         'gold-deep': '#d4a853',   // 深金色
         // 主題色
         'earth': '#68583f',       // 棕色（交通/機能頁主題色）
         'cream': '#f5f0e6',       // 米白背景
-        // 品牌色
+        // 品牌色（其餘品牌色以各頁 data 動態 inline style 提供，未收錄 token）
         'brand': {
-          'jtl': '#c41230',       // JTL 喜特麗（紅）
-          'tub': '#1a5276',       // TUB 大雅廚具（藍）
           'sekisui': '#0b2d2a',   // SEKISUI（深綠）
-          '3m': '#ff0000',        // 3M（紅）
           'sakura': '#e74c3c',    // 櫻花（紅）
-          'toto': '#1a5276',      // TOTO（藍）
-          'yale': '#1a1a1a',      // Yale（黑）
-          'ykk': '#cc0000',       // YKK（紅）
-          'robina': '#8b4513',    // ROBINA（棕）
         },
         // 文字色階
         'text': {

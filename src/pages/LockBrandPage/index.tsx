@@ -127,7 +127,7 @@ const LockBrandPage: React.FC = () => {
                       </span>
                     )}
                   </div>
-                  <p className="text-body leading-normal-custom text-text-tertiary transition-colors duration-300 group-hover:text-text-primary">
+                  <p className="text-body leading-normal text-text-tertiary transition-colors duration-300 group-hover:text-text-primary">
                     {feature.description}
                   </p>
                 </div>

@@ -151,7 +151,7 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
         {/* 標題 */}
         <div className="absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/70 to-transparent p-6 pointer-events-none">
           <div className="text-center">
-            <p className="text-gold text-h4 tracking-wide-custom">{floorLabel}</p>
+            <p className="text-gold text-large tracking-wide-custom">{floorLabel}</p>
             <p className="text-white/70 text-small mt-1">{title}</p>
           </div>
         </div>
