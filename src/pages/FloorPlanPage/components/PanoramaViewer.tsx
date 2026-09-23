@@ -9,6 +9,36 @@ interface PanoramaViewerProps {
   onClose: () => void;
 }
 
+interface PannellumViewerOptions {
+  type: 'equirectangular';
+  panorama: string;
+  autoLoad: boolean;
+  autoRotate: number;
+  compass: boolean;
+  showZoomCtrl: boolean;
+  showFullscreenCtrl: boolean;
+  mouseZoom: boolean;
+  hfov: number;
+  minHfov: number;
+  maxHfov: number;
+  pitch: number;
+  yaw: number;
+}
+
+interface PannellumViewer {
+  on(event: 'load', callback: () => void): void;
+  on(event: 'error', callback: (err: unknown) => void): void;
+  destroy(): void;
+}
+
+interface PannellumApi {
+  viewer(container: HTMLElement, options: PannellumViewerOptions): PannellumViewer;
+}
+
+interface WindowWithPannellum extends Window {
+  pannellum?: PannellumApi;
+}
+
 const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
   isOpen,
   imageSrc,
@@ -17,7 +47,7 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
   onClose,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const viewerRef = useRef<any>(null);
+  const viewerRef = useRef<PannellumViewer | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadError, setLoadError] = useState(false);
 
@@ -37,7 +67,7 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
         }
 
         // 載入 Pannellum JS
-        if (!(window as any).pannellum) {
+        if (!(window as WindowWithPannellum).pannellum) {
           await new Promise<void>((resolve, reject) => {
             const script = document.createElement('script');
             script.src = 'https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js';
@@ -52,13 +82,13 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
 
         if (!isMounted || !containerRef.current) return;
 
-        const pannellum = (window as any).pannellum;
+        const pannellum = (window as WindowWithPannellum).pannellum;
         if (!pannellum) {
           throw new Error('Pannellum 未正確載入');
         }
 
         // 建立 viewer
-        viewerRef.current = pannellum.viewer(containerRef.current, {
+        const viewer = pannellum.viewer(containerRef.current, {
           type: 'equirectangular',
           panorama: imageSrc,
           autoLoad: true,
@@ -73,16 +103,17 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
           pitch: 0,
           yaw: 0,
         });
+        viewerRef.current = viewer;
 
         // 監聽載入完成
-        viewerRef.current.on('load', () => {
+        viewer.on('load', () => {
           if (isMounted) {
             setIsLoaded(true);
           }
         });
 
         // 監聯錯誤
-        viewerRef.current.on('error', (err: any) => {
+        viewer.on('error', (err: unknown) => {
           console.error('Pannellum error:', err);
           if (isMounted) {
             setLoadError(true);

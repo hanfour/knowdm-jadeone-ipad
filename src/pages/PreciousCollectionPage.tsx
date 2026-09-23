@@ -151,9 +151,21 @@ const PreciousCollectionPage: React.FC = () => {
     const svgElement = svgRef.current;
     if (!svgElement) return;
 
+    let applied = false;
+    let insertedStyle: Element | null = null;
+    const listenerBindings: Array<{
+      element: EventTarget;
+      type: 'click';
+      handler: EventListener;
+    }> = [];
+
     const handleLoad = () => {
+      if (applied) return;
+
       const svgDoc = svgElement.contentDocument;
       if (!svgDoc) return;
+
+      applied = true;
 
       // 注入 CSS 樣式到 SVG
       const style = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'style');
@@ -219,13 +231,18 @@ const PreciousCollectionPage: React.FC = () => {
         }
       `;
       svgDoc.querySelector('svg')?.appendChild(style);
+      insertedStyle = style;
 
       // 設定可點擊區域
       Object.entries(svgAreaMapping).forEach(([svgId, areaId]) => {
         const group = svgDoc.getElementById(svgId);
         if (group) {
           group.classList.add('clickable-area');
-          group.addEventListener('click', () => handleAreaClick(areaId));
+          const handleClick = function handleClick() {
+            handleAreaClick(areaId);
+          };
+          group.addEventListener('click', handleClick);
+          listenerBindings.push({ element: group, type: 'click', handler: handleClick });
 
           // 為該群組內的 map_icon 元素添加動畫 class
           const mapIcons = group.querySelectorAll('[id^="map_x5F_icon"], [id^="map_icon"], path.st8');
@@ -251,6 +268,10 @@ const PreciousCollectionPage: React.FC = () => {
 
     return () => {
       svgElement.removeEventListener('load', handleLoad);
+      listenerBindings.forEach(({ element, type, handler }) => {
+        element.removeEventListener(type, handler);
+      });
+      insertedStyle?.parentNode?.removeChild(insertedStyle);
     };
   }, []);
 

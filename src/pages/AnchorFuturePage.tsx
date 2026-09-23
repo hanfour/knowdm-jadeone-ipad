@@ -224,9 +224,21 @@ const AnchorFuturePage: React.FC = () => {
     const svgObject = container.querySelector('object');
     if (!svgObject) return;
 
+    let applied = false;
+    let insertedStyle: Element | null = null;
+    const listenerBindings: Array<{
+      element: EventTarget;
+      type: 'mouseenter' | 'mouseleave' | 'click';
+      handler: EventListener;
+    }> = [];
+
     const handleSvgLoad = () => {
+      if (applied) return;
+
       const svgDoc = (svgObject as HTMLObjectElement).contentDocument;
       if (!svgDoc) return;
+
+      applied = true;
 
       // 為 74路線 和 水湳 添加 Shine effect
       const style = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'style');
@@ -261,6 +273,7 @@ const AnchorFuturePage: React.FC = () => {
         }
       `;
       svgDoc.querySelector('svg')?.appendChild(style);
+      insertedStyle = style;
 
       // 為每個重劃區添加互動
       districts.forEach((district) => {
@@ -269,17 +282,27 @@ const AnchorFuturePage: React.FC = () => {
           element.style.cursor = 'pointer';
           element.style.transition = 'opacity 0.3s ease, filter 0.3s ease';
 
-          element.addEventListener('mouseenter', () => {
+          const handleMouseEnter = function handleMouseEnter() {
             setHoveredDistrict(district.id);
-          });
+          };
 
-          element.addEventListener('mouseleave', () => {
+          const handleMouseLeave = function handleMouseLeave() {
             setHoveredDistrict(null);
-          });
+          };
 
-          element.addEventListener('click', () => {
+          const handleClick = function handleClick() {
             openModal(district.id);
-          });
+          };
+
+          element.addEventListener('mouseenter', handleMouseEnter);
+          element.addEventListener('mouseleave', handleMouseLeave);
+          element.addEventListener('click', handleClick);
+
+          listenerBindings.push(
+            { element, type: 'mouseenter', handler: handleMouseEnter },
+            { element, type: 'mouseleave', handler: handleMouseLeave },
+            { element, type: 'click', handler: handleClick },
+          );
         }
       });
     };
@@ -292,6 +315,10 @@ const AnchorFuturePage: React.FC = () => {
 
     return () => {
       svgObject.removeEventListener('load', handleSvgLoad);
+      listenerBindings.forEach(({ element, type, handler }) => {
+        element.removeEventListener(type, handler);
+      });
+      insertedStyle?.parentNode?.removeChild(insertedStyle);
     };
   }, []);
 
