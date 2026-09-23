@@ -364,23 +364,13 @@ const LifeFunctionPage: React.FC = () => {
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
 
-    console.log(`[地圖點擊] x=${x.toFixed(2)}%, y=${y.toFixed(2)}% | 目前類別: ${activeCategory || '無'}`);
-
     // 檢查是否點擊到商圈區域
     for (const area of clickableAreas) {
       // 只在對應類別被選中時才能點擊
       if (activeCategory !== area.category) continue;
       if (area.polygon.length === 0) continue;
 
-      const isInside = isPointInPolygon(x, y, area.polygon);
-      console.log(`  檢查 ${area.id}: ${isInside ? '✓ 在區域內' : '✗ 不在區域內'}`);
-
-      if (isInside) {
-        console.log(`[點擊成功] ${area.id}`, {
-          position: { x: x.toFixed(2), y: y.toFixed(2) },
-          timestamp: new Date().toISOString()
-        });
-        // 打開燈箱
+      if (isPointInPolygon(x, y, area.polygon)) {
         openLightbox(area.id);
         return;
       }
