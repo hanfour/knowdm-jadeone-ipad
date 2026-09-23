@@ -17,11 +17,11 @@ const ykkProjects: ProjectPhoto[] = [
 
 // YKK 更多介紹輪播圖片
 const ykkGalleryImages = [
+  '/images/window-flooring/ykk/gallery/img_005_5+5.webp',
   '/images/window-flooring/ykk/gallery/img_001.webp',
   '/images/window-flooring/ykk/gallery/img_002.webp',
   '/images/window-flooring/ykk/gallery/img_003.webp',
   '/images/window-flooring/ykk/gallery/img_004.webp',
-  '/images/window-flooring/ykk/gallery/img_005.webp',
   '/images/window-flooring/ykk/gallery/img_006.webp',
 ];
 

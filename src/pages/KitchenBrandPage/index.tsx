@@ -53,12 +53,12 @@ const cabinetItems: CabinetItem[] = [
   },
   {
     category: '烤漆玻璃介紹',
-    content: '採用歐洲進口E1級V313防潮塑合板，甲醛含量低於0.1ppm，外覆白色美耐皿處理。無異味、無毛細孔、質地堅硬不變形，24小時浸泡膨脹率僅6%，完美對應台灣潮濕氣候，是兼顧環保與安全的高科技建材。',
+    content: '清玻璃背面施以特殊漆料，經強化爐高溫烘烤定色，賦予空間無限色彩可能。具備耐高溫、耐酸鹼、抗刮耐磨等優異性能，表面光滑不易掉色且易清潔，輕量化設計適用於牆面、檯面及廚房空間。',
     images: ['/images/kitchen/painted-glass.webp'],
   },
   {
     category: '桶身介紹',
-    content: '清玻璃背面施以特殊漆料，經強化爐高溫烘烤定色，賦予空間無限色彩可能。具備耐高溫、耐酸鹼、抗刮耐磨等優異性能，表面光滑不易掉色且易清潔，輕量化設計適用於牆面、檯面及廚房空間。',
+    content: '採用歐洲進口E1級V313防潮塑合板，甲醛含量低於0.1ppm，外覆白色美耐皿處理。無異味、無毛細孔、質地堅硬不變形，24小時浸泡膨脹率僅6%，完美對應台灣潮濕氣候，是兼顧環保與安全的高科技建材。',
     images: ['/images/kitchen/cabinet-body.webp'],
   },
 ];
@@ -117,43 +117,6 @@ const equipmentItems: EquipmentItem[] = [
       '內部照明燈和照地燈',
       '獨特3D風扇乾燥方式（非獨立烘乾）',
       '三層碗籃（架）、可調節上碗籃',
-    ],
-  },
-  {
-    id: 'glemgas-microwave',
-    name: 'GlemGas 嵌入式微波烤箱（選配）',
-    brand: 'GlemGas',
-    brandLogo: '/images/kitchen/equipment/glemgas-logo.webp',
-    brandColor: '#1a1a1a',
-    image: '/images/kitchen/equipment/微波烤箱.webp',
-    features: [
-      '電子計時器 0 到 95"',
-      '按重量/時間進行解凍',
-      '數位控制',
-      '八種火力模式',
-      '燒烤功能',
-      '8個自動菜單',
-      '數位時鐘',
-      '31.5cm 旋轉板',
-      '內部使用不鏽鋼內膽',
-    ],
-  },
-  {
-    id: 'jtl-cabinet',
-    name: 'JTL 豪華型收納櫃（選配）',
-    brand: 'JTL',
-    brandLogo: '/images/kitchen/equipment/jtl-logo.webp',
-    brandColor: '#c41230',
-    image: '/images/kitchen/equipment/收納櫃.webp',
-    features: [
-      '獨特「橫流扇」設計，有效排出蒸氣延長廚櫃壽命',
-      '嵌入式收納設計，與廚櫃完美搭配',
-      '智慧型自動排氣功能',
-      '獨家隱藏式排氣孔，更增美觀',
-      '無段式門板鉸鍊，使用順手無障礙',
-      '桶身及托盤不鏽鋼材質，外觀時尚簡約，使用壽命長',
-      '表面防指紋處理，清潔容易保養輕鬆',
-      '冷光觸控面板，操作簡便',
     ],
   },
   {
@@ -388,7 +351,7 @@ const KitchenBrandPage: React.FC = () => {
 
       {/* 設備網格 */}
       <div className="flex-1 px-12 pb-8 overflow-auto">
-        <div className="grid grid-cols-4 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-3 gap-6 max-w-3xl mx-auto">
           {currentTab.equipmentItems?.map((item) => (
             <div
               key={item.id}
